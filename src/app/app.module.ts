@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './core/layout/side-bar/side-bar.component';
 import { InicioPageComponent } from './modules/inicio/pages/inicio-page/inicio-page.component';
-import { ConfigPageComponent } from './modules/config/config-page/config-page.component';
-import { UserPageComponent } from './modules/user/user-page/user-page.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,8 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     InicioPageComponent,
-    ConfigPageComponent,
-    UserPageComponent,
     HeaderComponent,
     FooterComponent,
   ],
