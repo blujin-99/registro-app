@@ -5,7 +5,7 @@
 $backGround: #fff;
 $fondo: #e3e1e2;
 $colorFondo: #ccc;
-$colorFuente: #108A97;
+$colorFuente: #108a97;
 $colorFooter: #6c757d;
 $body-bg: $backGround;
 $lineaButton: $colorFuente;
@@ -44,41 +44,49 @@ h6,
 .h4,
 .h5,
 .h6 {
-    margin-bottom: 0.5rem;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: #108a97;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #108a97;
 }
 
 h1,
 .h1 {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 
 h2,
 .h2 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 h3,
 .h3 {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 h4,
 .h4 {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 h5,
 .h5 {
-    font-size: 0.5rem;
+  font-size: 0.5rem;
 }
 
 h6,
 .h6 {
-    font-size: 1rem;
+  font-size: 1rem;
+}
+
+footer a {
+  color: #868e96;
+}
+
+footer ul li > a {
+  font-size: 25px !important;
 }
 
 a {
@@ -87,18 +95,18 @@ a {
   background-color: transparent;
 }
 
-.primary{
+.primary {
   color: $colorFuente;
 }
 
-.secondary{
+.secondary {
   color: $colorFooter;
 }
 
-.bg-primary{
+.bg-primary {
   background-color: $colorFuente;
 }
 
-.bg-secondary{
-  color: $colorFooter;
+.bg-secondary {
+  background-color: $fondo;
 }
