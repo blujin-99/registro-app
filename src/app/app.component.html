@@ -1,3 +1,21 @@
-<app-header [titulo]="'Formulario Electronico'"></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="app-container">
+  <div class="header">
+    <app-header [titulo]="'Formulario Electronico'"></app-header>
+  </div>
+  <div class="side-bar">
+    <app-side-bar>
+      <ul class="px-2 space-y-2 font-medium">
+        <li class="text-xl font-bold">Inicio</li>
+        <hr />
+        <li routerLink="/user">User</li>
+        <li routerLink="/config">Config</li>
+      </ul>
+    </app-side-bar>
+  </div>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</div>
