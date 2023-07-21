@@ -9,10 +9,23 @@ import { ConfigPageComponent } from './modules/config/config-page/config-page.co
 import { UserPageComponent } from './modules/user/user-page/user-page.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, InicioPageComponent, ConfigPageComponent, UserPageComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, SideBarComponent],
+  declarations: [
+    AppComponent,
+    InicioPageComponent,
+    ConfigPageComponent,
+    UserPageComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SideBarComponent,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

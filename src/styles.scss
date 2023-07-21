@@ -31,6 +31,11 @@ body {
   scroll-margin-block: $colorFuente;
 }
 
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
 // H titulos H
 h1,
 h2,
@@ -48,7 +53,7 @@ h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: #108a97;
+  color: $colorFuente;
 }
 
 h1,
@@ -82,7 +87,7 @@ h6,
 }
 
 footer a {
-  color: #868e96;
+  color: $colorFooter ;
 }
 
 footer ul li > a {
@@ -90,10 +95,12 @@ footer ul li > a {
 }
 
 a {
-  color: #108a97;
+  color: $colorFuente;
   text-decoration: none;
   background-color: transparent;
 }
+
+
 
 .primary {
   color: $colorFuente;
@@ -139,20 +146,25 @@ aside {
 
 .main {
   grid-area: main;
-  overflow-y: scroll;
+  //overflow-y: scroll;
 }
 
 .footer {
   grid-area: footer;
 }
 @media screen and (max-width: 768px) {
+
+
+
   .app-container {
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 200px auto 100px;
+    grid-template-rows:  50px 100px auto 100px;
     grid-template-areas:
+    "sidebar"
       "header"
-      "sidebar"
       "main"
       "footer";
   }
+
+
 }
