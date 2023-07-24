@@ -39,7 +39,8 @@
         </svg>
       </ng-template>
     </div>
-    <ng-container *ngIf="hideFilter">
+    <!-- TODO: Cambiar a *ngIf="hideFilter" -->
+    <ng-container *ngIf="!hideFilter">
       <!--? BUSQUEDA POR NUMERO DE TRAMITE O AFORO -->
       <div class="flex items-center m-4 mt-0 w-11/12">
         <div class="relative w-full">
@@ -158,17 +159,33 @@
       >
         <div class="flex flex-row items-center gap-2">
           <p class="text-base mb-2">Filtros:</p>
-          <button
-            type="button"
-            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-800 focus:outline-none bg-fondo rounded-full border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
+          <!--? CHIPS DE FILTROS -->
+          <div
+            class="flex justify-center items-center font-medium py-2.5 px-5 mr-2 mb-2 bg-fondo rounded-full text-gray-800"
           >
-            Rosario</button
-          ><button
-            type="button"
-            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-800 focus:outline-none bg-fondo rounded-full border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
-          >
-            Pagado
-          </button>
+            <div class="max-w-full flex-initial">
+              <p class="text-sm font-normal">Rosario</p>
+            </div>
+            <div class="flex flex-auto flex-row-reverse">
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="100%"
+                  height="100%"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-x cursor-pointer hover:text-gray-500 rounded-full w-4 h-4 ml-2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
         <button
           type="button"
