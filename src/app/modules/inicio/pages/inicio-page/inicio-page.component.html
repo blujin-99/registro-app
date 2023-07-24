@@ -2,40 +2,182 @@
   <app-side-bar> </app-side-bar>
 </div>
 <!-- INICIO -->
-<div class="">
+<div class="flex-col flex items-center">
   <!-- Filtro de busqueda -->
-  <div>
-    <form class="flex items-center w-11/12 m-4 md:w-6/12">
-      <label for="simple-search" class="sr-only">Search</label>
-      <div class="relative w-full">
-        <input
-          type="text"
-          id="simple-search"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-400 block w-full pl-10 p-2.5"
-          placeholder="Buscar por numero de trámite o numero de aforo"
-        />
-      </div>
-      <button
-        type="submit"
-        class="p-2.5 ml-2 text-sm font-medium text-white bg-primary rounded-lg border focus:ring-4 focus:outline-none focus:ring-blue-300"
-      >
+  <div
+    class="w-11/12 mt-4 flex items-center flex-col bg-white border border-gray-200 rounded-lg shadow"
+  >
+    <div
+      class="flex flex-row w-11/12 my-3 justify-between"
+      (click)="toogleHideFilter()"
+    >
+      <h3 class="text-xl m-0 font-semibold">Filtros de Búsqueda</h3>
+      <div *ngIf="!hideFilter; else ocultar">
         <svg
-          class="w-4 h-4"
-          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 20 20"
+          height="32"
+          viewBox="0 -960 960 960"
+          width="32"
         >
           <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"
+            fill="gray"
           />
         </svg>
-        <span class="sr-only">Search</span>
-      </button>
-    </form>
+      </div>
+      <ng-template #ocultar>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="32"
+          viewBox="0 -960 960 960"
+          width="32"
+        >
+          <path
+            d="m283-345-43-43 240-240 240 239-43 43-197-197-197 198Z"
+            fill="gray"
+          />
+        </svg>
+      </ng-template>
+    </div>
+    <ng-container *ngIf="hideFilter">
+      <!--? BUSQUEDA POR NUMERO DE TRAMITE O AFORO -->
+      <div class="flex items-center m-4 mt-0 w-11/12">
+        <div class="relative w-full">
+          <input
+            type="text"
+            id="simple-search"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-400 block w-full md:pl-10 p-2.5"
+            placeholder="Buscar por numero de trámite o numero de aforo"
+          />
+        </div>
+        <button
+          type="submit"
+          class="p-3 ml-2 text-sm font-medium text-white bg-primary rounded-lg border focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          <svg
+            class="w-4 h-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+          <span class="sr-only">Search</span>
+        </button>
+      </div>
+      <!--? CATEGORIA TRAMITE -->
+      <div class="w-11/12 flex md:flex-row flex-col justify-between">
+        <div class="md:w-6/12 md:pr-4">
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected>Categoría de Trámite</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+          </select>
+        </div>
+        <!--? TRAMITE/SERVICIO -->
+        <div class="md:w-6/12">
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected>Tramite/Servicio</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+          </select>
+        </div>
+      </div>
+      <div class="w-11/12 flex md:flex-row flex-col justify-between">
+        <!--? ESTADO TRAMITE -->
+        <div class="md:w-6/12 md:pr-4">
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected>Estado Trámite</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+          </select>
+        </div>
+        <!--? ESTADO TASAS -->
+        <div class="md:w-6/12">
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected>Estado Tasas</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="w-11/12 flex md:flex-row flex-col justify-between">
+        <!--? JURISDICCION -->
+        <div class="md:w-6/12 md:pr-4">
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected>Jurisdicción</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+          </select>
+        </div>
+        <!--? ESTADO EXCENDENTES -->
+        <div class="md:w-6/12">
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected>Estado Excedentes</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+          </select>
+        </div>
+        <!--? BOTON LIMPIAR FILTROS -->
+      </div>
+      <div
+        class="flex md:flex-row flex-col w-11/12 justify-between items-start gap-3 md:gap-0"
+        *ngIf="filters"
+      >
+        <div class="flex flex-row items-center gap-2">
+          <p class="text-base mb-2">Filtros:</p>
+          <button
+            type="button"
+            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-800 focus:outline-none bg-fondo rounded-full border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
+          >
+            Rosario</button
+          ><button
+            type="button"
+            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-800 focus:outline-none bg-fondo rounded-full border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
+          >
+            Pagado
+          </button>
+        </div>
+        <button
+          type="button"
+          (click)="clearFilters()"
+          class="text-white font-medium bg-secondary hover:bg-gray-600 focus:ring-4 rounded-lg text-base px-5 py-2.5 mb-2"
+        >
+          Limpiar Filtros
+        </button>
+      </div>
+    </ng-container>
   </div>
 </div>
