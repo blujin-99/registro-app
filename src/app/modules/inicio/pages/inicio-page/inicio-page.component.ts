@@ -6,4 +6,19 @@ import { Component } from '@angular/core';
 })
 export class InicioPageComponent {
   filters: boolean = true;
+  hideFilter: boolean = false;
+
+  /**
+   * Muestra u oculta la busqueda de filtros
+   */
+  toogleHideFilter() {
+    this.hideFilter = !this.hideFilter;
+  }
+
+  /**
+   * Limpia todos los filtros y oculta la seccion de limpiar filtros
+   */
+  clearFilters() {
+    this.filters = !this.filters;
+  }
 }
