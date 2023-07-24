@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
   templateUrl: './inicio-page.component.html',
   styleUrls: ['./inicio-page.component.scss'],
 })
-export class InicioPageComponent {}
+export class InicioPageComponent {
+  filters: boolean = true;
+}

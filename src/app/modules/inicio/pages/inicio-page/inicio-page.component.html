@@ -2,22 +2,27 @@
   <app-side-bar> </app-side-bar>
 </div>
 <!-- INICIO -->
-<div class="">
+<div class="flex-col flex items-center">
   <!-- Filtro de busqueda -->
-  <div>
-    <form class="flex items-center w-11/12 m-4 md:w-6/12">
-      <label for="simple-search" class="sr-only">Search</label>
+  <div
+    class="w-11/12 mt-4 flex items-center flex-col bg-white border border-gray-200 rounded-lg shadow"
+  >
+    <div class="flex flex-row w-11/12 mt-3">
+      <h3 class="text-xl m-0 font-semibold">Filtros de Búsqueda</h3>
+    </div>
+    <!--? BUSQUEDA POR NUMERO DE TRAMITE O AFORO -->
+    <div class="flex items-center m-4 w-11/12">
       <div class="relative w-full">
         <input
           type="text"
           id="simple-search"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-400 block w-full pl-10 p-2.5"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-400 block w-full md:pl-10 p-2.5"
           placeholder="Buscar por numero de trámite o numero de aforo"
         />
       </div>
       <button
         type="submit"
-        class="p-2.5 ml-2 text-sm font-medium text-white bg-primary rounded-lg border focus:ring-4 focus:outline-none focus:ring-blue-300"
+        class="p-3 ml-2 text-sm font-medium text-white bg-primary rounded-lg border focus:ring-4 focus:outline-none focus:ring-blue-300"
       >
         <svg
           class="w-4 h-4"
@@ -36,6 +41,100 @@
         </svg>
         <span class="sr-only">Search</span>
       </button>
-    </form>
+    </div>
+    <div class="w-11/12 flex flex-row justify-between">
+      <!--? CATEGORIA TRAMITE -->
+      <div class="w-6/12 pr-4">
+        <select
+          class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Categoría de Trámite</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+      <!--? TRAMITE/SERVICIO -->
+      <div class="w-6/12">
+        <select
+          class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Tramite/Servicio</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+    </div>
+    <div class="w-11/12 flex flex-row justify-between">
+      <!--? ESTADO TRAMITE -->
+      <div class="w-6/12 pr-4">
+        <select
+          class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Estado Trámite</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+      <!--? ESTADO TASAS -->
+      <div class="w-6/12">
+        <select
+          class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Estado Tasas</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="w-11/12 flex flex-row justify-between">
+      <!--? JURISDICCION -->
+      <div class="w-6/12 pr-4">
+        <select
+          class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Jurisdicción</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+      <!--? ESTADO EXCENDENTES -->
+      <div class="w-6/12">
+        <select
+          class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Estado Excedentes</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+        </select>
+      </div>
+      <!--? BOTON LIMPIAR FILTROS -->
+    </div>
+    <div
+      class="flex flex-row w-11/12 justify-between items-start"
+      *ngIf="filters"
+    >
+      <div>
+        <p>Filtros:</p>
+      </div>
+      <button
+        type="button"
+        class="text-white font-medium bg-secondary hover:bg-gray-600 focus:ring-4 rounded-lg text-base px-5 py-2.5 mb-2"
+      >
+        Limpiar Filtros
+      </button>
+    </div>
   </div>
 </div>

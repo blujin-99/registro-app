@@ -112,9 +112,15 @@ a {
   background-color: $colorFuente;
 }
 
-.bg-secondary {
+.bg-secondary{
+  background-color: $colorFooter;
+}
+
+.bg-fondo {
   background-color: $fondo;
 }
+
+
 /* GRID LAYOUT*/
 .app-container {
   display: grid;
