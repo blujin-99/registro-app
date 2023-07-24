@@ -31,7 +31,7 @@ body {
   scroll-margin-block: $colorFuente;
 }
 
-*{
+* {
   margin: 0px;
   padding: 0px;
 }
@@ -87,7 +87,7 @@ h6,
 }
 
 footer a {
-  color: $colorFooter ;
+  color: $colorFooter;
 }
 
 footer ul li > a {
@@ -99,8 +99,6 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-
-
 
 .primary {
   color: $colorFuente;
@@ -153,18 +151,18 @@ aside {
   grid-area: footer;
 }
 @media screen and (max-width: 768px) {
-
-
-
   .app-container {
     grid-template-columns: 1fr;
-    grid-template-rows:  50px 100px auto 100px;
+    grid-template-rows: 50px 100px auto 100px;
     grid-template-areas:
     "sidebar"
-      "header"
-      "main"
-      "footer";
+    "header"
+    "main"
+    "footer";
   }
 
-
+  .side-bar{
+    position: absolute;
+    top: 0px;
+  }
 }
