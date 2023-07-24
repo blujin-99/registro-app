@@ -26,7 +26,7 @@
   class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidebar"
 >
-  <div class="h-full py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+  <div class="h-full py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
     <a routerLink="/" class="flex items-center justify-center mb-5">
       <img
         src="https://www.santafe.gob.ar/assets/app/portal2016/images/logo-header.png"
@@ -34,6 +34,28 @@
         alt="Logo Santa Fe"
       />
     </a>
+    <ul class="px-2 space-y-2 font-medium">
+      <li class="text-xl font-bold md:ml-5 cursor-pointer" [routerLink]="['/']">
+        Inicio
+      </li>
+      <li class="text-xl font-bold md:ml-5 cursor-pointer">Configuración</li>
+    </ul>
     <ng-content></ng-content>
+
+    <span
+      class="flex flex-row gap-2 px-2 text-xl items-center font-bold md:ml-5 cursor-pointer absolute bottom-16 text-black"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="40"
+        viewBox="0 -960 960 960"
+        width="40"
+      >
+        <path
+          d="M120-120v-720h359v60H180v600h299v60H120Zm546-185-43-43 102-102H360v-60h363L621-612l43-43 176 176-174 174Z"
+        />
+      </svg>
+      <p>Salir</p>
+    </span>
   </div>
 </aside>
