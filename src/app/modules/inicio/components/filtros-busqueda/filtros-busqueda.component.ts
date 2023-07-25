@@ -16,7 +16,7 @@ export class FiltrosBusquedaComponent implements OnInit {
    * Lista de filtros que selecciono el usuario
    * TODO:convertir en array
    */
-  filters: boolean = false;
+  filters: boolean = true;
 
   /**
    * Bool para ocultar o mostrar la seccion de filtros
