@@ -76,11 +76,13 @@
             formControlName="categoria"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
-            <option selected>Categoría de Trámite</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option value="" disabled selected>Categoría de Trámite</option>
+            <option
+              *ngFor="let categoria of tramiteSrv.categorias"
+              [ngValue]="categoria"
+            >
+              {{ categoria.nombre }}
+            </option>
           </select>
         </div>
         <!--? TRAMITE/SERVICIO -->
@@ -89,11 +91,13 @@
             formControlName="tramiteServicio"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
-            <option selected>Tramite/Servicio</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option value="" disabled selected>Trámite / Servicio</option>
+            <option
+              *ngFor="let servicio of tramiteSrv.tramiteServicio"
+              [ngValue]="servicio"
+            >
+              {{ servicio.nombre }}
+            </option>
           </select>
         </div>
       </div>
@@ -104,11 +108,13 @@
             formControlName="estadoTramite"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
-            <option selected>Estado Trámite</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option value="" disabled selected>Estado Trámite</option>
+            <option
+              *ngFor="let estado of tramiteSrv.estadoTramite"
+              [ngValue]="estado"
+            >
+              {{ estado.descripcion }}
+            </option>
           </select>
         </div>
         <!--? ESTADO TASAS -->
@@ -117,11 +123,13 @@
             formControlName="estadoTasas"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
-            <option selected>Estado Tasas</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option value="" disabled selected>Estado Tasas</option>
+            <option
+              *ngFor="let estado of tramiteSrv.estadoTasas"
+              [ngValue]="estado"
+            >
+              {{ estado.descripcion }}
+            </option>
           </select>
         </div>
       </div>
@@ -133,11 +141,13 @@
             formControlName="jurisdiccion"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
-            <option selected>Jurisdicción</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option value="" disabled selected>Jurisdicción</option>
+            <option
+              *ngFor="let jurisdiccion of tramiteSrv.jurisdicciones"
+              [ngValue]="jurisdiccion"
+            >
+              {{ jurisdiccion.nombre }}
+            </option>
           </select>
         </div>
         <!--? ESTADO EXCENDENTES -->
@@ -146,18 +156,20 @@
             formControlName="estadoExcedentes"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
-            <option selected>Estado Excedentes</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <option value="" disabled selected>Estados Excedentes</option>
+            <option
+              *ngFor="let estado of tramiteSrv.estadoExcedentes"
+              [ngValue]="estado"
+            >
+              {{ estado.descripcion }}
+            </option>
           </select>
         </div>
         <!--? BOTON LIMPIAR FILTROS -->
       </div>
       <div
         class="flex flex-col items-start justify-between w-11/12 gap-3 md:flex-row md:gap-0"
-        *ngIf="filters"
+        *ngIf="!filters"
       >
         <div class="flex flex-row items-center gap-2">
           <p class="mb-2 text-base">Filtros:</p>
