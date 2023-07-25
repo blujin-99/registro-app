@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.appSrv.getNombreMinisterio().subscribe({
       next: (res) => (this.ministerio = res.ministerio),
+      error: (error) =>
+        console.error('Error al recuperar nombre del ministerio'),
     });
   }
 }
