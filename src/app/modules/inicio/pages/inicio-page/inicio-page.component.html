@@ -4,7 +4,8 @@
   </app-side-bar>
 </div>
 <!-- INICIO -->
-
-<!-- Filtro de busqueda -->
-<app-filtros-busqueda></app-filtros-busqueda>
-<!-- TABLA -->
+<ng-container *ngIf="!cargando">
+  <!-- Filtro de busqueda -->
+  <app-filtros-busqueda></app-filtros-busqueda>
+  <!-- TABLA -->
+</ng-container>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TramitesService } from '../../services/tramites.service';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -15,24 +16,24 @@ export class FiltrosBusquedaComponent implements OnInit {
    * Lista de filtros que selecciono el usuario
    * TODO:convertir en array
    */
-  filters: boolean = true;
+  filters: boolean = false;
 
   /**
    * Bool para ocultar o mostrar la seccion de filtros
    */
   hideFilter: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public tramiteSrv: TramitesService) {}
 
   ngOnInit(): void {
     this.formFiltros = this.fb.group({
-      busqueda: '',
-      categoria: '',
-      estadoTramite: '',
-      jurisdiccion: '',
-      tramiteServicio: '',
-      estadoTasas: '',
-      estadoExcedentes: '',
+      busqueda: [''],
+      categoria: [''],
+      estadoTramite: [''],
+      jurisdiccion: [''],
+      tramiteServicio: [''],
+      estadoTasas: [''],
+      estadoExcedentes: [''],
     });
   }
 
@@ -41,6 +42,7 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   toogleHideFilter() {
     this.hideFilter = !this.hideFilter;
+    console.log(this.tramiteSrv.categorias);
   }
 
   /**
