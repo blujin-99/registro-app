@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filtros-busqueda.component.scss'],
 })
 export class FiltrosBusquedaComponent implements OnInit {
+  /**
+   * Form controls de Filtros de Búsqueda
+   */
+  formFiltros: FormGroup = new FormGroup({});
   /**
    * Lista de filtros que selecciono el usuario
    * TODO:convertir en array
@@ -17,9 +22,18 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   hideFilter: boolean = false;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.formFiltros = this.fb.group({
+      busqueda: '',
+      categoria: '',
+      estadoTramite: '',
+      jurisdiccion: '',
+      tramiteServicio: '',
+      estadoTasas: '',
+      estadoExcedentes: '',
+    });
   }
 
   /**
