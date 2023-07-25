@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center">
+<form class="flex flex-col items-center" [formGroup]="formFiltros">
   <div
     class="flex flex-col items-center w-11/12 mt-4 bg-white border border-gray-200 rounded-lg shadow"
   >
@@ -41,6 +41,7 @@
         <div class="relative w-full">
           <input
             type="text"
+            formControlName="busqueda"
             id="simple-search"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-400 block w-full md:pl-10 p-2.5"
             placeholder="Buscar por numero de trámite o numero de aforo"
@@ -72,6 +73,7 @@
       <div class="flex flex-col justify-between w-11/12 md:flex-row">
         <div class="md:w-6/12 md:pr-4">
           <select
+            formControlName="categoria"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Categoría de Trámite</option>
@@ -84,6 +86,7 @@
         <!--? TRAMITE/SERVICIO -->
         <div class="md:w-6/12">
           <select
+            formControlName="tramiteServicio"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Tramite/Servicio</option>
@@ -98,6 +101,7 @@
         <!--? ESTADO TRAMITE -->
         <div class="md:w-6/12 md:pr-4">
           <select
+            formControlName="estadoTramite"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Estado Trámite</option>
@@ -110,6 +114,7 @@
         <!--? ESTADO TASAS -->
         <div class="md:w-6/12">
           <select
+            formControlName="estadoTasas"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Estado Tasas</option>
@@ -125,6 +130,7 @@
         <!--? JURISDICCION -->
         <div class="md:w-6/12 md:pr-4">
           <select
+            formControlName="jurisdiccion"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Jurisdicción</option>
@@ -137,6 +143,7 @@
         <!--? ESTADO EXCENDENTES -->
         <div class="md:w-6/12">
           <select
+            formControlName="estadoExcedentes"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option selected>Estado Excedentes</option>
@@ -167,4 +174,4 @@
       </div>
     </ng-container>
   </div>
-</div>
+</form>

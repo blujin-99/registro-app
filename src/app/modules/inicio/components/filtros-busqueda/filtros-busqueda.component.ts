@@ -1,13 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filtros-busqueda',
   templateUrl: './filtros-busqueda.component.html',
   styleUrls: ['./filtros-busqueda.component.scss'],
 })
-export class FiltrosBusquedaComponent {
+export class FiltrosBusquedaComponent implements OnInit {
+  /**
+   * Form controls de Filtros de Búsqueda
+   */
+  formFiltros: FormGroup = new FormGroup({});
+  /**
+   * Lista de filtros que selecciono el usuario
+   * TODO:convertir en array
+   */
   filters: boolean = true;
+
+  /**
+   * Bool para ocultar o mostrar la seccion de filtros
+   */
   hideFilter: boolean = false;
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.formFiltros = this.fb.group({
+      busqueda: '',
+      categoria: '',
+      estadoTramite: '',
+      jurisdiccion: '',
+      tramiteServicio: '',
+      estadoTasas: '',
+      estadoExcedentes: '',
+    });
+  }
 
   /**
    * Muestra u oculta la busqueda de filtros

@@ -1,4 +1,10 @@
 <header class="flex flex-col justify-center w-full h-full md:p-3 bg-fondo">
   <h1 class="mx-5 my-0 font-semibold md:mx-0">{{ titulo }}</h1>
-  <h2 class="mx-5 my-0 text-lg secondary md:mx-0">{{ ministerio }}</h2>
+  <h2 class="mx-5 my-0 text-lg secondary md:mx-0">
+    {{
+      ministerio
+        ? ministerio
+        : "Ministerio de Gobierno, Justicia y Derechos Humanos"
+    }}
+  </h2>
 </header>
