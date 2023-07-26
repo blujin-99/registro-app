@@ -2,7 +2,9 @@
   class="flex justify-center items-center font-medium py-2.5 px-5 mr-2 mb-2 bg-fondo rounded-full text-gray-800"
 >
   <div class="flex-initial max-w-full">
-    <p class="text-sm font-normal">Rosario</p>
+    <p class="text-sm font-normal">
+      {{ chipFiltro.nombre || chipFiltro.descripcion }}
+    </p>
   </div>
   <div class="flex flex-row-reverse flex-auto">
     <div>

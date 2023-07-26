@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import {
   ICategoria,
   IEstadoExcedentes,
@@ -17,7 +17,6 @@ export class TramitesService {
   estadoTasas: IEstadoTramite[] = [];
   jurisdicciones: IJurisdiccion[] = [];
   estadoExcedentes: IEstadoExcedentes[] = [];
-  tramiteServicio: ITramiteServicio[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -127,20 +126,9 @@ export class TramitesService {
    * Obtiene una lista de los tramites / servicios disponibles apartir de lo que selecciono en categoria tramite
    * @param id de opcion de categoria tramite seleccionada
    */
-  getTramiteServicio(id: number) {
-    this.http
-      .get<ITramiteServicio[]>(`${environment.tramiteServicio}/${id}`)
-      .pipe(
-        catchError((error) => {
-          console.error(
-            `Ocurrió un error al recuperar la lista de categorías ${error}`
-          );
-
-          return of([]);
-        })
-      )
-      .subscribe({
-        next: (res) => (this.tramiteServicio = res),
-      });
+  getTramiteServicio(id: number): Observable<ITramiteServicio[]> {
+    return this.http.get<ITramiteServicio[]>(
+      `${environment.tramiteServicio}/${id}`
+    );
   }
 }
