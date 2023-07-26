@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TramitesService } from '../../services/tramites.service';
+import { Observable } from 'rxjs';
+import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -22,6 +24,12 @@ export class FiltrosBusquedaComponent implements OnInit {
    * Bool para ocultar o mostrar la seccion de filtros
    */
   hideFilter: boolean = false;
+
+  /**
+   * @Signal Lista de tramite/servicios que muestra en el select
+   * @type {Array}
+   */
+  tramiteServicio$ = signal([{ id: 0, nombre: '' }]);
 
   constructor(private fb: FormBuilder, public tramiteSrv: TramitesService) {}
 
@@ -49,6 +57,15 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   clearAllFilters() {
     this.filters = [];
+    this.formFiltros.reset({
+      busqueda: [''],
+      categoria: [''],
+      estadoTramite: [''],
+      jurisdiccion: [''],
+      tramiteServicio: [''],
+      estadoTasas: [''],
+      estadoExcedentes: [''],
+    });
   }
 
   /**
@@ -72,5 +89,27 @@ export class FiltrosBusquedaComponent implements OnInit {
     if (!this.filters.includes(valorCampo)) {
       this.filters.push(valorCampo);
     }
+  }
+
+  /**
+   * Se agrega al evento del select de categoria de tramite
+   * Añade el valor de categoria al array de filtros
+   * Resetea tramiteServicio
+   * Se subscribe al servicio para filtrar por el id de la categoria
+   * Guarda el array de la respuesta en tramiteServicio
+   */
+  setTramiteServicio() {
+    this.addFilter('categoria');
+    this.tramiteServicio$.set([{ id: 0, nombre: '' }]);
+    this.tramiteSrv
+      .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
+      .subscribe({
+        next: (res) => {
+          this.tramiteServicio$.set(res);
+        },
+        error: (error) => {
+          console.error(`Ocurrio un error al setear tramite/servicio ${error}`);
+        },
+      });
   }
 }

@@ -16,7 +16,6 @@ export class InicioPageComponent implements OnInit {
     this.tramiteSrv.getJurisdiccion();
     this.tramiteSrv.getEstadoExcedentes();
     //TODO: Mover getTramiteServicio a filtro component
-    this.tramiteSrv.getTramiteServicio(3);
 
     this.cargando = false;
   }
