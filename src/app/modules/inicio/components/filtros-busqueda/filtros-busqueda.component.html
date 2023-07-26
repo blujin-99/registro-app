@@ -66,13 +66,13 @@
               d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
             />
           </svg>
-          <span class="sr-only">Search</span>
         </button>
       </div>
       <!--? CATEGORIA TRAMITE -->
       <div class="flex flex-col justify-between w-11/12 md:flex-row">
         <div class="md:w-6/12 md:pr-4">
           <select
+            (change)="addFilter('categoria')"
             formControlName="categoria"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -88,6 +88,7 @@
         <!--? TRAMITE/SERVICIO -->
         <div class="md:w-6/12">
           <select
+            (change)="addFilter('tramiteServicio')"
             formControlName="tramiteServicio"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -105,6 +106,7 @@
         <!--? ESTADO TRAMITE -->
         <div class="md:w-6/12 md:pr-4">
           <select
+            (change)="addFilter('estadoTramite')"
             formControlName="estadoTramite"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -120,6 +122,7 @@
         <!--? ESTADO TASAS -->
         <div class="md:w-6/12">
           <select
+            (change)="addFilter('estadoTasas')"
             formControlName="estadoTasas"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -139,6 +142,7 @@
         <div class="md:w-6/12 md:pr-4">
           <select
             formControlName="jurisdiccion"
+            (change)="addFilter('jurisdiccion')"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option value="" disabled selected>Jurisdicción</option>
@@ -153,6 +157,7 @@
         <!--? ESTADO EXCENDENTES -->
         <div class="md:w-6/12">
           <select
+            (change)="addFilter('estadoExcedentes')"
             formControlName="estadoExcedentes"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -168,18 +173,20 @@
         <!--? BOTON LIMPIAR FILTROS -->
       </div>
       <div
-        class="flex flex-col items-start justify-between w-11/12 gap-3 md:flex-row md:gap-0"
-        *ngIf="!filters"
+        class="flex flex-col items-start justify-between w-11/12 md:flex-row md:gap-0"
+        *ngIf="filters.length > 0"
       >
-        <div class="flex flex-row items-center gap-2">
+        <div class="flex flex-row flex-wrap items-center gap-2">
           <p class="mb-2 text-base">Filtros:</p>
           <!--? CHIPS DE FILTROS -->
-          <app-chip-filtro></app-chip-filtro>
+          <div *ngFor="let filtro of filters" (click)="removeFilter(filtro)">
+            <app-chip-filtro [chipFiltro]="filtro"></app-chip-filtro>
+          </div>
         </div>
         <button
           type="button"
-          (click)="clearFilters()"
-          class="text-white font-medium bg-secondary hover:bg-gray-600 rounded-lg text-base px-5 py-2.5 mb-2"
+          (click)="clearAllFilters()"
+          class="text-white limpiar-filtros font-semibold bg-secondary hover:bg-gray-600 rounded-lg text-base px-5 py-2.5 mb-2"
         >
           Limpiar Filtros
         </button>
