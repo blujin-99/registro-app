@@ -7,6 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioPageComponent } from './pages/inicio-page/inicio-page.component';
 import { InicioRoutingModule } from './inicio-routing.module';
 import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.component';
+import { MaterialModule } from '../material/material.module';
+import { TablaPendientesComponent } from './components/tabla-pendientes/tabla-pendientes.component';
+import { TablaEntregadoComponent } from './components/tabla-entregado/tabla-entregado.component';
+import { TablaFinalizadoComponent } from './components/tabla-finalizado/tabla-finalizado.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +18,9 @@ import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.componen
     FiltrosBusquedaComponent,
     InicioPageComponent,
     BotonesTramiteComponent,
+    TablaPendientesComponent,
+    TablaEntregadoComponent,
+    TablaFinalizadoComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +28,7 @@ import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.componen
     FormsModule,
     InicioRoutingModule,
     SideBarComponent,
+    MaterialModule,
   ],
   exports: [InicioPageComponent, InicioRoutingModule],
 })
