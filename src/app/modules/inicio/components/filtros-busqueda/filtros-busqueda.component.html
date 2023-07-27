@@ -6,7 +6,7 @@
       class="flex flex-row justify-between w-11/12 my-3"
       (click)="toogleHideFilter()"
     >
-      <h3 class="m-0 text-xl font-semibold">Filtros de Búsqueda</h3>
+      <h3 class="m-0 text-xl font-medium">Filtros de Búsqueda</h3>
       <div *ngIf="!hideFilter; else ocultar">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +193,7 @@
         <button
           type="button"
           (click)="clearAllFilters()"
-          class="text-white limpiar-filtros font-semibold bg-secondary hover:bg-gray-600 rounded-lg text-base px-5 py-2.5 mb-2"
+          class="text-white limpiar-filtros font-medium bg-secondary hover:bg-gray-600 rounded-lg text-base px-5 py-2.5 mb-2"
         >
           Limpiar Filtros
         </button>
