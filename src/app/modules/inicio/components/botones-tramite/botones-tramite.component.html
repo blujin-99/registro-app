@@ -1,7 +1,7 @@
 <ul
-  class="flex flex-col ml-2 font-medium [&>li]:mb-5 [&>li]:items-center [&>li]:font-bold [&>li]:text-xl [&>li]:text-black [&>li]:flex [&>li]:flex-row [&>li]:cursor-pointer [&>li]:gap-2"
+  class="flex flex-col ml-2 [&>li]:mb-5 [&>li]:items-center [&>li]:font-bold [&>li]:text-black [&>li]:flex [&>li]:flex-row [&>li]:cursor-pointer [&>li]:gap-2"
 >
-  <li>
+  <li class="text-xl">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="26"
@@ -14,5 +14,63 @@
       />
     </svg>
     Nuevo Tramite
+  </li>
+  <li>
+    <button
+      id="dropdownDefaultButton"
+      data-dropdown-toggle="dropdown"
+      class="items-center content-center justify-around block gap-4 text-lg"
+      type="button"
+    >
+      <!-- <svg
+        height="20"
+        width="20"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 10 6"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 1 4 4 4-4"
+        />
+      </svg> -->
+      Servicios Especiales
+    </button>
+    <!-- Dropdown menu -->
+    <div
+      id="dropdown"
+      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+    >
+      <ul
+        class="py-2 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownDefaultButton"
+      >
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Consulta de Pagos</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Pago otras tasas</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Consulta de tramites - Mesas de entrada</a
+          >
+        </li>
+      </ul>
+    </div>
   </li>
 </ul>
