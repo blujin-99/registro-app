@@ -46,7 +46,4 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   openBottomSheet(): void {
     this._bottomSheet.open(OpcionesTramiteComponent);
   }
-  mostrarId(id: number) {
-    //console.log(`El id es: ${id}`);
-  }
 }

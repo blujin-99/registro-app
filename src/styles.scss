@@ -155,6 +155,12 @@ aside {
 .footer {
   grid-area: footer;
 }
+
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: rgb(233, 233, 233);
+}
+
 @media screen and (max-width: 768px) {
   .app-container {
     grid-template-columns: 1fr;

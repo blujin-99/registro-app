@@ -28,7 +28,7 @@ export class TablaTramiteService {
       {
         id: 2,
         tramite: 'CERT',
-        numeroFormulario: 2023000902,
+        numeroFormulario: 2023000904,
         jurisdiccion: 'ROSARIO',
         tasas: 'NO PAGADO',
         excedentes: 'NO CORRESPONDE',
@@ -36,7 +36,7 @@ export class TablaTramiteService {
       {
         id: 3,
         tramite: 'CERT',
-        numeroFormulario: 2023000902,
+        numeroFormulario: 2023000905,
         jurisdiccion: 'ROSARIO',
         tasas: 'NO PAGADO',
         excedentes: 'NO CORRESPONDE',
@@ -44,7 +44,23 @@ export class TablaTramiteService {
       {
         id: 4,
         tramite: 'CERT',
-        numeroFormulario: 2023000902,
+        numeroFormulario: 2023000906,
+        jurisdiccion: 'ROSARIO',
+        tasas: 'NO PAGADO',
+        excedentes: 'NO CORRESPONDE',
+      },
+      {
+        id: 5,
+        tramite: 'CERT',
+        numeroFormulario: 2023000907,
+        jurisdiccion: 'ROSARIO',
+        tasas: 'NO PAGADO',
+        excedentes: 'NO CORRESPONDE',
+      },
+      {
+        id: 6,
+        tramite: 'CERT',
+        numeroFormulario: 2023000908,
         jurisdiccion: 'ROSARIO',
         tasas: 'NO PAGADO',
         excedentes: 'NO CORRESPONDE',
