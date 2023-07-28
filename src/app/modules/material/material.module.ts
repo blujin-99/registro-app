@@ -5,6 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
+    MatPaginatorModule,
   ],
-  exports: [MatTabsModule, MatTableModule, MatInputModule, MatFormFieldModule],
+  exports: [
+    MatTabsModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+  ],
 })
 export class MaterialModule {}

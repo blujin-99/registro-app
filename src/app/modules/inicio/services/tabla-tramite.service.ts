@@ -20,7 +20,7 @@ export class TablaTramiteService {
       {
         id: 1,
         tramite: 'CERT',
-        numeroFormulario: 2023000902,
+        numeroFormulario: 2023000903,
         jurisdiccion: 'ROSARIO',
         tasas: 'NO PAGADO',
         excedentes: 'NO CORRESPONDE',
