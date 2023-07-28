@@ -23,7 +23,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   /**
    * Bool para ocultar o mostrar la seccion de filtros
    */
-  hideFilter: boolean = false;
+  hideFilter: boolean = true;
 
   /**
    * @Signal Lista de tramite/servicios que muestra en el select
