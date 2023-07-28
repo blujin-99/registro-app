@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { TablaTramiteService } from '../../services/tabla-tramite.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
 
 @Component({
   selector: 'app-tabla-pendientes',
@@ -19,7 +21,10 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
   pendientes!: any;
 
-  constructor(private tablaSrv: TablaTramiteService) {}
+  constructor(
+    private tablaSrv: TablaTramiteService,
+    private _bottomSheet: MatBottomSheet
+  ) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -36,5 +41,12 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
         console.error(error);
       },
     });
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(OpcionesTramiteComponent);
+  }
+  mostrarId(id: number) {
+    //console.log(`El id es: ${id}`);
   }
 }

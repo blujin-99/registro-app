@@ -3,33 +3,42 @@
     <!-- Position Column -->
     <ng-container matColumnDef="tramite">
       <th mat-header-cell *matHeaderCellDef>Trámite</th>
-      <td mat-cell *matCellDef="let element">{{ element.tramite }}</td>
+      <td mat-cell *matCellDef="let element" (click)="openBottomSheet()">
+        {{ element.tramite }}
+      </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="numeroFormulario">
       <th mat-header-cell *matHeaderCellDef>Número de Formulario</th>
-      <td mat-cell *matCellDef="let element">{{ element.numeroFormulario }}</td>
+      <td mat-cell *matCellDef="let element" (click)="openBottomSheet()">
+        {{ element.numeroFormulario }}
+      </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="jurisdiccion">
       <th mat-header-cell *matHeaderCellDef>Jurisdicción</th>
-      <td mat-cell *matCellDef="let element">{{ element.jurisdiccion }}</td>
+      <td mat-cell *matCellDef="let element" (click)="openBottomSheet()">
+        {{ element.jurisdiccion }}
+      </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="tasas">
       <th mat-header-cell *matHeaderCellDef>Estado Tasas</th>
-      <td mat-cell *matCellDef="let element">{{ element.tasas }}</td>
+      <td mat-cell *matCellDef="let element" (click)="openBottomSheet()">
+        {{ element.tasas }}
+      </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="excedentes">
       <th mat-header-cell *matHeaderCellDef>Estado Excedentes</th>
-      <td mat-cell *matCellDef="let element">{{ element.excedentes }}</td>
+      <td mat-cell *matCellDef="let element" (click)="openBottomSheet()">
+        {{ element.excedentes }}
+      </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
