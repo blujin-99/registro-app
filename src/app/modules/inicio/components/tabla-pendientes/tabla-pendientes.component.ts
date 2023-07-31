@@ -1,9 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  effect,
+} from '@angular/core';
 import { TablaTramiteService } from '../../services/tabla-tramite.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
+import { AccionesService } from '../../services/acciones.service';
 
 @Component({
   selector: 'app-tabla-pendientes',
@@ -20,11 +27,34 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource();
   pendientes!: any;
+  private pressTimer: any;
 
   constructor(
     private tablaSrv: TablaTramiteService,
-    private _bottomSheet: MatBottomSheet
-  ) {}
+    private _bottomSheet: MatBottomSheet,
+    public accionesSrv: AccionesService
+  ) {
+    effect(() => {
+      if (this.accionesSrv.pagoMultiple()) {
+        this.displayedColumns = [
+          'pagar',
+          'tramite',
+          'numeroFormulario',
+          'jurisdiccion',
+          'tasas',
+          'excedentes',
+        ];
+      } else {
+        this.displayedColumns = [
+          'tramite',
+          'numeroFormulario',
+          'jurisdiccion',
+          'tasas',
+          'excedentes',
+        ];
+      }
+    });
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -42,6 +72,8 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
       },
     });
   }
+
+  showPagoMobile() {}
 
   openBottomSheet(): void {
     this._bottomSheet.open(OpcionesTramiteComponent);
