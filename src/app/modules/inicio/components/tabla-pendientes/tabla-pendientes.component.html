@@ -1,36 +1,73 @@
 <div class="overflow-x-auto">
   <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="pagar" *ngIf="accionesSrv.pagoMultiple()">
+      <th mat-header-cell *matHeaderCellDef>Pagar</th>
+      <td mat-cell *matCellDef="let tramite">
+        <input type="checkbox" [value]="tramite.pagar" />
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="tramite">
       <th mat-header-cell *matHeaderCellDef>Trámite</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
+      <td
+        mat-cell
+        *matCellDef="let tramite"
+        (click)="openBottomSheet()"
+        (touchstart)="onMouseDown()"
+        (touchend)="onMouseUp()"
+      >
         {{ tramite.tramite }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="numeroFormulario">
       <th mat-header-cell *matHeaderCellDef>Número de Formulario</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
+      <td
+        mat-cell
+        *matCellDef="let tramite"
+        (click)="openBottomSheet()"
+        (mousedown)="onMouseDown()"
+        (mouseup)="onMouseUp()"
+      >
         {{ tramite.numeroFormulario }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="jurisdiccion">
       <th mat-header-cell *matHeaderCellDef>Jurisdicción</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
+      <td
+        mat-cell
+        *matCellDef="let tramite"
+        (click)="openBottomSheet()"
+        (mousedown)="onMouseDown()"
+        (mouseup)="onMouseUp()"
+      >
         {{ tramite.jurisdiccion }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="tasas">
       <th mat-header-cell *matHeaderCellDef>Estado Tasas</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
+      <td
+        mat-cell
+        *matCellDef="let tramite"
+        (click)="openBottomSheet()"
+        (mousedown)="onMouseDown()"
+        (mouseup)="onMouseUp()"
+      >
         {{ tramite.tasas }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="excedentes">
       <th mat-header-cell *matHeaderCellDef>Estado Excedentes</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
+      <td
+        mat-cell
+        *matCellDef="let tramite"
+        (click)="openBottomSheet()"
+        (mousedown)="onMouseDown()"
+        (mouseup)="onMouseUp()"
+      >
         {{ tramite.excedentes }}
       </td>
     </ng-container>
@@ -42,7 +79,7 @@
     class="mb-5"
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
-    aria-label=""
+    aria-label="Tramites por página"
   >
   </mat-paginator>
 </div>

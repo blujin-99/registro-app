@@ -29,13 +29,13 @@ export class FiltrosBusquedaComponent implements OnInit {
    * @Signal Lista de tramite/servicios que muestra en el select
    * @type {Array}
    */
-  tramiteServicio$ = signal([{ id: 0, nombre: '' }]);
+  tramiteServicio$: any = signal([{ id: 0, nombre: '' }]);
 
   constructor(private fb: FormBuilder, public tramiteSrv: TramitesService) {}
 
   ngOnInit(): void {
     this.formFiltros = this.fb.group({
-      busqueda: [''],
+      busqueda: '',
       categoria: [''],
       estadoTramite: [''],
       jurisdiccion: [''],

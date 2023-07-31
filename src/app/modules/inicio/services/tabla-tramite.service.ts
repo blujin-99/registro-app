@@ -11,6 +11,7 @@ export class TablaTramiteService {
     let pendientes = [
       {
         id: 0,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000902,
         jurisdiccion: 'ROSARIO',
@@ -19,6 +20,7 @@ export class TablaTramiteService {
       },
       {
         id: 1,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000903,
         jurisdiccion: 'ROSARIO',
@@ -27,6 +29,7 @@ export class TablaTramiteService {
       },
       {
         id: 2,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000904,
         jurisdiccion: 'ROSARIO',
@@ -35,6 +38,7 @@ export class TablaTramiteService {
       },
       {
         id: 3,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000905,
         jurisdiccion: 'ROSARIO',
@@ -43,6 +47,7 @@ export class TablaTramiteService {
       },
       {
         id: 4,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000906,
         jurisdiccion: 'ROSARIO',
@@ -51,6 +56,7 @@ export class TablaTramiteService {
       },
       {
         id: 5,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000907,
         jurisdiccion: 'ROSARIO',
@@ -59,6 +65,7 @@ export class TablaTramiteService {
       },
       {
         id: 6,
+        pagar: false,
         tramite: 'CERT',
         numeroFormulario: 2023000908,
         jurisdiccion: 'ROSARIO',
