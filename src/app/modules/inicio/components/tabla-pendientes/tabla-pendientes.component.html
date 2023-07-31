@@ -9,65 +9,35 @@
 
     <ng-container matColumnDef="tramite">
       <th mat-header-cell *matHeaderCellDef>Trámite</th>
-      <td
-        mat-cell
-        *matCellDef="let tramite"
-        (click)="openBottomSheet()"
-        (touchstart)="onMouseDown()"
-        (touchend)="onMouseUp()"
-      >
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
         {{ tramite.tramite }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="numeroFormulario">
       <th mat-header-cell *matHeaderCellDef>Número de Formulario</th>
-      <td
-        mat-cell
-        *matCellDef="let tramite"
-        (click)="openBottomSheet()"
-        (mousedown)="onMouseDown()"
-        (mouseup)="onMouseUp()"
-      >
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
         {{ tramite.numeroFormulario }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="jurisdiccion">
       <th mat-header-cell *matHeaderCellDef>Jurisdicción</th>
-      <td
-        mat-cell
-        *matCellDef="let tramite"
-        (click)="openBottomSheet()"
-        (mousedown)="onMouseDown()"
-        (mouseup)="onMouseUp()"
-      >
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
         {{ tramite.jurisdiccion }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="tasas">
       <th mat-header-cell *matHeaderCellDef>Estado Tasas</th>
-      <td
-        mat-cell
-        *matCellDef="let tramite"
-        (click)="openBottomSheet()"
-        (mousedown)="onMouseDown()"
-        (mouseup)="onMouseUp()"
-      >
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
         {{ tramite.tasas }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="excedentes">
       <th mat-header-cell *matHeaderCellDef>Estado Excedentes</th>
-      <td
-        mat-cell
-        *matCellDef="let tramite"
-        (click)="openBottomSheet()"
-        (mousedown)="onMouseDown()"
-        (mouseup)="onMouseUp()"
-      >
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
         {{ tramite.excedentes }}
       </td>
     </ng-container>

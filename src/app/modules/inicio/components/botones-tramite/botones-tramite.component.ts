@@ -9,10 +9,11 @@ import { AccionesService } from '../../services/acciones.service';
 export class BotonesTramiteComponent {
   constructor(public accionesSrv: AccionesService) {}
 
-  /**
-   * Cambia el estado del signal pagoMultiple() cuando hacen click sobre la etique li
-   */
   showColumPagoMultiple() {
-    this.accionesSrv.pagoMultiple.set(!this.accionesSrv.pagoMultiple());
+    this.accionesSrv.pagoMultiple.set(true);
+  }
+
+  hideColumPagoMultiple() {
+    this.accionesSrv.pagoMultiple.set(false);
   }
 }

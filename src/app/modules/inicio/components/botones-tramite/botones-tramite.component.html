@@ -58,7 +58,8 @@
       <p class="text-left">por Mesa de Entrada</p>
     </div>
   </li>
-  <li class="invisible md:visible" (click)="showColumPagoMultiple()">
+  <!-- TODO: Añadir esta clase para ocultar cuando esta desde un celular class="invisible md:visible" -->
+  <li (click)="showColumPagoMultiple()" *ngIf="!accionesSrv.pagoMultiple()">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="24"
@@ -69,5 +70,28 @@
         d="M540-420q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM220-280q-24.75 0-42.375-17.625T160-340v-400q0-24.75 17.625-42.375T220-800h640q24.75 0 42.375 17.625T920-740v400q0 24.75-17.625 42.375T860-280H220Zm100-60h440q0-42 29-71t71-29v-200q-42 0-71-29t-29-71H320q0 42-29 71t-71 29v200q42 0 71 29t29 71Zm480 180H100q-24.75 0-42.375-17.625T40-220v-460h60v460h700v60ZM220-340v-400 400Z"
       /></svg
     >Pago Múltiple
+  </li>
+  <li (click)="hideColumPagoMultiple()" *ngIf="accionesSrv.pagoMultiple()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 -960 960 960"
+      width="24"
+    >
+      <path
+        d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+      />
+    </svg>
+    Cancelar Pago Múltiple
+  </li>
+  <li (click)="showColumPagoMultiple()" *ngIf="accionesSrv.pagoMultiple()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="26"
+      viewBox="0 -960 960 960"
+      width="26"
+    >
+      <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" /></svg
+    >Pagar Tramites seleccionados
   </li>
 </ul>

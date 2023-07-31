@@ -78,17 +78,4 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   openBottomSheet(): void {
     this._bottomSheet.open(OpcionesTramiteComponent);
   }
-
-  onMouseDown() {
-    // Inicia el temporizador con un retardo de 2 segundos (2000 ms)
-    this.pressTimer = setTimeout(() => {
-      // this.accionesSrv.pagoMultiple.set(!this.accionesSrv.pagoMultiple());
-      this.accionesSrv.pagoMultiple.set(!this.accionesSrv.pagoMultiple());
-    }, 1000);
-  }
-
-  onMouseUp() {
-    // Si el usuario levanta el botón del mouse antes de 2 segundos, se cancela el temporizador
-    clearTimeout(this.pressTimer);
-  }
 }
