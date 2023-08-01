@@ -13,6 +13,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
   },
+  {
+    path: 'tramite',
+    loadChildren: () =>
+      import('./modules/nuevo-tramite/nuevo-tramite.module').then(
+        (m) => m.NuevoTramiteModule
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: 'inicio',
+  },
 ];
 
 @NgModule({
