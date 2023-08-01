@@ -1,1 +1,97 @@
-<p>nuevo-tramite-page works!</p>
+<div class="side-bar">
+  <app-side-bar> </app-side-bar>
+</div>
+<div
+  class="flex flex-col items-center gap-4 [&>div>div]:gap-3 [&>div>div]:md:gap-0 [&>div>div>select]:md:w-5/12 [&>div>div>select]:w-full"
+>
+  <span class="w-11/12 mt-3">
+    <h1 class="m-0 primary">Nuevo Trámite</h1>
+  </span>
+  <!--? SRD  -->
+  <div
+    class="flex flex-col items-center w-11/12 bg-white border border-gray-200 rounded-lg shadow"
+  >
+    <span class="flex flex-row justify-start w-11/12 mt-2">
+      <h3 class="text-2xl secondary">SRD</h3>
+    </span>
+
+    <div
+      class="flex flex-col items-center content-center justify-between w-11/12 pb-5 md:flex-row"
+    >
+      <select
+        formControlName="categoria"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      >
+        <option value="" disabled selected>Categoría de Trámite</option>
+        <option></option>
+      </select>
+
+      <select
+        formControlName="tramiteServicio"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      >
+        <option value="" disabled selected>Trámite / Servicio</option>
+
+        <option [value]="null" disabled class="text-black">
+          Seleccione una categoría de tramites para ver la lista
+        </option>
+      </select>
+      <button
+        type="button"
+        class="text-white bg-primary hover:bg-cyan-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 focus:outline-none"
+      >
+        Iniciar Trámite
+      </button>
+    </div>
+  </div>
+  <!--? SERVICIOS  -->
+  <div
+    class="flex flex-col items-center w-11/12 pb-5 bg-white border border-gray-200 rounded-lg shadow"
+  >
+    <span class="flex flex-row justify-start w-11/12 mt-2">
+      <h3 class="text-2xl secondary">SERVICIOS</h3>
+    </span>
+
+    <div class="flex flex-col justify-between w-11/12 md:flex-row">
+      <select
+        formControlName="categoria"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      >
+        <option value="" disabled selected>Seleccione un Servicio</option>
+        <option></option>
+      </select>
+      <button
+        type="button"
+        class="text-white bg-primary hover:bg-cyan-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 focus:outline-none"
+      >
+        Iniciar Trámite
+      </button>
+    </div>
+  </div>
+  <!--? TRAMITES DIGITALES -->
+  <div
+    class="flex flex-col items-center w-11/12 pb-5 bg-white border border-gray-200 rounded-lg shadow"
+  >
+    <span class="flex flex-row justify-start w-11/12 mt-2">
+      <h3 class="text-2xl secondary">TRAMITES DIGITALES</h3>
+    </span>
+
+    <div class="flex flex-col justify-between w-11/12 md:flex-row">
+      <select
+        formControlName="categoria"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      >
+        <option value="" disabled selected>
+          Seleccione un trámite digital
+        </option>
+        <option></option>
+      </select>
+      <button
+        type="button"
+        class="text-white bg-primary hover:bg-cyan-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 focus:outline-none"
+      >
+        Iniciar Trámite
+      </button>
+    </div>
+  </div>
+</div>
