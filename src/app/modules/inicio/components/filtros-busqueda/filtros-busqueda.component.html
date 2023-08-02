@@ -172,6 +172,7 @@
             <option
               *ngFor="let estado of tramiteSrv.estadoExcedentes"
               [ngValue]="estado"
+              [disabled]=""
             >
               {{ estado.descripcion }}
             </option>
