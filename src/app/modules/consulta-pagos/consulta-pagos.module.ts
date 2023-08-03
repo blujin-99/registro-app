@@ -4,6 +4,7 @@ import { ConsultaPagosPageComponent } from './pages/consulta-pagos-page/consulta
 import { ConsultaPagosRoutingModule } from './consulta-pagos-routing.module';
 import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.component';
 import { MaterialModule } from '../material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ConsultaPagosPageComponent],
@@ -12,6 +13,8 @@ import { MaterialModule } from '../material/material.module';
     ConsultaPagosRoutingModule,
     SideBarComponent,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [ConsultaPagosRoutingModule, ConsultaPagosPageComponent],
 })
