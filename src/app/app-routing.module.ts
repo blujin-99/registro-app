@@ -26,12 +26,13 @@ const routes: Routes = [
       import('./modules/configuracion/configuracion.module').then(
         (m) => m.ConfiguracionModule
       ),
-  },{
+  },
+  {
     path: 'consultaMesaEntrada',
     loadChildren: () =>
-    import('./modules/consulta-estado-tramite-mesa-entrada/consulta-estado-tramite-mesa-entrada.module').then(
-        (m) => m.ConsultaEstadoTramiteMesaEntradaModule
-    )
+      import(
+        './modules/consulta-estado-tramite-mesa-entrada/consulta-estado-tramite-mesa-entrada.module'
+      ).then((m) => m.ConsultaEstadoTramiteMesaEntradaModule),
   },
   {
     path: 'consultaPagos',

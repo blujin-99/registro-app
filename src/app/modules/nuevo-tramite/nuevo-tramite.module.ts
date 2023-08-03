@@ -4,9 +4,10 @@ import { NuevoTramitePageComponent } from './pages/nuevo-tramite-page/nuevo-tram
 import { NuevoTramiteRoutingModule } from './nuevo-tramite-routing.module';
 import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.component';
 import { MaterialModule } from '../material/material.module';
+import { BtnIniciarTramiteComponent } from './components/btn-iniciar-tramite/btn-iniciar-tramite.component';
 
 @NgModule({
-  declarations: [NuevoTramitePageComponent],
+  declarations: [NuevoTramitePageComponent, BtnIniciarTramiteComponent],
   imports: [CommonModule, SideBarComponent, MaterialModule],
   exports: [NuevoTramiteRoutingModule, NuevoTramitePageComponent],
 })
