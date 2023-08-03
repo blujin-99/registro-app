@@ -1,0 +1,94 @@
+<div class="side-bar">
+  <app-side-bar> </app-side-bar>
+</div>
+<div class="flex flex-col items-center gap-3">
+  <span class="w-11/12 mt-3">
+    <h2 class="m-0 text-3xl primary">Consulta de Pagos</h2>
+  </span>
+
+  <div class="flex flex-col justify-start w-11/12">
+    <p class="text-xl font-medium secondary">
+      Ingrese entre que fechas quiere consultar pagos
+    </p>
+    <div
+      class="flex flex-col justify-between mt-3 md:items-end gap-7 md:flex-row"
+    >
+      <div class="flex flex-col w-7/12 gap-6 md:flex-row">
+        <div class="flex flex-col md:w-6/12">
+          <label
+            for="desde"
+            class="block mb-2 text-sm font-medium text-gray-900"
+            >Desde</label
+          >
+          <input
+            type="date"
+            id="desde"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
+        </div>
+        <div class="flex flex-col md:w-6/12">
+          <label
+            for="hasta"
+            class="block mb-2 text-sm font-medium text-gray-900"
+            >Hasta</label
+          >
+          <input
+            type="date"
+            id="hasta"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
+        </div>
+      </div>
+      <button
+        type="button"
+        class="text-white bg-primary h-3/6 w-6/12 md:w-3/12 hover:bg-cyan-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 focus:outline-none"
+      >
+        Consultar
+      </button>
+    </div>
+    <!-- TABLA-->
+    <table mat-table [dataSource]="dataSource" class="mt-10 mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="tramite">
+        <th mat-header-cell *matHeaderCellDef>Trámite</th>
+        <td mat-cell *matCellDef="let element">{{ element.tramite }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="acreditacion">
+        <th mat-header-cell *matHeaderCellDef>Fecha Acreditación</th>
+        <td mat-cell *matCellDef="let element">{{ element.acreditacion }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="concepto">
+        <th mat-header-cell *matHeaderCellDef>Concepto</th>
+        <td mat-cell *matCellDef="let element">{{ element.concepto }}</td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="urgencia">
+        <th mat-header-cell *matHeaderCellDef>Urgencia</th>
+        <td mat-cell *matCellDef="let element">{{ element.urgencia }}</td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="importe">
+        <th mat-header-cell *matHeaderCellDef>Importe</th>
+        <td mat-cell *matCellDef="let element">${{ element.importe }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
