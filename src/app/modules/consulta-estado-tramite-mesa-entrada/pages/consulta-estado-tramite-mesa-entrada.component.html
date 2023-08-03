@@ -1,40 +1,47 @@
-<div class="side-bar">
+<div  class="side-bar">
     <app-side-bar> </app-side-bar>
 </div>
 <div class="flex flex-col items-center gap-2">
     <span class="md:w-11/12 mt-3">
         <h2 class="m-0 primary">CONSULTA DE ESTADO DE TRAMITE INGRESADO POR MESA DE ENTRADAS</h2>
     </span>
-    <div class=" mx-8 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 mb-5 w-11/12">
-        <h5 class="text-xl font-medium text-gray-555 mb-5">Buscar Tramite</h5>
-        <div class="md:flex flex-row justify-center ">
-            <div class="my-2 md:w-4/12 mx-1">
-                <label for="localidades" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mesa de
-                    presentación</label>
-                <select id="localidades"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option>Localidad</option>
-                    <option value="SF">Santa Fe</option>
-                    <option value="RS">Rosario</option>
-                </select>
-            </div>
-            <div class="my-2  md:w-4/12 mx-1">
-                <label for="ingreso" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de
-                    ingreso</label>
-                <input type="date" id="ingreso"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-            </div>
-            <div class="my-2  md:w-4/12 mx-1">
-                <label for="numero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de
-                    ingreso</label>
-                <input type="number" id="ingreso"
-                    class=" number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-            </div>
-            <div class="my-2  md:w-4/12 mx-1">
-                <button type="submit"
-                    class=" text-sm font-medium text-white border rounded-lg bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 md:p-3 md:ml-2 md:mt-6">CONSULTA
-                </button>
+
+    <form [formGroup]="form" class="w-11/12">
+        <div class=" mx-8 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 mb-5 ">
+            <h5 class="text-xl font-medium text-gray-555 mb-5">Buscar Tramite</h5>
+            <div class="md:flex flex-row justify-center ">
+                <div class="my-2 md:w-4/12 mx-1">
+                    <label for="localidades" class="block mb-2 text-sm font-medium text-gray-900">Mesa de
+                        presentación</label>
+                    <select formControlName="localidad" id="localidades"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="" selected="true" disabled="disabled" >Localidad</option>
+                        <option value="SF">Santa Fe</option>
+                        <option value="RS">Rosario</option>
+                    </select>
+                    <p *ngIf="invalidLocalidad" class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
+                </div>
+                <div class="my-2  md:w-4/12 mx-1">
+                    <label for="ingreso" class="block mb-2 text-sm font-medium text-gray-900 ">Fecha de
+                        ingreso</label>
+                    <input type="date" id="ingreso" formControlName="fecha"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        <p *ngIf="invalidDate" class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
+                </div>
+                <div class="my-2  md:w-4/12 mx-1">
+                    <label for="numero" class="block mb-2 text-sm font-medium text-gray-900">Número de
+                        ingreso</label>
+                    <input type="number" id="ingreso" formControlName="numeroIngreso" maxlength="6"
+                        class=" number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        <p *ngIf="invalidNumero" class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
+                </div>
+                <div class="my-2  md:w-4/12 mx-1">
+                    <button type="submit" (click)="onSubmit()"
+                        class=" text-sm font-medium text-white border rounded-lg bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 p-3 ml-2 mt-6">CONSULTA
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+
 </div>
