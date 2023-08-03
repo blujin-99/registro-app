@@ -34,6 +34,13 @@ const routes: Routes = [
     )
   },
   {
+    path: 'consultaPagos',
+    loadChildren: () =>
+      import('./modules/consulta-pagos/consulta-pagos.module').then(
+        (m) => m.ConsultaPagosModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'inicio',
   },
