@@ -1,33 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-$backGround: #fff;
-$fondo: #e3e1e2;
-$colorFondo: #ccc;
-$colorFuente: #108a97;
-$colorFooter: #6c757d;
-$body-bg: $backGround;
-$lineaButton: $colorFuente;
-$fondoButton: $backGround;
-$navbar-light-color: $colorFuente; // Color del navar fuente.
-$lineaNavar: $backGround;
-$fondoFooter: $backGround;
-
 body {
   margin: 0;
   max-width: 100%;
-  //overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  color: #000000a1;
+  color: rgba(0, 0, 0, 0.631372549);
   text-align: left;
-  background-color: $backGround;
-  scroll-margin-block: $colorFuente;
+  background-color: #fff;
+  scroll-margin-block: #108a97;
 }
 
 * {
@@ -35,7 +19,6 @@ body {
   padding: 0px;
 }
 
-// H titulos H
 h1,
 h2,
 h3,
@@ -52,7 +35,7 @@ h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: $colorFuente;
+  color: #108a97;
 }
 
 h1,
@@ -86,7 +69,7 @@ h6,
 }
 
 footer a {
-  color: $colorFooter;
+  color: #6c757d;
 }
 
 footer ul li > a {
@@ -94,41 +77,37 @@ footer ul li > a {
 }
 
 a {
-  color: $colorFuente;
+  color: #108a97;
   text-decoration: none;
   background-color: transparent;
 }
 
 .primary {
-  color: $colorFuente;
+  color: #108a97;
 }
 
 .secondary {
-  color: $colorFooter !important;
+  color: #6c757d !important;
 }
 
 .bg-primary {
-  background-color: $colorFuente;
+  background-color: #108a97;
 }
 
-.bg-secondary{
-  background-color: $colorFooter;
+.bg-secondary {
+  background-color: #6c757d;
 }
 
 .bg-fondo {
-  background-color: $fondo;
+  background-color: #e3e1e2;
 }
-
 
 /* GRID LAYOUT*/
 .app-container {
   display: grid;
   grid-template-columns: 200px auto;
   grid-template-rows: 100px auto 100px;
-  grid-template-areas:
-    "sidebar  header"
-    "sidebar  main"
-    "sidebar  footer";
+  grid-template-areas: "sidebar  header" "sidebar  main" "sidebar  footer";
   height: 100vh;
   width: 100vw;
 }
@@ -149,13 +128,11 @@ aside {
 
 .main {
   grid-area: main;
-
 }
 
 .footer {
   grid-area: footer;
 }
-
 
 .mat-mdc-row:hover .mat-mdc-cell {
   background-color: rgb(233, 233, 233);
@@ -165,25 +142,23 @@ aside {
   .app-container {
     grid-template-columns: 1fr;
     grid-template-rows: 50px 100px auto 100px;
-    grid-template-areas:
-    "sidebar"
-    "header"
-    "main"
-    "footer";
+    grid-template-areas: "sidebar" "header" "main" "footer";
   }
-
-  .main{
-  overflow: auto;
-
+  .main {
+    overflow: auto;
   }
-
-  .side-bar{
+  .side-bar {
     position: absolute;
     top: 0px;
     background-color: white;
     width: 100%;
   }
 }
+html, body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}/*# sourceMappingURL=styles.css.map */
