@@ -7,17 +7,97 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const ELEMENT_DATA = [
+  {
+    position: 1,
+    tramite: 'Hydrogen',
+    acreditacion: 1.0079,
+    estado: 'H',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 2,
+    tramite: 'Helium',
+    acreditacion: 4.0026,
+    estado: 'He',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 3,
+    tramite: 'Lithium',
+    acreditacion: 6.941,
+    estado: 'Li',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 4,
+    tramite: 'Beryllium',
+    acreditacion: 9.0122,
+    estado: 'Be',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 5,
+    tramite: 'Boron',
+    acreditacion: 10.811,
+    estado: 'B',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 6,
+    tramite: 'Carbon',
+    acreditacion: 12.0107,
+    estado: 'C',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 7,
+    tramite: 'Nitrogen',
+    acreditacion: 14.0067,
+    estado: 'N',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 8,
+    tramite: 'Oxygen',
+    acreditacion: 15.9994,
+    estado: 'O',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 9,
+    tramite: 'Fluorine',
+    acreditacion: 18.9984,
+    estado: 'F',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
+  {
+    position: 10,
+    tramite: 'Neon',
+    acreditacion: 20.1797,
+    estado: 'Ne',
+    concepto: 'TASA',
+    urgencia: 'NORMAL',
+    importe: 1000,
+  },
 ];
 
 @Component({
@@ -25,6 +105,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./consulta-pagos-page.component.scss'],
 })
 export class ConsultaPagosPageComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = [
+    'position',
+    'tramite',
+    'acreditacion',
+    'estado',
+    'concepto',
+    'urgencia',
+    'importe',
+  ];
   dataSource = ELEMENT_DATA;
 }
