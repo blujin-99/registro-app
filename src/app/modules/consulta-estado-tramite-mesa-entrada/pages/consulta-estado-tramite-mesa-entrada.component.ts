@@ -17,7 +17,7 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit{
     this.form = this.fb.group({
       localidad: ['' ,Validators.required],
       fecha: ['', Validators.required],
-     numeroIngreso: ['', [Validators.required ,     Validators.required, Validators.minLength(1),Validators.pattern('^[0-9]*$'),Validators.maxLength(6)]]
+     numeroIngreso: ['', [Validators.required, Validators.minLength(1),Validators.pattern('^[0-9]*$'),Validators.maxLength(6)]]
     })
   }
 
