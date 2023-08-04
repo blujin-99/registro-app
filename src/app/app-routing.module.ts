@@ -42,6 +42,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'otrasTasas',
+    loadChildren: () =>
+      import('./modules/pagos-otras-tasas/pagos-otras-tasas.module').then(
+        (m) => m.PagosOtrasTasasModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'inicio',
   },
