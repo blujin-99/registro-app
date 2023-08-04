@@ -9,6 +9,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -21,6 +23,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatListModule,
     MatButtonModule,
     MatBottomSheetModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatTabsModule,
@@ -31,6 +34,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatListModule,
     MatButtonModule,
     MatBottomSheetModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}

@@ -101,6 +101,13 @@ a {
   background-color: transparent;
 }
 
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: #cff4fc   !important;
+ }
+
+
+
+
 .primary {
   color: $colorFuente;
 }
@@ -167,7 +174,6 @@ aside {
   grid-area: footer;
 }
 
-
 .mat-mdc-row:hover .mat-mdc-cell {
   background-color: rgb(233, 233, 233);
 }
@@ -191,10 +197,10 @@ aside {
   .side-bar{
     position: absolute;
     top: 0px;
-    background-color: white;
+    background-color:white ;
     width: 100%;
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
