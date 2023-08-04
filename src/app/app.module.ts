@@ -9,9 +9,10 @@ import { FooterComponent } from './core/layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoadingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
