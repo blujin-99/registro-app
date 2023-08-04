@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 $backGround: #fff;
+$buttonDisabled:#84c3ca;
 $fondo: #e3e1e2;
 $colorFondo: #ccc;
 $colorFuente: #108a97;
@@ -13,6 +14,7 @@ $fondoButton: $backGround;
 $navbar-light-color: $colorFuente; // Color del navar fuente.
 $lineaNavar: $backGround;
 $fondoFooter: $backGround;
+
 
 body {
   margin: 0;
@@ -119,6 +121,15 @@ a {
   background-color: $fondo;
 }
 
+//*   BOTONES
+
+.button:enabled{
+  background-color: $colorFuente;
+}
+
+.button:disabled{
+  background-color: $buttonDisabled;
+}
 
 /* GRID LAYOUT*/
 .app-container {
