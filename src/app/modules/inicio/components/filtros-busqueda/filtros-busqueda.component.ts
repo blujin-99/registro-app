@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TramitesService } from '../../services/tramites.service';
 import { Observable } from 'rxjs';
 import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
+import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -31,7 +33,11 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   tramiteServicio$: any = signal([{ id: 0, nombre: '' }]);
 
-  constructor(private fb: FormBuilder, public tramiteSrv: TramitesService) {}
+  constructor(
+    private fb: FormBuilder,
+    public tramiteSrv: TramitesService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.formFiltros = this.fb.group({
@@ -70,6 +76,7 @@ export class FiltrosBusquedaComponent implements OnInit {
 
   /**
    * Se le agrega a los chips y cuando haces click sobre ellos los elimina
+   *
    * @param filtro valor del objeto que selecciono en el select
    */
   removeFilter(filtro: string) {
@@ -92,6 +99,17 @@ export class FiltrosBusquedaComponent implements OnInit {
   }
 
   /**
+   * Lanza un alert cuando selecciona una categoria tramite
+   * Para que seleccione un tramite / servicio
+   */
+  openSnackBar() {
+    this._snackBar.openFromComponent(AlertCategoriaComponent, {
+      duration: 3 * 1000,
+      horizontalPosition: 'right',
+    });
+  }
+
+  /**
    * Se agrega al evento del select de categoria de tramite
    * Añade el valor de categoria al array de filtros
    * Resetea tramiteServicio
@@ -99,7 +117,7 @@ export class FiltrosBusquedaComponent implements OnInit {
    * Guarda el array de la respuesta en tramiteServicio
    */
   setTramiteServicio() {
-    this.addFilter('categoria');
+    this.openSnackBar();
     this.tramiteServicio$.set([{ id: 0, nombre: '' }]);
     this.tramiteSrv
       .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)

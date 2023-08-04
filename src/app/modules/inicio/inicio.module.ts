@@ -11,6 +11,8 @@ import { MaterialModule } from '../material/material.module';
 import { TablaPendientesComponent } from './components/tabla-pendientes/tabla-pendientes.component';
 import { TablaEntregadoComponent } from './components/tabla-entregado/tabla-entregado.component';
 import { TablaFinalizadoComponent } from './components/tabla-finalizado/tabla-finalizado.component';
+import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { TablaFinalizadoComponent } from './components/tabla-finalizado/tabla-fi
     InicioRoutingModule,
     SideBarComponent,
     MaterialModule,
+    AlertCategoriaComponent,
+    MatFormFieldModule,
   ],
   exports: [InicioPageComponent, InicioRoutingModule],
 })

@@ -15,7 +15,7 @@
           width="32"
         >
           <path
-            d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"
+            d="m283-345-43-43 240-240 240 239-43 43-197-197-197 198Z"
             fill="gray"
           />
         </svg>
@@ -28,13 +28,12 @@
           width="32"
         >
           <path
-            d="m283-345-43-43 240-240 240 239-43 43-197-197-197 198Z"
+            d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"
             fill="gray"
           />
         </svg>
       </ng-template>
     </div>
-    <!-- TODO: Cambiar a *ngIf="hideFilter" -->
     <ng-container *ngIf="!hideFilter">
       <!--? BUSQUEDA POR NUMERO DE TRAMITE O AFORO -->
       <div class="flex items-center w-11/12 m-4 mt-0">
@@ -49,8 +48,9 @@
         </div>
         <button
           type="submit"
-          class="p-3 ml-2 text-sm font-medium text-white border rounded-lg bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300"
+          class="flex flex-row items-center gap-4 p-3 ml-2 text-sm font-medium text-white border rounded-lg bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
+          Buscar
           <svg
             class="w-4 h-4"
             aria-hidden="true"
