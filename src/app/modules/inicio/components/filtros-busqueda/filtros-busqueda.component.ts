@@ -104,8 +104,8 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   openSnackBar() {
     this._snackBar.openFromComponent(AlertCategoriaComponent, {
-      duration: 3 * 1000,
-      horizontalPosition: 'right',
+      duration: 5 * 1000,
+      verticalPosition: 'top',
     });
   }
 
