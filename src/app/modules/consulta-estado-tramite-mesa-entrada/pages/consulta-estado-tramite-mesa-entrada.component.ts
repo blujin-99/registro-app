@@ -17,25 +17,12 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit{
     this.form = this.fb.group({
       localidad: ['' ,Validators.required],
       fecha: ['', Validators.required],
-      numeroIngreso: ['', [Validators.required, Validators.pattern('/^6$/')]]
+     numeroIngreso: ['', [Validators.required ,     Validators.required, Validators.minLength(1),Validators.pattern('^[0-9]*$'),Validators.maxLength(6)]]
     })
   }
 
-
-  isValid(){
-    if(this.form.get('locallidad')?.hasError('required')){
-      this.invalidLocalidad = true
-    }
-    if(this.form.get('fecha')?.hasError('required')){
-      this.invalidDate = true
-    }
-    if(this.form.get('numeroIngreso')?.hasError('required')){
-      this.invalidNumero = true
-    }
-  }
-
   onSubmit(){
-  this.isValid()
+ 
   console.log(this.form.value) 
   }
 
