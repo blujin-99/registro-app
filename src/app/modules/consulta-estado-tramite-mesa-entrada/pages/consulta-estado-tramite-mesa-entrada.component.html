@@ -1,51 +1,54 @@
 <div class="side-bar">
     <app-side-bar> </app-side-bar>
 </div>
-<div class="flex flex-col items-center gap-2">
-    <span class="md:w-11/12 mt-3 ml-12 md:ml-16">
-        <h2 class="m-0 primary">CONSULTA DE ESTADO DE TRAMITE INGRESADO POR MESA DE ENTRADAS</h2>
+<div class="flex flex-col items-center">
+    <span class="w-11/12 mt-3">
+        <h2 class="primary">CONSULTA DE ESTADO DE TRAMITE INGRESADO POR MESA DE ENTRADAS</h2>
     </span>
-    <form [formGroup]="form" class="w-11/12">
-        <div class=" mx-8 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 mb-5 ">
-            <h5 class="text-xl font-medium text-gray-555 mb-5">Buscar Tramite</h5>
-            <div class="md:flex flex-row justify-center ">
-                <div class="my-2 md:w-4/12 mx-1">
-                    <label for="localidades" class="block mb-2 text-sm font-medium text-gray-900">Mesa de
-                        presentación</label>
-                    <select formControlName="localidad" id="localidades"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="" selected="true" disabled="disabled">Localidad</option>
-                        <option value="SF">Santa Fe</option>
-                        <option value="RS">Rosario</option>
-                    </select>
-                    <p *ngIf="this.form.get('localidad')?.hasError('required') && form.get('localidad')?.touched"
-                        class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                </div>
-                <div class="my-2  md:w-4/12 mx-1">
-                    <label for="ingreso" class="block mb-2 text-sm font-medium text-gray-900 ">Fecha de
-                        ingreso</label>
-                    <input type="date" id="ingreso" formControlName="fecha"
-                        class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-                    <p *ngIf="this.form.get('fecha')?.hasError('required') && form.get('fecha')?.touched"
-                        class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                </div>
-                <div class="my-2  md:w-4/12 mx-1">
-                    <label for="numero" class="block mb-2 text-sm font-medium text-gray-900">Número de
-                        ingreso</label>
-                    <input type="text" id="ingreso" formControlName="numeroIngreso" maxlength="6"
-                        class=" number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-                    <p *ngIf="this.form.get('numeroIngreso')?.hasError('required') && form.get('numeroIngreso')?.touched"
-                        class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                    <p *ngIf="this.form.get('numeroIngreso')?.hasError('maxlength')" class="mt-2 text-sm text-red-600">
-                        <span class="font-medium">hasta 6 digitos unicamente</span>
-                    </p>
-                </div>
-                <div class="my-2  md:w-4/12 mx-1">
-                    <button type="submit" [disabled]="form.invalid" (click)="onSubmit()"
-                    class="text-sm font-medium text-white border rounded-lg button focus:ring-4 focus:outline-none focus:ring-blue-300 p-3 ml-2 mt-6">CONSULTA
-                </button>
+    <div class="flex flex-col justify-start w-11/12">
+        <form [formGroup]="form" class="">
+            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 mb-5 ">
+                <h5 class="text-xl font-medium text-gray-555 mb-5">Buscar Tramite</h5>
+                <div class="md:flex flex-row justify-center ">
+                    <div class="my-2 md:w-4/12 mx-1">
+                        <label for="localidades" class="block mb-2 text-sm font-medium text-gray-900">Mesa de
+                            presentación</label>
+                        <select formControlName="localidad" id="localidades"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="" selected="true" disabled="disabled">Localidad</option>
+                            <option value="SF">Santa Fe</option>
+                            <option value="RS">Rosario</option>
+                        </select>
+                        <p *ngIf="this.form.get('localidad')?.hasError('required') && form.get('localidad')?.touched"
+                            class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
+                    </div>
+                    <div class="my-2  md:w-4/12 mx-1">
+                        <label for="ingreso" class="block mb-2 text-sm font-medium text-gray-900 ">Fecha de
+                            ingreso</label>
+                        <input type="date" id="ingreso" formControlName="fecha"
+                            class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        <p *ngIf="this.form.get('fecha')?.hasError('required') && form.get('fecha')?.touched"
+                            class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
+                    </div>
+                    <div class="my-2  md:w-4/12 mx-1">
+                        <label for="numero" class="block mb-2 text-sm font-medium text-gray-900">Número de
+                            ingreso</label>
+                        <input type="text" id="ingreso" formControlName="numeroIngreso" maxlength="6"
+                            class=" number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                        <p *ngIf="this.form.get('numeroIngreso')?.hasError('required') && form.get('numeroIngreso')?.touched"
+                            class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
+                        <p *ngIf="this.form.get('numeroIngreso')?.hasError('maxlength') || this.form.get('numeroIngreso')?.hasError('minlength') && form.get('numeroIngreso')?.touched"
+                            class="mt-2 text-sm text-red-600">
+                            <span class="font-medium">hasta 6 digitos unicamente</span>
+                        </p>
+                    </div>
+                    <div class="my-2  md:w-4/12 mx-1">
+                        <button type="submit" [disabled]="form.invalid" (click)="onSubmit()"
+                            class="text-sm font-medium text-white border rounded-lg button focus:ring-4 focus:outline-none focus:ring-blue-300 p-3 ml-2 mt-6">CONSULTA
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

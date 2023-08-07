@@ -10,10 +10,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingComponent } from './core/layout/loading/loading.component';
-import { LoadingInterceptor } from './core/layout/insterceptor/loading.interceptor';
+import { LoadingInterceptor } from './core/insterceptor/loading.interceptor';
+import { CatchingErrorComponent } from './core/layout/catching-error/catching-error.component';
+import { NotFoundError } from './core/insterceptor/not-found.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoadingComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoadingComponent, CatchingErrorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +24,9 @@ import { LoadingInterceptor } from './core/layout/insterceptor/loading.intercept
     MaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [{
+  providers: [
+    NotFoundError,
+    {
     provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true
   }],
   bootstrap: [AppComponent],
