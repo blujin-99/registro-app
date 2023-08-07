@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { SideBarComponent } from './core/layout/side-bar/side-bar.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoadingComponent } from './shared/loading/loading.component';
+import { LoadingComponent } from './core/layout/loading/loading.component';
+import { LoadingInterceptor } from './core/layout/insterceptor/loading.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, LoadingComponent],
@@ -21,7 +22,9 @@ import { LoadingComponent } from './shared/loading/loading.component';
     MaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
