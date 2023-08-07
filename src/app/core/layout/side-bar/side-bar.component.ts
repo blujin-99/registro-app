@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +7,12 @@ import { RouterModule } from '@angular/router';
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
 })
-export class SideBarComponent {}
+export class SideBarComponent {
+  sidebarOpen = false;
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+}
