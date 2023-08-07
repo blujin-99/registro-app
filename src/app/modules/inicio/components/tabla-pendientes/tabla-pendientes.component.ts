@@ -27,7 +27,6 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource();
   pendientes!: any;
-  private pressTimer: any;
 
   constructor(
     private tablaSrv: TablaTramiteService,

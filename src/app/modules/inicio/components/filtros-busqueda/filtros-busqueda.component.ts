@@ -1,8 +1,16 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  signal,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TramitesService } from '../../services/tramites.service';
 import { Observable } from 'rxjs';
 import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
+import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -31,7 +39,23 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   tramiteServicio$: any = signal([{ id: 0, nombre: '' }]);
 
-  constructor(private fb: FormBuilder, public tramiteSrv: TramitesService) {}
+  @ViewChild('tramiteServicio') tramiteServicio!: ElementRef;
+
+  resetForm = {
+    busqueda: '',
+    categoria: [''],
+    estadoTramite: [''],
+    jurisdiccion: [''],
+    tramiteServicio: [''],
+    estadoTasas: [''],
+    estadoExcedentes: [''],
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    public tramiteSrv: TramitesService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.formFiltros = this.fb.group({
@@ -57,19 +81,12 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   clearAllFilters() {
     this.filters = [];
-    this.formFiltros.reset({
-      busqueda: [''],
-      categoria: [''],
-      estadoTramite: [''],
-      jurisdiccion: [''],
-      tramiteServicio: [''],
-      estadoTasas: [''],
-      estadoExcedentes: [''],
-    });
+    this.formFiltros.reset(this.resetForm);
   }
 
   /**
    * Se le agrega a los chips y cuando haces click sobre ellos los elimina
+   *
    * @param filtro valor del objeto que selecciono en el select
    */
   removeFilter(filtro: string) {
@@ -77,6 +94,10 @@ export class FiltrosBusquedaComponent implements OnInit {
 
     if (index >= 0) {
       this.filters.splice(index, 1);
+    }
+
+    if (this.filters.length === 0) {
+      this.formFiltros.reset(this.resetForm);
     }
   }
 
@@ -89,6 +110,18 @@ export class FiltrosBusquedaComponent implements OnInit {
     if (!this.filters.includes(valorCampo)) {
       this.filters.push(valorCampo);
     }
+    this.formFiltros.reset(this.resetForm);
+  }
+
+  /**
+   * Lanza un alert cuando selecciona una categoria tramite
+   * Para que seleccione un tramite / servicio
+   */
+  openSnackBar() {
+    this._snackBar.openFromComponent(AlertCategoriaComponent, {
+      duration: 5 * 1000,
+      verticalPosition: 'top',
+    });
   }
 
   /**
@@ -99,7 +132,9 @@ export class FiltrosBusquedaComponent implements OnInit {
    * Guarda el array de la respuesta en tramiteServicio
    */
   setTramiteServicio() {
-    this.addFilter('categoria');
+    this.openSnackBar();
+    this.tramiteServicio.nativeElement.focus();
+
     this.tramiteServicio$.set([{ id: 0, nombre: '' }]);
     this.tramiteSrv
       .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
