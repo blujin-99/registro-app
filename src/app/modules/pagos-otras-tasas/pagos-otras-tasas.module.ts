@@ -4,9 +4,10 @@ import { PagosOtrasTasasPageComponent } from './pages/pagos-otras-tasas-page/pag
 import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.component';
 import { PagosOtrasTasasRoutingModule } from './pagos-otras-tasas-routing.module';
 import { FormTasasComponent } from './components/form-tasas/form-tasas.component';
+import { TablaTasasComponent } from './components/tabla-tasas/tabla-tasas.component';
 
 @NgModule({
-  declarations: [PagosOtrasTasasPageComponent, FormTasasComponent],
+  declarations: [PagosOtrasTasasPageComponent, FormTasasComponent, TablaTasasComponent],
   imports: [CommonModule, SideBarComponent, PagosOtrasTasasRoutingModule],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
 })
