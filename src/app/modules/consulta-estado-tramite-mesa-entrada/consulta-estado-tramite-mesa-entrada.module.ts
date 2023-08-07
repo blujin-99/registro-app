@@ -14,6 +14,7 @@ import { MaterialModule } from '../material/material.module';
               ReactiveFormsModule,
               MaterialModule
             ],
-    exports: [ConsultaEstadoTramiteMesaEntradaComponent, ConsultaEstadoTramiteMesaEntradaRoutingModule],
+    exports: [ConsultaEstadoTramiteMesaEntradaComponent,
+              ConsultaEstadoTramiteMesaEntradaRoutingModule],
   })
   export class ConsultaEstadoTramiteMesaEntradaModule {}

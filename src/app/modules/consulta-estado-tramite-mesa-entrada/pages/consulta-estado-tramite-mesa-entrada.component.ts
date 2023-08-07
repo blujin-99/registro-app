@@ -8,10 +8,6 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 })
 export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit{
   form : FormGroup;
-  invalidLocalidad : boolean = false
-  invalidDate : boolean = false
-  invalidNumero : boolean = false
-  
 
   constructor(private fb : FormBuilder){
     this.form = this.fb.group({
