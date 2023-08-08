@@ -181,7 +181,7 @@ aside {
 @media screen and (max-width: 768px) {
   .app-container {
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 100px auto 100px;
+    grid-template-rows: 50px 120px auto 100px;
     grid-template-areas:
     "sidebar"
     "header"
