@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InicioPageComponent } from './modules/inicio/pages/inicio-page/inicio-page.component';
 
 const routes: Routes = [
   {
@@ -12,6 +11,11 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () =>
       import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'tramite',

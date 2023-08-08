@@ -15,7 +15,13 @@ import { CatchingErrorComponent } from './core/layout/catching-error/catching-er
 import { NotFoundError } from './core/insterceptor/not-found.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoadingComponent, CatchingErrorComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    LoadingComponent,
+    CatchingErrorComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,8 +33,11 @@ import { NotFoundError } from './core/insterceptor/not-found.interceptor';
   providers: [
     NotFoundError,
     {
-    provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true
-  }],
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
