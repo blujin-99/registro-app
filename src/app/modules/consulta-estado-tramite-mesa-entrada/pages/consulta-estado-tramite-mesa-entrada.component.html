@@ -3,11 +3,11 @@
 </div>
 <div class="flex flex-col items-center">
     <span class="w-11/12 mt-3">
-        <h2 class="primary">CONSULTA DE ESTADO DE TRAMITE INGRESADO POR MESA DE ENTRADAS</h2>
+        <h2 class="primary">Consulta De Estado De Tramite Ingresado Por Mesa De Entradas</h2>
     </span>
     <div class="flex flex-col justify-start w-11/12">
         <form [formGroup]="form" class="">
-            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 mb-5 ">
+            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-lg sm:p-6 md:p-8 mb-5 ">
                 <h5 class="text-xl font-medium text-gray-555 mb-5">Buscar Tramite</h5>
                 <div class="md:flex flex-row justify-center ">
                     <div class="my-2 md:w-4/12 mx-1">
@@ -43,12 +43,13 @@
                         </p>
                     </div>
                     <div class="my-2  md:w-4/12 mx-1">
-                        <button type="submit" [disabled]="form.invalid" (click)="onSubmit()"
-                            class="text-sm font-medium text-white border rounded-lg button focus:ring-4 focus:outline-none focus:ring-blue-300 p-3 ml-2 mt-6">CONSULTA
+                        <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="submit" [disabled]="form.invalid" (click)="onSubmit()"
+                            class="text-sm enabled:hover:bg-cyan-700 font-medium text-white border rounded-lg button focus:ring-4 focus:outline-none focus:ring-blue-300 p-3 ml-2 mt-6">CONSULTA
                         </button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
+    <app-modal-mesa-entrada></app-modal-mesa-entrada>
 </div>

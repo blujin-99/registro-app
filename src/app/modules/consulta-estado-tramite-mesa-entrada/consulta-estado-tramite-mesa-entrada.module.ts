@@ -5,10 +5,11 @@ import { ConsultaEstadoTramiteMesaEntradaRoutingModule } from './consulta-estado
 import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { ModalMesaEntradaComponent } from './components/modal-mesa-entrada/modal-mesa-entrada.component';
 
 
 @NgModule({
-    declarations: [ConsultaEstadoTramiteMesaEntradaComponent],
+    declarations: [ConsultaEstadoTramiteMesaEntradaComponent, ModalMesaEntradaComponent],
     imports: [CommonModule,
               SideBarComponent,
               ReactiveFormsModule,

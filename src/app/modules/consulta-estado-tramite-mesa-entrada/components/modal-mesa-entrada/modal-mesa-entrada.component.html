@@ -1,0 +1,108 @@
+<!-- Main modal -->
+<div *ngIf="!error" id="defaultModal" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <!--  modal header----------------------------------------------->
+            <ul class="flex justify-between">
+                <li class="inline-block">
+                    <h5 class="text-xl font-medium mb-5 mx-8 mt-8">Consulta de Tramite </h5>
+                </li>
+                <li class="inline-block">
+                    <button data-modal-hide="defaultModal" type="button"
+                        class="mr-1 border border-gray-200 text-red-600 bg-white hover: focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center hover:bg-gray-300 shadow-lg">X</button>
+                </li>
+            </ul>
+            <!-- dates content----------------------------- -->
+            <ul class="flex md:flex-row flex-col justify-center ">
+                <li class=" my-4 text-center rounded-lg border border-gray-300 md:w-6/12 ml-2 mr-1">
+<!------------------------------- date Table about tramite ------------------------->
+                    <div class="relative overflow-x-auto">
+                        <h5 class="text-lg font-medium">N° Tramite {{tramite.numero}}</h5>
+                        <table class="w-full text-sm text-left  text-gray-500">
+                            <tbody>
+                                <tr class="bg-white border-b">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Presentado
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.presentado}}
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Fecha de Ingreso
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.fecha | date:'dd/MM/yyyy'}}
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Tipo de Documento
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.tipoDoc}}
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Tipo de Entrada
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.tipoEntrada}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+<!------------------------------------------ Salida -------------------------------->
+                <li class="my-4 text-center rounded-lg border border-gray-300  md:w-6/12 mr-2 ml-1 ">
+                    <div class="relative overflow-x-auto">
+                        <div>
+                            <h5 *ngIf="tramite.salida" class="text-lg font-medium">Salida</h5>
+                            <h5 *ngIf="!tramite.salida" class="text-lg font-medium">Sin Salida</h5>
+                        </div>
+                        <table *ngIf="tramite.salida" class="w-full text-sm text-left  text-gray-500">
+                            <tbody>
+                                <tr class="bg-white border-b">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Fecha de salida
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.presentado}}
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b ">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Tipo de Salida
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.tipoSalida}}
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        Casillero
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{tramite.casillero}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
