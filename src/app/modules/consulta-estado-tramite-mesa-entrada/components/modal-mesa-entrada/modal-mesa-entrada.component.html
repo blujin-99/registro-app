@@ -1,5 +1,5 @@
 <!-- Main modal -->
-<div *ngIf="tramite.salida" id="defaultModal" tabindex="-1" aria-hidden="true"
+<div *ngIf="!error" id="defaultModal" tabindex="-1" aria-hidden="true"
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-4xl max-h-full">
         <!-- Modal content -->
@@ -65,7 +65,10 @@
 <!------------------------------------------ Salida -------------------------------->
                 <li class="my-4 text-center rounded-lg border border-gray-300  md:w-6/12 mr-2 ml-1 ">
                     <div class="relative overflow-x-auto">
-                        <h5 class="text-lg font-medium">Salida</h5>
+                        <div>
+                            <h5 *ngIf="tramite.salida" class="text-lg font-medium">Salida</h5>
+                            <h5 *ngIf="!tramite.salida" class="text-lg font-medium">Sin Salida</h5>
+                        </div>
                         <table *ngIf="tramite.salida" class="w-full text-sm text-left  text-gray-500">
                             <tbody>
                                 <tr class="bg-white border-b">

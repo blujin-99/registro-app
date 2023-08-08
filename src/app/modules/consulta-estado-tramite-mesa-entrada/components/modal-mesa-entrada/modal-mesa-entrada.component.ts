@@ -7,13 +7,15 @@ import { MESA } from 'src/app/core/models/mesa-entrada.interface';
   styleUrls: ['./modal-mesa-entrada.component.scss']
 })
 export class ModalMesaEntradaComponent {
+  error : boolean = false
+
   tramite: MESA ={
     presentado: 'Santa Fe',
     numero: '0197255',
     fecha: new Date(2023,7,8),
     tipoDoc: ' Oficio',
     tipoEntrada:'Normal',
-    salida: true,
+    salida: false,
     fechaSalida:  new Date(2023,7,12),
     tipoSalida: 'Mesa de Entrada',
     casillero:''
