@@ -15,7 +15,7 @@ export class ModalMesaEntradaComponent {
     fecha: new Date(2023,7,8),
     tipoDoc: ' Oficio',
     tipoEntrada:'Normal',
-    salida: false,
+    salida: true,
     fechaSalida:  new Date(2023,7,12),
     tipoSalida: 'Mesa de Entrada',
     casillero:''
