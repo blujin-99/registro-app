@@ -1,0 +1,23 @@
+<div class="side-bar">
+  <app-side-bar>
+    <app-botones-tramite></app-botones-tramite>
+  </app-side-bar>
+</div>
+<!-- INICIO -->
+<ng-container *ngIf="!cargando">
+  <!-- Filtro de busqueda -->
+  <app-filtros-busqueda></app-filtros-busqueda>
+  <!-- TABS -->
+
+  <mat-tab-group class="mt-3">
+    <mat-tab label="Pendiente">
+      <app-tabla-pendientes></app-tabla-pendientes>
+    </mat-tab>
+    <mat-tab label="Presentado">
+      <app-tabla-entregado></app-tabla-entregado>
+    </mat-tab>
+    <mat-tab label="Finalizado">
+      <app-tabla-finalizado></app-tabla-finalizado>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
