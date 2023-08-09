@@ -8,12 +8,13 @@ import { LoadingComponent } from '../layout/loading/loading.component';
 
 
 @NgModule({
-  declarations: [LoadingComponent],
+  declarations: [LoadingComponent, CatchingErrorComponent],
   imports: [
     CommonModule
   ],
   exports:[
-    LoadingComponent
+    LoadingComponent,
+    CatchingErrorComponent
   ],
   providers:[
     {
