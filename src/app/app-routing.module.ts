@@ -18,7 +18,14 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'tramite',
+    path: 'misTramites',
+    loadChildren: () =>
+      import('./modules/tramites/tramites.module').then(
+        (m) => m.TramitesModule
+      ),
+  },
+  {
+    path: 'nuevoTramite',
     loadChildren: () =>
       import('./modules/nuevo-tramite/nuevo-tramite.module').then(
         (m) => m.NuevoTramiteModule
