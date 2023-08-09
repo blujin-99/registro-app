@@ -1,23 +1,40 @@
-<button
-  type="button"
-  (click)="toggleSidebar()"
-  class="inline-flex items-center p-2 mt-2 ml-3 text-sm rounded-lg secondary sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
->
-  <svg
-    class="w-6 h-6"
-    aria-hidden="true"
-    fill="currentColor"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
+<div class="flex flex-row items-center justify-between">
+  <button
+    type="button"
+    (click)="toggleSidebar()"
+    class="inline-flex items-center p-2 mt-2 ml-3 text-sm rounded-lg secondary sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
   >
-    <path
-      clip-rule="evenodd"
-      fill-rule="evenodd"
-      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-    ></path>
-  </svg>
-</button>
-
+    <svg
+      class="w-6 h-6"
+      aria-hidden="true"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+      ></path>
+    </svg>
+  </button>
+  <div
+    class="relative inline-flex items-center w-10 h-10 p-2 mt-2 mr-3 overflow-hidden text-sm bg-gray-100 rounded-full sm:hidden"
+  >
+    <svg
+      class="absolute w-12 h-12 text-gray-400 -left-1"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+  </div>
+</div>
 <aside
   [ngClass]="{
     'translate-x-0': sidebarOpen,
@@ -137,7 +154,8 @@
     </ul>
     <ng-content></ng-content>
 
-    <span
+    <div
+      *ngIf="logeado"
       class="absolute flex flex-row items-center gap-2 px-2 text-xl font-medium text-black cursor-pointer bottom-12"
     >
       <svg
@@ -152,6 +170,27 @@
         />
       </svg>
       <p>Salir</p>
-    </span>
+    </div>
+
+    <div
+      class="absolute flex flex-row items-center gap-2 px-2 text-xl font-medium text-black cursor-pointer bottom-12"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="40"
+        viewBox="0 -960 960 960"
+        width="40"
+      >
+        <path
+          d="M481-120v-60h299v-600H481v-60h299q24 0 42 18t18 42v600q0 24-18 42t-42 18H481Zm-55-185-43-43 102-102H120v-60h363L381-612l43-43 176 176-174 174Z"
+        />
+      </svg>
+      <a
+        class="btn"
+        href="https://dsso.santafe.gob.ar/service-auth/oauth2.0/authorize?response_type=token&client_id=sso.santafe.gov.ar.5868506FJCKWEDG33&redirect_uri=http://localhost:4200/login"
+      >
+        <p class="text-black">Ingresar</p>
+      </a>
+    </div>
   </div>
 </aside>
