@@ -18,7 +18,10 @@ export class InicioPageComponent implements OnInit {
   imagen: any = '';
   userLogin: any;
 
-  url = 'http://10.1.46.32:8181/registropropiedad/public/login/oauth';
+  // url = 'http://10.1.46.32:8181/registropropiedad/public/login/oauth';
+  url =
+    'http://10.1.46.32:8181/registropropiedad/public/login/oauth?access_token=AT-65-zcxnt8r1PGDyEV7f6iIUfSVcDN-JOvMi';
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
