@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule, CommonModule],
 })
 export class SideBarComponent {
+  logeado: boolean = false;
+
   sidebarOpen = false;
 
   toggleSidebar() {
