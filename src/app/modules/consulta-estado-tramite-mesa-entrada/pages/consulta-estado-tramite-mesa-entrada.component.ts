@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MESA } from 'src/app/core/models/mesa-entrada.interface';
+import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mesa-entrada.service';
 
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',
@@ -25,7 +26,7 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
     casillero:''
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService) {
 
     this.form = this.fb.group({
       localidad: ['', Validators.required],
@@ -35,17 +36,11 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
 
   }
 
-  
-
-  getHttp() {
-    return this.http.get('http:/example-api.com/data')
-  }
 
   onSubmit() {
-    this.getHttp().subscribe(
-      (error) => {
-        this.error = 'error' + error
-        console.log(this.error)
+    this.mesaEntradaService.getHttp().subscribe(
+      (response)=>{
+        console.log('busco')
       }
     )
     console.log(this.form.value)
