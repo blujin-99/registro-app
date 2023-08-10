@@ -20,7 +20,7 @@ export class ConsultaMesaEntradaService {
     this.errorSubject.next(errorStatus);
   }
 
-  clearErro(){
+  clearError(){
     this.errorSubject.next(null)
   }
 }

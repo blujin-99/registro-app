@@ -1,5 +1,5 @@
 <!-- Main modal -->
-<div *ngIf="!error" id="defaultModal" tabindex="-1" aria-hidden="true"
+<div id="defaultModal" tabindex="-1" aria-hidden="true"
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-4xl max-h-full">
         <!-- Modal content -->
@@ -15,9 +15,9 @@
                 </li>
             </ul>
             <!-- dates content----------------------------- -->
-            <ul class="flex md:flex-row flex-col justify-center ">
+            <ul *ngIf="(error$ | async) != '404'" class="flex md:flex-row flex-col justify-center ">
                 <li class=" my-4 text-center rounded-lg border border-gray-300 md:w-6/12 ml-2 mr-1">
-<!------------------------------- date Table about tramite ------------------------->
+            <!------------------------------- date Table about tramite ------------------------->
                     <div class="relative overflow-x-auto">
                         <h5 class="text-lg font-medium">N° Tramite {{tramite.numero}}</h5>
                         <table class="w-full text-sm text-left  text-gray-500">
@@ -62,7 +62,7 @@
                         </table>
                     </div>
                 </li>
-<!------------------------------------------ Salida -------------------------------->
+                <!------------------------------------------ Salida -------------------------------->
                 <li class="my-4 text-center rounded-lg border border-gray-300  md:w-6/12 mr-2 ml-1 ">
                     <div class="relative overflow-x-auto">
                         <div>
@@ -103,6 +103,13 @@
                     </div>
                 </li>
             </ul>
+            <div   *ngIf="(error$ | async) == '404'" class="mx-2 my-2 flex flex-col bg-red-200 items-center text-center text-red-800 border border-red-600 rounded-lg">
+                <svg class="flex-shrink-0 w-4 h-4  mt-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                  </svg>
+                  <span class="sr-only">Info</span>
+                <p class="mb-10 mt-5 text-l font-medium">No se encuentra el tramite</p>
+            </div>
         </div>
     </div>
 </div>
