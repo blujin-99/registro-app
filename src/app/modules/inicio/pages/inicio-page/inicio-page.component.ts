@@ -3,6 +3,7 @@ import { TramitesService } from '../../../tramites/services/tramites.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   templateUrl: './inicio-page.component.html',
@@ -22,36 +23,9 @@ export class InicioPageComponent implements OnInit {
   // url =
   //    'http://10.1.46.32:8181/registropropiedad/public/login/oauth?access_token=AT-65-zcxnt8r1PGDyEV7f6iIUfSVcDN-JOvMi';
 
-  constructor(
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    private location: Location
-  ) {}
+  constructor(public userSrv: UserService) {}
 
   ngOnInit() {
-    this.code = this.getAccessTokenFromUrl();
-    localStorage.setItem('access_token', this.code);
-    this.validoCodigo(this.code).subscribe((data) => {
-      this.user = data;
-      localStorage.setItem('user', JSON.stringify(this.user.user));
-      localStorage.setItem('jwt', this.user.jwt);
-      this.cargoDatos();
-      console.log(this.user);
-    });
-  }
-
-  getAccessTokenFromUrl(): string | null {
-    const queryParams = this.location.path(true).split('#')[1];
-    const params = new URLSearchParams(queryParams);
-    return params.get('access_token');
-  }
-
-  validoCodigo(params: any) {
-    const body = JSON.stringify({ access_token: params });
-    return this.http.post(this.url, body);
-  }
-  cargoDatos() {
-    this.userLogin = localStorage.getItem('user');
-    this.userLogin = JSON.parse(this.userLogin);
+    //this.userSrv.initAuth();
   }
 }
