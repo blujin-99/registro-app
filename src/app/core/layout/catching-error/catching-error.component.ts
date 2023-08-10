@@ -19,13 +19,13 @@ export class CatchingErrorComponent {
   }
 
   closeAlert() {
-    this.mesaEntradaService.clearErro()
+    this.mesaEntradaService.clearError()
   }
 
   ngOnInit(): void {
     this.errorSubscription = this.mesaEntradaService.error$.subscribe(error => {
       if (error =='404') {
-        this.mensaje = "No se ha encontrado el Tramite "
+        this.mensaje = "No encontrado"
       }
       if (error == '500') {
         this.mensaje = "Error de conexión, intente nuevamente más tarde"
