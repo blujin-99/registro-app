@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingService } from '../../../shared/services/loading.service';
+import { LoadingService } from 'src/app/modules/consulta-estado-tramite-mesa-entrada/service/loading.service';
 
 @Component({
   

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MESA } from 'src/app/core/models/mesa-entrada.interface';
-import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mesa-entrada.service';
+import { ConsultaMesaEntradaService } from 'src/app/modules/consulta-estado-tramite-mesa-entrada/service/consulta-mesa-entrada.service';
 
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',

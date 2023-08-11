@@ -15,7 +15,7 @@
                 </li>
             </ul>
             <!-- dates content----------------------------- -->
-            <ul *ngIf="(error$ | async) != '404'" class="flex md:flex-row flex-col justify-center ">
+            <ul *ngIf="(error$ | async) != 404 && (error$ | async) != 500" class="flex md:flex-row flex-col justify-center ">
                 <li class=" my-4 text-center rounded-lg border border-gray-300 md:w-6/12 ml-2 mr-1">
             <!------------------------------- date Table about tramite ------------------------->
                     <div class="relative overflow-x-auto">
@@ -103,12 +103,12 @@
                     </div>
                 </li>
             </ul>
-            <div   *ngIf="(error$ | async) == '404'" class="mx-2 my-2 flex flex-col bg-red-200 items-center text-center text-red-800 border border-red-600 rounded-lg">
+            <div   *ngIf="(error$ | async) == 404 || (error$ | async) == 500" class="mx-2 my-2 flex flex-col bg-red-200 items-center text-center text-red-800 border border-red-600 rounded-lg">
                 <svg class="flex-shrink-0 w-4 h-4  mt-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                   </svg>
                   <span class="sr-only">Info</span>
-                <p class="mb-10 mt-5 text-l font-medium">No se encuentra el tramite</p>
+                <p class="mb-10 mt-5 text-l font-medium">{{mensaje}}</p>
             </div>
         </div>
     </div>

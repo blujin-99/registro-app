@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { MESA } from 'src/app/core/models/mesa-entrada.interface';
-import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mesa-entrada.service';
+import { CatchinErrorService } from 'src/app/core/interceptor/catchin-error.service';
 
 @Component({
   selector: 'app-modal-mesa-entrada',
@@ -9,16 +9,11 @@ import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mes
   styleUrls: ['./modal-mesa-entrada.component.scss']
 })
 export class ModalMesaEntradaComponent {
-  constructor(private mesaEntradaService: ConsultaMesaEntradaService) {}
+  constructor(private catchErrorServ: CatchinErrorService) {}
 
   private errorSubscription: Subscription | undefined;
-  error$ : Observable<string | null> = this.mesaEntradaService.error$
-
-
-  ngOnInit(): void {
-    
-  }
-
+  error$ : Observable<number | null> = this.catchErrorServ.error$
+  mensaje : string = ""
   tramite: MESA ={
     presentado: 'Santa Fe',
     numero: '0197255',
@@ -30,6 +25,21 @@ export class ModalMesaEntradaComponent {
     tipoSalida: 'Mesa de Entrada',
     casillero:''
   }
+
+  ngOnInit(): void {
+    this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
+      console.log(error)
+      
+      switch(error){
+        case 404: this.mensaje = "No se encuentra el tramite"
+          break;
+          case 500: this.mensaje = "Error de conexión, intente nuevamente más tarde"
+          break;
+          default: this.mensaje = "esto"
+      }
+    })
+  }
+
 
   ngOnDestroy(): void {
     if(this.errorSubscription){
