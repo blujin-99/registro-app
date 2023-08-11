@@ -19,17 +19,20 @@ export class HeaderComponent implements OnInit {
    */
   @Input() ministerio!: Observable<string>; //'Ministerio de Gobierno, Justicia y Derechos Humanos';
 
-  showFoto: boolean = false;
+  showFoto: boolean = true;
 
   constructor(public appSrv: AppService, public userSrv: UserService) {}
 
   ngOnInit(): void {
-    if (!this.userSrv.getUser() && !this.userSrv.getUser()?.foto) {
-      this.showFoto = false;
-    } else {
-      this.showFoto = true;
-    }
+    // const user = this.userSrv.getUser();
+    // if (user && Object.keys(user).length > 0) {
+    //   this.showFoto = true;
+    //   console.log(this.showFoto);
+    // } else {
+    //   this.showFoto = false;
 
+    //   console.log(user);
+    // }
     this.appSrv.getNombreMinisterio().subscribe({
       next: (res) => (this.ministerio = res.ministerio),
       error: (error) =>
