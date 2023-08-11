@@ -18,7 +18,7 @@ export class UserService {
    * y en la variable user
    * @param userData
    */
-  setUser(userData: any) {
+  setUser(userData: any): void {
     this.user = {
       nombre: userData.user.nombre,
       apellido: userData.user.apellido,
@@ -35,7 +35,7 @@ export class UserService {
   /**
    * Si existe retorna los datos del usuario
    */
-  getUser() {
+  getUser(): IUser | undefined {
     if (!this.user) {
       this.user = JSON.parse(localStorage.getItem('user') || '{}');
     }
@@ -47,7 +47,7 @@ export class UserService {
    * y lo guarda en el localStorage
    *
    */
-  initAuth() {
+  initAuth(): void {
     const code: any = this.getAccessTokenFromUrl();
     localStorage.setItem('access_token', code);
     this.validateToken(code).subscribe((data: any) => {

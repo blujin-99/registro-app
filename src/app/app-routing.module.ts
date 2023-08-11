@@ -4,19 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'inicio',
     pathMatch: 'full',
+  },
+  {
+    path: 'inicio',
+    loadChildren: () =>
+      import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
-  // {
-  //   path: 'login',
-  //   loadChildren: () =>
-  //     import('./modules/auth/auth.module').then((m) => m.AuthModule),
-  // },
   {
     path: 'misTramites',
     loadChildren: () =>
