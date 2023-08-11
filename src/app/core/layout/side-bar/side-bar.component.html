@@ -1,4 +1,4 @@
-<div class="flex flex-row items-center justify-between">
+<div class="flex flex-row items-center justify-between h-16 sm:h-auto">
   <button
     type="button"
     (click)="toggleSidebar()"
@@ -19,7 +19,7 @@
     </svg>
   </button>
   <div
-    class="relative inline-flex items-center w-10 h-10 p-2 mt-2 mr-3 overflow-hidden text-sm bg-gray-100 rounded-full sm:hidden"
+    class="relative inline-flex items-center w-10 h-10 p-2 m-3 overflow-hidden text-sm bg-gray-100 rounded-full sm:hidden"
   >
     <svg
       class="absolute w-12 h-12 text-gray-400 -left-1"
@@ -54,7 +54,7 @@
     <ul
       class="flex flex-col ml-2 font-medium [&>li]:mb-5 [&>li]:items-center [&>li]:font-normal [&>li]:text-base [&>li]:text-black [&>li]:flex [&>li]:flex-row [&>li]:cursor-pointer [&>li]:gap-2"
     >
-      <li [routerLink]="['/']">
+      <li [routerLink]="['/inicio']">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"

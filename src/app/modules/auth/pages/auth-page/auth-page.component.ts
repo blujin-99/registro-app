@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   templateUrl: './auth-page.component.html',
-  styleUrls: ['./auth-page.component.scss']
+  styleUrls: ['./auth-page.component.scss'],
 })
-export class AuthPageComponent {
+export class AuthPageComponent implements OnInit {
+  constructor(public userSrv: UserService) {}
 
+  ngOnInit() {
+    this.userSrv.initAuth();
+  }
 }
