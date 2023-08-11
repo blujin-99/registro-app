@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mesa-entrada.service';
+import { CatchinErrorService } from '../../interceptor/catchin-error.service';
 
 @Component({
   selector: 'app-catching-error',
@@ -9,25 +9,25 @@ import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mes
 })
 export class CatchingErrorComponent {
 
-  error$ = this.mesaEntradaService.error$;
+  error$ = this.catchErrorServ.error$;
   private errorSubscription: Subscription | undefined;
 
   mensaje: string | null = null; 
 
-  constructor(private mesaEntradaService: ConsultaMesaEntradaService) {
+  constructor(private catchErrorServ: CatchinErrorService) {
 
   }
 
   closeAlert() {
-    this.mesaEntradaService.clearError()
+    this.catchErrorServ.clearError()
   }
 
   ngOnInit(): void {
-    this.errorSubscription = this.mesaEntradaService.error$.subscribe(error => {
-      if (error =='404') {
+    this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
+      if (error ==404) {
         this.mensaje = "No encontrado"
       }
-      if (error == '500') {
+      if (error == 500) {
         this.mensaje = "Error de conexión, intente nuevamente más tarde"
       }
     })

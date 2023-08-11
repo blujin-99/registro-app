@@ -9,10 +9,10 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs';
-import { ConsultaMesaEntradaService } from 'src/app/shared/services/consulta-mesa-entrada.service';
+import { CatchinErrorService } from './catchin-error.service';
 @Injectable()
 export class NotFoundError implements HttpInterceptor {
-  constructor(private mesaEntradaService: ConsultaMesaEntradaService) {}
+  constructor(private catchErrorServ: CatchinErrorService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -28,9 +28,9 @@ export class NotFoundError implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.mesaEntradaService.showError(error.status);
+        this.catchErrorServ.showError(error.status);
         return throwError(
-          () => 'Ha ocurrido un error' + ' tipo: ' + error.status
+          () => 'Ha ocurrido un error' + ' tipo: ' + ' ' + error.status
         );
       })
     );
