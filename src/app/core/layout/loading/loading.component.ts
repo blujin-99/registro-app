@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingService } from 'src/app/modules/consulta-estado-tramite-mesa-entrada/service/loading.service';
-
+import { LoadingService } from '../../services/loading.service';
 @Component({
   
   selector: 'app-loading',

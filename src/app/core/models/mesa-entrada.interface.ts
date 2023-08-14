@@ -1,11 +1,18 @@
 export interface MESA {
+  ok: boolean,
   presentado: string,
-  numero: string,
-  fecha: Date,
-  tipoDoc: string,
-  tipoEntrada:string,
+  tramite: string,
+  fechaingreso: string,
+  tipodocumento: string,
+  tipoentrada: string,
   salida: boolean,
-  fechaSalida:  Date,
-  tipoSalida: string,
-  casillero:string
+  fechasalida: string,
+  tiposalida: string,
+  casillero: string     
+}
+
+export interface Consulta {
+  fecha : string,
+  aforo : string,
+  mesa: string
 }

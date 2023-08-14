@@ -13,13 +13,13 @@
                     <div class="my-2 md:w-4/12 mx-1">
                         <label for="localidades" class="block mb-2 text-sm font-medium text-gray-900">Mesa de
                             presentación</label>
-                        <select formControlName="localidad" id="localidades"
+                        <select formControlName="mesa" id="localidades"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="" selected="true" disabled="disabled">Localidad</option>
-                            <option value="SF">Santa Fe</option>
-                            <option value="RS">Rosario</option>
+                            <option value="" selected="true" disabled="disabled">Mesa</option>
+                            <option value="1">Santa Fe</option>
+                            <option value="2">Rosario</option>
                         </select>
-                        <p *ngIf="this.form.get('localidad')?.hasError('required') && form.get('localidad')?.touched"
+                        <p *ngIf="this.form.get('mesa')?.hasError('required') && form.get('mesa')?.touched"
                             class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
                     </div>
                     <div class="my-2  md:w-4/12 mx-1">
@@ -33,11 +33,11 @@
                     <div class="my-2  md:w-4/12 mx-1">
                         <label for="numero" class="block mb-2 text-sm font-medium text-gray-900">Número de
                             ingreso</label>
-                        <input type="text" id="ingreso" formControlName="numeroIngreso" maxlength="6"
+                        <input type="text" id="ingreso" formControlName="aforo" maxlength="6" minlength="1"
                             class=" number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-                        <p *ngIf="this.form.get('numeroIngreso')?.hasError('required') && form.get('numeroIngreso')?.touched"
+                        <p *ngIf="this.form.get('aforo')?.hasError('required') && form.get('aforo')?.touched"
                             class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                        <p *ngIf="this.form.get('numeroIngreso')?.hasError('maxlength') || this.form.get('numeroIngreso')?.hasError('minlength') && form.get('numeroIngreso')?.touched"
+                        <p *ngIf="this.form.get('aforo')?.hasError('maxlength') || this.form.get('aforo')?.hasError('minlength') && form.get('aforo')?.touched"
                             class="mt-2 text-sm text-red-600">
                             <span class="font-medium">hasta 6 digitos unicamente</span>
                         </p>
