@@ -22,11 +22,11 @@ import { JwtInterceptor } from './jwt.interceptor';
       useClass: NotFoundError,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: JwtInterceptor,
+    //   multi: true,
+    // },
   ],
 })
 export class InterceptorModule {}
