@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { MESA } from 'src/app/core/models/mesa-entrada.interface';
 import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.service';
-import { Moment } from 'moment';
-import { Consulta } from 'src/app/core/models/mesa-entrada.interface';
 import * as moment from 'moment';
 
 @Component({
@@ -27,23 +23,25 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
 
   }
 
+  /**
+   * @function Onsubmit método que envia los valores de formulario al service 
+   * y luego obtiene el resultado por http get subscribiendose al valor retornado
+   */
+
   onSubmit() {
+    /**
+     * @var almacena valor del formulario
+     */
     let mesaValue = this.form.get('mesa')?.value
     let fechaValue = this.form.get('fecha')?.value
     let aforoValue = this.form.get('aforo')?.value;
-    
-    const consulta : Consulta = {
-      fecha:moment(fechaValue).format('DD/MM/YYYY'),
-      aforo: aforoValue,
-      mesa:mesaValue
-    }
-    
-    this.mesaEntradaService.setConsulta(moment(fechaValue).format('DD/MM/YYYY'),aforoValue, mesaValue)
 
 
-    this.mesaEntradaService.getConsultaHttp
-    this.mesaEntradaService.getResultado().subscribe(data => console.log(data))
-    // this.mesaEntradaService.postConsulta(consulta).subscribe(data => {console.log(data)})
+     this.mesaEntradaService.setConsulta(
+      moment(fechaValue).format('DD/MM/YYYY'),
+      aforoValue,
+      mesaValue).subscribe(data => console.log(data)
+      )
 
   }
 

@@ -8,18 +8,18 @@ import {
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    // const token: any = localStorage.getItem('jwt');
+    let token: string | null = localStorage.getItem('jwt');
 
-    // let request = req;
+     let request = req;
 
-    // if (token) {
-    //   request = req.clone({
-    //     setHeaders: {
-    //       authorization: `Bearer ${token}`,
-    //       'Access-Control-Allow-Origin': '*',
-    //     },
-    //   });
-    // }
+    if (token) {
+      request = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
 
     return next.handle(req);
   }

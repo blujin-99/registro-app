@@ -4,6 +4,12 @@ const baseURLApi: string =
   'http://10.1.46.32:5656/formelectronico/web/app_dev.php/API/';
 const AuthURL = 'https://dsso.santafe.gob.ar';
 
+const apiUrl = 'https://www.santafe.gob.ar/estadotramiterg/consulta';
+
+export const ConsultaApiUrl = {
+  api : apiUrl
+}
+
 export const environment = {
   production: false,
   baseURL: baseURL,
