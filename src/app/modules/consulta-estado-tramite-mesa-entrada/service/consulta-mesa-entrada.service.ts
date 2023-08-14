@@ -17,39 +17,39 @@ export class ConsultaMesaEntradaService {
 
   private resultado$ = new BehaviorSubject<any>(null)
 
-  // setConsulta(fecha: any, aforo: any, mesa: any) : void {
-  //   const consultaUrl = `${this.apiUrl}?fecha=${fecha}&aforo=${aforo}&mesa=${mesa}`;
-  //   this.UrlObservable$.next(consultaUrl)
-  // }
-
-  postConsulta(consulta: Consulta): Observable<Consulta>{
-    return this.http.post<Consulta>(this.apiUrl, consulta)
+  setConsulta(fecha: any, aforo: any, mesa: any) : void {
+    const consultaUrl = `${this.apiUrl}?fecha=${fecha}&aforo=${aforo}&mesa=${mesa}`;
+    this.UrlObservable$.next(consultaUrl)
   }
 
-  // getConsulta(){
-  //   return this.UrlObservable$.asObservable()
+  // postConsulta(consulta: Consulta): Observable<Consulta>{
+  //   return this.http.post<Consulta>(this.apiUrl, consulta)
   // }
 
-  // getConsultaHttp(): void {
-  //   this.getConsulta().subscribe(
-  //     url => { 
-  //       this.http.get(url).pipe(
-  //         tap(datos => {
-  //           this.resultado$.next(datos); // Emitir el resultado al Observable
-  //         }),
-  //         catchError(error => {
-  //           // mostrar error
-  //           console.error('Error en la solicitud HTTP:', error);
-  //           return [];
-  //         })
-  //       ).subscribe();
-  //     }
-  //   );
-  // }
+  getConsulta(){
+    return this.UrlObservable$.asObservable()
+  }
 
-  // getResultado(): Observable<any>{
-  //    return this.resultado$.asObservable()
-  // }
+  getConsultaHttp(): void {
+    this.getConsulta().subscribe(
+      url => { 
+        this.http.get(url).pipe(
+          tap(datos => {
+            this.resultado$.next(datos); // Emitir el resultado al Observable
+          }),
+          catchError(error => {
+            // mostrar error
+            console.error('Error en la solicitud HTTP:', error);
+            return [];
+          })
+        ).subscribe();
+      }
+    );
+  }
+
+  getResultado(): Observable<any>{
+     return this.resultado$.asObservable()
+  }
 }
   
 

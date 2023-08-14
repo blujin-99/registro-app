@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MESA } from 'src/app/core/models/mesa-entrada.interface';
 import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.service';
+import { Moment } from 'moment';
 import { Consulta } from 'src/app/core/models/mesa-entrada.interface';
 import * as moment from 'moment';
 
@@ -37,9 +38,12 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
       mesa:mesaValue
     }
     
-    this.consulta = consulta
+    this.mesaEntradaService.setConsulta(moment(fechaValue).format('DD/MM/YYYY'),aforoValue, mesaValue)
 
-     this.mesaEntradaService.postConsulta(consulta).subscribe(data => {console.log(data)})
+
+    this.mesaEntradaService.getConsultaHttp
+    this.mesaEntradaService.getResultado().subscribe(data => console.log(data))
+    // this.mesaEntradaService.postConsulta(consulta).subscribe(data => {console.log(data)})
 
   }
 
