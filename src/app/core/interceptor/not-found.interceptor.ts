@@ -18,21 +18,6 @@ export class NotFoundError implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-
-    let jwt = localStorage.getItem('jwt');
-    if (jwt) {
-        jwt = JSON.parse(jwt);
-    }
-    if (jwt) {
-        request = request.clone({
-            setHeaders: {
-                Authorization: `Bearer ${jwt}`,
-                'Access-Control-Allow-Origin': '*',
-            },
-        });
-    }
-
-
     // const headers = new HttpHeaders({
     //   'token-usuario': 'AB5646dfftgRE333'
     // });
