@@ -155,7 +155,8 @@
     <ng-content></ng-content>
 
     <div
-      *ngIf="logeado"
+      *ngIf="userSrv.loggedIn$()"
+      (click)="logout()"
       class="absolute flex flex-row items-center gap-2 px-2 text-xl font-medium text-black cursor-pointer bottom-12"
     >
       <svg
@@ -173,7 +174,9 @@
     </div>
 
     <div
+      *ngIf="!userSrv.loggedIn$()"
       class="absolute flex flex-row items-center gap-2 px-2 text-xl font-medium text-black cursor-pointer bottom-12"
+      (click)="login()"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -185,12 +188,8 @@
           d="M481-120v-60h299v-600H481v-60h299q24 0 42 18t18 42v600q0 24-18 42t-42 18H481Zm-55-185-43-43 102-102H120v-60h363L381-612l43-43 176 176-174 174Z"
         />
       </svg>
-      <a
-        class="btn"
-        href="https://dsso.santafe.gob.ar/service-auth/oauth2.0/authorize?response_type=token&client_id=sso.santafe.gov.ar.5868506FJCKWEDG33&redirect_uri=http://localhost:4200/login"
-      >
-        <p class="text-black">Ingresar</p>
-      </a>
+
+      <p class="text-black">Ingresar</p>
     </div>
   </div>
 </aside>

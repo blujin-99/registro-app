@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../models/user.interface';
@@ -8,6 +8,11 @@ import { IUser } from '../models/user.interface';
 })
 export class UserService {
   private user?: IUser;
+
+  /**
+   * @signal observa si el usuario esta logeado o no
+   */
+  public loggedIn$ = signal<boolean>(false);
 
   private url = 'http://10.1.46.32:8181/registropropiedad/public/login/oauth';
 
@@ -30,6 +35,7 @@ export class UserService {
     };
 
     localStorage.setItem('user', JSON.stringify(this.user));
+    this.loggedIn$.set(true);
   }
 
   /**
