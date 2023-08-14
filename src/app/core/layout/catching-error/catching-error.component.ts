@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CatchinErrorService } from '../../interceptor/catchin-error.service';
+import { CatchinErrorService } from '../../services/catchin-error.service';
 
 @Component({
   selector: 'app-catching-error',
@@ -24,10 +24,10 @@ export class CatchingErrorComponent {
 
   ngOnInit(): void {
     this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
-      if (error ==404) {
+      if (error ===404) {
         this.mensaje = "No encontrado"
       }
-      if (error == 500) {
+      if (error === 500) {
         this.mensaje = "Error de conexión, intente nuevamente más tarde"
       }
     })

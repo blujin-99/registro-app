@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs';
-import { CatchinErrorService } from './catchin-error.service';
+import { CatchinErrorService } from '../services/catchin-error.service';
 @Injectable()
 export class NotFoundError implements HttpInterceptor {
   constructor(private catchErrorServ: CatchinErrorService) {}
@@ -18,14 +18,6 @@ export class NotFoundError implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    // const headers = new HttpHeaders({
-    //   'token-usuario': 'AB5646dfftgRE333'
-    // });
-
-    // const requestClone = request.clone({
-    //   headers
-    // });
-
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         this.catchErrorServ.showError(error.status);

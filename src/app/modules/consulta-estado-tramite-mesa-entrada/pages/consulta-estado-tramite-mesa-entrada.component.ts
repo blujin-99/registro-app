@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { MESA } from 'src/app/core/models/mesa-entrada.interface';
-import { ConsultaMesaEntradaService } from 'src/app/modules/consulta-estado-tramite-mesa-entrada/service/consulta-mesa-entrada.service';
+import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',
@@ -13,39 +12,40 @@ import { ConsultaMesaEntradaService } from 'src/app/modules/consulta-estado-tram
 export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   form: FormGroup;
   error: any
-
-  tramite: MESA ={
-    presentado: 'Santa Fe',
-    numero: '0197255',
-    fecha: new Date(2023,8,8),
-    tipoDoc: ' Oficio',
-    tipoEntrada:'Normal',
-    salida: true,
-    fechaSalida:  new Date(2023,7,12),
-    tipoSalida: 'Mesa de Entrada',
-    casillero:''
-  }
-
+  consulta: any
   constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService) {
 
     this.form = this.fb.group({
-      localidad: ['', Validators.required],
+      mesa: ['', Validators.required],
       fecha: ['', Validators.required],
-      numeroIngreso: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^[0-9]*$'), Validators.maxLength(6)]]
+      aforo: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[0-9]*$'), Validators.maxLength(6)]]
     })
 
   }
 
+  /**
+   * @function Onsubmit método que envia los valores de formulario al service 
+   * y luego obtiene el resultado por http get subscribiendose al valor retornado
+   */
 
   onSubmit() {
-    this.mesaEntradaService.getHttp().subscribe(
-      (response)=>{
-        console.log('busco')
-      }
-    )
-    console.log(this.form.value)
+    /**
+     * @var almacena valor del formulario
+     */
+    let mesaValue = this.form.get('mesa')?.value
+    let fechaValue = this.form.get('fecha')?.value
+    let aforoValue = this.form.get('aforo')?.value;
+
+
+     this.mesaEntradaService.setConsulta(
+      moment(fechaValue).format('DD/MM/YYYY'),
+      aforoValue,
+      mesaValue).subscribe(data => console.log(data)
+      )
 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    
+   }
 }
