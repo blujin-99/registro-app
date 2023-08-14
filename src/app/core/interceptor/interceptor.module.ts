@@ -5,18 +5,13 @@ import { NotFoundError } from './not-found.interceptor';
 import { CatchingErrorComponent } from '../layout/catching-error/catching-error.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { LoadingComponent } from '../layout/loading/loading.component';
-
+import { JwtInterceptor } from './jwt.interceptor';
 
 @NgModule({
   declarations: [LoadingComponent, CatchingErrorComponent],
-  imports: [
-    CommonModule
-  ],
-  exports:[
-    LoadingComponent,
-    CatchingErrorComponent
-  ],
-  providers:[
+  imports: [CommonModule],
+  exports: [LoadingComponent, CatchingErrorComponent],
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
@@ -27,6 +22,11 @@ import { LoadingComponent } from '../layout/loading/loading.component';
       useClass: NotFoundError,
       multi: true,
     },
-  ]
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
 })
-export class InterceptorModule { }
+export class InterceptorModule {}
