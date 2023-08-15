@@ -10,12 +10,9 @@ import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.ser
 })
 export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   form: FormGroup;
-  error: any;
-  consulta: any;
-  constructor(
-    private fb: FormBuilder,
-    private mesaEntradaService: ConsultaMesaEntradaService
-  ) {
+  error: any
+  constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService) {
+
     this.form = this.fb.group({
       mesa: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -56,6 +53,5 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.consulta);
-  }
+   }
 }
