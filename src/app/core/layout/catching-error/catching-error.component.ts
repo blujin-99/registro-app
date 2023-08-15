@@ -28,7 +28,7 @@ export class CatchingErrorComponent {
         this.mensaje = "No encontrado"
       }
       if (error === 500) {
-        this.mensaje = "Error de conexión, intente nuevamente más tarde"
+        this.mensaje = "No encontrado"
       }
     })
 

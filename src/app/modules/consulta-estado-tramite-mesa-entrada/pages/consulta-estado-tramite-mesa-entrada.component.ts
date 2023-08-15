@@ -40,12 +40,16 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
      this.mesaEntradaService.setConsulta(
       moment(fechaValue).format('DD/MM/YYYY'),
       aforoValue,
-      mesaValue).subscribe(data => console.log(data)
-      )
+      mesaValue).
+      subscribe(
+        data => {
+         this.mesaEntradaService.setResultadoTramite(data)
+        }
+    )
 
   }
 
   ngOnInit(): void {
-    
+    console.log(this.consulta)
    }
 }
