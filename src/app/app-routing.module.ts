@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'misTramites',
+    canActivate: [isLoggedInGuard],
     loadChildren: () =>
       import('./modules/tramites/tramites.module').then(
         (m) => m.TramitesModule
@@ -26,6 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'nuevoTramite',
+    canActivate: [isLoggedInGuard],
     loadChildren: () =>
       import('./modules/nuevo-tramite/nuevo-tramite.module').then(
         (m) => m.NuevoTramiteModule
@@ -33,6 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'configuracion',
+    canActivate: [isLoggedInGuard],
     loadChildren: () =>
       import('./modules/configuracion/configuracion.module').then(
         (m) => m.ConfiguracionModule
