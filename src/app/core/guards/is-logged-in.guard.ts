@@ -1,7 +1,16 @@
-import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
-  console.log({ route, state });
+  const userSrv = inject(UserService);
+  const router = inject(Router);
 
-  return true;
+  if (userSrv.loggedIn$()) {
+    return true;
+  }
+
+  router.navigateByUrl('/inicio');
+
+  return false;
 };
