@@ -17,7 +17,7 @@ export class ModalMesaEntradaComponent {
 		private catchErrorServ: CatchinErrorService,
 		private mesaEntradaServ: ConsultaMesaEntradaService) { }
 
-    tramite : any
+    tramite : MESA | undefined
 	
 	private errorSubscription: Subscription | undefined;
 	error$: Observable<number | null> = this.catchErrorServ.error$
@@ -26,7 +26,6 @@ export class ModalMesaEntradaComponent {
 	ngOnInit(): void {
 		// Primero, suscríbete al observable de errores para manejar los errores
 		this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
-		  console.log(error);
 		  switch (error) {
 			case 404:
 			  this.mensaje = "No se encuentra el trámite";
@@ -38,8 +37,11 @@ export class ModalMesaEntradaComponent {
 		});
 
 		this.mesaEntradaServ.tramite$.subscribe(data => {
-			this.tramite = data.data.data
-            console.log(this.tramite)			
+			if (data) {
+			   this.tramite = data.data.data
+			}
+			
+
 		   }
 		)
 	  }

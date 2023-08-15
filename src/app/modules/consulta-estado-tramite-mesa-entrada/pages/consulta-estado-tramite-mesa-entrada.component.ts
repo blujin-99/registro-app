@@ -12,7 +12,6 @@ import * as moment from 'moment';
 export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   form: FormGroup;
   error: any
-  consulta: any
   constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService) {
 
     this.form = this.fb.group({
@@ -50,6 +49,5 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.consulta)
    }
 }

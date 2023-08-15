@@ -15,11 +15,11 @@
                 </li>
             </ul>
 
-            <ul *ngIf="(error$ | async) != 404 && (error$ | async) != 500" class="flex md:flex-row flex-col justify-center ">
+            <ul *ngIf="(error$ | async) != 404 && (error$ | async) != 500 && tramite?.ok == true" class="flex md:flex-row flex-col justify-center ">
                 <li class=" my-4 text-center rounded-lg border border-gray-300 md:w-6/12 ml-2 mr-1">
 
                     <div class="relative overflow-x-auto">
-                        <h5 class="text-lg font-medium">N° Tramite {{tramite.tramite}}</h5>
+                        <h5 class="text-lg font-medium">N° Tramite {{tramite?.tramite}}</h5>
                         <table class="w-full text-sm text-left  text-gray-500">
                             <tbody>
                                 <tr class="bg-white border-b">
@@ -28,7 +28,7 @@
                                         Presentado
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.presentado}}
+                                        {{tramite?.presentado}}
                                     </td>
                                 </tr>
                                 <tr class="bg-white border-b">
@@ -37,7 +37,7 @@
                                         Fecha de Ingreso
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.fechaingreso}}
+                                        {{tramite?.fechaingreso}}
                                     </td>
                                 </tr>
                                 <tr class="bg-white border-b">
@@ -46,7 +46,7 @@
                                         Tipo de Documento
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.tipodocumento}}
+                                        {{tramite?.tipodocumento}}
                                     </td>
                                 </tr>
                                 <tr class="bg-white border-b">
@@ -55,7 +55,7 @@
                                         Tipo de Entrada
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.tipoentrada}}
+                                        {{tramite?.tipoentrada}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -66,10 +66,10 @@
                 <li class="my-4 text-center rounded-lg border border-gray-300  md:w-6/12 mr-2 ml-1 ">
                     <div class="relative overflow-x-auto">
                         <div>
-                            <h5 *ngIf="tramite.salida" class="text-lg font-medium">Salida</h5>
-                            <h5 *ngIf="!tramite.salida" class="text-lg font-medium">Sin Salida</h5>
+                            <h5 *ngIf="tramite?.salida" class="text-lg font-medium">Salida</h5>
+                            <h5 *ngIf="!tramite?.salida" class="text-lg font-medium">Sin Salida</h5>
                         </div>
-                        <table *ngIf="tramite.salida" class="w-full text-sm text-left  text-gray-500">
+                        <table *ngIf="tramite?.salida" class="w-full text-sm text-left  text-gray-500">
                             <tbody>
                                 <tr class="bg-white border-b">
                                     <th scope="row"
@@ -77,7 +77,7 @@
                                         Fecha de salida
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.fechasalida}}
+                                        {{tramite?.fechasalida}}
                                     </td>
                                 </tr>
                                 <tr class="bg-white border-b ">
@@ -86,7 +86,7 @@
                                         Tipo de Salida
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.tiposalida}}
+                                        {{tramite?.tiposalida}}
                                     </td>
                                 </tr>
                                 <tr class="bg-white border-b">
@@ -95,7 +95,7 @@
                                         Casillero
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{tramite.casillero}}
+                                        {{tramite?.casillero}}
                                     </td>
                                 </tr>
                             </tbody>
