@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 import { ConsultaApiUrl } from 'src/environments/environment.development';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -10,7 +10,9 @@ import { ConsultaApiUrl } from 'src/environments/environment.development';
 export class ConsultaMesaEntradaService {
   
   constructor(private http : HttpClient){}
-
+  
+  private ConsultaTramite = new BehaviorSubject<any>(null)
+  tramite$ = this.ConsultaTramite.asObservable()
 /** @function
  *  obtiene lo datos del formulario fecha, aforo, mesa y luego devuleve 
  * un petición http de consulta mesa de mesa de entrada
@@ -20,6 +22,17 @@ export class ConsultaMesaEntradaService {
     const consultaUrl = `${ConsultaApiUrl.api}?fecha=${fecha}&aforo=${aforo}&mesa=${mesa}`;
     return this.http.get(consultaUrl)
   }
+
+/** @function
+ *  SetResultadoTramite trae el resultado obtenido de la request y lo almacena
+ * en una variable observable 
+ */
+
+  setResultadoTramite(resultado:any):void{
+    this.ConsultaTramite.next(resultado)
+  }
+
+
 
 
  
