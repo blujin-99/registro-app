@@ -10,7 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let token: string | null = localStorage.getItem('jwt');
 
-     let request = req;
+    let request = req;
 
     if (token) {
       request = req.clone({
