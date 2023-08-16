@@ -24,7 +24,7 @@ export class CatchingErrorComponent {
 
   ngOnInit(): void {
     this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
-      if (error ===404) {
+      if (error === 404) {
         this.mensaje = "No encontrado"
       }
       if (error === 500) {
