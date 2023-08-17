@@ -48,7 +48,6 @@ export class TablaFinalizadoComponent implements OnInit{
     this.tablaSrv.getTablaFinalizado().subscribe({
       next: (respuesta) => {
         this.dataSource = new MatTableDataSource(respuesta);
-        console.log(this.dataSource)
       },
       error: (error) => {
         console.error(error);

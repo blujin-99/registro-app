@@ -21,18 +21,17 @@ export class HeaderComponent implements OnInit {
 
   showFoto: boolean = true;
 
-  constructor(public appSrv: AppService, public userSrv: UserService) {}
+  constructor(private appSrv: AppService, private userSrv: UserService) {}
+
+  user: any;
 
   ngOnInit(): void {
-    // const user = this.userSrv.getUser();
-    // if (user && Object.keys(user).length > 0) {
-    //   this.showFoto = true;
-    //   console.log(this.showFoto);
-    // } else {
-    //   this.showFoto = false;
-
-    //   console.log(user);
-    // }
+    this.user = this.userSrv.getUser();
+    if (this.user && Object.keys(this.user).length > 0) {
+      this.showFoto = true;
+    } else {
+      this.showFoto = false;
+    }
     this.appSrv.getNombreMinisterio().subscribe({
       next: (res) => (this.ministerio = res.ministerio),
       error: (error) =>

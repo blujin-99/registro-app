@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, effect, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../models/user.interface';
@@ -35,17 +35,21 @@ export class UserService {
     };
 
     localStorage.setItem('user', JSON.stringify(this.user));
-    this.loggedIn$.set(true);
   }
 
   /**
    * Si existe retorna los datos del usuario
    */
-  getUser(): IUser | undefined {
-    if (!this.user) {
-      this.user = JSON.parse(localStorage.getItem('user') || '{}');
+  getUser(): any {
+    const userJSON = localStorage.getItem('user');
+
+    if (userJSON) {
+      this.user = JSON.parse(userJSON);
+
+      return this.user;
+    } else {
+      return null;
     }
-    return this.user;
   }
 
   /**
@@ -54,13 +58,17 @@ export class UserService {
    *
    */
   initAuth(): void {
-    const code: any = this.getAccessTokenFromUrl();
-    localStorage.setItem('access_token', code);
-    this.validateToken(code).subscribe((data: any) => {
-      this.setUser(data);
-      localStorage.setItem('jwt', data.jwt);
-      console.log(data);
-    });
+    if (!localStorage.getItem('user')) {
+      const code: any = this.getAccessTokenFromUrl();
+      localStorage.setItem('access_token', code);
+      this.validateToken(code).subscribe((data: any) => {
+        this.setUser(data);
+        localStorage.setItem('jwt', data.jwt);
+
+        console.log(data);
+      });
+    }
+    console.log(localStorage.getItem('user'));
   }
 
   /**
