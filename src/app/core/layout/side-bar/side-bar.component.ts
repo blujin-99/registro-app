@@ -17,15 +17,7 @@ export class SideBarComponent implements OnInit {
   sidebarOpen = false;
 
   constructor(public userSrv: UserService, private authSrv: AuthService) {}
-  ngOnInit(): void {
-    //Si el usuario no esta logeado
-    const user = this.userSrv.getUser();
-    // if (user && Object.keys(user).length > 1) {
-    //   this.logeado = true;
-    // } else {
-    //   this.logeado = false;
-    // }
-  }
+  ngOnInit(): void {}
 
   login() {
     window.location.replace(
@@ -35,10 +27,8 @@ export class SideBarComponent implements OnInit {
 
   logout() {
     localStorage.clear();
-    if (this.userSrv.loggedIn$()) {
-      this.userSrv.loggedIn$.set(false);
-      window.location.replace('http://localhost:4200/inicio');
-    }
+
+    window.location.replace('http://localhost:4200/inicio');
   }
 
   toggleSidebar() {
