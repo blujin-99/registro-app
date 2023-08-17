@@ -147,4 +147,8 @@ export class FiltrosBusquedaComponent implements OnInit {
         },
       });
   }
+
+  onSubmit() : void {
+    console.log(this.filters)
+  }
 }
