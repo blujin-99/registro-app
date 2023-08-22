@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  Input,
+  OnInit,
+  effect,
+  signal,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppService } from 'src/app/shared/services/app.service';
 import { UserService } from '../../services/user.service';
@@ -8,7 +15,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
   /**
    * Espera el nombre del proyecto
    */
@@ -19,23 +26,34 @@ export class HeaderComponent implements OnInit {
    */
   @Input() ministerio!: Observable<string>; //'Ministerio de Gobierno, Justicia y Derechos Humanos';
 
-  showFoto: boolean = true;
+  /**
+   * boolean para controlar si muestra la foto de perfil
+   * del usuario o no
+   */
+  showFoto = false;
 
-  constructor(private appSrv: AppService, private userSrv: UserService) {}
-
+  /**
+   * Guardo la información del usuario
+   */
   user: any;
 
+  constructor(private appSrv: AppService, public userSrv: UserService) {}
+
   ngOnInit(): void {
-    this.user = this.userSrv.getUser();
-    if (this.user && Object.keys(this.user).length > 0) {
-      this.showFoto = true;
-    } else {
-      this.showFoto = false;
-    }
     this.appSrv.getNombreMinisterio().subscribe({
       next: (res) => (this.ministerio = res.ministerio),
       error: (error) =>
         console.error(`Error al recuperar nombre del ministerio: ${error}`),
     });
+  }
+
+  //Cuando se logea, si el usuario tiene foto de perfil la muestra sino
+  //utiliza el avatar por defecto
+  ngDoCheck(): void {
+    this.user = this.userSrv.getUser();
+
+    if (this.user && this.user.foto) {
+      this.showFoto = true;
+    }
   }
 }
