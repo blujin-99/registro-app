@@ -7,6 +7,9 @@ import { IUser } from '../models/user.interface';
   providedIn: 'root',
 })
 export class UserService {
+  /**
+   * objeto usuario
+   */
   private user?: IUser;
 
   /**
@@ -52,11 +55,6 @@ export class UserService {
     }
   }
 
-  /**
-   * Obtiene el token de acceso desde la url
-   * y lo guarda en el localStorage
-   *
-   */
   initAuth(): void {
     if (!localStorage.getItem('user')) {
       const code: any = this.getAccessTokenFromUrl();
@@ -64,15 +62,11 @@ export class UserService {
       this.validateToken(code).subscribe((data: any) => {
         this.setUser(data);
         localStorage.setItem('jwt', data.jwt);
-
-        console.log(data);
       });
     }
-    console.log(localStorage.getItem('user'));
   }
 
   /**
-   *
    * @returns access token
    */
   private getAccessTokenFromUrl(): string | null {
