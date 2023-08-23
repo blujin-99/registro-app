@@ -89,7 +89,9 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
                 (!filtro.estadoExcedentes || data.excedentes.includes(filtro.estadoExcedentes)) &&
                 (!filtro.estadoTramite || data.estado.includes(filtro.estadoTramite))
               );
-              console.log(this.filterRow);
+            }
+            if(this.filterRow.length === 0 && !filtro){
+              this.filterRow = this.dataSource
             }
           }
         );
