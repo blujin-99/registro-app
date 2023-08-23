@@ -5,13 +5,14 @@ import { AuthService } from '../../services/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from '../../config/auth.config';
 import { UserService } from '../../services/user.service';
+import { AvatarComponent } from 'src/app/shared/components/avatar/avatar.component';
 
 @Component({
   standalone: true,
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, AvatarComponent],
 })
 export class SideBarComponent implements OnInit {
   sidebarOpen = false;
