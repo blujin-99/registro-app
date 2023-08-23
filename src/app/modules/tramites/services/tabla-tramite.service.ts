@@ -1,12 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Observable, finalize, of } from 'rxjs';
 import { Tramites } from 'src/app/core/mocks/tramites.mock';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TablaTramiteService {
   constructor() {}
+  
+  private filtrosTramite$ = new BehaviorSubject<any | undefined>(null)
+  filtros = this.filtrosTramite$.asObservable()
+
+  setFiltros(
+    busqueda:string,
+    categoria:string,
+    estadoTramite:string,
+    jurisdiccion:string,
+    estadoTasas:string,
+    estadoExcedentes:string,
+    servicio:string) 
+    : void {
+    let values = {
+      busqueda: busqueda,
+      categoria: categoria,
+      estadoTramite:estadoTramite,
+      jurisdiccion: jurisdiccion,
+      estadoTasas: estadoTasas,
+      estadoExcedentes: estadoExcedentes,
+      servicio :servicio
+    }
+    this.filtrosTramite$.next(values)
+  }
 
   getTablaPendientes(): Observable<any> {
     return of(Tramites.rows);

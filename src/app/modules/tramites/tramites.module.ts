@@ -14,6 +14,7 @@ import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.componen
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MaterialModule } from '../material/material.module';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MaterialModule } from '../material/material.module';
     TablaPendientesComponent,
     TablaEntregadoComponent,
     TablaFinalizadoComponent,
+    FilterPipe,
   ],
   imports: [
     CommonModule,

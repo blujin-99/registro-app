@@ -5,12 +5,13 @@ import {
   ViewChild,
   signal,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TramitesService } from '../../services/tramites.service';
-import { Observable } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TablaTramiteService } from '../../services/tabla-tramite.service';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -23,10 +24,12 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   formFiltros: FormGroup = new FormGroup({});
 
+  busqueda: FormControl = new FormControl()
+
   /**
    * Lista de filtros que selecciono el usuario
    */
-  filters: string[] = [];
+  filters: any[] = [];
 
   /**
    * Bool para ocultar o mostrar la seccion de filtros
@@ -54,12 +57,14 @@ export class FiltrosBusquedaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public tramiteSrv: TramitesService,
+    private tablaServ : TablaTramiteService,
     private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+
     this.formFiltros = this.fb.group({
-      busqueda: '',
+      busqueda: [''],
       categoria: [''],
       estadoTramite: [''],
       jurisdiccion: [''],
@@ -110,7 +115,7 @@ export class FiltrosBusquedaComponent implements OnInit {
     if (!this.filters.includes(valorCampo)) {
       this.filters.push(valorCampo);
     }
-    this.formFiltros.reset(this.resetForm);
+    // this.formFiltros.reset(this.resetForm);
   }
 
   /**
@@ -148,7 +153,18 @@ export class FiltrosBusquedaComponent implements OnInit {
       });
   }
 
-  onSubmit() : void {
-    console.log(this.filters)
+  onSubmit(): void {
+    this.tablaServ.setFiltros(
+      this.formFiltros.get('busqueda')?.value,
+      this.formFiltros.get('categoria')?.value.nombre,
+      this.formFiltros.get('estadoTramite')?.value.descripcion,
+      this.formFiltros.get('jurisdiccion')?.value.nombre,
+      this.formFiltros.get('estadoTasas')?.value.descripcion,
+      this.formFiltros.get('estadoExcedentes')?.value.descripcion,
+      this.formFiltros.get('tramiteServicio')?.value.nombre
+    )
+    // this.clearAllFilters()
   }
+  
+  
 }

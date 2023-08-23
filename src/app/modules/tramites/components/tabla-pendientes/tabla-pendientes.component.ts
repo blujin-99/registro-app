@@ -25,9 +25,9 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     'tasas',
     'excedentes',
   ];
-  dataSource = new MatTableDataSource();
-  pendientes!: any;
-
+  dataSource :any
+  filtros: any;
+  filterRow : any[] = [] //crear interface
   constructor(
     private tablaSrv: TablaTramiteService,
     private _bottomSheet: MatBottomSheet,
@@ -55,6 +55,7 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  search : any
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -62,15 +63,46 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    
     this.tablaSrv.getTablaPendientes().subscribe({
       next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
+        this.dataSource = res;
+        console.log(this.dataSource);
+    
+        this.tablaSrv.filtros.subscribe(
+          filtro => {
+            if (filtro) {
+              this.filterRow = this.dataSource.filter((data: {
+                tipo_categoria_tramite: string;
+                tipo_tramite:string;
+                codigo_tramite: string;
+                jur: string;
+                tasas: string;
+                excedentes: string;
+                estado: string
+              }) =>
+                (!filtro.categoria || data.tipo_categoria_tramite.includes(filtro.categoria)) &&
+                (!filtro.servicio || data.tipo_tramite.includes(filtro.servicio)) &&
+                (!filtro.busqueda || data.codigo_tramite.includes(filtro.busqueda)) &&
+                (!filtro.jurisdiccion || data.jur.includes(filtro.jurisdiccion)) &&
+                (!filtro.estadoTasas || data.tasas.includes(filtro.estadoTasas)) &&
+                (!filtro.estadoExcedentes || data.excedentes.includes(filtro.estadoExcedentes)) &&
+                (!filtro.estadoTramite || data.estado.includes(filtro.estadoTramite))
+              );
+              console.log(this.filterRow);
+            }
+          }
+        );
       },
       error: (error) => {
         console.error(error);
       },
     });
+    
+
+
   }
+
 
   showPagoMobile() {}
 
