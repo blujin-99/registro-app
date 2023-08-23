@@ -1,4 +1,4 @@
-<div class="overflow-x-auto ml-8">
+<div class="overflow-x-auto">
   <table mat-table [dataSource]="filterRow">
     <ng-container matColumnDef="pagar" *ngIf="accionesSrv.pagoMultiple()">
       <th mat-header-cell *matHeaderCellDef>Pagar</th>
@@ -42,9 +42,9 @@
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns "></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-   
+
   <mat-paginator
     class="mb-5"
     [pageSizeOptions]="[5, 10, 20]"
