@@ -1,55 +1,115 @@
 <div class="side-bar">
-    <app-side-bar> </app-side-bar>
+  <app-side-bar> </app-side-bar>
 </div>
-<div class="flex flex-col items-center">
-    <span class="w-11/12 mt-3">
-        <h2 class="primary">Consulta De Estado De Tramite Ingresado Por Mesa De Entradas</h2>
-    </span>
-    <div class="flex flex-col justify-start w-11/12">
-        <form [formGroup]="form" class="">
-            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-lg sm:p-6 md:p-8 mb-5 ">
-                <h5 class="text-xl font-medium text-gray-555 mb-5">Buscar Tramite</h5>
-                <div class="md:flex flex-row justify-center ">
-                    <div class="my-2 md:w-4/12 mx-1">
-                        <label for="localidades" class="block mb-2 text-sm font-medium text-gray-900">Mesa de
-                            presentación</label>
-                        <select formControlName="mesa" id="localidades"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="" selected="true" disabled="disabled">Mesa</option>
-                            <option value="1">Santa Fe</option>
-                            <option value="2">Rosario</option>
-                        </select>
-                        <p *ngIf="this.form.get('mesa')?.hasError('required') && form.get('mesa')?.touched"
-                            class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                    </div>
-                    <div class="my-2  md:w-4/12 mx-1">
-                        <label for="ingreso" class="block mb-2 text-sm font-medium text-gray-900 ">Fecha de
-                            ingreso</label>
-                        <input type="date" id="ingreso" formControlName="fecha"
-                            class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-                        <p *ngIf="this.form.get('fecha')?.hasError('required') && form.get('fecha')?.touched"
-                            class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                    </div>
-                    <div class="my-2  md:w-4/12 mx-1">
-                        <label for="numero" class="block mb-2 text-sm font-medium text-gray-900">Número de
-                            ingreso</label>
-                        <input type="text" id="ingreso" formControlName="aforo" maxlength="6" minlength="1"
-                            class=" number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-                        <p *ngIf="this.form.get('aforo')?.hasError('required') && form.get('aforo')?.touched"
-                            class="mt-2 text-sm text-red-600"><span class="font-medium">El campo es requerido</span></p>
-                        <p *ngIf="this.form.get('aforo')?.hasError('maxlength') || this.form.get('aforo')?.hasError('minlength') && form.get('aforo')?.touched"
-                            class="mt-2 text-sm text-red-600">
-                            <span class="font-medium">hasta 6 digitos unicamente</span>
-                        </p>
-                    </div>
-                    <div class="my-2  md:w-4/12 mx-1">
-                        <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="submit" [disabled]="form.invalid" (click)="onSubmit()"
-                            class="text-sm enabled:hover:bg-cyan-700 font-medium text-white border rounded-lg button focus:ring-4 focus:outline-none focus:ring-blue-300 p-3 ml-2 mt-6">CONSULTA
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <app-modal-mesa-entrada></app-modal-mesa-entrada>
+<div class="flex flex-col items-center my-5">
+  <span class="w-11/12 mt-3">
+    <h2 class="primary">
+      Consulta De Estado De Tramite Ingresado Por Mesa De Entradas
+    </h2>
+  </span>
+  <div class="flex flex-col justify-start w-11/12">
+    <form [formGroup]="form" class="">
+      <div
+        class="p-4 mb-5 bg-white border border-gray-200 rounded-lg shadow-lg sm:p-6 md:p-8"
+      >
+        <h5 class="mb-5 text-xl font-medium text-gray-555">Buscar Tramite</h5>
+        <div class="flex-row justify-center md:flex">
+          <div class="mx-1 my-2 md:w-4/12">
+            <label
+              for="localidades"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Mesa de presentación</label
+            >
+            <select
+              formControlName="mesa"
+              id="localidades"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <option value="" selected="true" disabled="disabled">Mesa</option>
+              <option value="1">Santa Fe</option>
+              <option value="2">Rosario</option>
+            </select>
+            <p
+              *ngIf="
+                this.form.get('mesa')?.hasError('required') &&
+                form.get('mesa')?.touched
+              "
+              class="mt-2 text-sm text-red-600"
+            >
+              <span class="font-medium">El campo es requerido</span>
+            </p>
+          </div>
+          <div class="mx-1 my-2 md:w-4/12">
+            <label
+              for="ingreso"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Fecha de ingreso</label
+            >
+            <input
+              type="date"
+              id="ingreso"
+              formControlName="fecha"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+            <p
+              *ngIf="
+                this.form.get('fecha')?.hasError('required') &&
+                form.get('fecha')?.touched
+              "
+              class="mt-2 text-sm text-red-600"
+            >
+              <span class="font-medium">El campo es requerido</span>
+            </p>
+          </div>
+          <div class="mx-1 my-2 md:w-4/12">
+            <label
+              for="numero"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Número de ingreso</label
+            >
+            <input
+              type="text"
+              id="ingreso"
+              formControlName="aforo"
+              maxlength="6"
+              minlength="1"
+              class="number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+            <p
+              *ngIf="
+                this.form.get('aforo')?.hasError('required') &&
+                form.get('aforo')?.touched
+              "
+              class="mt-2 text-sm text-red-600"
+            >
+              <span class="font-medium">El campo es requerido</span>
+            </p>
+            <p
+              *ngIf="
+                this.form.get('aforo')?.hasError('maxlength') ||
+                (this.form.get('aforo')?.hasError('minlength') &&
+                  form.get('aforo')?.touched)
+              "
+              class="mt-2 text-sm text-red-600"
+            >
+              <span class="font-medium">hasta 6 digitos unicamente</span>
+            </p>
+          </div>
+          <div class="mx-1 my-2 md:w-4/12">
+            <button
+              data-modal-target="defaultModal"
+              data-modal-toggle="defaultModal"
+              type="submit"
+              [disabled]="form.invalid"
+              (click)="onSubmit()"
+              class="p-3 mt-6 ml-2 text-sm font-medium text-white border rounded-lg enabled:hover:bg-cyan-700 button focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              CONSULTA
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <app-modal-mesa-entrada></app-modal-mesa-entrada>
 </div>
