@@ -115,7 +115,6 @@ export class FiltrosBusquedaComponent implements OnInit {
     if (!this.filters.includes(valorCampo)) {
       this.filters.push(valorCampo);
     }
-    // this.formFiltros.reset(this.resetForm);
   }
 
   /**
@@ -163,7 +162,6 @@ export class FiltrosBusquedaComponent implements OnInit {
       this.formFiltros.get('estadoExcedentes')?.value.descripcion,
       this.formFiltros.get('tramiteServicio')?.value.nombre
     )
-    // this.clearAllFilters()
   }
   
   

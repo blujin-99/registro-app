@@ -8,19 +8,19 @@ export class FilterPipe implements PipeTransform {
   transform(value: any, arg: any): any {
     let result = []
     console.log("rta ",arg,value)
-    //onsole.log(value)
+    console.log(arg.jurisdiccion.nombre)
     if (arg) {
       for (let argument of arg) {
 
-        for (let post of value) {
+        for (let listaTabla of value) {
 
           
 
-          if (post.jur == argument.nombre) {
-            result.push(post)
+          if (listaTabla.jur == argument.nombre) {
+            
           }
 
-          if(post.tasas){
+          if(listaTabla.tasas){
              console.log(argument)
           }
 
@@ -29,13 +29,13 @@ export class FilterPipe implements PipeTransform {
 
           // }
 
-          if (post.codigo_tramite == argument.tramite) {
-            result.push(post)
+          if (listaTabla.codigo_tramite == argument.tramite) {
+            
           }
 
         }
       }
-      return result
+      
 
     } else {
       console.log('esta salida')
