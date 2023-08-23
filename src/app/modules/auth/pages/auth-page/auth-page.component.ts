@@ -6,6 +6,8 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./auth-page.component.scss'],
 })
 export class AuthPageComponent implements OnInit {
+  user: any;
+
   constructor(public userSrv: UserService) {}
 
   ngOnInit() {
