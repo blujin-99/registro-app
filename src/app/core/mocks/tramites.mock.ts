@@ -19,7 +19,7 @@ export const Tramites = {
       fecha_presentacion: null,
       motivo_observacion: null,
       abreviatura: 'SDH',
-      tipo_tramite: 'SUBSISTENCIA DE DECLARATORIA DE HEREDEROS',
+      tipo_tramite: 'CERTIFICADO O INFORMES',
       jur: 'ROSARIO',
       estado: 'NO PRESENTADO',
       api: 'NO CORRESPONDE',
