@@ -18,23 +18,32 @@
       ></path>
     </svg>
   </button>
-  <div
-    class="relative inline-flex items-center w-10 h-10 p-2 m-3 overflow-hidden text-sm bg-gray-100 rounded-full sm:hidden"
-  >
-    <svg
-      class="absolute w-12 h-12 text-gray-400 -left-1"
-      fill="currentColor"
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
+  <ng-container *ngIf="!showFoto">
+    <div
+      class="relative inline-flex items-center w-10 h-10 p-2 m-3 overflow-hidden text-sm bg-gray-100 rounded-full sm:hidden"
     >
-      <path
-        fill-rule="evenodd"
-        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-        clip-rule="evenodd"
-      ></path>
-    </svg>
-  </div>
-<!-- <app-avatar></app-avatar> -->
+      <svg
+        class="absolute w-12 h-12 text-gray-400 -left-1"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+          clip-rule="evenodd"
+        ></path>
+      </svg></div
+  ></ng-container>
+  <ng-container *ngIf="showFoto">
+    <div class="relative visible mt-2 mr-3 overflow-hidden">
+      <img
+        class="w-12 h-12 rounded-full"
+        src="data:image/png;base64,{{ user?.foto }}"
+        alt="Rounded avatar"
+      />
+    </div>
+  </ng-container>
 </div>
 <aside
   [ngClass]="{
