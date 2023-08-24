@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
 import { AccionesService } from '../../services/acciones.service';
+import { FiltrosService } from '../../services/filtros.service';
 
 @Component({
   selector: 'app-tabla-entregado',
@@ -16,6 +17,7 @@ export class TablaEntregadoComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   dataSource = new MatTableDataSource()
+  tabla : any
   
   displayedColumns : string[] = [    
   'tramite',
@@ -27,6 +29,7 @@ export class TablaEntregadoComponent implements OnInit{
 
   constructor(
     private tableServ: TablaTramiteService,
+    private filtroServ: FiltrosService,
     private _bottomSheet: MatBottomSheet,
     public accionesSrv: AccionesService){
     
@@ -56,15 +59,21 @@ export class TablaEntregadoComponent implements OnInit{
     ngAfterViewInit() {
       this.dataSource.paginator = this.paginator;
     }
-
     ngOnInit(): void {
       this.tableServ.getTableEntregado().subscribe({
-         next:(resultado) => {
-           this.dataSource = new MatTableDataSource(resultado)
-         }
-      })
-    }
+        next: (resultado) => {
 
+          this.filtroServ.setTabla(resultado);
+          
+          this.dataSource = new MatTableDataSource(resultado);
+          
+
+          this.tabla = this.filtroServ.getTabla();
+          console.log(this.tabla);
+        }
+      });
+    }
+    
     showPagoMobile() {}
 
     openBottomSheet(): void {

@@ -25,7 +25,8 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     'tasas',
     'excedentes',
   ];
-  dataSource :any
+  data :any
+  dataSource = new MatTableDataSource()
   filtros: any;
   filterRow : any[] = [] //crear interface
   constructor(
@@ -66,13 +67,13 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     
     this.tablaSrv.getTablaPendientes().subscribe({
       next: (res) => {
-        this.dataSource = res;
-        console.log(this.dataSource);
+        this.data = res;
+        console.log(this.data);
     
         this.tablaSrv.filtros.subscribe(
           filtro => {
             if (filtro) {
-              this.filterRow = this.dataSource.filter((data: {
+              this.filterRow = this.data.filter((data: {
                 tipo_categoria_tramite: string;
                 tipo_tramite:string;
                 codigo_tramite: string;
@@ -89,9 +90,15 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
                 (!filtro.estadoExcedentes || data.excedentes.includes(filtro.estadoExcedentes)) &&
                 (!filtro.estadoTramite || data.estado.includes(filtro.estadoTramite))
               );
+              if (this.paginator) {
+                this.paginator.firstPage();
+              }
+              this.dataSource = new MatTableDataSource(this.filterRow);
             }
+       
             if(this.filterRow.length === 0 && !filtro){
-              this.filterRow = this.dataSource
+              this.filterRow = this.data
+              this.dataSource = new MatTableDataSource(this.filterRow)
             }
           }
         );

@@ -11,7 +11,7 @@ import { Observable, filter } from 'rxjs';
 import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TablaTramiteService } from '../../services/tabla-tramite.service';
+import { FiltrosService } from '../../services/filtros.service';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -57,7 +57,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public tramiteSrv: TramitesService,
-    private tablaServ : TablaTramiteService,
+    private filtroServ: FiltrosService,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -153,15 +153,39 @@ export class FiltrosBusquedaComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.tablaServ.setFiltros(
-      this.formFiltros.get('busqueda')?.value,
-      this.formFiltros.get('categoria')?.value.nombre,
-      this.formFiltros.get('estadoTramite')?.value.descripcion,
-      this.formFiltros.get('jurisdiccion')?.value.nombre,
-      this.formFiltros.get('estadoTasas')?.value.descripcion,
-      this.formFiltros.get('estadoExcedentes')?.value.descripcion,
-      this.formFiltros.get('tramiteServicio')?.value.nombre
-    )
+    // this.tablaServ.setFiltros(
+    //   this.formFiltros.get('busqueda')?.value,
+    //   this.formFiltros.get('categoria')?.value.nombre,
+    //   this.formFiltros.get('estadoTramite')?.value.descripcion,
+    //   this.formFiltros.get('jurisdiccion')?.value.nombre,
+    //   this.formFiltros.get('estadoTasas')?.value.descripcion,
+    //   this.formFiltros.get('estadoExcedentes')?.value.descripcion,
+    //   this.formFiltros.get('tramiteServicio')?.value.nombre
+    // )
+
+    /**
+     * @var dataFiltro array que obtinene los datos de los filtros
+     */
+    let dataFiltro : any[] = []
+    
+    /**
+     * @function for itera this.filters para obtener los filtros de tipo nombre y descripción
+     */
+
+    for(let filtro of this.filters ){
+      if(filtro.nombre){
+        dataFiltro.push(filtro.nombre)
+      }
+      if(filtro.descripcion){
+        dataFiltro.push(filtro.descripcion)
+      }
+    }
+   
+   /**
+    * @function sendFiltros obtiene un array de los datos filtrados, estos datos se usan en
+    * filtro service
+    */
+   this.filtroServ.sendFiltros(dataFiltro)
   }
   
   

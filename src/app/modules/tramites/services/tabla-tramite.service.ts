@@ -11,7 +11,7 @@ export class TablaTramiteService {
   
   private filtrosTramite$ = new BehaviorSubject<any | undefined>(null)
   filtros = this.filtrosTramite$.asObservable()
-
+  
   setFiltros(
     busqueda:string,
     categoria:string,
@@ -100,58 +100,136 @@ export class TablaTramiteService {
   getTableEntregado() : Observable<any>{
     let entregado = [
       {
-        id: 1,
-        tramite:'BUSQ.PARTIDA',
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
         fechaPresentacion:'2023-07-18',
         numeroFormulario:2023000945,
-        jurisdiccion:'SANTA FE',
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
         tasas: 'ACREDITACION PENDIENTE',
-        excedentes : 'NO CORRESPONDE'
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
       },
       {
-        id: 2,
-        tramite:'	BUSQ.PROPIETARIO',
-        fechaPresentacion:'2023-07-19',
-        numeroFormulario:2023000946,
-        jurisdiccion:'ROSARIO',
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
         tasas: 'ACREDITACION PENDIENTE',
-        excedentes : 'NO CORRESPONDE'
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
       },
       {
-        id: 3,
-        tramite:'FOTOCOPIA',
-        fechaPresentacion:'2023-07-20',
-        numeroFormulario:2023000947,
-        jurisdiccion:'SANTA FE',
-        tasas: 'EXENTO',
-        excedentes : 'NO CORRESPONDE'
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
       },
       {
-        id: 4,
-        tramite:'BUSQ.PARTIDA',
-        fechaPresentacion:'2023-07-21',
-        numeroFormulario:2023000948,
-        jurisdiccion:'ROSARIO',
-        tasas: 'ACREDITADO',
-        excedentes : 'NO CORRESPONDE'
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
       },
       {
-        id: 5,
-        tramite:'CERT',
-        fechaPresentacion:'2023-07-22',
-        numeroFormulario:2023000949,
-        jurisdiccion:'SANTA FE',
-        tasas: 'NO PAGADO',
-        excedentes : 'NO CORRESPONDE'
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
       },
       {
-        id: 6,
-        tramite:'CONSULTA',
-        fechaPresentacion:'2023-07-23',
-        numeroFormulario:2023000950,
-        jurisdiccion:'ROSARIO',
-        tasas: 'ACREDITADO',
-        excedentes : 'NO CORRESPONDE'
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
+      },
+      {
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
+      },
+      {
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
+      },
+      {
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
+      },
+      {
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
+      },
+      {
+        tipo_categoria_tramite: '',
+        tipo_tramite:'',
+        abreviatura:'BUSQ.PARTIDA',
+        fechaPresentacion:'2023-07-18',
+        numeroFormulario:2023000945,
+        codigo_tramite: '2023000945',
+        jur:'SANTA FE',
+        tasas: 'ACREDITACION PENDIENTE',
+        excedentes: 'NO CORRESPONDE',
+        estado:'ENTRAGADO'
       },
     ]
 
