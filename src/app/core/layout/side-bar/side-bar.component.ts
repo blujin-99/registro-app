@@ -1,15 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, DoCheck } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AvatarComponent } from 'src/app/shared/components/avatar/avatar.component';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogLogeoComponent } from 'src/app/shared/components/dialog-logeo/dialog-logeo.component';
 
 @Component({
   standalone: true,
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
-  imports: [RouterModule, CommonModule, AvatarComponent],
+  imports: [
+    RouterModule,
+    CommonModule,
+    AvatarComponent,
+    MaterialModule,
+    MatDialogModule,
+  ],
 })
 export class SideBarComponent implements DoCheck {
   // Controla si muestra u oculta el sideBar
@@ -21,7 +30,11 @@ export class SideBarComponent implements DoCheck {
   // Controla si se muestra la foto de perfil del usuario o no
   showFoto: any;
 
-  constructor(public userSrv: UserService) {}
+  constructor(
+    public userSrv: UserService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
   //Cuando se logea, si el usuario tiene foto de perfil la muestra sino
   //utiliza el avatar por defecto
   ngDoCheck(): void {
@@ -60,5 +73,21 @@ export class SideBarComponent implements DoCheck {
    */
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  /**
+   * Si no esta logeado abre un modal para que inicie sesion
+   * @param ruta a la que quiere acceder
+   */
+  openDialog(ruta: string): void {
+    if (this.user) {
+      this.router.navigateByUrl(ruta);
+    } else {
+      this.dialog.open(DialogLogeoComponent, {
+        width: '380px',
+        enterAnimationDuration: '0ms',
+        exitAnimationDuration: '0ms',
+      });
+    }
   }
 }

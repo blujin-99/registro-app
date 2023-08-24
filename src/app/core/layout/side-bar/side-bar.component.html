@@ -95,7 +95,7 @@
 
         Inicio
       </li>
-      <li routerLink="/nuevoTramite">
+      <li (click)="openDialog('/nuevoTramite')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -109,7 +109,7 @@
         </svg>
         Nuevo Tramite
       </li>
-      <li routerLink="/misTramites">
+      <li (click)="openDialog('/misTramites')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -123,7 +123,7 @@
         Mis Tramites
       </li>
 
-      <li routerLink="/configuracion">
+      <li (click)="openDialog('/configuracion')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -136,7 +136,7 @@
         </svg>
         Configuración
       </li>
-      <li [routerLink]="['/consultaPagos']">
+      <li (click)="openDialog('/consultaPagos')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -149,7 +149,7 @@
         </svg>
         Consulta de Pagos
       </li>
-      <li routerLink="/otrasTasas">
+      <li (click)="openDialog('/otrasTasas')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -162,7 +162,7 @@
         </svg>
         Pago otras Tasas
       </li>
-      <li class="text-right" routerLink="/consultaMesaEntrada">
+      <li class="text-right" (click)="openDialog('/consultaMesaEntrada')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
