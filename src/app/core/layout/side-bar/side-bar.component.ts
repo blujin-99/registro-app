@@ -84,7 +84,7 @@ export class SideBarComponent implements DoCheck {
       this.router.navigateByUrl(ruta);
     } else {
       this.dialog.open(DialogLogeoComponent, {
-        width: '250px',
+        width: '380px',
         enterAnimationDuration: '0ms',
         exitAnimationDuration: '0ms',
       });
