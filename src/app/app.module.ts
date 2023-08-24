@@ -11,6 +11,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
+import { AvatarComponent } from './shared/components/avatar/avatar.component';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -21,6 +22,7 @@ import { provideOAuthClient } from 'angular-oauth2-oidc';
     MaterialModule,
     BrowserAnimationsModule,
     InterceptorModule,
+    AvatarComponent,
   ],
   providers: [importProvidersFrom(HttpClientModule), provideOAuthClient()],
   bootstrap: [AppComponent],

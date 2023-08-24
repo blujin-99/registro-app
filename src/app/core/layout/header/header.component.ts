@@ -15,7 +15,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, DoCheck {
+export class HeaderComponent implements OnInit {
   /**
    * Espera el nombre del proyecto
    */
@@ -26,17 +26,6 @@ export class HeaderComponent implements OnInit, DoCheck {
    */
   @Input() ministerio!: Observable<string>; //'Ministerio de Gobierno, Justicia y Derechos Humanos';
 
-  /**
-   * boolean para controlar si muestra la foto de perfil
-   * del usuario o no
-   */
-  showFoto = false;
-
-  /**
-   * Guardo la información del usuario
-   */
-  user: any;
-
   constructor(private appSrv: AppService, public userSrv: UserService) {}
 
   ngOnInit(): void {
@@ -45,15 +34,5 @@ export class HeaderComponent implements OnInit, DoCheck {
       error: (error) =>
         console.error(`Error al recuperar nombre del ministerio: ${error}`),
     });
-  }
-
-  //Cuando se logea, si el usuario tiene foto de perfil la muestra sino
-  //utiliza el avatar por defecto
-  ngDoCheck(): void {
-    this.user = this.userSrv.getUser();
-
-    if (this.user && this.user.foto) {
-      this.showFoto = true;
-    }
   }
 }
