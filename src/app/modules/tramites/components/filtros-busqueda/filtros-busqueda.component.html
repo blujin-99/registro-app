@@ -155,10 +155,10 @@
       <div class="flex flex-col justify-between w-11/12 md:flex-row">
         <!--? JURISDICCION -->
         <div class="md:w-6/12 md:pr-4">
-          <select (change)="onSubmit()"
+          <select
             tabindex="7"
             formControlName="jurisdiccion"
-            (change)="addFilter('jurisdiccion')"
+            (change)="addFilter('jurisdiccion'); onSubmit()"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option value="" disabled selected>Jurisdicción</option>

@@ -162,5 +162,4 @@ export class FiltrosBusquedaComponent implements OnInit {
    this.filtroServ.sendFiltros(this.filters)
   }
   
-  
 }
