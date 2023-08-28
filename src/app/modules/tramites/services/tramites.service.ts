@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import {
   ICategoria,
   IEstadoExcedentes,
@@ -53,7 +53,13 @@ export class TramitesService {
           );
 
           return of([]);
-        })
+        }),
+        map((res) =>
+         res.map((estadoTramite) =>({
+          ...estadoTramite, 
+             tipo:'estado'
+         }))
+        )
       )
       .subscribe({
         next: (res) => (this.estadoTramite = res),
@@ -73,7 +79,13 @@ export class TramitesService {
           );
 
           return of([]);
-        })
+        }),
+        map((res) =>
+        res.map((estadoTasas) =>({
+          ...estadoTasas, 
+             tipo:'tasa'
+         }))
+        )
       )
       .subscribe({
         next: (res) => (this.estadoTasas = res),
@@ -93,7 +105,13 @@ export class TramitesService {
           );
 
           return of([]);
-        })
+        }),
+        map((res) =>
+        res.map((jurisdiccion) =>({
+          ...jurisdiccion, 
+             tipo:'jurisdiccion'
+         }))
+        )
       )
       .subscribe({
         next: (res) => (this.jurisdicciones = res),
@@ -113,7 +131,13 @@ export class TramitesService {
           );
 
           return of([]);
-        })
+        }),
+        map((res) =>
+        res.map((estadoExcedentes) =>({
+          ...estadoExcedentes, 
+             tipo:'excedentes'
+         }))
+        )
       )
       .subscribe({
         next: (res) => (this.estadoExcedentes = res),
