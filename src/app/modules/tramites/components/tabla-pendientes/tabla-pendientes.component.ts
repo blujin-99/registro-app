@@ -68,40 +68,41 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     this.tablaSrv.getTablaPendientes().subscribe({
       next: (res) => {
         this.data = res;
-        console.log(this.data);
+        this.dataSource = new MatTableDataSource(res)
+        // console.log(this.data);
     
-        this.tablaSrv.filtros.subscribe(
-          filtro => {
-            if (filtro) {
-              this.filterRow = this.data.filter((data: {
-                tipo_categoria_tramite: string;
-                tipo_tramite:string;
-                codigo_tramite: string;
-                jur: string;
-                tasas: string;
-                excedentes: string;
-                estado: string
-              }) =>
-                (!filtro.categoria || data.tipo_categoria_tramite.includes(filtro.categoria)) &&
-                (!filtro.servicio || data.tipo_tramite.includes(filtro.servicio)) &&
-                (!filtro.busqueda || data.codigo_tramite.includes(filtro.busqueda)) &&
-                (!filtro.jurisdiccion || data.jur.includes(filtro.jurisdiccion)) &&
-                (!filtro.estadoTasas || data.tasas.includes(filtro.estadoTasas)) &&
-                (!filtro.estadoExcedentes || data.excedentes.includes(filtro.estadoExcedentes)) &&
-                (!filtro.estadoTramite || data.estado.includes(filtro.estadoTramite))
-              );
-              if (this.paginator) {
-                this.paginator.firstPage();
-              }
-              this.dataSource = new MatTableDataSource(this.filterRow);
-            }
+        // this.tablaSrv.filtros.subscribe(
+        //   filtro => {
+        //     if (filtro) {
+        //       this.filterRow = this.data.filter((data: {
+        //         tipo_categoria_tramite: string;
+        //         tipo_tramite:string;
+        //         codigo_tramite: string;
+        //         jur: string;
+        //         tasas: string;
+        //         excedentes: string;
+        //         estado: string
+        //       }) =>
+        //         (!filtro.categoria || data.tipo_categoria_tramite.includes(filtro.categoria)) &&
+        //         (!filtro.servicio || data.tipo_tramite.includes(filtro.servicio)) &&
+        //         (!filtro.busqueda || data.codigo_tramite.includes(filtro.busqueda)) &&
+        //         (!filtro.jurisdiccion || data.jur.includes(filtro.jurisdiccion)) &&
+        //         (!filtro.estadoTasas || data.tasas.includes(filtro.estadoTasas)) &&
+        //         (!filtro.estadoExcedentes || data.excedentes.includes(filtro.estadoExcedentes)) &&
+        //         (!filtro.estadoTramite || data.estado.includes(filtro.estadoTramite))
+        //       );
+        //       if (this.paginator) {
+        //         this.paginator.firstPage();
+        //       }
+        //       this.dataSource = new MatTableDataSource(this.filterRow);
+        //     }
        
-            if(this.filterRow.length === 0 && !filtro){
-              this.filterRow = this.data
-              this.dataSource = new MatTableDataSource(this.filterRow)
-            }
-          }
-        );
+        //     if(this.filterRow.length === 0 && !filtro){
+        //       this.filterRow = this.data
+        //       this.dataSource = new MatTableDataSource(this.filterRow)
+        //     }
+        //   }
+        // );
       },
       error: (error) => {
         console.error(error);

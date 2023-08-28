@@ -59,6 +59,7 @@ export class TablaEntregadoComponent implements OnInit{
     ngAfterViewInit() {
       this.dataSource.paginator = this.paginator;
     }
+
     ngOnInit(): void {
       this.tableServ.getTableEntregado().subscribe({
         next: (resultado) => {
@@ -66,14 +67,26 @@ export class TablaEntregadoComponent implements OnInit{
           this.filtroServ.setTabla(resultado);
           
           this.dataSource = new MatTableDataSource(resultado);
-          
-
-          this.tabla = this.filtroServ.getTabla();
-          console.log(this.tabla);
         }
       });
+      /**
+       * @var filtros$ observable solo de lectura que detecta los cambio del filtrado entonces
+       *  updatedTablaFiltrada se llama cada vez que se alctualiza filtros$
+       */
+      this.filtroServ.filtros$.subscribe(() =>
+        this.updatedTablaFiltrada()
+      )
+
     }
-    
+      
+      /**
+       * @function updatedTablaFiltrada toma los datos filtrados y retornando d de la tabla y los guarda 
+       * en @var tabla que seŕa el array que mostrará los datos de la tabla filtrados 
+       */
+    private updatedTablaFiltrada(): void{
+       this.tabla = this.filtroServ.getTablaFiltrada();
+    }
+
     showPagoMobile() {}
 
     openBottomSheet(): void {

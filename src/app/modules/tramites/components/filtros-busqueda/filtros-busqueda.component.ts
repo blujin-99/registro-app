@@ -152,40 +152,14 @@ export class FiltrosBusquedaComponent implements OnInit {
       });
   }
 
+/**
+ * @function onSubmit() cada vez que se llama esta función se envía a Send]Filtros 
+ * el array filter
+ *
+ */
+
   onSubmit(): void {
-    // this.tablaServ.setFiltros(
-    //   this.formFiltros.get('busqueda')?.value,
-    //   this.formFiltros.get('categoria')?.value.nombre,
-    //   this.formFiltros.get('estadoTramite')?.value.descripcion,
-    //   this.formFiltros.get('jurisdiccion')?.value.nombre,
-    //   this.formFiltros.get('estadoTasas')?.value.descripcion,
-    //   this.formFiltros.get('estadoExcedentes')?.value.descripcion,
-    //   this.formFiltros.get('tramiteServicio')?.value.nombre
-    // )
-
-    /**
-     * @var dataFiltro array que obtinene los datos de los filtros
-     */
-    let dataFiltro : any[] = []
-    
-    /**
-     * @function for itera this.filters para obtener los filtros de tipo nombre y descripción
-     */
-
-    for(let filtro of this.filters ){
-      if(filtro.nombre){
-        dataFiltro.push(filtro.nombre)
-      }
-      if(filtro.descripcion){
-        dataFiltro.push(filtro.descripcion)
-      }
-    }
-   
-   /**
-    * @function sendFiltros obtiene un array de los datos filtrados, estos datos se usan en
-    * filtro service
-    */
-   this.filtroServ.sendFiltros(dataFiltro)
+   this.filtroServ.sendFiltros(this.filters)
   }
   
   
