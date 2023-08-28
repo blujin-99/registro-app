@@ -19,7 +19,6 @@ export class FiltrosService {
 
 
   datosTabla: any[] = []
-  tabla: any[] = []
 
  /**
   * 
@@ -50,6 +49,7 @@ export class FiltrosService {
      * 
      */
     const filtrosRow = this.filtrosSubject.value;
+    console.log(filtrosRow)
      
     /**
      * @returns datosTabla devuleve los datos de la tabla filtrados
