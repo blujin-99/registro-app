@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Filtros } from '../models/filtros';
-import { Tabla } from '../models/tabla';
-import { BehaviorSubject, Observable, filter } from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class FiltrosService {
+
+  constructor( private http : HttpClient) { }   
+
   /**
    *  @observable filtrosSubjesct escucha constantemente los datos filtrados
    *  y guarda los datos como un array
@@ -14,8 +18,6 @@ export class FiltrosService {
 
   private filtrosSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   filtros$: Observable<string[]> = this.filtrosSubject.asObservable();
-
-  constructor() { }
 
 
   datosTabla: any[] = []
