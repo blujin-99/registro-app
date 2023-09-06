@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+td {
+  cursor: pointer;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}/*# sourceMappingURL=tabla-pendientes.component.css.map */

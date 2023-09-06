@@ -12,8 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
+
+import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { firebaseConfig } from 'src/environments/environment.development';
+
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, NotificacionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +29,8 @@ import { AvatarComponent } from './shared/components/avatar/avatar.component';
     BrowserAnimationsModule,
     InterceptorModule,
     AvatarComponent,
+    AngularFireModule.initializeApp(firebaseConfig.firebase),
+    AngularFireMessagingModule
   ],
   providers: [importProvidersFrom(HttpClientModule), provideOAuthClient()],
   bootstrap: [AppComponent],
