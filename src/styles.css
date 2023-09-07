@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  margin: 0;
+  max-width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.631372549);
+  text-align: left;
+  background-color: #fff;
+  scroll-margin-block: #108a97;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #108a97;
+}
+
+h1,
+.h1 {
+  font-size: 1.75rem;
+}
+
+h2,
+.h2 {
+  font-size: 1.5rem;
+}
+
+h3,
+.h3 {
+  font-size: 1rem;
+}
+
+h4,
+.h4 {
+  font-size: 0.75rem;
+}
+
+h5,
+.h5 {
+  font-size: 0.5rem;
+}
+
+h6,
+.h6 {
+  font-size: 1rem;
+}
+
+footer a {
+  color: #6c757d;
+}
+
+footer ul li > a {
+  font-size: 25px !important;
+}
+
+a {
+  color: #108a97;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: #cff4fc !important;
+}
+
+.primary {
+  color: #108a97;
+}
+
+.secondary {
+  color: #6c757d !important;
+}
+
+.bg-primary {
+  background-color: #108a97;
+}
+
+.bg-secondary {
+  background-color: #6c757d;
+}
+
+.bg-fondo {
+  background-color: #e3e1e2;
+}
+
+.button:enabled {
+  background-color: #108a97;
+}
+
+.button:disabled {
+  background-color: #84c3ca;
+}
+
+/* GRID LAYOUT*/
+.app-container {
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 100px auto 100px;
+  grid-template-areas: "sidebar  header" "sidebar  main" "sidebar  footer";
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  width: 100%;
+}
+
+aside {
+  width: 200px;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background-color: rgb(233, 233, 233);
+}
+
+@media screen and (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 120px max-content 100px;
+    grid-template-areas: "sidebar" "header" "main" "footer";
+  }
+  .main {
+    overflow-x: auto;
+  }
+  .side-bar {
+    position: absolute;
+    top: 0px;
+    background-color: white;
+    width: 100%;
+    z-index: 30;
+  }
+  .header {
+    position: static;
+  }
+  .footer {
+    position: static;
+  }
+}
+/*html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*//*# sourceMappingURL=styles.css.map */

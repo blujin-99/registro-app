@@ -35,3 +35,17 @@ export const environment = {
     logoutUrl: AuthURL + '/logout',
   },
 };
+
+
+export const firebaseConfig = {
+  production: false,
+  firebase:{
+    apiKey: "AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk",
+    authDomain: "formelectronicoapp.firebaseapp.com",
+    projectId: "formelectronicoapp",
+    storageBucket: "formelectronicoapp.appspot.com",
+    messagingSenderId: "190875804950",
+    appId: "1:190875804950:web:de50dbcfa2db0ac2851c37",
+    measurementId: "G-FWSGR9NWED"
+  }
+};
