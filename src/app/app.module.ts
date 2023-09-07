@@ -17,6 +17,8 @@ import { NotificacionComponent } from './shared/components/notificacion/notifica
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { firebaseConfig } from 'src/environments/environment.development';
+import { MessagingService } from './core/services/messaging.service';
+import { AsyncPipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, NotificacionComponent],
@@ -32,7 +34,7 @@ import { firebaseConfig } from 'src/environments/environment.development';
     AngularFireModule.initializeApp(firebaseConfig.firebase),
     AngularFireMessagingModule
   ],
-  providers: [importProvidersFrom(HttpClientModule), provideOAuthClient()],
+  providers: [importProvidersFrom(HttpClientModule), provideOAuthClient(),MessagingService, AsyncPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

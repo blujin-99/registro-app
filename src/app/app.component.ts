@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
+import { MessagingService } from './core/services/messaging.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,19 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  mensajeRecibido : any
+  constructor(private messageServ : MessagingService){
+
+  }
+
   ngOnInit(): void {
+    this.messageServ.requestPermission()
+    this.messageServ.reciveMessaging()
+    this.messageServ.mensaje.subscribe((message)=>{
+      this.mensajeRecibido = message
+    })
+
     initFlowbite();
   }
 }
