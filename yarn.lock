@@ -242,7 +242,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/fire@^7.6.1":
+"@angular/fire@^7.6.0":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@angular/fire/-/fire-7.6.1.tgz#eee08c35257fd60760a42abf07141db2342053b4"
   integrity sha512-ThNdY6gHprBRkuBDRt9zrYd/Ybl01NWb52GaKCQDmJZhklxelyRskhFhYWeZ0WRD5yhA0WBbRBbpDdfAnMEqgA==
@@ -5369,7 +5369,7 @@ find-up@^6.3.0:
     locate-path "^7.1.0"
     path-exists "^5.0.0"
 
-firebase@^9.8.0:
+firebase@^9.0.0, firebase@^9.8.0:
   version "9.23.0"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-9.23.0.tgz#71fea60d704bfed8e92162911544fd6564a04d0e"
   integrity sha512-/4lUVY0lUvBDIaeY1q6dUYhS8Sd18Qb9CgWkPZICUo9IXpJNCEagfNZXBBFCkMTTN5L5gx2Hjr27y21a9NzUcA==
