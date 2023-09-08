@@ -14,10 +14,12 @@ export class MessagingService {
   requestPermission(){
     this.AFMessaging.requestToken.subscribe(
       (token) => {
-        console.log(token)
-      },
-      (error)=>{
-        console.log('No se ha obtenido la suscripcion ',error)
+        if(token){
+          console.log(token)
+        }else{
+          console.log("no token")
+        }
+
       }
     )
   }
@@ -25,7 +27,6 @@ export class MessagingService {
 
   reciveMessaging(){
     this.AFMessaging.messages.subscribe((smRecived) =>{
-      console.log('has recibido un mensaje del Ministerio', smRecived)
       this.mensaje.next(smRecived)
     })
   }
