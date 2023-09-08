@@ -17,10 +17,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.messageServ.requestPermission()
     this.messageServ.reciveMessaging()
-    this.messageServ.mensaje.subscribe((message)=>{
-      this.mensajeRecibido = message
+    this.messageServ.mensaje.subscribe((datos) => {
+      console.log(datos)
     })
-
-    initFlowbite();
   }
 }
