@@ -1,4 +1,16 @@
-# FormElectronico
+# Registro general de la propiedad
+
+## Flujo
+
+                                  formelectronicoapp (app del registro)-----------------------
+                                  |                        |                                 | (consulta nombre ministerio y sistema)
+                        formelectronico <---------> registropropiedad                    mjydh-web
+                                              |
+                                      -----------------
+                                      |               |
+                                adminformel <----> fdadmin
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
 

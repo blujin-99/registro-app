@@ -21,7 +21,10 @@ export const environment = {
   tramiteServicio: baseURL + 'usuario/TipoTramiteService',
   jurisdiccion: baseURLApi + 'getStatic/Jurisdiccion?orderby=nombre',
   app: {
-    nombre: 'https://twww.santafe.gov.ar/mjydh-web/api',
+    endPoint: 'http://localhost:8081/mjydh-web/public/api',
+    ministerio: "Ministerio de Gobierno, Justicia y Derechos Humanos",
+    secretaria: 'Registro General de la Propiedad',
+    nombre: 'Registro General de la Propiedad'
   },
 
   oauth2: {
