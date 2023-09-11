@@ -12,7 +12,7 @@ export class NotificacionComponent implements DoCheck,OnInit {
   notification:  boolean = false
   permissionRequested : boolean = false
   constructor(
-    private messaging: AngularFireMessaging,
+    // private messaging: AngularFireMessaging,
     private userServ: UserService
   ) 
    {
@@ -24,33 +24,33 @@ export class NotificacionComponent implements DoCheck,OnInit {
   }
   
    token : string = ''
-   requestPermission() {
-    this.messaging.requestToken.subscribe(
-      (token) => {
-        if (token) {
-          this.token = token
-          console.log('token de suscripción' + ' ' + token)
-        } else {
-          alert('Entendido, no volveremos a preguntar')
-        }
-      }
-    )
-  }
+  //  requestPermission() {
+  //   this.messaging.requestToken.subscribe(
+  //     (token) => {
+  //       if (token) {
+  //         this.token = token
+  //         console.log('token de suscripción' + ' ' + token)
+  //       } else {
+  //         alert('Entendido, no volveremos a preguntar')
+  //       }
+  //     }
+  //   )
+  // }
 
-  deletetoken() {
-    this.messaging.getToken.subscribe(
-      (token) => {
-        if(token){
-           this.messaging.deleteToken(token)
-           .subscribe(
-            () => console.log('eliminaste la suscripción de notificaciones')
-           )
-        }else{
-          console.log('no se encontro suscripción')
-        }
-      }
-    )
-  }
+  // deletetoken() {
+  //   this.messaging.getToken.subscribe(
+  //     (token) => {
+  //       if(token){
+  //          this.messaging.deleteToken(token)
+  //          .subscribe(
+  //           () => console.log('eliminaste la suscripción de notificaciones')
+  //          )
+  //       }else{
+  //         console.log('no se encontro suscripción')
+  //       }
+  //     }
+  //   )
+  // }
 
   ngDoCheck(): void {
     this.user = this.userServ

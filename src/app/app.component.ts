@@ -10,6 +10,7 @@ import { MessagingService } from './core/services/messaging.service';
 export class AppComponent implements OnInit {
 
   mensajeRecibido : any
+
   constructor(private messageServ : MessagingService){
 
   }
