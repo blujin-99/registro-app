@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.service';
+import { AppService } from 'src/app/shared/services/app.service';
 //import * as moment from 'moment';
 
 @Component({
@@ -11,7 +12,8 @@ import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.ser
 export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   form: FormGroup;
   error: any
-  constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService) {
+  constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService,
+    public appService:AppService) {
 
     this.form = this.fb.group({
       mesa: ['', Validators.required],

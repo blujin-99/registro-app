@@ -10,18 +10,20 @@ export class AppService {
   app: IAPP = {
     Ministerio: environment.app.ministerio,
     Secretaria: environment.app.secretaria,
-    Nombre: environment.app.nombre
+    Nombre: environment.app.nombre,
   };
 
   constructor(private http: HttpClient) {
     this.init();
   }
 
+  /**
+   * Actualiza app desde el /mjydh-web/
+   *
+   */
   init() {
-    if (!this.app.Version) {
-      this.http.get<IAPP>(environment.app.endPoint).subscribe({
-        next: (res) => (this.app = res)
-      });
-    }
+    this.http.get<IAPP>(environment.app.endPoint).subscribe({
+      next: (res) => (this.app = res),
+    });
   }
 }
