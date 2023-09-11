@@ -1,17 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { IAPP } from 'src/app/core/models/app.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  nombre = 'Ministerio de Gobierno, Justicia, Derechos Humanos';
+  app: IAPP = {
+    Ministerio: environment.app.ministerio,
+    Secretaria: environment.app.secretaria,
+    Nombre: environment.app.nombre,
+  };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.init();
+  }
 
-  getNombreMinisterio(): Observable<any> {
-    return this.http.get(environment.app.nombre);
+  /**
+   * Actualiza app desde el /mjydh-web/
+   *
+   */
+  init() {
+    this.http.get<IAPP>(environment.app.endPoint).subscribe({
+      next: (res) => (this.app = res),
+    });
   }
 }
