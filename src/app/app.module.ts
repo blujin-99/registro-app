@@ -19,9 +19,10 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { firebaseConfig } from 'src/environments/environment.development';
 import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
+import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, NotificacionComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, NotificacionComponent, MensajeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

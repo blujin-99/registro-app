@@ -1,6 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { UserService } from 'src/app/core/services/user.service';
+import { MessagingService } from 'src/app/core/services/messaging.service';
+
 
 @Component({
   selector: 'app-notificacion',
@@ -10,56 +11,41 @@ import { UserService } from 'src/app/core/services/user.service';
 export class NotificacionComponent implements DoCheck,OnInit {
   user : any
   notification:  boolean = false
-  permissionRequested : boolean = false
+  mensaje : boolean = false
   constructor(
-    // private messaging: AngularFireMessaging,
-    private userServ: UserService
+    private userServ: UserService,
+    private messagingSrv : MessagingService
   ) 
    {
-     
+
    }
 
   ngOnInit(): void {
+    /**
+     * @function requestPermission solicita permiso al usuario para abilitar la suscripción de las
+     * notificaciones
+     */
+    this.messagingSrv.requestPermission() 
+    /**
+     * @function reciveMessaging cundo el usuario se suscribió a las notificaciones,
+     * recibe la notificación
+     */
+    this.messagingSrv.reciveMessaging()
 
+    /**
+     * @var mensaje observable de lectura, verifica cuando llega una notificación y su mensaje
+     */
+    
+    this.messagingSrv.mensaje.subscribe((datos) => {
+      if(datos){
+        console.log(datos)
+        this.mensaje = true
+      }
+    })
   }
   
-   token : string = ''
-  //  requestPermission() {
-  //   this.messaging.requestToken.subscribe(
-  //     (token) => {
-  //       if (token) {
-  //         this.token = token
-  //         console.log('token de suscripción' + ' ' + token)
-  //       } else {
-  //         alert('Entendido, no volveremos a preguntar')
-  //       }
-  //     }
-  //   )
-  // }
-
-  // deletetoken() {
-  //   this.messaging.getToken.subscribe(
-  //     (token) => {
-  //       if(token){
-  //          this.messaging.deleteToken(token)
-  //          .subscribe(
-  //           () => console.log('eliminaste la suscripción de notificaciones')
-  //          )
-  //       }else{
-  //         console.log('no se encontro suscripción')
-  //       }
-  //     }
-  //   )
-  // }
-
   ngDoCheck(): void {
     this.user = this.userServ
-    
-    // if(this.user.user && !this.permissionRequested){
-    //    this.requestPermission()
-    //    this.permissionRequested = true
-    // }
-
 
     if(this.user.user){
       this.notification = true
