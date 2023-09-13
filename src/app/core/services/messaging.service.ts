@@ -9,6 +9,8 @@ export class MessagingService {
 
   mensaje = new BehaviorSubject<any>(null)
 
+  Watched : boolean = false
+
   constructor(private AFMessaging : AngularFireMessaging) { }
 
   requestPermission(){
@@ -28,6 +30,9 @@ export class MessagingService {
   reciveMessaging(){
     this.AFMessaging.messages.subscribe((smRecived) =>{
       this.mensaje.next(smRecived)
+      console.log(smRecived)
     })
   }
+
+
 }

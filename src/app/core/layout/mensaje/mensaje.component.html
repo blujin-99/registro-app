@@ -1,0 +1,11 @@
+<div *ngIf="mensaje !== ''" class="flex flex-col items-end my-5">
+    <div id="toast-notification"
+        class="w-full z-50 max-w-xs p-4 mr-4 text-s bg-slate-600  text-gray-400 rounded-lg shadow"
+        role="alert">
+        <div class="flex items-center mb-3">
+            <P class="text-lg">{{title}}</P>
+        </div>
+        <p>{{mensaje}}</p>
+        <a [href]="link">{{link}}</a>
+    </div>
+</div>
