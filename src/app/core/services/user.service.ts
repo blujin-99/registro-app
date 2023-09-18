@@ -1,7 +1,7 @@
 import { Injectable, effect, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { IUser } from '../models/user.interface';
+import { IUser. IUserCas } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,8 @@ export class UserService {
    * objeto usuario
    */
   private user?: IUser;
+  private userCas?: IUserCas;
+
 
   /**
    * @signal observa si el usuario esta logeado o no
@@ -26,23 +28,43 @@ export class UserService {
    * y en la variable user
    * @param userData
    */
-  setUser(userData: any): void {
-    this.user = {
-      nombre: userData.user.nombre,
-      apellido: userData.user.apellido,
-      documento: userData.user.numero_documento,
-      cuil: userData.user.cuil,
-      matricula: userData.user?.matricula,
-      email: userData.cas?.email,
-      foto: userData.cas?.foto,
+  setUserCas(userData: IUserCas): void {
+    this.userCas = {
+      nombre: userData.nombre,
+      apellido: userData.apellido,
+      cuil: userData.cuil,
+      email: userData.email,
+      foto: userData.foto,
     };
 
-    localStorage.setItem('user', JSON.stringify(this.user));
+    localStorage.setItem('userCas', JSON.stringify(this.user));
+  }
+  setUser(userFD: IUser): void {
+    this.user = {
+      nombre: userFD.nombre,
+      apellido: userFD.apellido,
+      numero_documento: userFD.numero_documento,
+      cuil: userFD.cuil,
+      matricula: userFD.matricula,
+    };
+
+    localStorage.setItem('userCas', JSON.stringify(this.user));
   }
 
   /**
    * Si existe retorna los datos del usuario
    */
+  getUserCas(): any {
+    const userJSON = localStorage.getItem('userCas');
+
+    if (userJSON) {
+      this.user = JSON.parse(userJSON);
+
+      return this.user;
+    } else {
+      return null;
+    }
+  }
   getUser(): any {
     const userJSON = localStorage.getItem('user');
 
@@ -58,10 +80,10 @@ export class UserService {
   initAuth(): void {
     if (!localStorage.getItem('user')) {
       const code: any = this.getAccessTokenFromUrl();
-      localStorage.setItem('access_token', code);
       this.validateToken(code).subscribe((data: any) => {
-        this.setUser(data);
-        localStorage.setItem('jwt', data.jwt);
+        this.setUserCas(data.user.userCas);
+        this.setUser(data.user.userFD);
+        localStorage.setItem('token', data.token);
       });
     }
   }
