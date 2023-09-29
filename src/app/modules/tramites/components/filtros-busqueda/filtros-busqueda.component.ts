@@ -144,7 +144,9 @@ export class FiltrosBusquedaComponent implements OnInit {
       .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
       .subscribe({
         next: (res) => {
-          this.tramiteServicio$.set(res);
+          if (res.length !== undefined){
+            this.tramiteServicio$.set(res)
+          }
         },
         error: (error) => {
           console.error(`Ocurrio un error al setear tramite/servicio ${error}`);

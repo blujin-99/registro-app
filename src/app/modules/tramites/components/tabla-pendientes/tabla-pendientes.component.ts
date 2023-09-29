@@ -25,10 +25,10 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     'tasas',
     'excedentes',
   ];
-  data :any
-  dataSource = new MatTableDataSource()
+  data: any;
+  dataSource = new MatTableDataSource();
   filtros: any;
-  filterRow : any[] = [] //crear interface
+  filterRow: any[] = []; //crear interface
   constructor(
     private tablaSrv: TablaTramiteService,
     private _bottomSheet: MatBottomSheet,
@@ -56,7 +56,7 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  search : any
+  search: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -64,13 +64,13 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    
     this.tablaSrv.getTablaPendientes().subscribe({
       next: (res) => {
         this.data = res;
-        this.dataSource = new MatTableDataSource(res)
+        
+        this.dataSource = new MatTableDataSource(res);
         // console.log(this.data);
-    
+
         // this.tablaSrv.filtros.subscribe(
         //   filtro => {
         //     if (filtro) {
@@ -96,7 +96,7 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
         //       }
         //       this.dataSource = new MatTableDataSource(this.filterRow);
         //     }
-       
+
         //     if(this.filterRow.length === 0 && !filtro){
         //       this.filterRow = this.data
         //       this.dataSource = new MatTableDataSource(this.filterRow)
@@ -108,11 +108,7 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
         console.error(error);
       },
     });
-    
-
-
   }
-
 
   showPagoMobile() {}
 

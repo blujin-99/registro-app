@@ -11,5 +11,5 @@ export interface IUser {
   apellido: string;
   numero_documento: string;
   cuil: string;
-  matricula?: string;
+  matricula: string;
 }

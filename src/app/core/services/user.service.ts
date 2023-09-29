@@ -1,7 +1,7 @@
 import { Injectable, effect, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { IUser. IUserCas } from '../models/user.interface';
+import { IUser, IUserCas } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class UserService {
    */
   public loggedIn$ = signal<boolean>(false);
 
-  private url = 'http://10.1.46.32:8181/registropropiedad/public/login/oauth';
+  private url = 'http://localhost/registropropiedad/public/api/login/oauth';
 
   constructor(private http: HttpClient, private location: Location) {}
 
@@ -37,7 +37,7 @@ export class UserService {
       foto: userData.foto,
     };
 
-    localStorage.setItem('userCas', JSON.stringify(this.user));
+    localStorage.setItem('userCas', JSON.stringify(this.userCas));
   }
   setUser(userFD: IUser): void {
     this.user = {
@@ -48,7 +48,7 @@ export class UserService {
       matricula: userFD.matricula,
     };
 
-    localStorage.setItem('userCas', JSON.stringify(this.user));
+    localStorage.setItem('user', JSON.stringify(this.user));
   }
 
   /**
@@ -59,7 +59,6 @@ export class UserService {
 
     if (userJSON) {
       this.user = JSON.parse(userJSON);
-
       return this.user;
     } else {
       return null;
@@ -70,8 +69,7 @@ export class UserService {
 
     if (userJSON) {
       this.user = JSON.parse(userJSON);
-
-      return this.user;
+      return this.user
     } else {
       return null;
     }
@@ -81,6 +79,7 @@ export class UserService {
     if (!localStorage.getItem('user')) {
       const code: any = this.getAccessTokenFromUrl();
       this.validateToken(code).subscribe((data: any) => {
+        console.log(data);
         this.setUserCas(data.user.userCas);
         this.setUser(data.user.userFD);
         localStorage.setItem('token', data.token);

@@ -151,8 +151,9 @@ export class TramitesService {
    * @param id de opcion de categoria tramite seleccionada
    */
   getTramiteServicio(id: number): Observable<ITramiteServicio[]> {
+    
     return this.http.get<ITramiteServicio[]>(
-      `${environment.tramiteServicio}/${id}`
+      `${environment.tramiteServicio.replace('{id}', id.toString())}`
     );
   }
 }
