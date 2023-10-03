@@ -10,13 +10,7 @@ export class TramitesPageComponent implements OnInit {
   cargando: boolean = true;
   constructor(private tramiteSrv: TramitesService) {}
   ngOnInit(): void {
-    this.tramiteSrv.getCategorias();
-    this.tramiteSrv.getEstadoTramite();
-    this.tramiteSrv.getEstadoTasas();
-    this.tramiteSrv.getJurisdiccion();
-    this.tramiteSrv.getEstadoExcedentes();
-
-    //TODO: Mover getTramiteServicio a filtro component
+    this.tramiteSrv.getTramites();
 
     this.cargando = false;
   }

@@ -13,13 +13,13 @@ export class UserService {
   private user?: IUser;
   private userCas?: IUserCas;
 
-
   /**
    * @signal observa si el usuario esta logeado o no
    */
   public loggedIn$ = signal<boolean>(false);
 
-  private url = 'http://localhost/registropropiedad/public/api/login/oauth';
+  private url =
+    'http://10.1.46.32:8181/registropropiedad/public/api/login/oauth';
 
   constructor(private http: HttpClient, private location: Location) {}
 
@@ -69,7 +69,7 @@ export class UserService {
 
     if (userJSON) {
       this.user = JSON.parse(userJSON);
-      return this.user
+      return this.user;
     } else {
       return null;
     }

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 
 import { BehaviorSubject } from 'rxjs';
+import { common } from 'src/environments/environment.common';
 
 @Injectable({
   providedIn: 'root',
@@ -13,37 +14,11 @@ export class TablaTramiteService {
   constructor(private http: HttpClient) {
     this.getTramites();
   }
-  /**
-   * @setFiltros si se obtienen los datos directamente del formulario sin la varible filter
-   */
 
-  // private filtrosTramite$ = new BehaviorSubject<any | undefined>(null)
-  // filtros = this.filtrosTramite$.asObservable()
-
-  // setFiltros(
-  //   busqueda:string,
-  //   categoria:string,
-  //   estadoTramite:string,
-  //   jurisdiccion:string,
-  //   estadoTasas:string,
-  //   estadoExcedentes:string,
-  //   servicio:string)
-  //   : void {
-  //   let values = {
-  //     busqueda: busqueda,
-  //     categoria: categoria,
-  //     estadoTramite:estadoTramite,
-  //     jurisdiccion: jurisdiccion,
-  //     estadoTasas: estadoTasas,
-  //     estadoExcedentes: estadoExcedentes,
-  //     servicio :servicio
-  //   }
-  //   this.filtrosTramite$.next(values)
-  // }
   tramite = [];
   getTramites() {
     this.http
-      .get<any>(`${environment.tramites}`)
+      .get<any>(environment.api + common.api.tramite)
       .pipe(
         catchError((error) => {
           console.error(`Ocurrió un error al recuperar los trámites`);
@@ -59,16 +34,14 @@ export class TablaTramiteService {
   }
 
   getTablaPendientes(): Observable<any> {
-    return this.http.get(environment.tramites)
+    return this.http.get(environment.api + common.api.tramite);
   }
 
   getTablaFinalizado(): Observable<any> {
-    return this.http.get(environment.tramites)
-   
+    return this.http.get(environment.api + common.api.tramite);
   }
 
   getTableEntregado(): Observable<any> {
-    return this.http.get(environment.tramites)
-    
+    return this.http.get(environment.api + common.api.tramite);
   }
 }
