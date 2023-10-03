@@ -1,5 +1,5 @@
 const baseURL: string =
-  'http://10.1.46.32:5656/formelectronico/web/app_dev.php/API/v2/';
+  'http://localhost/registropropiedad/public/api/';
 const baseURLApi: string =
   'http://10.1.46.32:5656/formelectronico/web/app_dev.php/API/';
 const AuthURL = 'https://dsso.santafe.gob.ar';
@@ -10,18 +10,25 @@ export const ConsultaApiUrl = {
   api : apiUrl
 }
 
+
+import { common, commonEndPoint } from './environment.common';
+
+commonEndPoint.base  = 'https://app.santafe.gob.ar/fdadmin/api/';
+
+
 export const environment = {
   production: false,
+  ...common,
   baseURL: baseURL,
-  tramites: baseURL + 'usuario/tramite', //Listado de tramite del Usuario - Listado de trámites del Usuario y la búsqueda va por get  sobre esta url
-  estadoTasas: baseURL + 'EstadoTasas',
-  estadoTramite: baseURL + 'EstadoTramite',
-  estadoExcedentes: baseURL + 'EstadoExcedentes',
-  categoria: baseURL + 'usuario/TipoCategoriaTramite',
-  tramiteServicio: baseURL + 'usuario/TipoTramiteService',
-  jurisdiccion: baseURLApi + 'getStatic/Jurisdiccion?orderby=nombre',
+  tramites: baseURL + 'tramites', //Listado de tramite del Usuario - Listado de trámites del Usuario y la búsqueda va por get  sobre esta url
+  estadoTasas: baseURL + 'usuario/general/estadoTasas',
+  estadoTramite: baseURL + 'usuario/general/estadoTramite',
+  estadoExcedentes: baseURL + 'usuario/general/estadoExcedentes',
+  categoria: baseURL + 'usuario/general/tipocategoriatramite',
+  tramiteServicio: baseURL + 'usuario/general/tipocategoriatramite/{id}/tipoTramiteServicio',
+  jurisdiccion: baseURL + 'general/jurisdiccion',
   app: {
-    endPoint: 'http://localhost:8081/mjydh-web/public/api',
+    endPoint: 'https://twww.santafe.gob.ar/mjydh-web/api',
     ministerio: "Ministerio de Gobierno, Justicia y Derechos Humanos",
     secretaria: 'Registro General de la Propiedad',
     nombre: 'Registro General de la Propiedad'

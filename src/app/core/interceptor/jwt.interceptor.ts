@@ -8,10 +8,10 @@ import {
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    let token: string | null = localStorage.getItem('jwt');
+    let token: string | null = localStorage.getItem('token');
 
     let request = req;
-
+    
     if (token) {
       request = req.clone({
         setHeaders: {
@@ -21,6 +21,6 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(req);
+    return next.handle(request);
   }
 }
