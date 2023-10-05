@@ -1,27 +1,30 @@
-import { common } from './environment.common';
+//api
+const baseAPI: string = 'http://10.1.46.32:8181/registropropiedad/public/api/';
 
-const baseURL = 'https://tapp.santafe.gob.ar/fdadmin';
-const baseApi = baseURL + '/api/';
+//mjydh
+const baseMJYDH: string =
+  'https://twww.santafe.gov.ar/mjydh-web/api/public/sistemas/regprop_public/';
+
+//auth
+const AuthURL = 'https://dsso.santafe.gob.ar';
 
 export const environment = {
-    production: false,
-    baseURL: baseURL,
-    ...common,
-    api: {
-        fdadmin: {
-            tramite: {
-                byCodigo: baseApi + 'tramite/{codigo}',
-            },
-            TD: {
-                get: baseApi + 'tramiteDigital/{codigo}',
-                certificados: baseApi + 'tramiteDigital/tipo/certificado',
-            },
-            RD: {
-                save: baseApi + 'respuestaD/{codigo}',
-            },
-            Inhibiciones: {
-                busqueda: baseApi + 'inhibiciones/busqueda',
-            },
-        },
-    },
+  production: false,
+  app: baseMJYDH,
+  api: baseAPI,
+  auth: AuthURL,
+  redirectUri: 'http://127.0.0.1:4200/',
+};
+
+export const firebaseConfig = {
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',
+    authDomain: 'formelectronicoapp.firebaseapp.com',
+    projectId: 'formelectronicoapp',
+    storageBucket: 'formelectronicoapp.appspot.com',
+    messagingSenderId: '190875804950',
+    appId: '1:190875804950:web:de50dbcfa2db0ac2851c37',
+    measurementId: 'G-FWSGR9NWED',
+  },
 };

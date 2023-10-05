@@ -24,7 +24,6 @@ export class FiltrosService {
    *
    * @fucntioon SendFiltros obtine los fltros y se guardan en una observable
    */
-
   sendFiltros(filtros: any[]): void {
     this.filtrosSubject.next(filtros);
   }
@@ -32,7 +31,6 @@ export class FiltrosService {
   /**
    * @fucntioon setTababla()  trae y guarda los datos de la tabla
    */
-
   setTabla(tablaValues: any[]) {
     this.datosTabla = tablaValues;
   }
@@ -41,7 +39,6 @@ export class FiltrosService {
    * @function getTablaFiltrada() devuleve un array de los datos de la tabla
    * con la información filtrada
    */
-
   getTablaFiltrada(): any[] {
     /**
      * @var filtrosRow [id , descripcion o nombre, tipo] obtiene los datos de la observable
@@ -49,7 +46,6 @@ export class FiltrosService {
      *
      */
     const filtrosRow = this.filtrosSubject.value;
-    console.log(this.filtrosSubject);
 
     /**
      * @returns datosTabla devuleve los datos de la tabla filtrados

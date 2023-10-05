@@ -3,7 +3,7 @@
     class="flex flex-col items-center w-11/12 mt-4 bg-white border border-gray-200 rounded-lg shadow"
   >
     <div
-      class="flex flex-row justify-between w-11/12 my-3"
+      class="flex flex-row justify-between w-11/12 my-3 cursor-pointer"
       (click)="toogleHideFilter()"
     >
       <h3 class="m-0 text-xl font-medium">Filtros de Búsqueda</h3>
@@ -76,7 +76,7 @@
         <div class="md:w-6/12 md:pr-4">
           <select
             tabindex="3"
-            (change)="setTramiteServicio();onSubmit()"
+            (change)="setTramiteServicio(); onSubmit()"
             formControlName="categoria"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -137,7 +137,7 @@
         <div class="md:w-6/12">
           <select
             tabindex="6"
-            (change)="addFilter('estadoTasas');onSubmit()"
+            (change)="addFilter('estadoTasas'); onSubmit()"
             formControlName="estadoTasas"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
@@ -174,7 +174,7 @@
         <div class="md:w-6/12">
           <select
             tabindex="8"
-            (change)="addFilter('estadoExcedentes');onSubmit()"
+            (change)="addFilter('estadoExcedentes'); onSubmit()"
             formControlName="estadoExcedentes"
             class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >

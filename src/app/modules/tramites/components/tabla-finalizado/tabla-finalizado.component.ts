@@ -1,5 +1,4 @@
-import { Component , OnInit, ViewChild} from '@angular/core';
-import { TablaTramiteService } from '../../services/tabla-tramite.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -9,28 +8,24 @@ import { AccionesService } from '../../services/acciones.service';
 @Component({
   selector: 'app-tabla-finalizado',
   templateUrl: './tabla-finalizado.component.html',
-  styleUrls: ['./tabla-finalizado.component.scss']
+  styleUrls: ['./tabla-finalizado.component.scss'],
 })
-export class TablaFinalizadoComponent implements OnInit{
-
+export class TablaFinalizadoComponent implements OnInit {
   displayedColumns: string[] = [
     'tramite',
     'fechaPresentacion',
     'numeroFormulario',
     'jurisdiccion',
     'tasas',
-    'excedentes'
- 
+    'excedentes',
   ];
 
   dataSource = new MatTableDataSource();
 
   constructor(
-    private tablaSrv: TablaTramiteService,
     private _bottomSheet: MatBottomSheet,
     public accionesSrv: AccionesService
   ) {}
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -44,15 +39,5 @@ export class TablaFinalizadoComponent implements OnInit{
     this._bottomSheet.open(OpcionesTramiteComponent);
   }
 
-  ngOnInit(): void {
-    this.tablaSrv.getTablaFinalizado().subscribe({
-      next: (respuesta) => {
-        this.dataSource = new MatTableDataSource(respuesta);
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-  }
-
+  ngOnInit(): void {}
 }

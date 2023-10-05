@@ -24,7 +24,7 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
   formFiltros: FormGroup = new FormGroup({});
 
-  busqueda: FormControl = new FormControl()
+  busqueda: FormControl = new FormControl();
 
   /**
    * Lista de filtros que selecciono el usuario
@@ -62,7 +62,6 @@ export class FiltrosBusquedaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.formFiltros = this.fb.group({
       busqueda: [''],
       categoria: [''],
@@ -140,28 +139,28 @@ export class FiltrosBusquedaComponent implements OnInit {
     this.tramiteServicio.nativeElement.focus();
 
     this.tramiteServicio$.set([{ id: 0, nombre: '' }]);
-    this.tramiteSrv
-      .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
-      .subscribe({
-        next: (res) => {
-          if (res.length !== undefined){
-            this.tramiteServicio$.set(res)
-          }
-        },
-        error: (error) => {
-          console.error(`Ocurrio un error al setear tramite/servicio ${error}`);
-        },
-      });
+    this.tramiteServicio$.set();
+    // this.tramiteSrv
+    //   .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
+    //   .subscribe({
+    //     next: (res:any) => {
+    //       if (res.length !== undefined){
+    //         this.tramiteServicio$.set(res)
+    //       }
+    //     },
+    //     error: (error:any) => {
+    //       console.error(`Ocurrio un error al setear tramite/servicio ${error}`);
+    //     },
+    //   });
   }
 
-/**
- * @function onSubmit() cada vez que se llama esta función se envía a Send]Filtros 
- * el array filter
- *
- */
+  /**
+   * @function onSubmit() cada vez que se llama esta función se envía a Send]Filtros
+   * el array filter
+   *
+   */
 
   onSubmit(): void {
-   this.filtroServ.sendFiltros(this.filters)
+    this.filtroServ.sendFiltros(this.filters);
   }
-  
 }
