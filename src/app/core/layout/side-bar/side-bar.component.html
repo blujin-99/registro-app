@@ -95,7 +95,7 @@
 
         Inicio
       </li>
-      <li (click)="openDialog('/nuevoTramite')">
+      <li (click)="openDialog('/nuevoTramite')" *ngIf="user">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -109,7 +109,7 @@
         </svg>
         Nuevo Tramite
       </li>
-      <li (click)="openDialog('/misTramites')">
+      <li (click)="openDialog('/misTramites')" *ngIf="user">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -123,7 +123,7 @@
         Mis Tramites
       </li>
 
-      <li (click)="openDialog('/configuracion')">
+      <li (click)="openDialog('/configuracion')" *ngIf="user">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -136,7 +136,7 @@
         </svg>
         Configuración
       </li>
-      <li (click)="openDialog('/consultaPagos')">
+      <li (click)="openDialog('/consultaPagos')" *ngIf="user">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -149,7 +149,7 @@
         </svg>
         Consulta de Pagos
       </li>
-      <li (click)="openDialog('/otrasTasas')">
+      <li (click)="openDialog('/otrasTasas')" *ngIf="user">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -162,7 +162,7 @@
         </svg>
         Pago otras Tasas
       </li>
-      <li class="text-right" (click)="openDialog('/consultaMesaEntrada')">
+      <li [routerLink]="['/consultaMesaEntrada']">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
