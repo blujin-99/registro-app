@@ -139,6 +139,7 @@ export class FiltrosBusquedaComponent implements OnInit {
     this.tramiteServicio.nativeElement.focus();
 
     this.tramiteServicio$.set([{ id: 0, nombre: '' }]);
+    this.tramiteServicio$.set();
     // this.tramiteSrv
     //   .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
     //   .subscribe({

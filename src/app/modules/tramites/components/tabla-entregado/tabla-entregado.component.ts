@@ -1,5 +1,4 @@
-import { Component , OnInit, ViewChild, effect} from '@angular/core';
-import { TablaTramiteService } from '../../services/tabla-tramite.service';
+import { Component, OnInit, ViewChild, effect } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -10,87 +9,84 @@ import { FiltrosService } from '../../services/filtros.service';
 @Component({
   selector: 'app-tabla-entregado',
   templateUrl: './tabla-entregado.component.html',
-  styleUrls: ['./tabla-entregado.component.scss']
+  styleUrls: ['./tabla-entregado.component.scss'],
 })
-export class TablaEntregadoComponent implements OnInit{
-
+export class TablaEntregadoComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  dataSource = new MatTableDataSource()
-  tabla : any
-  
-  displayedColumns : string[] = [    
-  'tramite',
-  'numeroFormulario',
-  'jurisdiccion',
-  'tasas',
-  'excedentes',
-]
+  dataSource = new MatTableDataSource();
+  tabla: any;
+
+  displayedColumns: string[] = [
+    'tramite',
+    'numeroFormulario',
+    'jurisdiccion',
+    'tasas',
+    'excedentes',
+  ];
 
   constructor(
-    private tableServ: TablaTramiteService,
     private filtroServ: FiltrosService,
     private _bottomSheet: MatBottomSheet,
-    public accionesSrv: AccionesService){
-    
-      effect(() => {
+    public accionesSrv: AccionesService
+  ) {
+    effect(() => {
+      if (this.accionesSrv.pagoMultiple()) {
+        this.displayedColumns = [
+          'pagar',
+          'tramite',
+          'numeroFormulario',
+          'jurisdiccion',
+          'tasas',
+          'excedentes',
+        ];
+      } else {
+        this.displayedColumns = [
+          'tramite',
+          'numeroFormulario',
+          'jurisdiccion',
+          'tasas',
+          'excedentes',
+        ];
+      }
+    });
+  }
 
-        if(this.accionesSrv.pagoMultiple()){
-          this.displayedColumns =[
-            'pagar',
-            'tramite',
-            'numeroFormulario',
-            'jurisdiccion',
-            'tasas',
-            'excedentes',
-          ]
-        }else{
-          this.displayedColumns =[
-            'tramite',
-            'numeroFormulario',
-            'jurisdiccion',
-            'tasas',
-            'excedentes',
-          ]
-        }
-      })
-    }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
-    ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-    }
+  // ngOnInit(): void {
+  //   this.tableServ.getTableEntregado().subscribe({
+  //     next: (resultado) => {
 
-    ngOnInit(): void {
-      this.tableServ.getTableEntregado().subscribe({
-        next: (resultado) => {
+  //       this.filtroServ.setTabla(resultado);
 
-          this.filtroServ.setTabla(resultado);
-          
-          this.dataSource = new MatTableDataSource(resultado);
-        }
-      });
-      /**
-       * @var filtros$ observable solo de lectura que detecta los cambio del filtrado entonces
-       *  updatedTablaFiltrada se llama cada vez que se alctualiza filtros$
-       */
-      this.filtroServ.filtros$.subscribe(() =>
-        this.updatedTablaFiltrada()
-      )
+  //       this.dataSource = new MatTableDataSource(resultado);
+  //     }
+  //   });
+  //   /**
+  //    * @var filtros$ observable solo de lectura que detecta los cambio del filtrado entonces
+  //    *  updatedTablaFiltrada se llama cada vez que se alctualiza filtros$
+  //    */
+  //   this.filtroServ.filtros$.subscribe(() =>
+  //     this.updatedTablaFiltrada()
+  //   )
 
-    }
-      
-      /**
-       * @function updatedTablaFiltrada toma los datos filtrados y retornando d de la tabla y los guarda 
-       * en @var tabla que seŕa el array que mostrará los datos de la tabla filtrados 
-       */
-    private updatedTablaFiltrada(): void{
-       this.tabla = this.filtroServ.getTablaFiltrada();
-       console.log(this.tabla)
-    }
+  // }
 
-    showPagoMobile() {}
+  /**
+   * @function updatedTablaFiltrada toma los datos filtrados y retornando d de la tabla y los guarda
+   * en @var tabla que seŕa el array que mostrará los datos de la tabla filtrados
+   */
+  private updatedTablaFiltrada(): void {
+    this.tabla = this.filtroServ.getTablaFiltrada();
+    console.log(this.tabla);
+  }
 
-    openBottomSheet(): void {
-      this._bottomSheet.open(OpcionesTramiteComponent);
-    }
+  showPagoMobile() {}
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(OpcionesTramiteComponent);
+  }
 }
