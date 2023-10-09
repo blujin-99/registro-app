@@ -121,10 +121,11 @@ export class FiltrosBusquedaComponent implements OnInit {
    * Para que seleccione un tramite / servicio
    */
   openSnackBar() {
+    /* 
     this._snackBar.openFromComponent(AlertCategoriaComponent, {
       duration: 5 * 1000,
       verticalPosition: 'top',
-    });
+    });*/ 
   }
 
   /**
@@ -137,21 +138,9 @@ export class FiltrosBusquedaComponent implements OnInit {
   setTramiteServicio() {
     this.openSnackBar();
     this.tramiteServicio.nativeElement.focus();
-
-    this.tramiteServicio$.set([{ id: 0, nombre: '' }]);
-    this.tramiteServicio$.set();
-    // this.tramiteSrv
-    //   .getTramiteServicio(this.formFiltros.get('categoria')?.value?.id)
-    //   .subscribe({
-    //     next: (res:any) => {
-    //       if (res.length !== undefined){
-    //         this.tramiteServicio$.set(res)
-    //       }
-    //     },
-    //     error: (error:any) => {
-    //       console.error(`Ocurrio un error al setear tramite/servicio ${error}`);
-    //     },
-    //   });
+    let categoria = this.formFiltros.get('categoria')?.value;
+    let vers = this.tramiteSrv.categorias.find( obj=> { return obj.id === categoria.id } ) 
+    this.tramiteServicio$.set(vers?.tipoTramiteServicios);
   }
 
   /**

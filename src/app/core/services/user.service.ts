@@ -2,6 +2,7 @@ import { Injectable, effect, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { IUser, IUserCas } from '../models/user.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,7 @@ export class UserService {
    */
   public loggedIn$ = signal<boolean>(false);
 
-  private url =
-    'https://twww.santafe.gob.ar/registropropiedad/api/login/oauth';
+  private url = environment.apiBase +environment.api.outhApi;
 
   constructor(private http: HttpClient, private location: Location) {}
 
