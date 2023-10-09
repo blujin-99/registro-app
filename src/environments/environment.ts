@@ -1,4 +1,4 @@
-const baseAPI: string = 'http://10.1.46.32:8181/registropropiedad/public/api/';
+const baseAPI: string = 'https://twww.santafe.gob.ar/registropropiedad/api/';
 const baseMJYDH: string =
   'https://twww.santafe.gov.ar/mjydh-web/api/public/sistemas/regprop_public/';
 const AuthURL = 'https://dsso.santafe.gob.ar';
@@ -8,7 +8,7 @@ export const environment = {
   app: baseMJYDH,
   api: baseAPI,
   auth: AuthURL,
-  redirectUri: 'http://127.0.0.1:4200/',
+  redirectUri: 'https://twww.santafe.gob.ar/registropropiedad/',
 };
 
 export const firebaseConfig = {

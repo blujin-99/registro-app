@@ -1,5 +1,5 @@
 //api
-const baseAPI: string = 'http://10.1.46.32:8181/registropropiedad/public/api/';
+const baseAPI: string = 'https://twww.santafe.gob.ar/registropropiedad/api/';
 
 //mjydh
 const baseMJYDH: string =

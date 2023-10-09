@@ -6,6 +6,7 @@
     "start": "ng serve --open",
     "build": "ng build",
     "build-dev": "ng build  --base-href='' --deploy-url='../formelectronicoapp/'",
+    "build-test": "ng build --configuration=test --base-href='' --deploy-url='../registropropiedad/'",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watchAll"

@@ -11,12 +11,12 @@ export class InicioPageComponent {
 
   usuario() {
     this.http
-      .get('http://127.0.0.1:8000/api/usuario')
+      .get('https://twww.santafe.gob.ar/registropropiedad/api/usuario')
       .subscribe((data) => console.log(data));
 
     this.http
       .get(
-        'http://10.1.46.32:8181//registropropiedad/public/index.php/api/usuario'
+        'https://twww.santafe.gob.ar/registropropiedad/api/usuario'
       )
       .subscribe((data2) => console.log(data2));
   }

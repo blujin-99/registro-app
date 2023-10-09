@@ -19,7 +19,7 @@ export class UserService {
   public loggedIn$ = signal<boolean>(false);
 
   private url =
-    'http://10.1.46.32:8181/registropropiedad/public/api/login/oauth';
+    'https://twww.santafe.gob.ar/registropropiedad/api/login/oauth';
 
   constructor(private http: HttpClient, private location: Location) {}
 
