@@ -54,12 +54,19 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
         aforoValue,
         mesaValue
       )
-      .subscribe((data) => {
-        this.mesaEntradaService.setResultadoTramite(data);
-        if(data){
-          $('#defaultModal').modal('show');
+      .subscribe(
+        (data) => {
+          // Manejar la respuesta exitosa
+          this.mesaEntradaService.setResultadoTramite(data);
+          if (data) {
+            $('#defaultModal').modal('show');
+          }
+        },
+        (error) => {
+          window.alert(error);
+          $('#defaultModal').modal('hide');
         }
-      });
+      );
   }
 
   ngOnInit(): void {}

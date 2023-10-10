@@ -9,4 +9,6 @@ import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.componen
   imports: [CommonModule, SideBarComponent],
   exports: [AuthPageComponent, AuthRoutingModule],
 })
-export class AuthModule {}
+export class AuthModule {
+  
+}

@@ -30,7 +30,6 @@ export class TramitesService {
       .get<IFiltros>(environment.apiBase + environment.api.tramitesFiltros)
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.categorias = res.tipoTramites;
           this.estadoTramite = res.estadoTramite;
           this.estadoTasas = res.estadoTasas;

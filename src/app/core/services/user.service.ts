@@ -19,7 +19,7 @@ export class UserService {
    */
   public loggedIn$ = signal<boolean>(false);
 
-  private url = environment.apiBase +environment.api.outhApi;
+  private url = environment.apiBase + environment.api.outhApi;
 
   constructor(private http: HttpClient, private location: Location) {}
 
@@ -78,12 +78,13 @@ export class UserService {
   initAuth(): void {
     if (!localStorage.getItem('user')) {
       const code: any = this.getAccessTokenFromUrl();
-      this.validateToken(code).subscribe((data: any) => {
-        console.log(data);
-        this.setUserCas(data.user.userCas);
-        this.setUser(data.user.userFD);
-        localStorage.setItem('token', data.token);
-      });
+      if(code){
+        this.validateToken(code).subscribe((data: any) => {
+          this.setUserCas(data.user.userCas);
+          this.setUser(data.user.userFD);
+          localStorage.setItem('token', data.token);
+        });
+      }
     }
   }
 
@@ -91,9 +92,13 @@ export class UserService {
    * @returns access token
    */
   private getAccessTokenFromUrl(): string | null {
-    const queryParams = this.location.path(true).split('#')[1];
-    const params = new URLSearchParams(queryParams);
-    return params.get('access_token');
+    let value = decodeURIComponent(this.location.path(true).split('access_token')[1]).slice(1).split('&');
+    if(value[0]){
+      return value[0];
+    }
+    return null;
+   /* const params = new URLSearchParams('access_token'+queryParams);
+    return params.get('access_token');*/ 
   }
 
   private validateToken(params: any) {

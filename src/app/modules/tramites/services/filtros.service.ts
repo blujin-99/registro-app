@@ -62,11 +62,13 @@ export class FiltrosService {
          * son verdadderos, permite mostrar el dato que sea igual al dato filtrado y lo retorna,
          *  si no encunetra datos que sean iguales al filtro, devuelve flase
          */
-        if (filtro.tipo === 'estado' && filtro.descripcion) {
-          return data.estado && data.estado.includes(filtro.descripcion);
+        console.log(data, 'data');
+        console.log(filtro.tipo, 'filtro');
+        if (filtro.tipo === 'estadoTramite' && filtro.descripcion) {
+          return data.EstadoTramite.descripcion && data.estado.includes(filtro.descripcion);
         }
-        if (filtro.tipo === 'tasa' && filtro.descripcion) {
-          return data.tasas && data.tasas.includes(filtro.descripcion);
+        if (filtro.tipo === 'estadoTasa' && filtro.descripcion) {
+          return data.EstadoTasas && data.tasas.includes(filtro.descripcion);
         }
         if (filtro.tipo === 'jurisdiccion' && filtro.nombre) {
           return data.jur && data.jur.includes(filtro.nombre);

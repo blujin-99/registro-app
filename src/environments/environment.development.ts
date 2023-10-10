@@ -19,9 +19,7 @@ export const environment = {
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
-  redirectUri: 'http://127.0.0.1:4200/login',
-
-
+  redirectUri: 'http://127.0.0.1:4200'
 };
 
 
