@@ -1,14 +1,15 @@
 # Registro general de la propiedad
 
 ## Flujo
-
-                                  formelectronicoapp (app del registro)-----------------------
-                                  |                        |                                 | (consulta nombre ministerio y sistema)
-                        formelectronico <---------> registropropiedad                    mjydh-web
+                                                      mjydh-web (acceso centralizado)
+                                                          |
+                                  formelectronicoapp (app del registro)----------------------- mjydh-we (consulta nombre ministerio y sistema)
+                                  |                        |                                 
+                        formelectronico <---------> registropropiedad                    b
                                               |
-                                      -----------------
-                                      |               |
-                                adminformel <----> fdadmin
+                                      ---------------------
+                                      |                    |
+                                adminformel <-- (BD) --> fdadmin
 
 
 
