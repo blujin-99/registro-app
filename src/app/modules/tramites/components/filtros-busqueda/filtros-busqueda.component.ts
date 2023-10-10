@@ -112,6 +112,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   addFilter(campo: string) {
     let valorCampo = this.formFiltros.get(campo)?.value;
     if (!this.filters.includes(valorCampo)) {
+      valorCampo.tipo=campo;
       this.filters.push(valorCampo);
     }
   }
