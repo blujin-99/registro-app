@@ -20,5 +20,7 @@ export const environment = {
   apiBase: baseAPI,
   authUrl: AuthURL,
   redirectUri: 'http://127.0.0.1:4200/',
+  excludedDomains:['www.santafe.gob.ar'],
+  excludedEndpoints:['estadotramiterg/consulta'],
 };
 

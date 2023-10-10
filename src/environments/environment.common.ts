@@ -33,4 +33,6 @@ export const common = {
     secretaria: 'Registro General de la Propiedad',
     nombre: 'Registro General de la Propiedad',
   },
+  excludedDomains:['www.santafe.gob.ar','tasw.santafe.gob.ar'],
+  excludedEndpoints:['estadotramiterg/consulta', 'mjyddhh/mjydh-web/api/public/sistemas/regprop_public'],
 };
