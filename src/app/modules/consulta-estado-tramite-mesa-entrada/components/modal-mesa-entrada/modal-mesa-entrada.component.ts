@@ -4,6 +4,8 @@ import { MESA } from 'src/app/core/models/mesa-entrada.interface';
 import { CatchinErrorService } from 'src/app/core/services/catchin-error.service';
 import { ConsultaMesaEntradaService } from '../../service/consulta-mesa-entrada.service';
 
+declare var $: any; 
+
 @Component({
 	selector: 'app-modal-mesa-entrada',
 	templateUrl: './modal-mesa-entrada.component.html',
@@ -25,20 +27,23 @@ export class ModalMesaEntradaComponent {
 
 	ngOnInit(): void {
 		// Primero, suscríbete al observable de errores para manejar los errores
-		this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
-		  switch (error) {
+		 this.errorSubscription = this.catchErrorServ.error$.subscribe(error => {
+			this.tramite = undefined
+			$('#defaultModal').modal('hide');
+		 /*  switch (error) {
 			case 404:
 			  this.mensaje = "No se encuentra el trámite";
 			  break;
 			case 500:
 			  this.mensaje = "No se encuentra el trámite";
 			  break;
-		  }
+		  }*/
 		});
 
 		this.mesaEntradaServ.tramite$.subscribe(data => {
 			if (data) {
 			   this.tramite = data.data.data
+			   console.log(data)
 			}
 			
 

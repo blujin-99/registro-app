@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.service';
+
 import { AppService } from 'src/app/shared/services/app.service';
-//import * as moment from 'moment';
+import * as moment from 'moment';
+
+declare var $: any;
 
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',
@@ -11,10 +14,12 @@ import { AppService } from 'src/app/shared/services/app.service';
 })
 export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
   form: FormGroup;
-  error: any
-  constructor(private fb: FormBuilder, private mesaEntradaService: ConsultaMesaEntradaService,
-    public appService:AppService) {
-
+  error: any;
+  constructor(
+    private fb: FormBuilder,
+    private mesaEntradaService: ConsultaMesaEntradaService,
+    public appService: AppService
+  ) {
     this.form = this.fb.group({
       mesa: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -43,17 +48,19 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
     let fechaValue = this.form.get('fecha')?.value;
     let aforoValue = this.form.get('aforo')?.value;
 
-    //  this.mesaEntradaService.setConsulta(
-    //   moment(fechaValue).format('DD/MM/YYYY'),
-    //   aforoValue,
-    //   mesaValue).
-    //   subscribe(
-    //     data => {
-    //      this.mesaEntradaService.setResultadoTramite(data)
-    //     }
-    // )
+    this.mesaEntradaService
+      .setConsulta(
+        moment(fechaValue).format('DD/MM/YYYY'),
+        aforoValue,
+        mesaValue
+      )
+      .subscribe((data) => {
+        this.mesaEntradaService.setResultadoTramite(data);
+        if(data){
+          $('#defaultModal').modal('show');
+        }
+      });
   }
 
-  ngOnInit(): void {
-   }
+  ngOnInit(): void {}
 }

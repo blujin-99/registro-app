@@ -7,7 +7,7 @@ import { common } from "./environment.common";
 const baseAPI = 'http://127.0.0.1/registropropiedad/public/api/';
 
 //mjydh
-const baseMJYDH = 'https://twww.santafe.gov.ar/mjydh-web/api/public/sistemas/regprop_public/';
+const baseMJYDH = 'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
 
 //auth
 const AuthURL = 'https://dsso.santafe.gob.ar';
@@ -20,6 +20,8 @@ export const environment = {
   apiBase: baseAPI,
   authUrl: AuthURL,
   redirectUri: 'http://127.0.0.1:4200/login',
+
+
 };
 
 

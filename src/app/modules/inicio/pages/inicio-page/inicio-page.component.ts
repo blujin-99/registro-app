@@ -9,15 +9,8 @@ import { environment } from 'src/environments/environment';
 export class InicioPageComponent {
   constructor(private http: HttpClient) {}
 
-  usuario() {
-    this.http
-      .get('https://twww.santafe.gob.ar/registropropiedad/api/usuario')
-      .subscribe((data) => console.log(data));
-
-    this.http
-      .get(
-        'https://twww.santafe.gob.ar/registropropiedad/api/usuario'
-      )
-      .subscribe((data2) => console.log(data2));
+  usuario() 
+  {
+    
   }
 }
