@@ -16,7 +16,7 @@ import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
-import { firebaseConfig } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
 import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
@@ -32,7 +32,7 @@ import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
     BrowserAnimationsModule,
     InterceptorModule,
     AvatarComponent,
-    AngularFireModule.initializeApp(firebaseConfig.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig.firebase),
     AngularFireMessagingModule
   ],
   providers: [importProvidersFrom(HttpClientModule), provideOAuthClient(),MessagingService, AsyncPipe],

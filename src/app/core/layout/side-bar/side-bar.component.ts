@@ -6,6 +6,8 @@ import { AvatarComponent } from 'src/app/shared/components/avatar/avatar.compone
 import { MaterialModule } from 'src/app/modules/material/material.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogLogeoComponent } from 'src/app/shared/components/dialog-logeo/dialog-logeo.component';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   standalone: true,
@@ -53,9 +55,9 @@ export class SideBarComponent implements DoCheck {
    * Redirecciona al oauth2
    */
   login() {
-    window.location.replace(
-      'https://dsso.santafe.gob.ar/service-auth/oauth2.0/authorize?response_type=token&client_id=sso.santafe.gov.ar.5868506FJCKWEDG33&redirect_uri=http://localhost:4200/login'
-    );
+
+    const url = environment.authUrl +'/'+ environment.auth.authorizeUrl+'?response_type=token&client_id='+environment.auth.clientId+'&redirect_uri='+environment.redirectUri
+    window.location.replace(url );
   }
 
   /**
@@ -64,8 +66,7 @@ export class SideBarComponent implements DoCheck {
    */
   logout() {
     localStorage.clear();
-
-    window.location.replace('http://localhost:4200/inicio');
+    window.location.replace( '/inicio');
   }
 
   /**

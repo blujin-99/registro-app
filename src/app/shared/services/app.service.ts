@@ -20,7 +20,7 @@ export class AppService {
    *
    */
   init() {
-    this.http.get<any>(environment.app).subscribe({
+    this.http.get<any>(environment.appBase).subscribe({
       next: (res) => {
         this.nombre = res.nombre; //'Registro General de la Propiedad'
         this.ministerio = res.app.Ministerio; // 'Ministerio de Gobierno, Justicia y Derechos Humanos'
@@ -30,7 +30,7 @@ export class AppService {
         this.nombre = 'Registro General de la Propiedad';
         this.ministerio = 'Ministerio de Gobierno, Justicia y Derechos Humanos';
         this.ministerioCorto = 'MJ y DDHH';
-        if (environment.production === false) {
+        if (environment.env !='produccion') {
           console.error(error);
         }
       },

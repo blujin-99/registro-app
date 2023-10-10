@@ -11,32 +11,33 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
 import { AccionesService } from '../../services/acciones.service';
-
+import { TramitesService } from '../../services/tramites.service';
+import { ITramite } from 'src/app/core/models/tramites.interfaces';
 @Component({
   selector: 'app-tabla-pendientes',
   templateUrl: './tabla-pendientes.component.html',
   styleUrls: ['./tabla-pendientes.component.scss'],
 })
 export class TablaPendientesComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = [
+   displayedColumns: string[] = [
     'tramite',
     'numeroFormulario',
     'jurisdiccion',
     'tasas',
     'excedentes',
-  ];
+  ]; 
   data: any;
-  dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource<any>();
   filtros: any;
   filterRow: any[] = []; //crear interface
   constructor(
     private _bottomSheet: MatBottomSheet,
-    public accionesSrv: AccionesService
+    public accionesSrv: AccionesService,
+    private tramitesrv: TramitesService
   ) {
-    effect(() => {
+     effect(() => {
       if (this.accionesSrv.pagoMultiple()) {
         this.displayedColumns = [
-          'pagar',
           'tramite',
           'numeroFormulario',
           'jurisdiccion',
@@ -63,7 +64,14 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    //this.dataSource = new MatTableDataSource(this.tablaSrv.tramite);
+    this.tramitesrv.getTramites().subscribe(
+      (res)=>{ 
+        this.dataSource = new MatTableDataSource(res)
+        this.dataSource.paginator = this.paginator; 
+      }
+    );
+
+    
   }
 
   showPagoMobile() {}
