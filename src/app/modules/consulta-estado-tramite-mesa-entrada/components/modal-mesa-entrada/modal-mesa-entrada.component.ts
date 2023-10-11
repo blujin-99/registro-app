@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
 import { MESA } from 'src/app/core/models/mesa-entrada.interface';
-import { CatchinErrorService } from 'src/app/core/services/catchin-error.service';
 import { ConsultaMesaEntradaService } from '../../service/consulta-mesa-entrada.service';
 
 declare var $: any;
@@ -11,34 +9,28 @@ declare var $: any;
   templateUrl: './modal-mesa-entrada.component.html',
   styleUrls: ['./modal-mesa-entrada.component.scss'],
 })
+
 export class ModalMesaEntradaComponent {
-  constructor(
-    private catchErrorServ: CatchinErrorService,
-    private mesaEntradaServ: ConsultaMesaEntradaService
-  ) {}
 
-  tramite: MESA | undefined;
+	constructor(protected mesaEntradaServ: ConsultaMesaEntradaService) { }
 
-  private errorSubscription: Subscription | undefined;
-  error$: Observable<number | null> = this.catchErrorServ.error$;
-  mensaje: string = '';
+	tramite: MESA | undefined
 
-  ngOnInit(): void {
-    // Primero, suscríbete al observable de errores para manejar los errores
-    this.errorSubscription = this.catchErrorServ.error$.subscribe((error) => {
-      this.tramite = undefined;
-    });
+	mensaje: string = ""
 
-    this.mesaEntradaServ.tramite$.subscribe((data) => {
-      if (data) {
-        this.tramite = data.data.data;
-      }
-    });
-  }
+	showModal: boolean = false
 
-  ngOnDestroy(): void {
-    if (this.errorSubscription) {
-      this.errorSubscription.unsubscribe();
-    }
-  }
+	ngOnInit(): void {
+		// Primero, suscríbete al observable de errores para manejar los errores
+		this.mesaEntradaServ.tramite$.subscribe(tramite => {
+			this.tramite = tramite.data.data
+			console.log(this.tramite)
+		})
+	}
+
+	closeModal() {
+		this.mesaEntradaServ.closeModal()
+		this.tramite = undefined;
+	}
+
 }

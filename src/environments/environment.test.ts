@@ -7,7 +7,7 @@ import { common } from "./environment.common";
 const baseAPI = 'https://twww.santafe.gob.ar/registropropiedad/api/';
 
 //mjydh
-const baseMJYDH = 'https://twww.santafe.gov.ar/mjydh-web/api/public/sistemas/regprop_public/';
+const baseMJYDH = 'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
 
 //auth
 const AuthURL = 'https://dsso.santafe.gob.ar';
