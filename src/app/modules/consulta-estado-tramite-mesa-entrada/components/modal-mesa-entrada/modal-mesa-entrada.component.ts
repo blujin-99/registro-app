@@ -5,9 +5,9 @@ import { ConsultaMesaEntradaService } from '../../service/consulta-mesa-entrada.
 declare var $: any;
 
 @Component({
-	selector: 'app-modal-mesa-entrada',
-	templateUrl: './modal-mesa-entrada.component.html',
-	styleUrls: ['./modal-mesa-entrada.component.scss']
+  selector: 'app-modal-mesa-entrada',
+  templateUrl: './modal-mesa-entrada.component.html',
+  styleUrls: ['./modal-mesa-entrada.component.scss'],
 })
 
 export class ModalMesaEntradaComponent {

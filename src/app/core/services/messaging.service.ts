@@ -15,9 +15,7 @@ export class MessagingService {
   requestPermission() {
     this.AFMessaging.requestToken.subscribe((token) => {
       if (token) {
-        console.log(token);
-      } else {
-        console.log('no token');
+        //console.log(token);
       }
     });
   }

@@ -1,5 +1,5 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 export const authConfig: AuthConfig = {
   // Url of the Identity Provider

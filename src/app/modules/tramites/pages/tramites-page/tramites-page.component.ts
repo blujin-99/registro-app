@@ -10,8 +10,7 @@ export class TramitesPageComponent implements OnInit {
   cargando: boolean = true;
   constructor(private tramiteSrv: TramitesService) {}
   ngOnInit(): void {
-    this.tramiteSrv.getTramites();
-
+    this.tramiteSrv.getFiltros();
     this.cargando = false;
   }
 }

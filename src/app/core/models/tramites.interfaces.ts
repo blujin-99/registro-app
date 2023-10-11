@@ -31,3 +31,39 @@ export interface ITramiteServicio {
   id: number;
   nombre: string;
 }
+
+
+export interface ITipoTramite {
+  id: number;
+  nombre: string;
+  abreviatura: string;
+  tipoTramiteServicios:ITramiteServicio
+
+}
+
+export interface ITramite {
+    fecha_inicio: string;
+    fecha_presentacion: string;
+    fecha_recepcion: string;
+    codigo_tramite: number;
+    aforo: string;
+    aforoAnio: string;
+    modulo: string;
+    EstadoTramite : IEstadoTramite ;
+    Jurisdiccion: IJurisdiccion;
+    EstadoExcedentes: IEstadoExcedentes;
+    EstadoApi: any;
+    EstadoTasas: IEstadoTasas;
+    TipoTramiteServicio: ITramiteServicio;
+    codigoOperacion: number;
+}
+
+
+export interface IFiltros {
+  estadoExcedente: IEstadoExcedentes[];
+  estadoTasas: IEstadoTasas[];
+  estadoTramite: IEstadoTramite[];
+  jurisdiccion:IJurisdiccion[];
+  tipoTramites: ITipoTramite[];
+
+}
