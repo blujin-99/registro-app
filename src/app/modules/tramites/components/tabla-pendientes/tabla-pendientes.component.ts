@@ -67,13 +67,18 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.tramitesrv.getTramites().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
-      this.dataSource.paginator = this.paginator;
+     
       this.filtrosService.setTabla(res);
+      this.dataSource = new MatTableDataSource(this.filtrosService.getTablaFiltrada());
+      this.dataSource.paginator = this.paginator;
     });
     this.filtrosService.filtros$.subscribe(
       
-      () => this.updatedTablaFiltrada());
+      () => { this.updatedTablaFiltrada();
+        this.dataSource = new MatTableDataSource(this.filtrosService.getTablaFiltrada());
+      this.dataSource.paginator = this.paginator;
+      })
+
   }
 
   private updatedTablaFiltrada(): void {

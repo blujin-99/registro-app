@@ -20,8 +20,6 @@ export const environment = {
   apiBase: baseAPI,
   authUrl: AuthURL,
   redirectUri: 'http://127.0.0.1:4200/',
-  excludedDomains:['www.santafe.gob.ar'],
-  excludedEndpoints:['estadotramiterg/consulta'],
   auth: {
     serviceAuthUrl: 'service-auth',
     authorizeUrl: 'service-auth/oauth2.0/authorize',
@@ -43,6 +41,9 @@ export const environment = {
       appId: '1:190875804950:web:de50dbcfa2db0ac2851c37',
       measurementId: 'G-FWSGR9NWED',
     },
-  }
+  },
+
+  excludedEndpoints:['www.santafe.gob.ar/estadotramiterg/consulta', 'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public'],
+
 };
 
