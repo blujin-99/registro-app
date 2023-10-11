@@ -5,14 +5,12 @@ import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.ser
 import { AppService } from 'src/app/shared/services/app.service';
 import * as moment from 'moment';
 
-declare var $: any;
-
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',
   templateUrl: './consulta-estado-tramite-mesa-entrada.component.html',
   styleUrls: ['./consulta-estado-tramite-mesa-entrada.component.scss'],
 })
-export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
+export class ConsultaEstadoTramiteMesaEntradaComponent{
   form: FormGroup;
   error: any;
   constructor(
@@ -39,35 +37,21 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit {
    * @function Onsubmit método que envia los valores de formulario al service
    * y luego obtiene el resultado por http get subscribiendose al valor retornado
    */
-
   onSubmit() {
     /**
-     * @var almacena valor del formulario
-     */
+    * @var almacena valor del formulario
+    */
     let mesaValue = this.form.get('mesa')?.value;
     let fechaValue = this.form.get('fecha')?.value;
     let aforoValue = this.form.get('aforo')?.value;
-
+    
     this.mesaEntradaService
-      .setConsulta(
-        moment(fechaValue).format('DD/MM/YYYY'),
-        aforoValue,
-        mesaValue
-      )
-      .subscribe(
-        (data) => {
-          // Manejar la respuesta exitosa
-          this.mesaEntradaService.setResultadoTramite(data);
-          if (data) {
-            $('#defaultModal').modal('show');
-          }
-        },
-        (error) => {
-          window.alert(error);
-          $('#defaultModal').modal('hide');
-        }
-      );
-  }
-
-  ngOnInit(): void {}
+    .setConsulta(
+    moment(fechaValue).format('DD/MM/YYYY'),
+    aforoValue,
+    mesaValue
+    )
+    this.mesaEntradaService.OpenModal() 
+    }
+    
 }
