@@ -19,7 +19,7 @@ export const environment = {
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
-  redirectUri: 'https://twww.santafe.gob.ar/registropropiedad/',
+  redirectUri: 'https://twww.santafe.gob.ar/registropropiedad',
   auth: {
     serviceAuthUrl: 'service-auth',
     authorizeUrl: 'service-auth/oauth2.0/authorize',
