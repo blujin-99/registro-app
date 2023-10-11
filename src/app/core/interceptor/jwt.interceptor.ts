@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  excludeDomains: string[] = environment.excludedDomains;
   excludeEndpoints: string[] = environment.excludedEndpoints;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -16,8 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     let request = req;
     if (
-      !this.excludeDomains.some((domain) => req.url.includes(domain)) &&
-      !this.excludeEndpoints.some((endpoint) => req.url.endsWith(endpoint))
+      !this.excludeEndpoints.some((endpoint) => req.url.includes(endpoint))
     ) {
       if (token) {
         request = req.clone({
