@@ -21,14 +21,9 @@ export const environment = {
   authUrl: AuthURL,
   redirectUri: 'http://127.0.0.1:4200',
   auth: {
-    serviceAuthUrl: 'service-auth',
-    authorizeUrl: 'service-auth/oauth2.0/authorize',
-    accessTokenUrl: 'service-auth/oauth2.0/accessToken',
-    profileUrl: 'service-auth/oauth2.0/profile',
+    ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
-    clientSecret: '173F5792303755A2GH',
-    redirectUri: 'login',
-    logoutUrl: 'logout',
+    clientSecret: '173F5792303755A2GH'
   },
   firebaseConfig: {
     production: false,

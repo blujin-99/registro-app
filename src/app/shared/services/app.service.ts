@@ -27,9 +27,9 @@ export class AppService {
         this.ministerioCorto = res.app.MinisterioCorto; // 'MJ y DDHH'
       },
       error: (error) => {
-        this.nombre = 'Registro General de la Propiedad';
-        this.ministerio = 'Ministerio de Gobierno, Justicia y Derechos Humanos';
-        this.ministerioCorto = 'MJ y DDHH';
+        this.nombre =  environment.app.secretaria;
+        this.ministerio = environment.app.ministerio ;
+        this.ministerioCorto = environment.app.ministerioCorto;
         if (environment.env !='produccion') {
           console.error(error);
         }
