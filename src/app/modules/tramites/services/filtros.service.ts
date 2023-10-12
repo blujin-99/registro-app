@@ -74,7 +74,6 @@ export class FiltrosService {
         }else{
           this.getTabla()
         }
-     
       });
     });
   }
