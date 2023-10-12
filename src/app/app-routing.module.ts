@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'misTramites',
-    canActivate: [isLoggedInGuard],
+    // canActivate: [isLoggedInGuard],
     loadChildren: () =>
     import('./modules/tramites/tramites.module').then(
       (m) => m.TramitesModule

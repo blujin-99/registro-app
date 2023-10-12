@@ -151,6 +151,12 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
 
   onSubmit(): void {
+    if(this.formFiltros.get('busqueda')?.value != ''){
+      let busqueda ={
+        busqueda:{id:1, descripcion:this.formFiltros.get('busqueda')?.value}
+      } 
+       this.filters.push(busqueda)
+    }
     this.filtroServ.sendFiltros(this.filters);
   }
 }
