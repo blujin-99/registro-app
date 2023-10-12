@@ -18,7 +18,10 @@ export class FiltrosService {
   );
   filtros$: Observable<string[]> = this.filtrosSubject.asObservable();
 
+  busqueda : any
+
   datosTabla: any[] = [];
+  tablaSinFiltro: any []=[]
 
   /**
    *
@@ -33,27 +36,49 @@ export class FiltrosService {
    */
   setTabla(tablaValues: any[]) {
     this.datosTabla = tablaValues;
+    this.tablaSinFiltro = tablaValues
   }
 
+  getTabla(){
+    return this.tablaSinFiltro
+  }
   /**
    * @function getTablaFiltrada() devuleve un array de los datos de la tabla
    * con la información filtrada
    */
-getTablaFiltrada(): any[] {
-  const filtrosRow = this.filtrosSubject.value;
-
-  return this.datosTabla.filter((fila: any) => {
-    return filtrosRow.every((filtro) => {
-      return (
-        fila.EstadoTasas.descripcion === filtro.descripcion ||
-   
-        fila.Jurisdiccion.nombre === filtro.nombre ||
+  getTablaFiltrada(): any[] {
+    const filtrosRow = this.filtrosSubject.value;
+    console.log(filtrosRow);
   
-        fila.EstadoTramite.descripcion === filtro.descripcion 
-      );
+    return this.datosTabla.filter((fila: any) => {
+      return filtrosRow.every((filtro) => {
+        if(filtro.length != 0){
+          if (filtro.busqueda && filtro.busqueda.descripcion) {
+            // Si hay un valor de búsqueda en los filtros, usarlo para buscar por los primeros dígitos del número de trámite
+            return fila.codigo_tramite.endsWith(filtro.busqueda.descripcion) ||
+              fila.TipoTramiteServicio.nombre === filtro.nombre ||
+              fila.EstadoTasas.descripcion === filtro.descripcion ||
+              fila.EstadoExcedentes.descripcion === filtro.descripcion ||
+              fila.Jurisdiccion.nombre === filtro.nombre ||
+              fila.EstadoTramite.descripcion === filtro.descripcion;
+          } else {
+            // Si no hay valor de búsqueda, aplicar otros filtros
+            return (
+              fila.TipoTramiteServicio.nombre === filtro.nombre ||
+              fila.EstadoTasas.descripcion === filtro.descripcion ||
+              fila.EstadoExcedentes.descripcion === filtro.descripcion ||
+              fila.Jurisdiccion.nombre === filtro.nombre ||
+              fila.EstadoTramite.descripcion === filtro.descripcion
+            );
+          }
+        }else{
+          this.getTabla()
+        }
+     
+      });
     });
-  });
-}
+  }
+  
 
   
   
