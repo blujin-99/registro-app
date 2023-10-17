@@ -54,7 +54,7 @@ export class FiltrosService {
             return filtrosRow.every((filtro) => {
               if(filtro.length != 0){
                 if (filtro.busqueda && filtro.busqueda.descripcion) {
-            // Si hay un valor de búsqueda en los filtros, usarlo para buscar por los primeros dígitos del número de trámite
+            // Si hay un valor de búsqueda por número de tramite en los filtros, usarlo para buscar por los últimos dígitos 
                 return fila.codigo_tramite.endsWith(filtro.busqueda.descripcion) ||
                   fila.TipoTramiteServicio.nombre === filtro.nombre ||
                   fila.EstadoTasas.descripcion === filtro.descripcion ||
@@ -62,7 +62,7 @@ export class FiltrosService {
                   fila.Jurisdiccion.nombre === filtro.nombre ||
                   fila.EstadoTramite.descripcion === filtro.descripcion;
                 } else {
-            // Si no hay valor de búsqueda, aplicar otros filtros
+            // Si no hay valor de búsqueda de número de tramite, aplicar otros filtros
                 return (
                   fila.TipoTramiteServicio.nombre === filtro.nombre ||
                   fila.EstadoTasas.descripcion === filtro.descripcion ||
