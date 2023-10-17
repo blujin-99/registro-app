@@ -31,8 +31,6 @@ export const environment = {
     logoutUrl: 'logout',
   },
   firebaseConfig: {
-    production: false,
-    firebase: {
       apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',
       authDomain: 'formelectronicoapp.firebaseapp.com',
       projectId: 'formelectronicoapp',
@@ -40,7 +38,6 @@ export const environment = {
       messagingSenderId: '190875804950',
       appId: '1:190875804950:web:de50dbcfa2db0ac2851c37',
       measurementId: 'G-FWSGR9NWED',
-    },
   },
 
   excludedEndpoints:['www.santafe.gob.ar/estadotramiterg/consulta', 'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public'],
