@@ -29,6 +29,7 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
   ];
   data: any;
   dataSource = new MatTableDataSource<any>();
+  tabla : any
   filtros: any;
   filterRow: any[] = []; //crear interface
   constructor(
@@ -67,12 +68,14 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.tramitesrv.getTramites().subscribe((res) => {
-      this.filtrosService.setTabla(res);
+      this.tabla = res;
+      this.filtrosService.setTabla(this.tabla);
+      this.filtrosService.setTablasinFiltro(res);
       this.dataSource = new MatTableDataSource(this.filtrosService.getTablaFiltrada());
       this.dataSource.paginator = this.paginator;
     });
 
-    this.filtrosService.filtros$.subscribe(() => {
+    this.filtrosService.filtros$.subscribe((filtro) => {
       this.updatedTablaFiltrada();
       this.dataSource = new MatTableDataSource(this.filtrosService.getTablaFiltrada());
       this.dataSource.paginator = this.paginator;
