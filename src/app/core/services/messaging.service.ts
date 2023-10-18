@@ -15,7 +15,7 @@ export class MessagingService {
   requestPermission() {
     this.AFMessaging.requestToken.subscribe((token) => {
       if (token) {
-        console.log('token: '+token);
+        console.log(token);
       }
     });
   }
@@ -23,6 +23,7 @@ export class MessagingService {
   reciveMessaging() {
     this.AFMessaging.messages.subscribe((smRecived) => {
       this.mensaje.next(smRecived);
+      console.log(smRecived)
     });
   }
 }
