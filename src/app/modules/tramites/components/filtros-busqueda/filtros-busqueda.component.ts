@@ -86,6 +86,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   clearAllFilters() {
     this.filters = [];
     this.formFiltros.reset(this.resetForm);
+    this.onSubmit()
   }
 
   /**
@@ -153,7 +154,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   onSubmit(): void {
     if(this.formFiltros.get('busqueda')?.value != ''){
       let busqueda ={
-        busqueda:{id:1, descripcion:this.formFiltros.get('busqueda')?.value}
+        busqueda:{id:1, descripcion:this.formFiltros.get('busqueda')?.value, tipo:'busqueda'}
       } 
        this.filters.push(busqueda)
     }
