@@ -10,7 +10,7 @@ const baseAPI = 'https://twww.santafe.gob.ar/registropropiedad/api/';
 const baseMJYDH = 'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
 
 //auth
-const AuthURL = 'https://dsso.santafe.gob.ar';
+const AuthURL = 'https://tsso.santafe.gov.ar';
 
 export const environment = {
   env: 'testing',
@@ -19,14 +19,14 @@ export const environment = {
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
-  redirectUri: 'http://127.0.0.1:4200/',
+  redirectUri: 'https://twww.santafe.gob.ar/registropropiedad',
   auth: {
     serviceAuthUrl: 'service-auth',
     authorizeUrl: 'service-auth/oauth2.0/authorize',
     accessTokenUrl: 'service-auth/oauth2.0/accessToken',
     profileUrl: 'service-auth/oauth2.0/profile',
-    clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
-    clientSecret: '173F5792303755A2GH',
+    clientId: 'mjydh-registropropiedad.sso.santafe.gov.ar.sdfg874',
+    clientSecret: '16EE12B21EF960C2FEF417E0B06A2',
     redirectUri: 'login',
     logoutUrl: 'logout',
   },
