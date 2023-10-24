@@ -25,13 +25,12 @@ export class AvatarComponent implements DoCheck {
   //Cuando se logea, si el usuario tiene foto de perfil la muestra sino
   //utiliza el avatar por defecto
   ngDoCheck(): void {
-    this.user = this.userSrv.getUser();
     this.userCas = this.userSrv.getUserCas();
     /**
      * Si el usuario esta logeado y tiene foto de perfil
      * muestra la foto sino muestra un avatar default
      */
-    if (this.user && this.userCas.foto) {
+    if (this.userCas.foto) {
       this.showFoto = true;
     }
   }

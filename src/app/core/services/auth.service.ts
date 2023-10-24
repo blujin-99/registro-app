@@ -21,7 +21,7 @@ export class AuthService {
   logout() {
     // Cierra la sesión actual y redirige al servidor CAS para cerrar la sesión allí también
     this.oauthService.logOut();
-    localStorage.clear();
+    
   }
 
   isLoggedIn(): boolean {

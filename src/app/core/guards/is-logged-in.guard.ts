@@ -5,7 +5,7 @@ import { UserService } from '../services/user.service';
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
   const userSrv = inject(UserService);
 
-  if (userSrv.getUser()) {
+  if (userSrv.getUserCas()) {
     return true;
   }
 

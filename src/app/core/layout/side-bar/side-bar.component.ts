@@ -38,13 +38,13 @@ export class SideBarComponent implements DoCheck {
   //Cuando se logea, si el usuario tiene foto de perfil la muestra sino
   //utiliza el avatar por defecto
   ngDoCheck(): void {
-    this.user = this.userSrv.getUser();
+    this.user = this.userSrv.getUserCas();
 
     /**
      * Si el usuario esta logeado y tiene foto de perfil
      * muestra la foto sino muestra un avatar default
      */
-    if (this.user && this.user.foto) {
+    if (this.user.foto) {
       this.showFoto = true;
     }
   }
@@ -63,9 +63,8 @@ export class SideBarComponent implements DoCheck {
    * Y te redirecciona al inicio
    */
   logout() {
-    localStorage.clear();
-
-    window.location.replace('http://localhost:4200/inicio');
+    this.userSrv.logout()
+   // window.location.replace('http://localhost:4200/inicio');
   }
 
   /**
