@@ -1,8 +1,10 @@
 import { Injectable, effect, signal } from '@angular/core';
 import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser, IUserCas } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +14,14 @@ export class UserService {
    * objeto usuario
    */
   private user?: IUser;
-  private userCas?: IUserCas;
-
+  private userCas?: IUserCas | null;
   /**
    * @signal observa si el usuario esta logeado o no
    */
   public loggedIn$ = signal<boolean>(false);
 
   private url = environment.apiBase + environment.api.outhApi;
-
+  private urlLogout = environment.authUrl + environment.auth.logoutUrl
   constructor(private http: HttpClient, private location: Location) {}
 
   /**
@@ -29,60 +30,32 @@ export class UserService {
    * @param userData
    */
   setUserCas(userData: IUserCas): void {
-    this.userCas = {
-      nombre: userData.nombre,
-      apellido: userData.apellido,
-      cuil: userData.cuil,
-      email: userData.email,
-      foto: userData.foto,
-    };
-
-    localStorage.setItem('userCas', JSON.stringify(this.userCas));
-  }
-  setUser(userFD: IUser): void {
-    this.user = {
-      nombre: userFD.nombre,
-      apellido: userFD.apellido,
-      numero_documento: userFD.numero_documento,
-      cuil: userFD.cuil,
-      matricula: userFD.matricula,
-    };
-
-    localStorage.setItem('user', JSON.stringify(this.user));
+    localStorage.setItem('MJYDH_CAS', JSON.stringify(userData));
   }
 
   /**
    * Si existe retorna los datos del usuario
    */
-  getUserCas(): any {
-    const userJSON = localStorage.getItem('userCas');
-
+  getUserCas() {
+    const userJSON = localStorage.getItem('MJYDH_CAS');
+    
     if (userJSON) {
-      this.user = JSON.parse(userJSON);
-      return this.user;
+      this.userCas = JSON.parse(userJSON);
+      return this.userCas;
+
     } else {
-      return null;
+      return false;
     }
   }
-  getUser(): any {
-    const userJSON = localStorage.getItem('user');
 
-    if (userJSON) {
-      this.user = JSON.parse(userJSON);
-      return this.user;
-    } else {
-      return null;
-    }
-  }
 
   initAuth(): void {
-    if (!localStorage.getItem('user')) {
+    if (!localStorage.getItem('MJYDH_CAS')) {
       const code: any = this.getAccessTokenFromUrl();
-      if(code){
+      if (code) {
         this.validateToken(code).subscribe((data: any) => {
           this.setUserCas(data.user.userCas);
-          this.setUser(data.user.userFD);
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('MJYDH_JWT', data.token);
         });
       }
     }
@@ -92,17 +65,38 @@ export class UserService {
    * @returns access token
    */
   private getAccessTokenFromUrl(): string | null {
-    let value = decodeURIComponent(this.location.path(true).split('access_token')[1]).slice(1).split('&');
-    if(value[0]){
+    let value = decodeURIComponent(
+      this.location.path(true).split('access_token')[1]
+    )
+      .slice(1)
+      .split('&');
+    if (value[0]) {
       return value[0];
     }
     return null;
-   /* const params = new URLSearchParams('access_token'+queryParams);
-    return params.get('access_token');*/ 
+    
   }
 
   private validateToken(params: any) {
     const body = JSON.stringify({ access_token: params });
     return this.http.post(this.url, body);
+  }
+
+  public logout() {
+    this.borroCredenciales().subscribe((data)=>console.log(data))
+    localStorage.removeItem('MJYDH_CAS');
+    localStorage.removeItem('MJYDH_JWT');
+    //window.location.href = this.urlLogout;
+
+  }
+
+  private borroCredenciales (){
+    console.log(this.urlLogout)
+    const headers = new HttpHeaders({
+      'Accept': '*/*',
+      'X-Requested-With': 'XMLHttpRequest',
+  });
+    const options = { headers: headers };
+    return this.http.get(this.urlLogout, options);   
   }
 }

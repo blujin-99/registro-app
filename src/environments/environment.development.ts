@@ -35,7 +35,7 @@ export const environment = {
       measurementId: 'G-FWSGR9NWED',
   },
 
-  excludedEndpoints:['www.santafe.gob.ar/estadotramiterg/consulta', 'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public'],
+  excludedEndpoints:['www.santafe.gob.ar/estadotramiterg/consulta', 'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public', AuthURL ],
 
 };
 

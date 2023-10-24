@@ -11,16 +11,16 @@ export class JwtInterceptor implements HttpInterceptor {
   excludeEndpoints: string[] = environment.excludedEndpoints;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    let token: string | null = localStorage.getItem('token');
+    let jwt: string | null = localStorage.getItem('MJYDH_JWT');
 
     let request = req;
     if (
       !this.excludeEndpoints.some((endpoint) => req.url.includes(endpoint))
     ) {
-      if (token) {
+      if (jwt) {
         request = req.clone({
           setHeaders: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${jwt}`,
             'Access-Control-Allow-Origin': '*',
           },
         });

@@ -92,7 +92,6 @@
             d="M220-180h150v-250h220v250h150v-390L480-765 220-570v390Zm-60 60v-480l320-240 320 240v480H530v-250H430v250H160Zm320-353Z"
           />
         </svg>
-
         Inicio
       </li>
       <li (click)="openDialog('/nuevoTramite')" *ngIf="user">
@@ -182,7 +181,7 @@
     <ng-content></ng-content>
 
     <div
-      *ngIf="userSrv.getUser()"
+      *ngIf="userSrv.getUserCas()"
       (click)="logout()"
       class="absolute flex flex-row items-center gap-2 px-2 text-xl font-medium text-black cursor-pointer bottom-12"
     >
@@ -199,9 +198,9 @@
       </svg>
       <p>Salir</p>
     </div>
-
+ 
     <div
-      *ngIf="!userSrv.getUser()"
+      *ngIf="!userSrv.getUserCas()"
       class="absolute flex flex-row items-center gap-2 px-2 text-xl font-medium text-black cursor-pointer bottom-12"
       (click)="login()"
     >
