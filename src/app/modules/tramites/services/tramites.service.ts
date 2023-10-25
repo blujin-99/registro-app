@@ -12,7 +12,7 @@ import {
   ITramite,
   ITramiteServicio,
 } from 'src/app/core/models/tramites.interfaces';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TramitesService {

@@ -1,15 +1,10 @@
-/**
- * Importo Variables generales
- */
-import { common } from "./environment.common";
+import { common } from './environment.common';
 
-//api
 const baseAPI = 'http://10.1.46.32:8181/registropropiedad/public/api/';
 
-//mjydh
-const baseMJYDH = 'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
+const baseMJYDH =
+  'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
 
-//auth
 const AuthURL = 'https://dsso.santafe.gob.ar';
 
 export const environment = {
@@ -23,20 +18,20 @@ export const environment = {
   auth: {
     ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
-    clientSecret: '173F5792303755A2GH'
+    clientSecret: '173F5792303755A2GH',
   },
   firebaseConfig: {
-      apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',
-      authDomain: 'formelectronicoapp.firebaseapp.com',
-      projectId: 'formelectronicoapp',
-      storageBucket: 'formelectronicoapp.appspot.com',
-      messagingSenderId: '190875804950',
-      appId: '1:190875804950:web:de50dbcfa2db0ac2851c37',
-      measurementId: 'G-FWSGR9NWED',
+    apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',
+    authDomain: 'formelectronicoapp.firebaseapp.com',
+    projectId: 'formelectronicoapp',
+    storageBucket: 'formelectronicoapp.appspot.com',
+    messagingSenderId: '190875804950',
+    appId: '1:190875804950:web:de50dbcfa2db0ac2851c37',
+    measurementId: 'G-FWSGR9NWED',
   },
-
-  excludedEndpoints:['www.santafe.gob.ar/estadotramiterg/consulta', 'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public', AuthURL ],
-
+  excludedEndpoints: [
+    'www.santafe.gob.ar/estadotramiterg/consulta',
+    'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public',
+    AuthURL,
+  ],
 };
-
-
