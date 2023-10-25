@@ -13,16 +13,16 @@ import { InterceptorModule } from './core/interceptor/interceptor.module';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 
-import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { environment } from 'src/environments/environment.development';
 import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
 import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
+import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, NotificacionComponent, MensajeComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent,  MensajeComponent,NotificacionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

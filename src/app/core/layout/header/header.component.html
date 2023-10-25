@@ -1,12 +1,16 @@
 <header
   class="flex flex-row items-center justify-between w-full h-full shadow-md md:px-12"
 >
-  <div class="flex flex-col justify-center">
+  <div *ngIf="isDesktop" class="flex flex-col justify-center">
     <h1 class="mx-5 my-0 font-medium md:mx-0">{{ appSrv.nombre }}</h1>
-    <h2 class="mx-5 my-0 text-lg secondary md:mx-0">
+    <h2  class="mx-5 my-0 text-lg secondary md:mx-0">
       {{ appSrv.ministerio }}
     </h2>
   </div>
-  <app-notificacion></app-notificacion>
-  <app-avatar></app-avatar>
+  <div class="flex md:flex-row fixed right-0 z-40 top-5">
+    <app-notificacion></app-notificacion>
+    <app-avatar></app-avatar>
+  </div>
+
+
 </header>
