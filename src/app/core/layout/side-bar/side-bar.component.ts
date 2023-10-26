@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, DoCheck } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AvatarComponent } from 'src/app/shared/components/avatar/avatar.component';
@@ -53,9 +54,7 @@ export class SideBarComponent implements DoCheck {
    * Redirecciona al oauth2
    */
   login() {
-    window.location.replace(
-      'https://dsso.santafe.gob.ar/service-auth/oauth2.0/authorize?response_type=token&client_id=sso.santafe.gov.ar.5868506FJCKWEDG33&redirect_uri=http://localhost:4200/login'
-    );
+    this.userSrv.login();
   }
 
   /**

@@ -1,6 +1,6 @@
 import { common } from './environment.common';
 
-const baseAPI = '/api/';
+const baseAPI = '/registropropiedad/api/';
 
 const baseMJYDH =
   'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';

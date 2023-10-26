@@ -1,6 +1,6 @@
 import { common } from './environment.common';
 
-const baseAPI = 'http://10.1.46.32:8181/registropropiedad/public/api/';
+const baseAPI = 'http://localhost:8081/registropropiedad/public/api/';
 
 const baseMJYDH =
   'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
@@ -14,7 +14,7 @@ export const environment = {
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
-  redirectUri: 'http://127.0.0.1:4200',
+  redirectUri: 'http://localhost:4200',
   auth: {
     ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',

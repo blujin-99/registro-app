@@ -18,7 +18,6 @@ export const common = {
     authorizeUrl: 'service-auth/oauth2.0/authorize',
     accessTokenUrl: 'service-auth/oauth2.0/accessToken',
     profileUrl: 'service-auth/oauth2.0/profile',
-    redirectUri: 'login',
     logoutUrl: '/service-auth/logout',
   },
 };

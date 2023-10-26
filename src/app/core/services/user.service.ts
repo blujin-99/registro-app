@@ -4,8 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser, IUserCas } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +19,15 @@ export class UserService {
   public loggedIn$ = signal<boolean>(false);
 
   private url = environment.apiBase + environment.api.outhApi;
-  private urlLogout = environment.authUrl + environment.auth.logoutUrl
+  private urlLogout = environment.authUrl + environment.auth.logoutUrl;
+  private urlLogin =
+    environment.authUrl +
+    '/service-auth/oauth2.0/authorize?response_type=token&client_id=' +
+    environment.auth.clientId +
+    '&redirect_uri=' +
+    environment.redirectUri;
+
+    private checklogin = false;
   constructor(private http: HttpClient, private location: Location) {}
 
   /**
@@ -37,17 +43,19 @@ export class UserService {
    * Si existe retorna los datos del usuario
    */
   getUserCas() {
+    if(!this.checklogin){
+      this.checklogin = true;
+    };
+
     const userJSON = localStorage.getItem('MJYDH_CAS');
-    
+
     if (userJSON) {
       this.userCas = JSON.parse(userJSON);
       return this.userCas;
-
     } else {
       return false;
     }
   }
-
 
   initAuth(): void {
     if (!localStorage.getItem('MJYDH_CAS')) {
@@ -74,7 +82,6 @@ export class UserService {
       return value[0];
     }
     return null;
-    
   }
 
   private validateToken(params: any) {
@@ -83,20 +90,23 @@ export class UserService {
   }
 
   public logout() {
-    this.borroCredenciales().subscribe((data)=>console.log(data))
+    this.borroCredenciales().subscribe((data) => console.log(data));
     localStorage.removeItem('MJYDH_CAS');
     localStorage.removeItem('MJYDH_JWT');
     //window.location.href = this.urlLogout;
-
   }
 
-  private borroCredenciales (){
-    console.log(this.urlLogout)
+  public login() {
+    window.location.replace(this.urlLogin);
+  }
+
+  private borroCredenciales() {
+    console.log(this.urlLogout);
     const headers = new HttpHeaders({
-      'Accept': '*/*',
+      Accept: '*/*',
       'X-Requested-With': 'XMLHttpRequest',
-  });
+    });
     const options = { headers: headers };
-    return this.http.get(this.urlLogout, options);   
+    return this.http.get(this.urlLogout, options);
   }
 }
