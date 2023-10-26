@@ -1,23 +1,19 @@
 import { Injectable, effect, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IUser, IUserCas } from '../models/user.interface';
+import { IUserCas } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  /**
-   * objeto usuario
-   */
-  private user?: IUser;
+  private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
   private userCas?: IUserCas | null;
   /**
    * @signal observa si el usuario esta logeado o no
    */
   public loggedIn$ = signal<boolean>(false);
-
   private url = environment.apiBase + environment.api.outhApi;
   private urlLogout = environment.authUrl + environment.auth.logoutUrl;
   private urlLogin =
@@ -25,51 +21,64 @@ export class UserService {
     '/service-auth/oauth2.0/authorize?response_type=token&client_id=' +
     environment.auth.clientId +
     '&redirect_uri=' +
-    environment.redirectUri;
+    environment.auth.redirectUri;
 
-    private checklogin = false;
-  constructor(private http: HttpClient, private location: Location) {}
+  constructor(private http: HttpClient, private location: Location) {
+    sessionStorage.setItem(this.MJYDH_REFRESH, '0');
+  }
 
   /**
-   * Setea la información del usuario en el localStorage
+   * Setea la información del usuario en el sessionStorage
    * y en la variable user
    * @param userData
    */
   setUserCas(userData: IUserCas): void {
-    localStorage.setItem('MJYDH_CAS', JSON.stringify(userData));
+    sessionStorage.setItem(
+      environment.login.mjydh_cas,
+      JSON.stringify(userData)
+    );
   }
 
   /**
    * Si existe retorna los datos del usuario
    */
   getUserCas() {
-    if(!this.checklogin){
-      this.checklogin = true;
-    };
-
-    const userJSON = localStorage.getItem('MJYDH_CAS');
-
+    const userJSON = sessionStorage.getItem(environment.login.mjydh_cas);
     if (userJSON) {
       this.userCas = JSON.parse(userJSON);
+      this.refreshToken();
       return this.userCas;
     } else {
       return false;
     }
   }
-
+  /**
+   * Arma el login para la aplicacion
+   * Método de inicio
+   */
   initAuth(): void {
-    if (!localStorage.getItem('MJYDH_CAS')) {
-      const code: any = this.getAccessTokenFromUrl();
-      if (code) {
-        this.validateToken(code).subscribe((data: any) => {
-          this.setUserCas(data.user.userCas);
-          localStorage.setItem('MJYDH_JWT', data.token);
-        });
+    if (!sessionStorage.getItem(environment.login.mjydh_cas)) {
+      const token: any = this.getAccessTokenFromUrl();
+      if (token) {
+        this.setToken(token);
+        this.verifToken();
       }
     }
   }
 
   /**
+   * Consulta al Backen por el toquen y setea las cerdenciales
+   * @param code
+   */
+  private verifToken(): void {
+    this.validateToken(this.getToken()).subscribe((data: any) => {
+      this.setUserCas(data.user.userCas);
+      sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
+    });
+  }
+
+  /**
+   * Retorna el Token devuelto por el CAS
    * @returns access token
    */
   private getAccessTokenFromUrl(): string | null {
@@ -83,23 +92,59 @@ export class UserService {
     }
     return null;
   }
-
-  private validateToken(params: any) {
-    const body = JSON.stringify({ access_token: params });
+  /**
+   * Funcion http para Verificar con el Backend que el Token sea válido
+   * @param token
+   * @returns
+   */
+  private validateToken(token: string | null) {
+    const body = JSON.stringify({ access_token: token });
     return this.http.post(this.url, body);
   }
 
-  public logout() {
+  /**
+   * Cierra el login
+   */
+  public logout(): void {
     this.borroCredenciales().subscribe((data) => console.log(data));
-    localStorage.removeItem('MJYDH_CAS');
-    localStorage.removeItem('MJYDH_JWT');
+    localStorage.removeItem(environment.login.mjydh_token);
+    sessionStorage.removeItem(environment.login.mjydh_cas);
+    sessionStorage.removeItem(environment.login.mjydh_jwt);
+    sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     //window.location.href = this.urlLogout;
   }
 
-  public login() {
-    window.location.replace(this.urlLogin);
+  /**
+   * Setea Token del Cas
+   * @param token
+   */
+  private setToken(token: string): void {
+    localStorage.setItem(environment.login.mjydh_token, token);
+  }
+  /**
+   * Retorna token del CAS
+   * @returns
+   */
+  private getToken(): string | null {
+    return localStorage.getItem(environment.login.mjydh_token);
   }
 
+  /**
+   * Dirige al Cas para logueo
+   */
+  public login(): void {
+    if (this.getToken()) {
+      console.log('paso');
+      this.verifToken();
+    } else {
+      window.location.replace(this.urlLogin);
+    }
+  }
+
+  /**
+   * Loguot con el CAS - Tiene PRoblemas
+   * @returns
+   */
   private borroCredenciales() {
     console.log(this.urlLogout);
     const headers = new HttpHeaders({
@@ -108,5 +153,23 @@ export class UserService {
     });
     const options = { headers: headers };
     return this.http.get(this.urlLogout, options);
+  }
+
+  public getJWT() {
+    return sessionStorage.getItem(environment.login.mjydh_jwt);
+  }
+
+  private refreshToken(): void {
+    sessionStorage.setItem(
+      this.MJYDH_REFRESH,
+      (sessionStorage.getItem(this.MJYDH_REFRESH) || '0') + '1'
+    );
+    if (
+      sessionStorage.getItem(this.MJYDH_REFRESH)?.length ==
+      environment.login.mjydh_refresh
+    ) {
+      this.verifToken();
+      sessionStorage.setItem(this.MJYDH_REFRESH, '0');
+    }
   }
 }

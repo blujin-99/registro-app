@@ -20,4 +20,10 @@ export const common = {
     profileUrl: 'service-auth/oauth2.0/profile',
     logoutUrl: '/service-auth/logout',
   },
+  login:{
+    mjydh_cas: 'MJYDH_CAS',
+    mjydh_jwt: 'MJYDH_JWT',
+    mjydh_token:'MJYDH_TOKEN',
+    mjydh_refresh:100,
+  }
 };

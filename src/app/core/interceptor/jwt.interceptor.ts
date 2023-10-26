@@ -5,14 +5,16 @@ import {
   HttpHandler,
 } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
+import { UserService } from '../services/user.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+  constructor (private userService : UserService){
+
+  }
   excludeEndpoints: string[] = environment.excludedEndpoints;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    let jwt: string | null = localStorage.getItem('MJYDH_JWT');
-
+    let jwt: string | null = this.userService.getJWT();
     let request = req;
     if (
       !this.excludeEndpoints.some((endpoint) => req.url.includes(endpoint))
