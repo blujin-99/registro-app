@@ -24,6 +24,6 @@ export const common = {
     mjydh_cas: 'MJYDH_CAS',
     mjydh_jwt: 'MJYDH_JWT',
     mjydh_token:'MJYDH_TOKEN',
-    mjydh_refresh:100,
+    mjydh_refresh:600000,
   }
 };

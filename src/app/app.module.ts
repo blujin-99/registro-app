@@ -20,7 +20,7 @@ import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
 import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
 import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
-
+import { UserService } from './core/services/user.service';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent,  MensajeComponent,NotificacionComponent],
   imports: [
@@ -38,4 +38,8 @@ import { NotificacionComponent } from './shared/components/notificacion/notifica
   providers: [importProvidersFrom(HttpClientModule), provideOAuthClient(),MessagingService, AsyncPipe],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private userService:UserService){
+    this.userService.refreshToken();
+  }
+}
