@@ -23,8 +23,9 @@ export class ModalMesaEntradaComponent {
 	ngOnInit(): void {
 		// Primero, suscríbete al observable de errores para manejar los errores
 		this.mesaEntradaServ.tramite$.subscribe(tramite => {
-			this.tramite = tramite.data.data
-			console.log(this.tramite)
+      if(tramite){
+			  this.tramite = tramite.data.data
+      }
 		})
 	}
 
