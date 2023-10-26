@@ -8,8 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-
-  private MJYDH_REFRESH: string  = 'MJYDH_REFRESH';
+  private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
   private userCas?: IUserCas | null;
   /**
    * @signal observa si el usuario esta logeado o no
@@ -25,7 +24,7 @@ export class UserService {
     environment.auth.redirectUri;
 
   constructor(private http: HttpClient, private location: Location) {
-    sessionStorage.setItem(this.MJYDH_REFRESH,'0')
+    sessionStorage.setItem(this.MJYDH_REFRESH, '0');
   }
 
   /**
@@ -34,7 +33,10 @@ export class UserService {
    * @param userData
    */
   setUserCas(userData: IUserCas): void {
-    sessionStorage.setItem(environment.login.mjydh_cas, JSON.stringify(userData));
+    sessionStorage.setItem(
+      environment.login.mjydh_cas,
+      JSON.stringify(userData)
+    );
   }
 
   /**
@@ -50,32 +52,29 @@ export class UserService {
       return false;
     }
   }
-/**
- * Arma el login para la aplicacion 
- * Método de inicio 
- */
+  /**
+   * Arma el login para la aplicacion
+   * Método de inicio
+   */
   initAuth(): void {
     if (!sessionStorage.getItem(environment.login.mjydh_cas)) {
       const token: any = this.getAccessTokenFromUrl();
       if (token) {
-       this.setToken(token);
-       this.verifToken();
+        this.setToken(token);
+        this.verifToken();
       }
     }
   }
 
   /**
-   * Consulta al Backen por el toquen y setea las cerdenciales 
-   * @param code 
+   * Consulta al Backen por el toquen y setea las cerdenciales
+   * @param code
    */
-  private verifToken():void
-  {
-    
+  private verifToken(): void {
     this.validateToken(this.getToken()).subscribe((data: any) => {
       this.setUserCas(data.user.userCas);
       sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
     });
-  
   }
 
   /**
@@ -93,26 +92,25 @@ export class UserService {
     }
     return null;
   }
-/**
- * Funcion http para Verificar con el Backend que el Token sea válido 
- * @param token 
- * @returns 
- */
-  private validateToken(token: string|null) {
+  /**
+   * Funcion http para Verificar con el Backend que el Token sea válido
+   * @param token
+   * @returns
+   */
+  private validateToken(token: string | null) {
     const body = JSON.stringify({ access_token: token });
     return this.http.post(this.url, body);
   }
 
   /**
-   * Cierra el login 
+   * Cierra el login
    */
-  public logout():void
-  {
+  public logout(): void {
     this.borroCredenciales().subscribe((data) => console.log(data));
     localStorage.removeItem(environment.login.mjydh_token);
     sessionStorage.removeItem(environment.login.mjydh_cas);
     sessionStorage.removeItem(environment.login.mjydh_jwt);
-    sessionStorage.setItem(this.MJYDH_REFRESH,'0')
+    sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     //window.location.href = this.urlLogout;
   }
 
@@ -132,19 +130,22 @@ export class UserService {
   }
 
   /**
- * Dirige al Cas para logueo 
- */
-  public login():void
-  {
-    window.location.replace(this.urlLogin);
+   * Dirige al Cas para logueo
+   */
+  public login(): void {
+    if (this.getToken()) {
+      console.log('paso');
+      this.verifToken();
+    } else {
+      window.location.replace(this.urlLogin);
+    }
   }
 
   /**
-   * Loguot con el CAS - Tiene PRoblemas  
-   * @returns 
+   * Loguot con el CAS - Tiene PRoblemas
+   * @returns
    */
-  private borroCredenciales()
-   {
+  private borroCredenciales() {
     console.log(this.urlLogout);
     const headers = new HttpHeaders({
       Accept: '*/*',
@@ -154,17 +155,21 @@ export class UserService {
     return this.http.get(this.urlLogout, options);
   }
 
-  public getJWT(){
+  public getJWT() {
     return sessionStorage.getItem(environment.login.mjydh_jwt);
   }
 
-  private refreshToken():void
-  {
-    sessionStorage.setItem(this.MJYDH_REFRESH, (sessionStorage.getItem(this.MJYDH_REFRESH) || '0') + '1');
-    if(sessionStorage.getItem(this.MJYDH_REFRESH)?.length== environment.login.mjydh_refresh){
-      this.verifToken()
-      sessionStorage.setItem(this.MJYDH_REFRESH,'0')
+  private refreshToken(): void {
+    sessionStorage.setItem(
+      this.MJYDH_REFRESH,
+      (sessionStorage.getItem(this.MJYDH_REFRESH) || '0') + '1'
+    );
+    if (
+      sessionStorage.getItem(this.MJYDH_REFRESH)?.length ==
+      environment.login.mjydh_refresh
+    ) {
+      this.verifToken();
+      sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     }
-
   }
 }
