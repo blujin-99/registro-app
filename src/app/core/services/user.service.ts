@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUserCas } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
+import { PeriodicTaskService } from './periodic-task.services';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class UserService {
     '&redirect_uri=' +
     environment.auth.redirectUri;
 
-  constructor(private http: HttpClient, private location: Location) {
+  constructor(private http: HttpClient, private location: Location, private periodic: PeriodicTaskService) {
     sessionStorage.setItem(this.MJYDH_REFRESH, '0');
   }
 
@@ -46,7 +47,6 @@ export class UserService {
     const userJSON = sessionStorage.getItem(environment.login.mjydh_cas);
     if (userJSON) {
       this.userCas = JSON.parse(userJSON);
-      this.refreshToken();
       return this.userCas;
     } else {
       return false;
@@ -74,6 +74,9 @@ export class UserService {
     this.validateToken(this.getToken()).subscribe((data: any) => {
       this.setUserCas(data.user.userCas);
       sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
+    },
+    (error: any) => {
+      this.logout();
     });
   }
 
@@ -159,17 +162,12 @@ export class UserService {
     return sessionStorage.getItem(environment.login.mjydh_jwt);
   }
 
-  private refreshToken(): void {
-    sessionStorage.setItem(
-      this.MJYDH_REFRESH,
-      (sessionStorage.getItem(this.MJYDH_REFRESH) || '0') + '1'
-    );
-    if (
-      sessionStorage.getItem(this.MJYDH_REFRESH)?.length ==
-      environment.login.mjydh_refresh
-    ) {
-      this.verifToken();
-      sessionStorage.setItem(this.MJYDH_REFRESH, '0');
-    }
+  public refreshToken(): void {
+       this.periodic.startPeriodicTask(environment.login.mjydh_refresh, () =>{
+        (this.getToken())? this.verifToken():'' });
+
   }
+
+  
+
 }
