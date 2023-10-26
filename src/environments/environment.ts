@@ -14,11 +14,11 @@ export const environment = {
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
-  redirectUri: 'http://127.0.0.1:4200',
   auth: {
     ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
     clientSecret: '173F5792303755A2GH',
+    redirectUri: 'http://127.0.0.1:4200',
   },
   firebaseConfig: {
     apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',

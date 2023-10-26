@@ -14,11 +14,12 @@ export const environment = {
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
-  redirectUri: 'https://twww.santafe.gob.ar/registropropiedad',
   auth: {
     ...common.auth,
     clientId: 'mjydh-registropropiedad.sso.santafe.gov.ar.sdfg874',
     clientSecret: '16EE12B21EF960C2FEF417E0B06A2',
+    redirectUri: 'https://twww.santafe.gob.ar/registropropiedad',
+
   },
   firebaseConfig: {
     apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',
