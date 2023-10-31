@@ -1,0 +1,16 @@
+/* Estilo base para el sidebar */
+.sidebar {
+  width: 3.34rem; /* Ancho del sidebar colapsado */
+  transition: width 0.6s ease;
+}
+
+/* Estilo para el sidebar expandido */
+.sidebar.expanded {
+  width: 14rem; /* Ancho del sidebar expandido */
+}
+
+/* Animación de transición */
+.expanded {
+  transition: width 0.6s ease;
+}
+

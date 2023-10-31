@@ -1,0 +1,40 @@
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "content"
+    "footer";
+  grid-template-rows: auto 6rem;
+  height: 100vh;
+}
+
+.content {
+  grid-area: content;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.container {
+  margin-left: 10rem;
+  transition: margin 0.6s ease;
+}
+
+.container.expanded {
+  margin-left: 14rem;
+}
+
+.expanded {
+  transition: margin 0.6s ease;
+}
+@media (max-width: 720px) {
+
+.container{
+  margin-left: 0rem;
+}
+
+.container.expanded {
+  margin-left: 0rem;
+}
+
+}

@@ -1,7 +1,15 @@
-@media screen and (max-width: 768px) {
-
-header{
-  background-color: #ffff;
-
+@media (min-width: 720px) {
+  .ocultar {
+      display: none;
   }
+}
+
+@media (max-width: 720px) {
+  .ocultar-sm {
+      display: none;
+  }
+}
+
+.menu {
+  @apply absolute top-0  w-full h-full z-[45];
 }
