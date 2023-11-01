@@ -17,9 +17,12 @@ export class LayoutService {
     this.mobileSidebar();
   }
 
+  /**
+   * Siempre que este en vista mobile el sidebar esta expandido
+   */
   mobileSidebar() {
     if (window.innerWidth < 768) {
-      this.isExpand = false;
+      this.isExpand = true;
 
       localStorage.setItem('isExpand', JSON.stringify(this.isExpand));
     }

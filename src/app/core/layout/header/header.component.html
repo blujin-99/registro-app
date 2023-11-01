@@ -1,17 +1,3 @@
-<!-- <header
-  class="flex flex-row items-center justify-between w-full h-full shadow-md md:px-12"
->
-  <div *ngIf="isDesktop" class="flex flex-col justify-center">
-    <h1 class="mx-5 my-0 font-medium md:mx-0">{{ appSrv.nombre }}</h1>
-    <h2  class="mx-5 my-0 text-lg secondary md:mx-0">
-      {{ appSrv.ministerio }}
-    </h2>
-  </div>
-  <div class="fixed right-0 z-40 flex md:flex-row md:relative md:top-0 top-5">
-    <app-notificacion></app-notificacion>
-    <app-avatar></app-avatar>
-  </div>
-</header> -->
 <nav
   class="fixed top-0 z-40 w-full bg-white border-b border-gray-200"
   [ngClass]="open ? 'menu' : ''"
@@ -65,15 +51,6 @@
             </h2>
           </div>
         </div>
-      </div>
-
-      <!-- ************** -->
-      <!-- NOTIFICACIONES -->
-      <!-- ************** -->
-
-      <!-- Si no usas sidebar elimina las clases de este contenedor -->
-      <div class="block sm:hidden">
-        <app-notificaciones />
       </div>
 
       <!-- ********************** -->

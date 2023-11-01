@@ -24,7 +24,11 @@ export class UserService {
     '&redirect_uri=' +
     environment.auth.redirectUri;
 
-  constructor(private http: HttpClient, private location: Location, private periodic: PeriodicTaskService) {
+  constructor(
+    private http: HttpClient,
+    private location: Location,
+    private periodic: PeriodicTaskService
+  ) {
     sessionStorage.setItem(this.MJYDH_REFRESH, '0');
   }
 
@@ -71,13 +75,15 @@ export class UserService {
    * @param code
    */
   private verifToken(): void {
-    this.validateToken(this.getToken()).subscribe((data: any) => {
-      this.setUserCas(data.user.userCas);
-      sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
-    },
-    (error: any) => {
-      this.logout();
-    });
+    this.validateToken(this.getToken()).subscribe(
+      (data: any) => {
+        this.setUserCas(data.user.userCas);
+        sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
+      },
+      (error: any) => {
+        this.logout();
+      }
+    );
   }
 
   /**
@@ -137,7 +143,6 @@ export class UserService {
    */
   public login(): void {
     if (this.getToken()) {
-      console.log('paso');
       this.verifToken();
     } else {
       window.location.replace(this.urlLogin);
@@ -163,11 +168,8 @@ export class UserService {
   }
 
   public refreshToken(): void {
-       this.periodic.startPeriodicTask(environment.login.mjydh_refresh, () =>{
-        (this.getToken())? this.verifToken():'' });
-
+    this.periodic.startPeriodicTask(environment.login.mjydh_refresh, () => {
+      this.getToken() ? this.verifToken() : '';
+    });
   }
-
-  
-
 }
