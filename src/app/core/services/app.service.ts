@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IAPP } from 'src/app/core/models/app.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  sistema = '';
   ministerio = '';
   url = environment;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getNombreMinisterio();
+  }
 
   /**
    * Guarda el nombre del ministerio y lo setea en el localStorage
@@ -22,14 +22,8 @@ export class AppService {
       next: (res: any) => {
         this.ministerio = res.app.Ministerio;
         localStorage.setItem('nombreMinisterio', this.ministerio);
-
-        // this.sistema = res.app.nombre;
-        // localStorage.setItem('nombreSistema', this.sistema);
-        console.log(res);
       },
       error: (error) => {
-        console.error(error);
-
         const nombreMinisterioLS = localStorage.getItem('nombreMinisterio');
 
         if (nombreMinisterioLS) {

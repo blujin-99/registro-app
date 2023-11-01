@@ -34,7 +34,7 @@ export const environment = {
   },
   excludedEndpoints: [
     'www.santafe.gob.ar/estadotramiterg/consulta',
-    'tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public',
+    'tasw.santafe.gov.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public',
     AuthURL,
   ],
 };
