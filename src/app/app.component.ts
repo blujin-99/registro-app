@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { AppService } from './shared/services/app.service';
+import { AppService } from './core/services/app.service';
 import { LayoutService } from './core/services/layout.service';
 
 @Component({
@@ -13,5 +13,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     initFlowbite();
+    this.appSrv.getNombreMinisterio();
   }
 }

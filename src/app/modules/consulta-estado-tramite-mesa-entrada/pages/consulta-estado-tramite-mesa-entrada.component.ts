@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.service';
 
-import { AppService } from 'src/app/shared/services/app.service';
+import { AppService } from 'src/app/core/services/app.service';
 import * as moment from 'moment';
 
 @Component({
@@ -10,7 +10,7 @@ import * as moment from 'moment';
   templateUrl: './consulta-estado-tramite-mesa-entrada.component.html',
   styleUrls: ['./consulta-estado-tramite-mesa-entrada.component.scss'],
 })
-export class ConsultaEstadoTramiteMesaEntradaComponent{
+export class ConsultaEstadoTramiteMesaEntradaComponent {
   form: FormGroup;
   error: any;
   constructor(
@@ -39,19 +39,17 @@ export class ConsultaEstadoTramiteMesaEntradaComponent{
    */
   onSubmit() {
     /**
-    * @var almacena valor del formulario
-    */
+     * @var almacena valor del formulario
+     */
     let mesaValue = this.form.get('mesa')?.value;
     let fechaValue = this.form.get('fecha')?.value;
     let aforoValue = this.form.get('aforo')?.value;
-    
-    this.mesaEntradaService
-    .setConsulta(
-    moment(fechaValue).format('DD/MM/YYYY'),
-    aforoValue,
-    mesaValue
-    )
-    this.mesaEntradaService.OpenModal() 
-    }
-    
+
+    this.mesaEntradaService.setConsulta(
+      moment(fechaValue).format('DD/MM/YYYY'),
+      aforoValue,
+      mesaValue
+    );
+    this.mesaEntradaService.OpenModal();
+  }
 }

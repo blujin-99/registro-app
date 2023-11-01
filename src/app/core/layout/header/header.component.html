@@ -61,7 +61,7 @@
               {{ titulo }}
             </h1>
             <h2 class="my-0 text-lg secondary ocultar-sm">
-              {{ appSrv.nombre }}
+              {{ appSrv.ministerio }}
             </h2>
           </div>
         </div>
@@ -80,40 +80,36 @@
       <!-- INICIAR/CERRAR SESION  -->
       <!-- ********************** -->
 
-      <div>
-        <div
-          class="cursor-pointer hover:underline"
-          *ngIf="!userSrv.getUserCas()"
-          (click)="login()"
-        >
-          Iniciar sesion
-        </div>
-
-        <div
-          class="cursor-pointer hover:underline"
-          *ngIf="userSrv.getUserCas()"
-          (click)="logout()"
-        >
-          Cerrar sesion
-        </div>
-      </div>
+      <button class="w-10" *ngIf="!userSrv.getUserCas()" (click)="login()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M481-120v-60h299v-600H481v-60h299q24 0 42 18t18 42v600q0 24-18 42t-42 18H481Zm-55-185-43-43 102-102H120v-60h363L381-612l43-43 176 176-174 174Z"
+          />
+        </svg>
+      </button>
 
       <!-- ************** -->
       <!-- LOGO USUARIO   -->
       <!-- ************** -->
-      <div class="flex items-center">
+      <div class="flex items-center" *ngIf="userSrv.getUserCas()">
         <div class="flex items-center ml-3">
           <div>
             <button
               type="button"
-              class="flex items-center justify-center w-10 h-10 text-sm bg-gray-200 rounded-full sm:w-12 sm:h-12 focus:ring-4 focus:ring-gray-300"
+              class="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full after:text-sm sm:w-12 sm:h-12 focus:ring-4 focus:ring-gray-300"
               aria-expanded="false"
               data-dropdown-toggle="dropdown-user"
             >
               <span class="sr-only">Open user menu</span>
-              <!-- <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo"> -->
+              <img
+                class="w-12 h-12 rounded-full"
+                src="data:image/png;base64,{{ user?.foto }}"
+                alt="user photo"
+                *ngIf="showFoto"
+              />
               <svg
-                class="w-8 h-8 overflow-hidden text-gray-400 rounded-full sm:w-10 sm:h-10"
+                *ngIf="!showFoto"
+                class="w-10 h-10 overflow-hidden text-gray-400 rounded-full sm:w-10 sm:h-10"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -132,16 +128,16 @@
           >
             <div class="px-4 py-3">
               <p class="text-sm text-gray-900">
-                {{ "Nombre Usuario" }}
+                {{ user.apellido + " " + user.nombre }}
               </p>
               <p class="text-sm font-medium text-gray-900 truncate">
-                usuario@santafe.gob.ar
+                {{ user.email }}
               </p>
             </div>
             <ul class="py-1">
               <li>
                 <a
-                  href="#"
+                  [href]="idCiudadana"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   >Perfil</a
@@ -150,7 +146,7 @@
 
               <li>
                 <a
-                  href="#"
+                  (click)="logout()"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                   >Cerrar sesión</a

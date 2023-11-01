@@ -6,8 +6,9 @@ import {
   signal,
   HostListener,
 } from '@angular/core';
-import { AppService } from 'src/app/shared/services/app.service';
+import { AppService } from 'src/app/core/services/app.service';
 import { UserService } from '../../services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,8 @@ export class HeaderComponent implements DoCheck {
   showFoto: any;
 
   isDesktop: boolean = false;
+
+  idCiudadana = environment.idCiudadanaURL + environment.cas.idciudadana;
 
   constructor(public appSrv: AppService, public userSrv: UserService) {
     this.isDesktop = window.innerWidth >= 768;
