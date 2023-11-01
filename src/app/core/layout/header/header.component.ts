@@ -9,6 +9,7 @@ import {
 import { AppService } from 'src/app/core/services/app.service';
 import { UserService } from '../../services/user.service';
 import { environment } from 'src/environments/environment';
+import { LayoutService } from '../../services/layout.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,6 @@ export class HeaderComponent implements DoCheck {
    * Espera el nombre del proyecto
    */
   @Input() titulo: string = '';
-  open = false;
 
   // Se guardan los datos del usuario
   user: any;
@@ -32,7 +32,11 @@ export class HeaderComponent implements DoCheck {
 
   idCiudadana = environment.idCiudadanaURL + environment.cas.idciudadana;
 
-  constructor(public appSrv: AppService, public userSrv: UserService) {
+  constructor(
+    public appSrv: AppService,
+    public userSrv: UserService,
+    public layoutSrv: LayoutService
+  ) {
     this.isDesktop = window.innerWidth >= 768;
   }
 
@@ -72,6 +76,6 @@ export class HeaderComponent implements DoCheck {
   }
 
   openSidenav() {
-    this.open = !this.open;
+    this.layoutSrv.toggleListItems();
   }
 }

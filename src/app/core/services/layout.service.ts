@@ -6,10 +6,19 @@ import { HostListener, Injectable } from '@angular/core';
 export class LayoutService {
   isExpand = false;
 
+  openSidebar = false;
+
   toggleSidebar() {
     this.isExpand = !this.isExpand;
     // Guarda el valor de "isExpand" en el localStorage
     localStorage.setItem('isExpand', JSON.stringify(this.isExpand));
+  }
+
+  /**
+   * Muestra u oculta el sidebar en vista responsive
+   */
+  toggleListItems() {
+    this.openSidebar = !this.openSidebar;
   }
 
   @HostListener('window:resize', ['$event'])

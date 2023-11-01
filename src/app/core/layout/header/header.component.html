@@ -1,6 +1,6 @@
 <nav
   class="fixed top-0 z-40 w-full bg-white border-b border-gray-200"
-  [ngClass]="open ? 'menu' : ''"
+  [ngClass]="layoutSrv.openSidebar ? 'menu' : ''"
 >
   <div class="px-3 py-1 lg:px-5 lg:pl-4">
     <div class="flex items-center justify-between">
@@ -29,7 +29,11 @@
             ></path>
           </svg>
         </button>
-        <a routerLink="/" class="flex md:mr-[5rem] ocultar-sm">
+        <a
+          routerLink="/"
+          class="flex md:mr-[5rem] ocultar-sm"
+          (click)="openSidenav()"
+        >
           <img
             src="https://www.santafe.gob.ar/assets/app/portal2016/images/logo-header.png"
             class="h-[4.5rem] mr-3"
@@ -137,7 +141,7 @@
   </div>
   <div
     class="z-50 w-full h-full px-3 pt-6 pb-4 overflow-y-auto bg-gray-200 sm:hidden"
-    [ngClass]="open ? '' : 'hidden'"
+    [ngClass]="layoutSrv.openSidebar ? '' : 'hidden'"
   >
     <ng-content></ng-content>
   </div>

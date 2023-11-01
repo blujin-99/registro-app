@@ -81,7 +81,6 @@ export class TablaEntregadoComponent {
    */
   private updatedTablaFiltrada(): void {
     this.tabla = this.filtroServ.getTablaFiltrada();
-    console.log(this.tabla);
   }
 
   showPagoMobile() {}
