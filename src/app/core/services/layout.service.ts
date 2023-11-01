@@ -18,7 +18,9 @@ export class LayoutService {
    * Muestra u oculta el sidebar en vista responsive
    */
   toggleListItems() {
-    this.openSidebar = !this.openSidebar;
+    if (window.innerWidth < 768) {
+      this.openSidebar = !this.openSidebar;
+    }
   }
 
   @HostListener('window:resize', ['$event'])

@@ -101,7 +101,7 @@ body {
   scroll-margin-block: $colorFuente;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
 }
 
