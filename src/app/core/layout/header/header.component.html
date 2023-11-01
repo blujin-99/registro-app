@@ -78,8 +78,7 @@
             <button
               type="button"
               class="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full after:text-sm sm:w-12 sm:h-12 focus:ring-4 focus:ring-gray-300"
-              aria-expanded="false"
-              data-dropdown-toggle="dropdown-user"
+              (click)="toggleUserOptions()"
             >
               <span class="sr-only">Open user menu</span>
               <img
@@ -104,8 +103,8 @@
             </button>
           </div>
           <div
-            class="z-40 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
-            id="dropdown-user"
+            class="z-40 my-4 absolute right-5 top-14 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+            *ngIf="showUserOptions"
           >
             <div class="px-4 py-3">
               <p class="text-sm text-gray-900">
@@ -119,7 +118,7 @@
               <li>
                 <a
                   [href]="idCiudadana"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   role="menuitem"
                   >Perfil</a
                 >
@@ -128,7 +127,7 @@
               <li>
                 <a
                   (click)="logout()"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                   role="menuitem"
                   >Cerrar sesión</a
                 >
@@ -143,6 +142,7 @@
     class="z-50 w-full h-full px-3 pt-6 pb-4 overflow-y-auto bg-gray-200 sm:hidden"
     [ngClass]="layoutSrv.openSidebar ? '' : 'hidden'"
   >
+    <!-- LIST ITEM SIDEBAR PARA VERLO EN RESPONSIVE -->
     <ng-content></ng-content>
   </div>
 </nav>
