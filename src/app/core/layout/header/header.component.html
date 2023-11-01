@@ -1,4 +1,4 @@
-<header
+<!-- <header
   class="flex flex-row items-center justify-between w-full h-full shadow-md md:px-12"
 >
   <div *ngIf="isDesktop" class="flex flex-col justify-center">
@@ -7,10 +7,161 @@
       {{ appSrv.ministerio }}
     </h2>
   </div>
-  <div class="flex md:flex-row md:relative fixed right-0 z-40 md:top-0 top-5">
+  <div class="fixed right-0 z-40 flex md:flex-row md:relative md:top-0 top-5">
     <app-notificacion></app-notificacion>
     <app-avatar></app-avatar>
   </div>
+</header> -->
+<nav
+  class="fixed top-0 z-40 w-full bg-white border-b border-gray-200"
+  [ngClass]="open ? 'menu' : ''"
+>
+  <div class="px-3 py-1 lg:px-5 lg:pl-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center justify-start">
+        <!-- ************** -->
+        <!-- boton opciones mobile -->
+        <!-- ************** -->
+        <button
+          (click)="openSidenav()"
+          aria-controls="logo-sidebar"
+          type="button"
+          class="inline-flex items-center p-2 mr-3 text-sm text-gray-500 rounded-lg sm:mr-0 sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        >
+          <span class="sr-only">Open sidebar</span>
+          <svg
+            class="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+            ></path>
+          </svg>
+        </button>
+        <a routerLink="/" class="flex md:mr-[5rem] ocultar-sm">
+          <img
+            src="https://www.santafe.gob.ar/assets/app/portal2016/images/logo-header.png"
+            class="h-[4.5rem] mr-3"
+            alt="Logo Santa Fe"
+          />
+        </a>
 
+        <!-- ************** -->
+        <!--     TITULOS    -->
+        <!-- ************** -->
 
-</header>
+        <div class="flex flex-row items-center justify-between">
+          <div class="flex flex-col justify-center">
+            <h1 class="my-0 text-2xl font-medium sm:text-3xl">
+              {{ titulo }}
+            </h1>
+            <h2 class="my-0 text-lg secondary ocultar-sm">
+              {{ appSrv.ministerio }}
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- ************** -->
+      <!-- NOTIFICACIONES -->
+      <!-- ************** -->
+
+      <!-- Si no usas sidebar elimina las clases de este contenedor -->
+      <div class="block sm:hidden">
+        <app-notificaciones />
+      </div>
+
+      <!-- ********************** -->
+      <!-- INICIAR/CERRAR SESION  -->
+      <!-- ********************** -->
+
+      <button class="w-10" *ngIf="!userSrv.getUserCas()" (click)="login()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M481-120v-60h299v-600H481v-60h299q24 0 42 18t18 42v600q0 24-18 42t-42 18H481Zm-55-185-43-43 102-102H120v-60h363L381-612l43-43 176 176-174 174Z"
+          />
+        </svg>
+      </button>
+
+      <!-- ************** -->
+      <!-- LOGO USUARIO   -->
+      <!-- ************** -->
+      <div class="flex items-center" *ngIf="userSrv.getUserCas()">
+        <div class="flex items-center ml-3">
+          <div>
+            <button
+              type="button"
+              class="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full after:text-sm sm:w-12 sm:h-12 focus:ring-4 focus:ring-gray-300"
+              aria-expanded="false"
+              data-dropdown-toggle="dropdown-user"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="w-12 h-12 rounded-full"
+                src="data:image/png;base64,{{ user?.foto }}"
+                alt="user photo"
+                *ngIf="showFoto"
+              />
+              <svg
+                *ngIf="!showFoto"
+                class="w-10 h-10 overflow-hidden text-gray-400 rounded-full sm:w-10 sm:h-10"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            class="z-40 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+            id="dropdown-user"
+          >
+            <div class="px-4 py-3">
+              <p class="text-sm text-gray-900">
+                {{ user.apellido + " " + user.nombre }}
+              </p>
+              <p class="text-sm font-medium text-gray-900 truncate">
+                {{ user.email }}
+              </p>
+            </div>
+            <ul class="py-1">
+              <li>
+                <a
+                  [href]="idCiudadana"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  >Perfil</a
+                >
+              </li>
+
+              <li>
+                <a
+                  (click)="logout()"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  >Cerrar sesión</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="z-50 w-full h-full px-3 pt-6 pb-4 overflow-y-auto bg-gray-200 sm:hidden"
+    [ngClass]="open ? '' : 'hidden'"
+  >
+    <ng-content></ng-content>
+  </div>
+</nav>

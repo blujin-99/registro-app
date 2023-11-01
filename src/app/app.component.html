@@ -1,4 +1,4 @@
-<app-loading></app-loading>
+<!--
 <div class="app-container">
   <div class="header">
     <app-header [titulo]="appSrv.nombre"></app-header>
@@ -11,5 +11,23 @@
   </div>
   <div class="footer">
     <app-footer></app-footer>
+  </div>
+</div> -->
+<app-loading></app-loading>
+<app-header [titulo]="'Registro General de la propiedad'">
+  <app-list-sidebar></app-list-sidebar>
+</app-header>
+<app-sidebar>
+  <app-list-sidebar></app-list-sidebar>
+</app-sidebar>
+<div
+  class="container w-full p-4 sm:w-10/12 grid-container"
+  [ngClass]="{ expanded: layoutSrv.isExpand }"
+>
+  <div class="p-4 sm:mt-[5rem] mt-8 space-y-5 content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer">
+    <app-footer />
   </div>
 </div>

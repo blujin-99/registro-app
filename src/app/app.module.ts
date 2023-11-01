@@ -21,25 +21,44 @@ import { AsyncPipe } from '@angular/common';
 import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
 import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
 import { UserService } from './core/services/user.service';
+import { NotificacionesComponent } from './core/components/notificaciones/notificaciones.component';
+import { ListSidebarComponent } from './core/components/list-sidebar/list-sidebar.component';
+import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent,  MensajeComponent,NotificacionComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MensajeComponent,
+    NotificacionComponent,
+    NotificacionesComponent,
+    ListSidebarComponent,
+    SidebarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SideBarComponent,
+    RouterModule,
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
     InterceptorModule,
     AvatarComponent,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
   ],
-  providers: [importProvidersFrom(HttpClientModule), provideOAuthClient(),MessagingService, AsyncPipe],
+  providers: [
+    importProvidersFrom(HttpClientModule),
+    provideOAuthClient(),
+    MessagingService,
+    AsyncPipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private userService:UserService){
+  constructor(private userService: UserService) {
     this.userService.refreshToken();
   }
 }

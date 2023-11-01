@@ -9,9 +9,9 @@ export const common = {
 
   app: {
     ministerio: 'Ministerio de Gobierno, Justicia y Derechos Humanos',
-    ministerioCorto: "MJ y DDHH",
+    ministerioCorto: 'MJ y DDHH',
     secretaria: 'Registro General de la Propiedad',
-    nombre: 'Registro General de la Propiedad',
+    sistema: 'Registro General de la Propiedad',
   },
   auth: {
     serviceAuthUrl: 'service-auth',
@@ -20,10 +20,13 @@ export const common = {
     profileUrl: 'service-auth/oauth2.0/profile',
     logoutUrl: '/service-auth/logout',
   },
-  login:{
+  login: {
     mjydh_cas: 'MJYDH_CAS',
     mjydh_jwt: 'MJYDH_JWT',
-    mjydh_token:'MJYDH_TOKEN',
-    mjydh_refresh:600000,
-  }
+    mjydh_token: 'MJYDH_TOKEN',
+    mjydh_refresh: 600000,
+  },
+  cas: {
+    idciudadana: 'idciudadana',
+  },
 };

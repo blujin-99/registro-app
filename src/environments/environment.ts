@@ -3,17 +3,20 @@ import { common } from './environment.common';
 const baseAPI = 'http://10.1.46.32:8181/registropropiedad/public/api/';
 
 const baseMJYDH =
-  'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public/';
+  'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public';
 
 const AuthURL = 'https://dsso.santafe.gob.ar';
 
+const idCiudadanaURL = 'https://www.santafe.gob.ar/';
+
 export const environment = {
-  env: 'develop',
+  env: 'prod',
   ...common,
   production: false,
   appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
+  idCiudadanaURL: idCiudadanaURL,
   auth: {
     ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
