@@ -22,6 +22,8 @@ export class HeaderComponent implements DoCheck {
    */
   @Input() titulo: string = '';
 
+  showUserOptions = false;
+
   // Se guardan los datos del usuario
   user: any;
 
@@ -52,6 +54,10 @@ export class HeaderComponent implements DoCheck {
     if (this.user.foto) {
       this.showFoto = true;
     }
+  }
+
+  toggleUserOptions() {
+    this.showUserOptions = !this.showUserOptions;
   }
 
   /**
