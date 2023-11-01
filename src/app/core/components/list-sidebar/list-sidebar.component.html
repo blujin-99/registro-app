@@ -2,7 +2,7 @@
   class="space-y-2 font-medium"
   [ngClass]="layoutSrv.isExpand ? '' : '[&>li>a>span]:hidden'"
 >
-  <li>
+  <li (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/inicio']" class="item-list">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path
@@ -13,11 +13,11 @@
     </a>
   </li>
 
-  <li class="hidden sm:block">
+  <li>
     <app-notificaciones />
   </li>
 
-  <li *ngIf="user">
+  <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/nuevoTramite']" class="item-list">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path
@@ -28,7 +28,7 @@
     </a>
   </li>
 
-  <li *ngIf="user">
+  <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/misTramites']" class="item-list">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path
@@ -39,7 +39,7 @@
     </a>
   </li>
 
-  <li *ngIf="user">
+  <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/consultaPagos']" class="item-list">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path
@@ -50,7 +50,7 @@
     </a>
   </li>
 
-  <li *ngIf="user">
+  <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/otrasTasas']" class="item-list">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path
@@ -61,7 +61,7 @@
     </a>
   </li>
 
-  <li>
+  <li (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/consultaMesaEntrada']" class="item-list">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path

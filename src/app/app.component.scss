@@ -5,6 +5,7 @@
     "footer";
   grid-template-rows: auto 6rem;
   height: 100vh;
+ // align-items: center; /* Centra verticalmente */
 }
 
 .content {
@@ -28,13 +29,11 @@
   transition: margin 0.6s ease;
 }
 @media (max-width: 720px) {
+  .container {
+    margin-left: 0rem;
+  }
 
-.container{
-  margin-left: 0rem;
-}
-
-.container.expanded {
-  margin-left: 0rem;
-}
-
+  .container.expanded {
+    margin-left: 0rem;
+  }
 }

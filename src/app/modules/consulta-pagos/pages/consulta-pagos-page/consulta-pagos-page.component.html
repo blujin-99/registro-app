@@ -1,11 +1,10 @@
-<div class="side-bar"></div>
-<div class="flex flex-col items-center gap-3 my-5">
-  <span class="w-11/12 mt-3">
-    <h2 class="m-0 text-2xl primary">Consulta de Pagos</h2>
+<div class="flex flex-col items-start gap-6">
+  <span>
+    <h2 class="text-2xl primary">Consulta de Pagos</h2>
   </span>
 
   <div
-    class="flex flex-col justify-start w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow"
+    class="flex flex-col justify-start w-full p-6 bg-white border border-gray-200 rounded-lg shadow"
   >
     <p class="text-xl font-medium secondary">
       Ingrese entre que fechas quiere consultar pagos
@@ -61,7 +60,7 @@
   </div>
 
   <!-- TABLA-->
-  <div class="w-11/12 my-10">
+  <div class="w-full">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <!-- Position Column -->
 
