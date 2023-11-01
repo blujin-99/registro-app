@@ -8,6 +8,7 @@
   overflow-x: auto;
 }
 
+
 .content {
   grid-area: content;
 }
@@ -28,10 +29,26 @@
 .expanded {
   transition: margin 0.6s ease;
 }
+
+@media screen and (min-width: 768px) {
+  .grid-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+
+  .grid-container::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+
 @media (max-width: 720px) {
   .container {
     margin-left: 0rem;
   }
+
 
   .container.expanded {
     margin-left: 0rem;
