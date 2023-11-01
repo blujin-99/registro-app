@@ -1,0 +1,23 @@
+<ng-container *ngIf="!hide">
+  <div
+    (click)="close()"
+    class="fixed top-0 flex flex-row items-center justify-center w-screen h-[1.15rem]"
+    [ngClass]="env.env === 'dev' ? 'bg-red-500' : 'bg-blue-500'"
+  >
+    <p class="text-black">Entorno {{ env.env }}</p>
+    <p class="pl-2 text-black">v{{ appSrv.version }}</p>
+  </div>
+  <div class="fixed top-0 cursor-pointer right-5" (click)="close()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="19"
+      height="19"
+      viewBox="0 0 24 24"
+      style="fill: rgba(0, 0, 0, 1)"
+    >
+      <path
+        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
+      ></path>
+    </svg>
+  </div>
+</ng-container>

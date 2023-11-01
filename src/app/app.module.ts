@@ -25,6 +25,7 @@ import { NotificacionesComponent } from './core/components/notificaciones/notifi
 import { ListSidebarComponent } from './core/components/list-sidebar/list-sidebar.component';
 import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { AlertDevelopComponent } from './core/components/alert-develop/alert-develop.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { RouterModule } from '@angular/router';
     NotificacionesComponent,
     ListSidebarComponent,
     SidebarComponent,
+    AlertDevelopComponent,
   ],
   imports: [
     BrowserModule,
