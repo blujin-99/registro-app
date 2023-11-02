@@ -10,7 +10,6 @@ import { TablaEntregadoComponent } from './components/tabla-entregado/tabla-entr
 import { TablaFinalizadoComponent } from './components/tabla-finalizado/tabla-finalizado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SideBarComponent } from 'src/app/core/layout/side-bar/side-bar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MaterialModule } from '../material/material.module';
@@ -30,7 +29,6 @@ import { MaterialModule } from '../material/material.module';
     TramiteRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SideBarComponent,
     MaterialModule,
     AlertCategoriaComponent,
     MatFormFieldModule,
