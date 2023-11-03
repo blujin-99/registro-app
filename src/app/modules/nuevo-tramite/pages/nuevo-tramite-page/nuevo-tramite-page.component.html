@@ -1,11 +1,12 @@
-<div class="flex flex-col mt-3 sm:mt-0 gap-6">
+<div class="flex flex-col gap-6 mt-3 sm:mt-0">
   <span>
     <h2 class="m-0 text-2xl primary">Nuevo Trámite</h2>
   </span>
 
-  <div class="flex flex-col justify-start gap-6 md:flex-row w-full">
+  <div class="flex flex-col justify-start w-full gap-6 md:flex-row">
     <!--? SRD  -->
-    <div
+    <form
+      [formGroup]="formSRD"
       class="flex flex-col items-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
     >
       <span class="flex flex-row justify-start w-11/12 mt-2">
@@ -14,25 +15,33 @@
       <div class="flex flex-col w-11/12 gap-4">
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          formControlName="categoria"
+          (change)="setTramiteServicio()"
         >
           <option value="" disabled selected>
             Seleccione una Categoría de Trámite
           </option>
-          <option></option>
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+            {{ categoria.nombre }}
+          </option>
         </select>
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          formControlName="servicio"
         >
           <option value="" disabled selected>
             Seleccione un Tramite/Servicio
           </option>
-          <option></option>
+
+          <option *ngFor="let tramite of tramiteServicio" [ngValue]="tramite">
+            {{ tramite.nombre }}
+          </option>
         </select>
       </div>
       <span class="w-11/12">
         <app-btn-iniciar-tramite [ruta]="'/'"></app-btn-iniciar-tramite>
       </span>
-    </div>
+    </form>
     <!--? SERVICIOS  -->
     <div
       class="flex flex-col items-center justify-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
