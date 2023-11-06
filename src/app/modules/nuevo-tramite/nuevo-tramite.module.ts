@@ -4,10 +4,11 @@ import { NuevoTramitePageComponent } from './pages/nuevo-tramite-page/nuevo-tram
 import { NuevoTramiteRoutingModule } from './nuevo-tramite-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { BtnIniciarTramiteComponent } from './components/btn-iniciar-tramite/btn-iniciar-tramite.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [NuevoTramitePageComponent, BtnIniciarTramiteComponent],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   exports: [NuevoTramiteRoutingModule, NuevoTramitePageComponent],
 })
 export class NuevoTramiteModule {}

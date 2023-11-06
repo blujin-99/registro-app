@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class BtnIniciarTramiteComponent {
   @Input({ required: true }) ruta: string = '';
+  @Input() deshabilitar: any = true;
 }

@@ -134,7 +134,7 @@ export class UserService {
    * Retorna token del CAS
    * @returns
    */
-  private getToken(): string | null {
+  public getToken(): string | null {
     return localStorage.getItem(environment.login.mjydh_token);
   }
 

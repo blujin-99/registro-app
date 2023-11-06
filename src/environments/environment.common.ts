@@ -5,13 +5,7 @@ export const common = {
     tramitesFiltros: 'tramites/filtros',
     consulta: 'https://www.santafe.gob.ar/estadotramiterg/consulta',
     outhApi: 'login/oauth',
-  },
-
-  app: {
-    ministerio: 'Ministerio de Gobierno, Justicia y Derechos Humanos',
-    ministerioCorto: 'MJ y DDHH',
-    secretaria: 'Registro General de la Propiedad',
-    sistema: 'Registro General de la Propiedad',
+    newTramite: 'profesion/newTramite',
   },
   auth: {
     serviceAuthUrl: 'service-auth',

@@ -9,6 +9,8 @@ const AuthURL = 'https://dsso.santafe.gob.ar';
 
 const idCiudadanaURL = 'https://www.santafe.gob.ar/';
 
+const formURL = 'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/';
+
 export const environment = {
   env: 'prod',
   ...common,
@@ -17,6 +19,7 @@ export const environment = {
   apiBase: baseAPI,
   authUrl: AuthURL,
   idCiudadanaURL: idCiudadanaURL,
+  formURL: formURL,
   auth: {
     ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
