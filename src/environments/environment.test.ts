@@ -9,7 +9,7 @@ const AuthURL = 'https://tsso.santafe.gob.ar';
 
 const idCiudadanaURL = 'https://www.santafe.gob.ar/';
 
-const formURL = 'http://10.1.46.32:5656/formelectronico/web/app_dev.php/';
+const formURL = 'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/';
 
 export const environment = {
   env: 'test',

@@ -39,7 +39,14 @@
         </select>
       </div>
       <span class="w-11/12">
-        <app-btn-iniciar-tramite [ruta]="'/'"></app-btn-iniciar-tramite>
+        <button
+          type="button"
+          [disabled]="!formSRD.valid"
+          class="btn-primary"
+          (click)="redirectSRD()"
+        >
+          Iniciar Trámite
+        </button>
       </span>
     </form>
     <!--? SERVICIOS  -->
