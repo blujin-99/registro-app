@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NewTramiteService } from '../../services/new-tramite.service';
 import { ICategoriaTramite, ITramiteServicio } from 'src/app/core/models';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
@@ -13,9 +18,10 @@ import { Router } from '@angular/router';
 })
 export class NuevoTramitePageComponent implements OnInit {
   categorias: ICategoriaTramite[] = [];
-  tramiteServicio: ITramiteServicio[] = [];
+  tramitesServicios: ITramiteServicio[] = [];
+  servicios: ITramiteServicio[] = [];
 
-  formSRD: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup({});
 
   constructor(
     private newTramiteSrv: NewTramiteService,
@@ -24,38 +30,51 @@ export class NuevoTramitePageComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.formSRD = this.fb.group({
+    this.form = this.fb.group({
       categoria: ['', Validators.required],
+      tramiteServicio: ['', Validators.required],
       servicio: ['', Validators.required],
     });
 
     this.newTramiteSrv.getSRD().subscribe({
       next: (res: ICategoriaTramite[]) => {
         this.categorias = res;
-      },
-      error: (error) => {
-        console.error(error);
+        const categoriaServicio = res.find((obj) => obj.id === 30);
+        this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
     });
   }
 
-  setTramiteServicio() {
-    this.tramiteServicio =
-      this.formSRD.get('categoria')?.value.tipoTramiteServicios;
+  get categoria() {
+    return this.form.get('categoria');
   }
 
-  redirectSRD() {
-    const urlBase = this.formSRD.get('servicio')?.value.new;
+  get tramiteServicio() {
+    return this.form.get('tramiteServicio');
+  }
+
+  get servicio() {
+    return this.form.get('servicio');
+  }
+
+  setTramiteServicio() {
+    this.tramitesServicios = [];
+    this.tramiteServicio?.setValue(null);
+    this.tramitesServicios = this.categoria?.value.tipoTramiteServicios;
+  }
+
+  //TODO: Parametrisar urls
+  redirectToTramite(tramite: any) {
+    const urlBase = tramite?.value.new;
     if (urlBase) {
       const url =
         'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/' +
         this.userSrv.getToken() +
         '?redirect=' +
         '../formularios' +
-        this.formSRD.get('servicio')?.value.urlBase +
-        this.formSRD.get('servicio')?.value.new;
+        tramite?.value.urlBase +
+        tramite?.value.new;
       window.location.href = url;
-      console.log(url);
     } else {
       const url =
         'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/' +
@@ -63,9 +82,8 @@ export class NuevoTramitePageComponent implements OnInit {
         '?redirect=' +
         '../formularios' +
         '/SR/' +
-        this.formSRD.get('servicio')?.value.id;
+        tramite?.value.id;
       window.location.href = url;
-      console.log(url);
     }
   }
 }
