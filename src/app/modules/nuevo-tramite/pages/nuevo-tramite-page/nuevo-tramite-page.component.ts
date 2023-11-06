@@ -63,12 +63,12 @@ export class NuevoTramitePageComponent implements OnInit {
     this.tramitesServicios = this.categoria?.value.tipoTramiteServicios;
   }
 
-  //TODO: Parametrisar urls
   redirectToTramite(tramite: any) {
     const urlBase = tramite?.value.new;
+    const urlForm = environment.formURL;
     if (urlBase) {
       const url =
-        'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/' +
+        urlForm +
         this.userSrv.getToken() +
         '?redirect=' +
         '../formularios' +
@@ -77,7 +77,7 @@ export class NuevoTramitePageComponent implements OnInit {
       window.location.href = url;
     } else {
       const url =
-        'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/' +
+        urlForm +
         this.userSrv.getToken() +
         '?redirect=' +
         '../formularios' +
