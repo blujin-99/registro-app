@@ -13,6 +13,7 @@ import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tra
 import { AccionesService } from '../../services/acciones.service';
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
+import { ITramite } from 'src/app/core/models';
 
 @Component({
   selector: 'app-tabla-pendientes',
@@ -92,7 +93,8 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
 
   showPagoMobile() {}
 
-  openBottomSheet(): void {
+  openBottomSheet(tramite: ITramite): void {
+    this.tramitesrv.getTramiteActions(tramite.codigo_tramite);
     this._bottomSheet.open(OpcionesTramiteComponent);
   }
 }

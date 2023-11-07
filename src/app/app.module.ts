@@ -25,6 +25,7 @@ import { ListSidebarComponent } from './core/components/list-sidebar/list-sideba
 import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { AlertDevelopComponent } from './core/components/alert-develop/alert-develop.component';
+import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/opciones-tramite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { AlertDevelopComponent } from './core/components/alert-develop/alert-dev
     ListSidebarComponent,
     SidebarComponent,
     AlertDevelopComponent,
+    OpcionesTramiteComponent,
   ],
   imports: [
     BrowserModule,
