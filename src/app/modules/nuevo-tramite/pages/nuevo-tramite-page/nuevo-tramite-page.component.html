@@ -3,10 +3,12 @@
     <h2 class="m-0 text-2xl primary">Nuevo Trámite</h2>
   </span>
 
-  <div class="flex flex-col justify-start w-full gap-6 md:flex-row">
+  <form
+    class="flex flex-col justify-start w-full gap-6 md:flex-row"
+    [formGroup]="form"
+  >
     <!--? SRD  -->
-    <form
-      [formGroup]="formSRD"
+    <div
       class="flex flex-col items-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
     >
       <span class="flex flex-row justify-start w-11/12 mt-2">
@@ -27,13 +29,13 @@
         </select>
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-          formControlName="servicio"
+          formControlName="tramiteServicio"
         >
           <option value="" disabled selected>
             Seleccione un Tramite/Servicio
           </option>
 
-          <option *ngFor="let tramite of tramiteServicio" [ngValue]="tramite">
+          <option *ngFor="let tramite of tramitesServicios" [ngValue]="tramite">
             {{ tramite.nombre }}
           </option>
         </select>
@@ -41,14 +43,14 @@
       <span class="w-11/12">
         <button
           type="button"
-          [disabled]="!formSRD.valid"
+          [disabled]="!tramiteServicio?.valid"
           class="btn-primary"
-          (click)="redirectSRD()"
+          (click)="redirectToTramite(tramiteServicio)"
         >
           Iniciar Trámite
         </button>
       </span>
-    </form>
+    </div>
     <!--? SERVICIOS  -->
     <div
       class="flex flex-col items-center justify-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
@@ -59,11 +61,23 @@
       <div class="flex flex-col w-11/12 gap-4">
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          formControlName="servicio"
         >
           <option value="" disabled selected>Seleccione un Servicio</option>
-          <option></option>
+          <option *ngFor="let servicio of servicios" [ngValue]="servicio">
+            {{ servicio.nombre }}
+          </option>
         </select>
-        <app-btn-iniciar-tramite [ruta]="'/'"></app-btn-iniciar-tramite>
+        <span class="w-11/12">
+          <button
+            type="button"
+            [disabled]="!servicio?.valid"
+            class="btn-primary"
+            (click)="redirectToTramite(servicio)"
+          >
+            Iniciar Trámite
+          </button>
+        </span>
       </div>
     </div>
     <!--? TRAMITES DIGITALES -->
@@ -85,5 +99,5 @@
         <app-btn-iniciar-tramite [ruta]="'/'"></app-btn-iniciar-tramite>
       </div>
     </div>
-  </div>
+  </form>
 </div>
