@@ -6,6 +6,7 @@ export const common = {
     consulta: 'https://www.santafe.gob.ar/estadotramiterg/consulta',
     outhApi: 'login/oauth',
     newTramite: 'profesion/newTramite',
+    actions: 'action',
   },
   auth: {
     serviceAuthUrl: 'service-auth',

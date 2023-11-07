@@ -83,7 +83,8 @@ export class NuevoTramitePageComponent implements OnInit {
         '../formularios' +
         '/SR/' +
         tramite?.value.id;
-      window.location.href = url;
+      //window.location.href = url;
+      console.log(url);
     }
   }
 }
