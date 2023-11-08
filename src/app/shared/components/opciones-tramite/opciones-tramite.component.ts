@@ -25,7 +25,6 @@ export class OpcionesTramiteComponent {
       this.userSrv.getToken() +
       '?redirect=' +
       '../formularios' +
-      '/SR' +
       link;
     console.log(url);
     window.open(url);
