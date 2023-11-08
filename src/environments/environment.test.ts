@@ -26,14 +26,14 @@ export const environment = {
     clientSecret: '16EE12B21EF960C2FEF417E0B06A2',
     redirectUri: 'https://twww.santafe.gob.ar/registropropiedad',
   },
-  firebaseConfig: {
-    apiKey: 'AIzaSyAFlI5Vv1NIJsrn2jiOlMyYEccoMfshxlk',
-    authDomain: 'formelectronicoapp.firebaseapp.com',
-    projectId: 'formelectronicoapp',
-    storageBucket: 'formelectronicoapp.appspot.com',
-    messagingSenderId: '190875804950',
-    appId: '1:190875804950:web:de50dbcfa2db0ac2851c37',
-    measurementId: 'G-FWSGR9NWED',
+  firebaseConfig : {
+    apiKey: "AIzaSyBpbH_dIaBRXoufO5lZIU34doXiUQ3aOYg",
+    authDomain: "registro-propiedad-santafe.firebaseapp.com",
+    projectId: "registro-propiedad-santafe",
+    storageBucket: "registro-propiedad-santafe.appspot.com",
+    messagingSenderId: "446689370798",
+    appId: "1:446689370798:web:692077ccda2a861d18c33f",
+    measurementId: "G-DFC97LCPGB"
   },
   excludedEndpoints: [
     'www.santafe.gob.ar/estadotramiterg/consulta',
