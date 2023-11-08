@@ -8,9 +8,12 @@ import { BehaviorSubject } from 'rxjs';
 export class MessagingService {
   mensaje = new BehaviorSubject<any>(null);
 
+  $count = new BehaviorSubject<number>(0)
+
+  counter: string[] = []
   Watched: boolean = false;
 
-  constructor(private AFMessaging: AngularFireMessaging) {}
+  constructor(private AFMessaging: AngularFireMessaging) { }
 
   requestPermission() {
     this.AFMessaging.requestToken.subscribe((token) => {
@@ -23,7 +26,31 @@ export class MessagingService {
   reciveMessaging() {
     this.AFMessaging.messages.subscribe((smRecived) => {
       this.mensaje.next(smRecived);
-      console.log(smRecived)
+      let notificationData = {
+        title: smRecived.notification?.title,
+        body: smRecived.notification?.body,
+        url: smRecived.data?.['url']
+      }
+
+      let notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+      notifications.push(notificationData)
+
+      localStorage.setItem('notifications', JSON.stringify(notifications))
+
+      let storage = localStorage.getItem('notifications')
+
+      console.log(storage)
+
     });
+  }
+
+  checkNotification(){
+    const count = localStorage.getItem('notifications')
+    if (count) {
+      const counter = JSON.parse(count)
+      this.counter = Array.isArray(counter) ? counter : [];
+    }
+
+    return this.counter.length
   }
 }

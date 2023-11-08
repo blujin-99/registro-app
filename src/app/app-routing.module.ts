@@ -38,6 +38,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'notificaciones',
+    canActivate:[isLoggedInGuard],
+    loadChildren:() =>
+    import('./modules/bandeja-notificaciones/notificaciones.module').then(
+      (m) => m.NotificacionesModule)
+  },
+  {
     path: 'consultaMesaEntrada',
     loadChildren: () =>
       import(
