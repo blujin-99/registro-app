@@ -1,18 +1,32 @@
-<mat-nav-list>
-  <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-    <span matListItemTitle>Ver Fomulario</span>
-    <!-- <span matLine>Add to a note</span> -->
-  </a>
+<mat-nav-list *ngIf="tramiteSrv.actions.length >= 1">
+  <ng-container *ngFor="let action of tramiteSrv.actions">
+    <a
+      mat-list-item
+      (click)="openLink($event, action.link)"
+      *ngIf="action.action === 'Ver'"
+    >
+      <span matListItemTitle>Ver Fomulario</span>
+      <!-- <span matLine>Add to a note</span> -->
+    </a>
 
-  <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-    <span matListItemTitle>Modificar</span>
-    <!-- <span matLine>Embed in a document</span> -->
-  </a>
+    <a
+      mat-list-item
+      (click)="openLink($event, action.link)"
+      *ngIf="action.action === 'Modificar'"
+    >
+      <span matListItemTitle>Modificar</span>
+      <!-- <span matLine>Embed in a document</span> -->
+    </a>
 
-  <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-    <span matListItemTitle><p class="text-red-600">Eliminar</p> </span>
-    <!-- <span matLine>Share with your friends</span> -->
-  </a>
+    <a
+      mat-list-item
+      (click)="openLink($event, action.link)"
+      *ngIf="action.action === 'Borrar'"
+    >
+      <span matListItemTitle><p class="text-red-600">Eliminar</p> </span>
+      <!-- <span matLine>Share with your friends</span> -->
+    </a>
+  </ng-container>
 
   <!-- <a
     href="https://hangouts.google.com/"

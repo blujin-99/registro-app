@@ -4,7 +4,7 @@
     class="fixed top-0 flex flex-row items-center justify-center w-screen h-[1.15rem]"
     [ngClass]="env.env === 'dev' ? 'bg-red-500' : 'bg-blue-500'"
   >
-    <p class="text-black">Entorno {{ env.env }}</p>
+    <p class="text-black">App '{{ env.env }}' Server '{{ appSrv.env }}'</p>
     <p class="pl-2 text-black">v{{ appSrv.version }}</p>
   </div>
   <div class="fixed top-0 cursor-pointer right-5" (click)="close()">

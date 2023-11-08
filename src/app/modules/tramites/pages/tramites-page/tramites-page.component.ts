@@ -4,7 +4,6 @@ import { TramitesService } from '../../services/tramites.service';
 @Component({
   templateUrl: './tramites-page.component.html',
   styleUrls: ['./tramites-page.component.scss'],
-  providers: [TramitesService],
 })
 export class TramitesPageComponent implements OnInit {
   cargando: boolean = true;
