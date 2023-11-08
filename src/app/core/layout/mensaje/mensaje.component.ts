@@ -17,17 +17,13 @@ export class MensajeComponent {
     this.messageSrv.requestPermission;
     this.messageSrv.reciveMessaging;
     this.messageSrv.mensaje.subscribe((sms) => {
-      if (sms) {
+   
         this.title = sms.notification.title;
         this.mensaje = sms.notification.body;
         this.link = sms.data.url;
-      }
+      
     });
   }
 
-  notificationWathed() {
-    this.messageSrv.mensaje.subscribe((sms) => {
-      sms = null;
-    });
-  }
+
 }
