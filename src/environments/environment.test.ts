@@ -3,7 +3,7 @@ import { common } from './environment.common';
 const baseAPI = '/registropropiedad/api/';
 
 const baseMJYDH =
-  'https://tasw.santafe.gob.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public';
+  '/registropropiedad/api/';
 
 const AuthURL = 'https://tsso.santafe.gob.ar';
 

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class AppService {
   ministerio = '';
   version = '';
+  env='';
   url = environment;
 
   constructor(private http: HttpClient) {
@@ -21,8 +22,9 @@ export class AppService {
   getNombreMinisterio() {
     this.http.get(this.url.appBase).subscribe({
       next: (res: any) => {
-        this.ministerio = res.app.Ministerio;
-        this.version = res.app.Version;
+        this.ministerio = res.Ministerio;
+        this.version = res.Version;
+        this.env = res.Enviroment;
         localStorage.setItem('nombreMinisterio', this.ministerio);
       },
       error: (error) => {
