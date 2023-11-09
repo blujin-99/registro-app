@@ -43,6 +43,8 @@ export class NuevoTramitePageComponent implements OnInit {
         this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
     });
+
+    
   }
 
   get categoria() {

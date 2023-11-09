@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
-import { common } from 'src/environments/environment.common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +43,7 @@ export class ConsultaMesaEntradaService {
   }
 
   getConsulta() {
-    const url = `${common.api.consulta}?fecha=${this.fecha}&aforo=${this.aforo}&mesa=${this.mesa}`
+    const url = `${environment.idCiudadanaURL +environment.api.consulta}?fecha=${this.fecha}&aforo=${this.aforo}&mesa=${this.mesa}`
     return this.http.get(url).subscribe((data) => {
       this.ConsultaTramite.next(data)
     })

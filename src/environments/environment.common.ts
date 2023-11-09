@@ -3,7 +3,7 @@ export const common = {
     fdadmintramite: 'tramite/{codigo}',
     tramites: 'tramites',
     tramitesFiltros: 'tramites/filtros',
-    consulta: 'https://www.santafe.gob.ar/estadotramiterg/consulta',
+    consulta: '/estadotramiterg/consulta',
     outhApi: 'login/oauth',
     newTramite: 'profesion/newTramite',
     actions: 'action',
