@@ -17,8 +17,6 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { environment } from 'src/environments/environment';
 import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
-import { MensajeComponent } from './core/layout/mensaje/mensaje.component';
-import { NotificacionComponent } from './shared/components/notificacion/notificacion.component';
 import { UserService } from './core/services/user.service';
 import { NotificacionesComponent } from './core/components/notificaciones/notificaciones.component';
 import { ListSidebarComponent } from './core/components/list-sidebar/list-sidebar.component';
@@ -31,8 +29,6 @@ import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/o
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MensajeComponent,
-    NotificacionComponent,
     NotificacionesComponent,
     ListSidebarComponent,
     SidebarComponent,

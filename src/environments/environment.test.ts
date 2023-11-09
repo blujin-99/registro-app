@@ -22,7 +22,7 @@ export const environment = {
     clientSecret: '16EE12B21EF960C2FEF417E0B06A2',
     redirectUri: 'https://twww.santafe.gob.ar/registropropiedad',
   },
-  firebaseConfig : {
+  firebaseConfig: {
     apiKey: "AIzaSyBpbH_dIaBRXoufO5lZIU34doXiUQ3aOYg",
     authDomain: "registro-propiedad-santafe.firebaseapp.com",
     projectId: "registro-propiedad-santafe",
