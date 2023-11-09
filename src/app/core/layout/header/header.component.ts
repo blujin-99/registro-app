@@ -10,6 +10,7 @@ import { AppService } from 'src/app/core/services/app.service';
 import { UserService } from '../../services/user.service';
 import { environment } from 'src/environments/environment';
 import { LayoutService } from '../../services/layout.service';
+import { MessagingService } from '../../services/messaging.service';
 
 @Component({
   selector: 'app-header',
@@ -37,7 +38,8 @@ export class HeaderComponent implements DoCheck {
   constructor(
     public appSrv: AppService,
     public userSrv: UserService,
-    public layoutSrv: LayoutService
+    public layoutSrv: LayoutService,
+    protected messageSrv: MessagingService
   ) {
     this.isDesktop = window.innerWidth >= 768;
   }
