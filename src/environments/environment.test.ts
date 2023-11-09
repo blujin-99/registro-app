@@ -2,9 +2,6 @@ import { common } from './environment.common';
 
 const baseAPI = '/registropropiedad/api/';
 
-const baseMJYDH =
-  '/registropropiedad/api/';
-
 const AuthURL = 'https://tsso.santafe.gob.ar';
 
 const idCiudadanaURL = 'https://www.santafe.gob.ar/';
@@ -15,7 +12,6 @@ export const environment = {
   env: 'test',
   ...common,
   production: false,
-  appBase: baseMJYDH,
   apiBase: baseAPI,
   authUrl: AuthURL,
   idCiudadanaURL: idCiudadanaURL,

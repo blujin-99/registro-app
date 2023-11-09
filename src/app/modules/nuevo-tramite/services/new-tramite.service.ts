@@ -15,4 +15,6 @@ export class NewTramiteService {
       this.url + environment.api.newTramite
     );
   }
+
+  
 }
