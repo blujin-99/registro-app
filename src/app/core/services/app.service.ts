@@ -20,7 +20,7 @@ export class AppService {
    * Si hay un error setea el nombre que guardo en el localStorage
    */
   getNombreMinisterio() {
-    this.http.get(this.url.appBase).subscribe({
+    this.http.get(this.url.apiBase).subscribe({
       next: (res: any) => {
         this.ministerio = res.Ministerio;
         this.version = res.Version;
