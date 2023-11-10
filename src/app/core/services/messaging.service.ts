@@ -39,7 +39,7 @@ export class MessagingService {
 
       let storage = localStorage.getItem('notifications')
 
-      console.log(storage)
+    
 
     });
   }
