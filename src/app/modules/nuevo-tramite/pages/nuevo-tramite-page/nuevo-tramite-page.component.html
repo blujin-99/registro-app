@@ -90,13 +90,26 @@
       <div class="flex flex-col w-11/12 gap-4">
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          formControlName="tramiteDigital"
         >
-          <option value="" disabled selected>
-            Seleccione un trámite digital
+          <option value="" disabled selected>Seleccione un Tramite</option>
+          <option
+            *ngFor="let tramited of tramitesDigitales"
+            [ngValue]="tramited"
+          >
+            {{ tramited.nombre }}
           </option>
-          <option></option>
         </select>
-        <app-btn-iniciar-tramite [ruta]="'/'"></app-btn-iniciar-tramite>
+        <span class="w-11/12">
+          <button
+            type="button"
+            [disabled]="!tramited?.valid"
+            class="btn-primary"
+            (click)="redirectToTramitesDig(tramited)"
+          >
+            Iniciar Trámite
+          </button>
+        </span>
       </div>
     </div>
   </form>

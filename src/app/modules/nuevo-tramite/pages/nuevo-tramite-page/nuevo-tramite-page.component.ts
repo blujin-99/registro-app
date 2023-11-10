@@ -21,6 +21,19 @@ export class NuevoTramitePageComponent implements OnInit {
   tramitesServicios: ITramiteServicio[] = [];
   servicios: ITramiteServicio[] = [];
 
+  tramitesDigitales: any = [
+    {
+      nombre: 'Certificado / Informes',
+
+      link: '../formulariosv1/?#/',
+    },
+    {
+      nombre: 'Declaratoria de Herederos',
+
+      link: '../declaratoria/?#/declaratoria',
+    },
+  ];
+
   form: FormGroup = new FormGroup({});
 
   constructor(
@@ -34,6 +47,7 @@ export class NuevoTramitePageComponent implements OnInit {
       categoria: ['', Validators.required],
       tramiteServicio: ['', Validators.required],
       servicio: ['', Validators.required],
+      tramiteDigital: ['', Validators.required],
     });
 
     this.newTramiteSrv.getSRD().subscribe({
@@ -43,8 +57,6 @@ export class NuevoTramitePageComponent implements OnInit {
         this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
     });
-
-    
   }
 
   get categoria() {
@@ -59,6 +71,10 @@ export class NuevoTramitePageComponent implements OnInit {
     return this.form.get('servicio');
   }
 
+  get tramited() {
+    return this.form.get('tramiteDigital');
+  }
+
   setTramiteServicio() {
     this.tramitesServicios = [];
     this.tramiteServicio?.setValue(null);
@@ -66,16 +82,16 @@ export class NuevoTramitePageComponent implements OnInit {
   }
 
   redirectToTramite(tramite: any) {
-    const urlBase = tramite?.value.new;
+    const urlBase = tramite?.value;
     const urlForm = environment.formURL;
-    if (urlBase) {
+    if (urlBase.new) {
       const url =
         urlForm +
         this.userSrv.getToken() +
         '?redirect=' +
         '../formularios' +
-        tramite?.value.urlBase +
-        tramite?.value.new;
+        urlBase.urlBase +
+        urlBase;
       window.location.href = url;
     } else {
       const url =
@@ -84,9 +100,17 @@ export class NuevoTramitePageComponent implements OnInit {
         '?redirect=' +
         '../formularios' +
         '/SR/' +
-        tramite?.value.id;
-      //window.location.href = url;
+        urlBase.id;
+      window.location.href = url;
       console.log(url);
     }
+  }
+
+  redirectToTramitesDig(tramite: any) {
+    const urlForm = environment.formURL;
+    const url =
+      urlForm + this.userSrv.getToken() + '?redirect=' + tramite.value.link;
+    console.log(url);
+    window.location.href = url;
   }
 }
