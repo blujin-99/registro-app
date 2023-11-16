@@ -43,6 +43,7 @@ export class MessagingService {
 
     });
   }
+  
 
   checkNotification(){
     const count = localStorage.getItem('notifications')
