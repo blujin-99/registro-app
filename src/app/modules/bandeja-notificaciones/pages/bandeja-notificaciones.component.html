@@ -1,9 +1,9 @@
 <span>
     <h2 class="m-0 text-2xl primary">Notificaciones</h2>
 </span>
-<div class="flex flex-col items-center mt-5 overflow-y-auto" *ngFor="let message of reciveMessage, let id = index">
- 
-    <a [href]="message?.url" target="_blank" (click)="deleteNotification(id)"
+<div *ngIf="messageSrv.checkNotification()" class="flex flex-col items-center mt-5 ml-6 overflow-y-auto">
+    <div *ngFor="let message of notificacion$ | async, let id = index" class=" w-full">
+        <a [href]="message?.url" target="_blank" (click)="deleteNotification(id)"
         class=" w-11/12 flex md:h-20 h-32 my-2 flex-col hover:no-underline justify-start bg-white border border-gray-200 rounded-lg shadow-md">
         <div class=" ml-5 mt-2">
             <h4 class="titulo">{{message?.title}}</h4>
@@ -14,4 +14,5 @@
             </p>
         </div>
     </a>
+    </div>
 </div>
