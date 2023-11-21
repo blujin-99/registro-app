@@ -16,22 +16,43 @@ firebase.initializeApp(
 
 const messaging = firebase.messaging()
 
-self.addEventListener('notificationclick', event => {
-    console.log("On notification click: ", event.notification.tag);
-    event.notification.close();
-  
-    event.waitUntil(
-      clients.matchAll({ type: 'window' }).then(clientList => {
-        for (const client of clientList) {
-          if (client.url === event.notification.data.url && 'focus' in client) {
-            return client.focus();
-          }
+self.addEventListener('push', function(event) {
+  const payload = event.data.json(); //obtengo el json de las notificaciones por medio del evento push
+
+  //en options guardo el json a mostrar cuando la notificación estén en segundo plano
+  const options = { 
+    body: payload.notification?.body, 
+    data: {
+      url: payload.data?.['url'] 
+    },
+  };
+
+
+  event.waitUntil(
+
+    self.registration.showNotification(payload.notification?.title , options)
+  );
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+
+  const urlToOpen = event.notification.data.url;
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window' }).then(clientsArr => {
+      // Si hay una ventana abierta, enfócala
+      for (const client of clientsArr) {
+        if ('focus' in client) {
+          return client.focus();
         }
-  
-        if (clients.openWindow) {
-          return clients.openWindow(event.notification.data.url);
-        }
-      })
-    );
-  });
-  
+      }
+
+      // Si no hay ventana abierta, abre una nueva ventana con la URL especificada
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
+});
+
