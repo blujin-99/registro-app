@@ -1,22 +1,25 @@
-import { Component, OnInit, ViewChild, effect } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  effect,
+} from '@angular/core';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
 import { AccionesService } from '../../services/acciones.service';
+import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
-
+import { ITramite } from 'src/app/core/models';
 @Component({
   selector: 'app-tabla-entregado',
   templateUrl: './tabla-entregado.component.html',
   styleUrls: ['./tabla-entregado.component.scss'],
 })
 export class TablaEntregadoComponent {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  dataSource = new MatTableDataSource();
-  tabla: any;
-
   displayedColumns: string[] = [
     'tramite',
     'numeroFormulario',
@@ -25,15 +28,16 @@ export class TablaEntregadoComponent {
     'excedentes',
   ];
 
+
   constructor(
-    private filtroServ: FiltrosService,
     private _bottomSheet: MatBottomSheet,
-    public accionesSrv: AccionesService
+    public accionesSrv: AccionesService,
+    private tramitesrv: TramitesService,
+    private filtrosService: FiltrosService
   ) {
     effect(() => {
       if (this.accionesSrv.pagoMultiple()) {
         this.displayedColumns = [
-          'pagar',
           'tramite',
           'numeroFormulario',
           'jurisdiccion',
@@ -52,40 +56,39 @@ export class TablaEntregadoComponent {
     });
   }
 
+
+  dataSource = new MatTableDataSource();
+  tabla: any;
+  filtros: any;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  // ngOnInit(): void {
-  //   this.tableServ.getTableEntregado().subscribe({
-  //     next: (resultado) => {
-
-  //       this.filtroServ.setTabla(resultado);
-
-  //       this.dataSource = new MatTableDataSource(resultado);
-  //     }
-  //   });
-  //   /**
-  //    * @var filtros$ observable solo de lectura que detecta los cambio del filtrado entonces
-  //    *  updatedTablaFiltrada se llama cada vez que se alctualiza filtros$
-  //    */
-  //   this.filtroServ.filtros$.subscribe(() =>
-  //     this.updatedTablaFiltrada()
-  //   )
-
-  // }
-
-  /**
-   * @function updatedTablaFiltrada toma los datos filtrados y retornando d de la tabla y los guarda
-   * en @var tabla que seŕa el array que mostrará los datos de la tabla filtrados
-   */
-  private updatedTablaFiltrada(): void {
-    this.tabla = this.filtroServ.getTablaFiltrada();
+  ngOnInit(): void {
+    this.tramitesrv.getTramites().subscribe((res) => {
+      this.tabla = res;
+      this.filtrosService.setTabla(this.tabla);
+      this.filtrosService.setTablasinFiltro(this.tabla);
+      this.actualizarDataSource();
+    });
+  
+    this.filtrosService.filtros$.subscribe(() => {
+      this.actualizarDataSource();
+    });
+  }
+  
+  private actualizarDataSource(): void {
+    this.dataSource = new MatTableDataSource(this.filtrosService.getEntregado());
+    this.dataSource.paginator = this.paginator;
   }
 
   showPagoMobile() {}
 
-  openBottomSheet(): void {
+  openBottomSheet(tramite: ITramite): void {
+    this.tramitesrv.getTramiteActions(tramite.codigo_tramite);
     this._bottomSheet.open(OpcionesTramiteComponent);
   }
 }

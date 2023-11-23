@@ -28,11 +28,9 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     'tasas',
     'excedentes',
   ];
-  data: any;
   dataSource = new MatTableDataSource<any>();
   tabla: any;
   filtros: any;
-  filterRow: any[] = []; //crear interface
   constructor(
     private _bottomSheet: MatBottomSheet,
     public accionesSrv: AccionesService,
@@ -60,7 +58,6 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  search: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -71,24 +68,18 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     this.tramitesrv.getTramites().subscribe((res) => {
       this.tabla = res;
       this.filtrosService.setTabla(this.tabla);
-      this.filtrosService.setTablasinFiltro(res);
-      this.dataSource = new MatTableDataSource(
-        this.filtrosService.getTablaFiltrada()
-      );
-      this.dataSource.paginator = this.paginator;
+      this.filtrosService.setTablasinFiltro(this.tabla);
+      this.actualizarDataSource();
     });
-
-    this.filtrosService.filtros$.subscribe((filtro) => {
-      this.updatedTablaFiltrada();
-      this.dataSource = new MatTableDataSource(
-        this.filtrosService.getTablaFiltrada()
-      );
-      this.dataSource.paginator = this.paginator;
+  
+    this.filtrosService.filtros$.subscribe(() => {
+      this.actualizarDataSource();
     });
   }
-
-  private updatedTablaFiltrada(): void {
-    let tabla = this.filtrosService.getTablaFiltrada();
+  
+  private actualizarDataSource(): void {
+    this.dataSource = new MatTableDataSource(this.filtrosService.getPendiente());
+    this.dataSource.paginator = this.paginator;
   }
 
   showPagoMobile() {}
