@@ -1,44 +1,45 @@
 <div class="overflow-x-auto">
   <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="tramite">
-      <th mat-header-cell *matHeaderCellDef>Trámite</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
-        {{ tramite.tramite }}
+    <!--filterRow-->
+    <ng-container matColumnDef="pagar" *ngIf="accionesSrv.pagoMultiple()">
+      <th mat-header-cell *matHeaderCellDef>Pagar</th>
+      <td mat-cell *matCellDef="let tramite">
+        <input type="checkbox" [value]="tramite.pagar" />
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="fechaPresentacion">
-      <th mat-header-cell *matHeaderCellDef>Fecha de Presentación</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
-        {{ tramite.fechaPresentacion }}
+    <ng-container matColumnDef="tramite">
+      <th mat-header-cell *matHeaderCellDef>Trámite</th>
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet(tramite)">
+        {{ tramite.TipoTramiteServicio.nombre }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="numeroFormulario">
       <th mat-header-cell *matHeaderCellDef>Número de Formulario</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
-        {{ tramite.numeroFormulario }}
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet(tramite)">
+        {{ tramite.codigo_tramite }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="jurisdiccion">
       <th mat-header-cell *matHeaderCellDef>Jurisdicción</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
-        {{ tramite.jurisdiccion }}
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet(tramite)">
+        {{ tramite.Jurisdiccion.nombre }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="tasas">
       <th mat-header-cell *matHeaderCellDef>Estado Tasas</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
-        {{ tramite.tasas }}
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet(tramite)">
+        {{ tramite.EstadoTasas.descripcion }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="excedentes">
       <th mat-header-cell *matHeaderCellDef>Estado Excedentes</th>
-      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet()">
-        {{ tramite.excedentes }}
+      <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet(tramite)">
+        {{ tramite.EstadoExcedentes.descripcion }}
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

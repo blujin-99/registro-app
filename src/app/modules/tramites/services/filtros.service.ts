@@ -16,11 +16,14 @@ export class FiltrosService {
   private filtrosSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(
     []
   );
-  filtros$: Observable<string[]> = this.filtrosSubject.asObservable();
+  filtros$: Observable<any[]> = this.filtrosSubject.asObservable();
 
   busqueda : any
 
   datosTabla: any[] = [];
+  finalizado : any[] = [];
+  entregado : any[] = [];
+  pendiente: any []=[]
   tablaSinFiltro: any []=[]
 
   /**
@@ -52,6 +55,7 @@ export class FiltrosService {
   
     return (this.datosTabla.filter((fila: any) => {
             return filtrosRow.every((filtro) => {
+              console.log(fila)
               if(filtro.length != 0){
                 if (filtro.busqueda && filtro.busqueda.descripcion) {
             // Si hay un valor de búsqueda por número de tramite en los filtros, usarlo para buscar por los últimos dígitos 
@@ -78,9 +82,31 @@ export class FiltrosService {
         }))
   }
   
-
   
+  getFinalizado(): any[] {
+    this.finalizado = this.getTablaFiltrada().filter(finalizado => {
+      return finalizado.EstadoTramite.descripcion === 'ENTREGADO';
+    });
   
+    return this.finalizado;
+  }
 
+  getPendiente(): any[] {
+    this.pendiente = this.getTablaFiltrada().filter(pendiente => {
+      return pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' || 
+      pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
+      pendiente.EstadoTramite.descripcion === 'OBSERVADO'
+    })
+    return this.pendiente
+  }
+
+  getEntregado(): any[]{
+    this.entregado = this.getTablaFiltrada().filter(entregado =>{
+      return entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
+      entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
+      entregado.EstadoTramite.descripcion === 'FINALIZADO'
+    })
+    return this.entregado
+  }
 
 }
