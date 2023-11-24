@@ -11,12 +11,12 @@ const formURL = 'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/';
 
 export const environment = {
   env: 'prod',
-  ...common,
   production: false,
   apiBase: baseAPI,
   authUrl: AuthURL,
   idCiudadanaURL: idCiudadanaURL,
   formURL: formURL,
+  ...common,
   auth: {
     ...common.auth,
     clientId: 'sso.santafe.gov.ar.5868506FJCKWEDG33',
