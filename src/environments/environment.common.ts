@@ -7,6 +7,7 @@ export const common = {
     outhApi: 'login/oauth',
     newTramite: 'profesion/newTramite',
     actions: 'action',
+    notificationUrl : 'notify/register'
   },
   auth: {
     serviceAuthUrl: 'service-auth',

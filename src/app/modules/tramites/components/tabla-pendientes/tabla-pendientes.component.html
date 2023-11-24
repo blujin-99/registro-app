@@ -40,16 +40,9 @@
       <th mat-header-cell *matHeaderCellDef>Estado Excedentes</th>
       <td mat-cell *matCellDef="let tramite" (click)="openBottomSheet(tramite)">
         {{ tramite.EstadoExcedentes.descripcion }}
-        {{ tramite.EstadoTramite.descripcion }}
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="EstadoTramite">
-      <th mat-header-cell *matHeaderCellDef>Estado Tramite</th>
-      <td mat-cell *matCellDef="let tramite">
-        {{ tramite.EstadoTramite.descripcion }}
-      </td>
-    </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>

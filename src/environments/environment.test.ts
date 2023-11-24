@@ -4,18 +4,20 @@ const baseAPI = '/registropropiedad/api/';
 
 const AuthURL = 'https://tsso.santafe.gob.ar';
 
-const idCiudadanaURL = 'https://www.santafe.gob.ar/';
+const idCiudadanaURL = 'https://twww.santafe.gob.ar/';
 
 const formURL = 'https://twww.santafe.gov.ar/tramites/formelectronico/auth/';
 
+
 export const environment = {
   env: 'test',
-  ...common,
+  
   production: false,
   apiBase: baseAPI,
   authUrl: AuthURL,
   idCiudadanaURL: idCiudadanaURL,
   formURL: formURL,
+  ...common,
   auth: {
     ...common.auth,
     clientId: 'mjydh-registropropiedad.sso.santafe.gov.ar.sdfg874',
