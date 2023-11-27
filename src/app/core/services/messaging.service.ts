@@ -96,7 +96,6 @@ export class MessagingService {
     if(storage){
       const dataStorage = JSON.parse(storage)
       dataStorage.splice(id,1)
-      console.log(dataStorage)
       localStorage.setItem('notifications',JSON.stringify(dataStorage))
     }
   }

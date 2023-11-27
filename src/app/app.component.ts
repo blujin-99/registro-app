@@ -27,6 +27,8 @@ export class AppComponent implements OnInit {
         * recibe la notificación
         */
        this.messagingSrv.reciveMessaging();
+
+
     initFlowbite();
   }
 }
