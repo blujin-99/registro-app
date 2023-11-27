@@ -3,6 +3,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,13 +17,17 @@ export class MessagingService {
 
   counter: string[] = []
 
-  constructor(private AFMessaging: AngularFireMessaging, private http: HttpClient) { }
+  constructor(
+    private AFMessaging: AngularFireMessaging,
+    private http: HttpClient,
+    private userSrv : UserService
+     ) { }
 
   requestPermission() {
     this.AFMessaging.requestToken
       .pipe(
         switchMap((token) => {
-          if (token) {
+          if (token && this.userSrv.getUserCas()) {
             this.token = token;
             // Devuelve la solicitud HTTP como una nueva Observable
             console.log(token)
