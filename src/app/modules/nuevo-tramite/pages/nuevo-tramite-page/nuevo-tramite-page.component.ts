@@ -102,7 +102,6 @@ export class NuevoTramitePageComponent implements OnInit {
         '/SR/' +
         urlBase.id;
       window.location.href = url;
-      console.log(url);
     }
   }
 
@@ -110,7 +109,7 @@ export class NuevoTramitePageComponent implements OnInit {
     const urlForm = environment.formURL;
     const url =
       urlForm + this.userSrv.getToken() + '?redirect=' + tramite.value.link;
-    console.log(url);
+
     window.location.href = url;
   }
 }
