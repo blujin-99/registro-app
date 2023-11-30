@@ -157,7 +157,6 @@ export class UserService {
    * @returns
    */
   private borroCredenciales() {
-    console.log(this.urlLogout);
     const headers = new HttpHeaders({
       Accept: '*/*',
       'X-Requested-With': 'XMLHttpRequest',

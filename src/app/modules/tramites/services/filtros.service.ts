@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FiltrosService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /**
    *  @observable filtrosSubjesct escucha constantemente los datos filtrados
@@ -18,13 +18,13 @@ export class FiltrosService {
   );
   filtros$: Observable<any[]> = this.filtrosSubject.asObservable();
 
-  busqueda : any
+  busqueda: any;
 
   datosTabla: any[] = [];
-  finalizado : any[] = [];
-  entregado : any[] = [];
-  pendiente: any []=[]
-  tablaSinFiltro: any []=[]
+  finalizado: any[] = [];
+  entregado: any[] = [];
+  pendiente: any[] = [];
+  tablaSinFiltro: any[] = [];
 
   /**
    *
@@ -40,73 +40,75 @@ export class FiltrosService {
   setTabla(tablaValues: any[]) {
     this.datosTabla = tablaValues;
   }
-  
-  setTablasinFiltro(tabla : any[]):void{
-     this.tablaSinFiltro = tabla
+
+  setTablasinFiltro(tabla: any[]): void {
+    this.tablaSinFiltro = tabla;
   }
 
- 
   /**
    * @function getTablaFiltrada() devuleve un array de los datos de la tabla
    * con la información filtrada
    */
   getTablaFiltrada(): any[] {
     const filtrosRow = this.filtrosSubject.value;
-  
-    return (this.datosTabla.filter((fila: any) => {
-            return filtrosRow.every((filtro) => {
-              console.log(fila)
-              if(filtro.length != 0){
-                if (filtro.busqueda && filtro.busqueda.descripcion) {
-            // Si hay un valor de búsqueda por número de tramite en los filtros, usarlo para buscar por los últimos dígitos 
-                return fila.codigo_tramite.endsWith(filtro.busqueda.descripcion) ||
-                  fila.TipoTramiteServicio.nombre === filtro.nombre ||
-                  fila.EstadoTasas.descripcion === filtro.descripcion ||
-                  fila.EstadoExcedentes.descripcion === filtro.descripcion ||
-                  fila.Jurisdiccion.nombre === filtro.nombre ||
-                  fila.EstadoTramite.descripcion === filtro.descripcion;
-                } else {
+
+    return this.datosTabla.filter((fila: any) => {
+      return filtrosRow.every((filtro) => {
+        if (filtro.length != 0) {
+          if (filtro.busqueda && filtro.busqueda.descripcion) {
+            // Si hay un valor de búsqueda por número de tramite en los filtros, usarlo para buscar por los últimos dígitos
+            return (
+              fila.codigo_tramite.endsWith(filtro.busqueda.descripcion) ||
+              fila.TipoTramiteServicio.nombre === filtro.nombre ||
+              fila.EstadoTasas.descripcion === filtro.descripcion ||
+              fila.EstadoExcedentes.descripcion === filtro.descripcion ||
+              fila.Jurisdiccion.nombre === filtro.nombre ||
+              fila.EstadoTramite.descripcion === filtro.descripcion
+            );
+          } else {
             // Si no hay valor de búsqueda de número de tramite, aplicar otros filtros
-                return (
-                  fila.TipoTramiteServicio.nombre === filtro.nombre ||
-                  fila.EstadoTasas.descripcion === filtro.descripcion ||
-                  fila.EstadoExcedentes.descripcion === filtro.descripcion ||
-                  fila.Jurisdiccion.nombre === filtro.nombre ||
-                  fila.EstadoTramite.descripcion === filtro.descripcion
-                );
-              }
-              }else{
-                this.datosTabla = this.tablaSinFiltro
-              }
-         });
-        }))
+            return (
+              fila.TipoTramiteServicio.nombre === filtro.nombre ||
+              fila.EstadoTasas.descripcion === filtro.descripcion ||
+              fila.EstadoExcedentes.descripcion === filtro.descripcion ||
+              fila.Jurisdiccion.nombre === filtro.nombre ||
+              fila.EstadoTramite.descripcion === filtro.descripcion
+            );
+          }
+        } else {
+          this.datosTabla = this.tablaSinFiltro;
+        }
+      });
+    });
   }
-  
-  
+
   getFinalizado(): any[] {
-    this.finalizado = this.getTablaFiltrada().filter(finalizado => {
+    this.finalizado = this.getTablaFiltrada().filter((finalizado) => {
       return finalizado.EstadoTramite.descripcion === 'ENTREGADO';
     });
-  
+
     return this.finalizado;
   }
 
   getPendiente(): any[] {
-    this.pendiente = this.getTablaFiltrada().filter(pendiente => {
-      return pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' || 
-      pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
-      pendiente.EstadoTramite.descripcion === 'OBSERVADO'
-    })
-    return this.pendiente
+    this.pendiente = this.getTablaFiltrada().filter((pendiente) => {
+      return (
+        pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' ||
+        pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
+        pendiente.EstadoTramite.descripcion === 'OBSERVADO'
+      );
+    });
+    return this.pendiente;
   }
 
-  getEntregado(): any[]{
-    this.entregado = this.getTablaFiltrada().filter(entregado =>{
-      return entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
-      entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
-      entregado.EstadoTramite.descripcion === 'FINALIZADO'
-    })
-    return this.entregado
+  getEntregado(): any[] {
+    this.entregado = this.getTablaFiltrada().filter((entregado) => {
+      return (
+        entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
+        entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
+        entregado.EstadoTramite.descripcion === 'FINALIZADO'
+      );
+    });
+    return this.entregado;
   }
-
 }

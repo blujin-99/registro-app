@@ -21,7 +21,7 @@ export class OpcionesTramiteComponent {
   redirectToAction(link: string) {
     const urlForm = environment.formURL;
     const url = urlForm + this.userSrv.getToken() + '?redirect=' + link;
-    console.log(url);
+
     window.open(url);
   }
 

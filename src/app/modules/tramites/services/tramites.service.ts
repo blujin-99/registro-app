@@ -56,7 +56,6 @@ export class TramitesService {
       .subscribe({
         next: (res) => {
           this.actions = res;
-          console.log(res);
         },
       });
   }
