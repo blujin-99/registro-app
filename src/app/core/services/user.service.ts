@@ -112,10 +112,10 @@ export class UserService {
   }
 
   /**
-   * Cierra el login 
+   * Cierra el login
    */
   public logout(): void {
-    this.borroCredenciales().subscribe((data) => console.log(data));
+    //this.borroCredenciales().subscribe((data) => console.log(data));
     localStorage.removeItem(environment.login.mjydh_token);
     sessionStorage.removeItem(environment.login.mjydh_cas);
     sessionStorage.removeItem(environment.login.mjydh_jwt);
@@ -123,7 +123,7 @@ export class UserService {
     /**
      * Redirecciono al Inicio
      */
-    window.location.href = '/#/inicio';
+    window.location.href = environment.authUrl + environment.auth.logoutUrl;
   }
 
   /**
