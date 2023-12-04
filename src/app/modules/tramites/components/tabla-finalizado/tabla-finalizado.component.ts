@@ -14,6 +14,7 @@ import { AccionesService } from '../../services/acciones.service';
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
 import { ITramite } from 'src/app/core/models';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-tabla-finalizado',
@@ -69,23 +70,19 @@ export class TablaFinalizadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tramitesrv.getTramites().subscribe((res) => {
-      this.tabla = res;
-      this.filtrosService.setTabla(this.tabla);
-      this.filtrosService.setTablasinFiltro(this.tabla);
-      this.actualizarDataSource();
-    });
-  
-    this.filtrosService.filtros$.subscribe(() => {
-      this.actualizarDataSource();
-    });
-  }
-  
-  private actualizarDataSource(): void {
-    this.dataSource = new MatTableDataSource(this.filtrosService.getFinalizado());
-    this.dataSource.paginator = this.paginator;
+     //switchMap se utiliza para manejar las actualizaciones en los filtros. Cuando filtrosService.filtros$ emite un nuevo valor,
+    // switchMap cancela cualquier suscripción activa al observable devuelto por getFinalizado y crea una nueva suscripción con los filtros actualizados.
+    this.filtrosService.filtros$.pipe(
+      switchMap(() => this.filtrosService.getFinalizado())
+    ).subscribe(
+      (pendiente) => {
+        this.dataSource = new MatTableDataSource(pendiente);
+        this.dataSource.paginator = this.paginator
+      }
+    );
   }
 
+  
   showPagoMobile() {}
 
   openBottomSheet(tramite: ITramite): void {

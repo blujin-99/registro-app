@@ -24,29 +24,29 @@ export class MessagingService {
      ) { }
 
   requestPermission() {
-    this.AFMessaging.requestToken
-      .pipe(
-        switchMap((token) => {
-          if (token && this.userSrv.getUserCas()) {
-            this.token = token;
-            // Devuelve la solicitud HTTP como una nueva Observable
-            console.log(token)
-            return this.http.post(this.sendToken, { token });
-          }
-          // Si no hay token, simplemente devuelve un observable vacío
-          return of(null);
-        })
-      )
-      .subscribe(
-        (response) => {
-          // Maneja la respuesta del servidor si es necesario
-          console.log('Respuesta del servidor:', response);
-        },
-        (error) => {
-          // Maneja errores si la solicitud no se completa con éxito
-          console.error('Error en la solicitud POST:', error);
-        }
-      );
+  //   this.AFMessaging.requestToken
+  //     .pipe(
+  //       switchMap((token) => {
+  //         if (token && this.userSrv.getUserCas()) {
+  //           this.token = token;
+  //           // Devuelve la solicitud HTTP como una nueva Observable
+  //           console.log(token)
+  //           return this.http.post(this.sendToken, { token });
+  //         }
+  //         // Si no hay token, simplemente devuelve un observable vacío
+  //         return of(null);
+  //       })
+  //     )
+  //     .subscribe(
+  //       (response) => {
+  //         // Maneja la respuesta del servidor si es necesario
+  //         console.log('Respuesta del servidor:', response);
+  //       },
+  //       (error) => {
+  //         // Maneja errores si la solicitud no se completa con éxito
+  //         console.error('Error en la solicitud POST:', error);
+  //       }
+  //     );
   }
 
   reciveMessaging() {

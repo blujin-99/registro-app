@@ -14,6 +14,7 @@ import { AccionesService } from '../../services/acciones.service';
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
 import { ITramite } from 'src/app/core/models';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-tabla-pendientes',
@@ -64,23 +65,22 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+
+
   ngOnInit(): void {
-    this.tramitesrv.getTramites().subscribe((res) => {
-      this.tabla = res;
-      this.filtrosService.setTabla(this.tabla);
-      this.filtrosService.setTablasinFiltro(this.tabla);
-      this.actualizarDataSource();
-    });
-  
-    this.filtrosService.filtros$.subscribe(() => {
-      this.actualizarDataSource();
-    });
+    //switchMap se utiliza para manejar las actualizaciones en los filtros. Cuando filtrosService.filtros$ emite un nuevo valor,
+    // switchMap cancela cualquier suscripción activa al observable devuelto por getPendiente y crea una nueva suscripción con los filtros actualizados.
+    this.filtrosService.filtros$.pipe(
+      switchMap(() => this.filtrosService.getPendiente())
+    ).subscribe(
+      (pendiente) => {
+        this.dataSource = new MatTableDataSource(pendiente);
+        this.dataSource.paginator = this.paginator
+      }
+    );
+
   }
-  
-  private actualizarDataSource(): void {
-    this.dataSource = new MatTableDataSource(this.filtrosService.getPendiente());
-    this.dataSource.paginator = this.paginator;
-  }
+
 
   showPagoMobile() {}
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -19,8 +19,9 @@ export class FiltrosService {
   filtros$: Observable<any[]> = this.filtrosSubject.asObservable();
 
   busqueda: any;
-
-  datosTabla: any[] = [];
+  
+  private datosTabla = new BehaviorSubject<any[]>([])
+  tabla$ = this.datosTabla.asObservable()
   finalizado: any[] = [];
   entregado: any[] = [];
   pendiente: any[] = [];
@@ -38,7 +39,7 @@ export class FiltrosService {
    * @fucntioon setTababla()  trae y guarda los datos de la tabla
    */
   setTabla(tablaValues: any[]) {
-    this.datosTabla = tablaValues;
+    this.datosTabla.next(tablaValues)
   }
 
   setTablasinFiltro(tabla: any[]): void {
@@ -51,8 +52,8 @@ export class FiltrosService {
    */
   getTablaFiltrada(): any[] {
     const filtrosRow = this.filtrosSubject.value;
-
-    return this.datosTabla.filter((fila: any) => {
+    //this.datosTabla se convirtió en observable la cual va a ser escuchada por los otros métodos
+    return this.datosTabla.value.filter((fila: any) => {
       return filtrosRow.every((filtro) => {
         if (filtro.length != 0) {
           if (filtro.busqueda && filtro.busqueda.descripcion) {
@@ -76,39 +77,54 @@ export class FiltrosService {
             );
           }
         } else {
-          this.datosTabla = this.tablaSinFiltro;
+          this.datosTabla.next(this.tablaSinFiltro)
         }
       });
     });
   }
 
-  getFinalizado(): any[] {
-    this.finalizado = this.getTablaFiltrada().filter((finalizado) => {
-      return finalizado.EstadoTramite.descripcion === 'ENTREGADO';
-    });
+  //convierto las tres tablas en observable de modo que escuchen cada cambio de los tramites
+  //y se filtren los datos en las respectivas tablas
 
-    return this.finalizado;
+  getFinalizado(): Observable<any[]>{
+    return this.tabla$.pipe(
+      map(() => {
+        const tablaFiltrada = this.getTablaFiltrada()
+        return tablaFiltrada.filter((finalizado) =>{
+          return (
+            finalizado.EstadoTramite.descripcion === 'ENTREGADO'
+          )
+        })
+      }
+    ))
   }
 
-  getPendiente(): any[] {
-    this.pendiente = this.getTablaFiltrada().filter((pendiente) => {
-      return (
-        pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' ||
-        pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
-        pendiente.EstadoTramite.descripcion === 'OBSERVADO'
-      );
-    });
-    return this.pendiente;
+  getPendiente(): Observable<any[]> {
+    return this.tabla$.pipe(
+      map(() => {
+        const tablaFiltrada = this.getTablaFiltrada()
+        return tablaFiltrada.filter((pendiente) =>{
+          return (
+            pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' ||
+            pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
+            pendiente.EstadoTramite.descripcion === 'OBSERVADO'
+          )
+        })
+      }
+    ))
   }
 
-  getEntregado(): any[] {
-    this.entregado = this.getTablaFiltrada().filter((entregado) => {
-      return (
-        entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
-        entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
-        entregado.EstadoTramite.descripcion === 'FINALIZADO'
-      );
-    });
-    return this.entregado;
+  getEntregado(): Observable<any[]> {
+    return this.tabla$.pipe(
+      map(() => {
+        const tablaFiltrada = this.getTablaFiltrada()
+        return tablaFiltrada.filter((entregado) =>{
+          return (   entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
+          entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
+          entregado.EstadoTramite.descripcion === 'FINALIZADO'
+          )
+        })
+      }
+    ))
   }
 }
