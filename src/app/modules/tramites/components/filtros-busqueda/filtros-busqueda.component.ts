@@ -86,9 +86,8 @@ export class FiltrosBusquedaComponent implements OnInit {
   clearAllFilters() {
     this.filters = [];
     this.formFiltros.reset(this.resetForm);
-    this.onSubmit()
+    this.onSubmit();
   }
-
   /**
    * Se le agrega a los chips y cuando haces click sobre ellos los elimina
    *
@@ -152,12 +151,15 @@ export class FiltrosBusquedaComponent implements OnInit {
    */
 
   onSubmit(): void {
-    if(this.formFiltros.get('busqueda')?.value != ''){
-      let busqueda ={
-        busqueda:{id:1, descripcion:this.formFiltros.get('busqueda')?.value, tipo:'busqueda'}
-      } 
-       this.filters.push(busqueda)
+    // Limpiar y agregar el filtro de búsqueda solo si el valor no está vacío
+    if (this.formFiltros.get('busqueda')?.value !== '') {
+      let busqueda = {
+        busqueda: { id: 1, descripcion: this.formFiltros.get('busqueda')?.value, tipo: 'busqueda' }
+      };
+      this.filters.push(busqueda);
     }
+  
+    // Actualizar el observable con los filtros
     this.filtroServ.sendFiltros(this.filters);
   }
 }
