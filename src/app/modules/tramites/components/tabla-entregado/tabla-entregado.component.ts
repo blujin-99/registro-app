@@ -59,9 +59,7 @@ export class TablaEntregadoComponent {
 
 
   dataSource = new MatTableDataSource();
-  tabla: any;
-  filtros: any;
-
+  alert : any[] = []
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -70,10 +68,14 @@ export class TablaEntregadoComponent {
 
   ngOnInit(): void {
     this.filtrosService.filtros$.subscribe( () => 
-      this.filtrosService.getEntregado().subscribe(data =>
+      this.filtrosService.getEntregado().subscribe(data => {
         this.dataSource = new MatTableDataSource(data)
-        )
-      )
+        this.alert = data
+        this.dataSource.paginator = this.paginator
+      }
+    )
+  )
+  
   }
   
   showPagoMobile() {}

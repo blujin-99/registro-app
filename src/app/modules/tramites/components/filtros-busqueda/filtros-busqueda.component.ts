@@ -157,6 +157,7 @@ export class FiltrosBusquedaComponent implements OnInit {
         busqueda: { id: 1, descripcion: this.formFiltros.get('busqueda')?.value, tipo: 'busqueda' }
       };
       this.filters.push(busqueda);
+      this.formFiltros.get('busqueda')?.reset('')
     }
   
     // Actualizar el observable con los filtros

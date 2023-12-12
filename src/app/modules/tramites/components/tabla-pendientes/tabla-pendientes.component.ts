@@ -59,6 +59,8 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  alert : any[] = []
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -69,8 +71,12 @@ export class TablaPendientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
   this.filtrosService.filtros$.subscribe( () => 
-      this.filtrosService.getPendiente().subscribe(data =>
+      this.filtrosService.getPendiente().subscribe(data => {
         this.dataSource = new MatTableDataSource(data)
+        this.alert = data
+        this.dataSource.paginator = this.paginator
+      }
+       
         )
       )
 
