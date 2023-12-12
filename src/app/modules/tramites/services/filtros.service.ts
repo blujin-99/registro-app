@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FiltrosService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    *  @observable filtrosSubjesct escucha constantemente los datos filtrados
@@ -19,21 +19,53 @@ export class FiltrosService {
   filtros$: Observable<any[]> = this.filtrosSubject.asObservable();
 
   busqueda: any;
-  
+
+  tabla : any
+
   private datosTabla = new BehaviorSubject<any[]>([])
   tabla$ = this.datosTabla.asObservable()
   finalizado: any[] = [];
-  entregado: any[] = [];
+ 
   pendiente: any[] = [];
   tablaSinFiltro: any[] = [];
+
+  TipoTramiteServicio : string[] = []
+  EstadoTasa : string[] = []
+  EstadoExcedentes : string[] = []
+  Jurisdiccion : string[]  = []
+  EstadoTramite : string[] = []
+  numeroTramite : string[] = []
 
   /**
    *
    * @fucntioon SendFiltros obtine los fltros y se guardan en una observable
    */
   sendFiltros(filtros: any[]): void {
-    this.filtrosSubject.next(filtros);
+    //observable con el fin de detectar cambios al añadir o sacar valores del filtro
+
+    this.Filtros(filtros)
   }
+
+  Filtros(filtros: any[]) {
+    this.filtros$.pipe(
+      map(() => ({
+        Jurisdiccion: filtros.filter(juris => juris.tipo === 'jurisdiccion').map(juris => juris.nombre),
+        EstadoTasa: filtros.filter(Etasas => Etasas.tipo === 'estadoTasas').map(Etasas => Etasas.descripcion),
+        EstadoExcedentes: filtros.filter(Eexcedentes => Eexcedentes.tipo === 'estadoExcedentes').map(Eexcedentes => Eexcedentes.descripcion),
+        EstadoTramite: filtros.filter(Etramites => Etramites.tipo === 'estadoTramite').map(Etramite => Etramite.descripcion),
+        numeroTramite: filtros.filter(numTramite => numTramite.busqueda && numTramite.busqueda.tipo === 'busqueda').map(numTramite => numTramite.busqueda.descripcion),
+      }))
+    ).subscribe(updatedFilters => {
+      // cuando se acutualizan los filtros
+      this.Jurisdiccion = updatedFilters.Jurisdiccion;
+      this.EstadoTasa = updatedFilters.EstadoTasa;
+      this.EstadoExcedentes = updatedFilters.EstadoExcedentes;
+      this.EstadoTramite = updatedFilters.EstadoTramite;
+      this.numeroTramite = updatedFilters.numeroTramite;
+    });
+    this.filtrosSubject.next(filtros); 
+  }
+  
 
   /**
    * @fucntioon setTababla()  trae y guarda los datos de la tabla
@@ -50,76 +82,52 @@ export class FiltrosService {
    * @function getTablaFiltrada() devuleve un array de los datos de la tabla
    * con la información filtrada
    */
-  getTablaFiltrada(): Observable<any[]> {
-    const filtrosRow = this.filtrosSubject.value;
-     return this.datosTabla.pipe(
-       map(datosTabla => {
-        return datosTabla.filter((fila: any) => {
-          if(filtrosRow.length === 0){
-            return datosTabla
-          }else{
-          return filtrosRow.some((filtro) => {
-              if (filtro.busqueda && filtro.busqueda.descripcion) {
-                // Si hay un valor de búsqueda por número de tramite en los filtros, usarlo para buscar por los últimos dígitos
-                return (
-                  fila.codigo_tramite.endsWith(filtro.busqueda.descripcion) ||
-                  fila.TipoTramiteServicio.nombre === filtro.nombre ||
-                  fila.EstadoTasas.descripcion === filtro.descripcion ||
-                  fila.EstadoExcedentes.descripcion === filtro.descripcion ||
-                  fila.Jurisdiccion.nombre === filtro.nombre ||
-                  fila.EstadoTramite.descripcion === filtro.descripcion
-                );
-              } else {
-                // Si no hay valor de búsqueda de número de tramite, aplicar otros filtros
-                  return (
-                    fila.TipoTramiteServicio.nombre === filtro.nombre ||
-                    fila.EstadoTasas.descripcion === filtro.descripcion ||
-                    fila.EstadoExcedentes.descripcion === filtro.descripcion ||
-                    fila.Jurisdiccion.nombre === filtro.nombre ||
-                    fila.EstadoTramite.descripcion === filtro.descripcion
-                  );
-              }
-          });
-          }
-
-        });
-       })
-     )
-
-
-    //this.datosTabla se convirtió en observable la cual va a ser escuchada por los otros métodos
-    
-  }
-
-  //convierto las tres tablas en observable de modo que escuchen cada cambio de los tramites
-  //y se filtren los datos en las respectivas tablas
-
-  getFinalizado(): Observable<any[]> {
-    return this.getTablaFiltrada().pipe(
-      map(tablaFiltrada => tablaFiltrada.filter(finalizado =>
-        finalizado.EstadoTramite.descripcion === 'ENTREGADO'
-      ))
+  getTablaFiltrada(): Observable<any[]>{
+    return this.tabla = this.datosTabla.pipe(
+      map(tabla =>
+        tabla.filter(fila =>
+          (this.Jurisdiccion.length === 0 || this.Jurisdiccion.some(juris => fila.Jurisdiccion.nombre === juris))&&
+          (this.EstadoTasa.length === 0 || this.EstadoTasa.some(tasas => fila.EstadoTasas.descripcion === tasas))&&
+          (this.EstadoExcedentes.length === 0 || this.EstadoExcedentes.some(excedentes => fila.EstadoExcedentes.descripcion === excedentes))&&
+          (this.EstadoTramite.length === 0 || this.EstadoTramite.some(tramite => fila.EstadoTramite.descripcion === tramite))&&
+          (this.numeroTramite.length === 0 || this.numeroTramite.some( numero => fila.codigo_tramite.endsWith(numero)))
+        )
+      )
+      
     );
   }
   
-  getPendiente(): Observable<any[]> {
-    return this.getTablaFiltrada().pipe(
-      map(tablaFiltrada => tablaFiltrada.filter(pendiente =>
-        pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' ||
-        pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
-        pendiente.EstadoTramite.descripcion === 'OBSERVADO'
-      ))
-    );
-  }
   
-  getEntregado(): Observable<any[]> {
-    return this.getTablaFiltrada().pipe(
-      map(tablaFiltrada => tablaFiltrada.filter(entregado =>
-        entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
-        entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
-        entregado.EstadoTramite.descripcion === 'FINALIZADO'
-      ))
-    );
+  // convierto las tres tablas en observable de modo que escuchen cada cambio de los tramites
+  // y se filtren los datos en las respectivas tablas
+
+    getFinalizado(): Observable<any[]> {
+      return this.getTablaFiltrada().pipe(
+        map(tablaFiltrada => tablaFiltrada.filter(finalizado =>
+          finalizado.EstadoTramite.descripcion === 'ENTREGADO'
+        ))
+      );
+    }
+
+    getPendiente(): Observable<any[]> {
+      return this.getTablaFiltrada().pipe(
+        map(tablaFiltrada => tablaFiltrada.filter(pendiente =>
+          pendiente.EstadoTramite.descripcion === 'NO PRESENTADO' ||
+          pendiente.EstadoTramite.descripcion === 'FINALIZADO CON EXCEDENTES' ||
+          pendiente.EstadoTramite.descripcion === 'OBSERVADO'
+        ))
+      );
+    }
+
+    getEntregado(): Observable<any[]> {
+      return this.getTablaFiltrada().pipe(
+        map(tablaFiltrada => tablaFiltrada.filter(entregado =>
+          entregado.EstadoTramite.descripcion === 'RECIBIDO' ||
+          entregado.EstadoTramite.descripcion === 'PRESENTADO' ||
+          entregado.EstadoTramite.descripcion === 'FINALIZADO'
+        ))
+
+      );
+    }
+
   }
-  
-}

@@ -59,9 +59,7 @@ export class TablaEntregadoComponent {
 
 
   dataSource = new MatTableDataSource();
-  tabla: any;
-  filtros: any;
-
+  alert : any[] = []
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -69,18 +67,15 @@ export class TablaEntregadoComponent {
   }
 
   ngOnInit(): void {
-
-    //switchMap se utiliza para manejar las actualizaciones en los filtros. Cuando filtrosService.filtros$ emite un nuevo valor,
-    // switchMap cancela cualquier suscripción activa al observable devuelto por getEntregado y crea una nueva suscripción con los filtros actualizados.
-
-    this.filtrosService.filtros$.pipe(
-      switchMap(() => this.filtrosService.getEntregado())
-    ).subscribe(
-      (pendiente) => {
-        this.dataSource = new MatTableDataSource(pendiente);
+    this.filtrosService.filtros$.subscribe( () => 
+      this.filtrosService.getEntregado().subscribe(data => {
+        this.dataSource = new MatTableDataSource(data)
+        this.alert = data
         this.dataSource.paginator = this.paginator
       }
-    );
+    )
+  )
+  
   }
   
   showPagoMobile() {}
@@ -89,4 +84,5 @@ export class TablaEntregadoComponent {
     this.tramitesrv.getTramiteActions(tramite.codigo_tramite);
     this._bottomSheet.open(OpcionesTramiteComponent);
   }
+  
 }

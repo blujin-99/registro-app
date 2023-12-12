@@ -60,8 +60,7 @@ export class TablaFinalizadoComponent implements OnInit {
 
 
   dataSource = new MatTableDataSource();
-  tabla: any;
-  filtros: any;
+  alert : any[] = []
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -70,16 +69,14 @@ export class TablaFinalizadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     //switchMap se utiliza para manejar las actualizaciones en los filtros. Cuando filtrosService.filtros$ emite un nuevo valor,
-    // switchMap cancela cualquier suscripción activa al observable devuelto por getFinalizado y crea una nueva suscripción con los filtros actualizados.
-    this.filtrosService.filtros$.pipe(
-      switchMap(() => this.filtrosService.getFinalizado())
-    ).subscribe(
-      (pendiente) => {
-        this.dataSource = new MatTableDataSource(pendiente);
-        this.dataSource.paginator = this.paginator
-      }
-    );
+    this.filtrosService.filtros$.subscribe( () => 
+    this.filtrosService.getFinalizado().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data)
+      this.alert = data
+      this.dataSource.paginator = this.paginator
+    }
+      )
+    )
   }
 
   

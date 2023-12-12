@@ -24,6 +24,7 @@ import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { AlertDevelopComponent } from './core/components/alert-develop/alert-develop.component';
 import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/opciones-tramite.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/o
     provideOAuthClient(),
     MessagingService,
     AsyncPipe,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ],
   bootstrap: [AppComponent],
 })
