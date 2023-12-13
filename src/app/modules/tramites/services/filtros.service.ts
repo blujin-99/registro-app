@@ -24,6 +24,8 @@ export class FiltrosService {
 
   private datosTabla = new BehaviorSubject<any[]>([])
   tabla$ = this.datosTabla.asObservable()
+
+  
   finalizado: any[] = [];
  
   pendiente: any[] = [];
@@ -36,13 +38,13 @@ export class FiltrosService {
   EstadoTramite : string[] = []
   numeroTramite : string[] = []
 
+
   /**
    *
    * @fucntioon SendFiltros obtine los fltros y se guardan en una observable
    */
   sendFiltros(filtros: any[]): void {
     //observable con el fin de detectar cambios al añadir o sacar valores del filtro
-
     this.Filtros(filtros)
   }
 

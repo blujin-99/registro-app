@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { FiltrosService } from '../../services/filtros.service';
 
 @Component({
   selector: 'app-chip-filtro',
@@ -11,4 +12,12 @@ export class ChipFiltroComponent {
    * Muestra el nombre/descripcion del filtro
    */
   @Input({ required: true }) chipFiltro: any;
+  @Output() deletedFilter : EventEmitter<any> = new EventEmitter()
+  
+   constructor( private filtroSrv : FiltrosService){ }
+
+
+  deleteFilter(){
+     this.deletedFilter.emit(this.chipFiltro)
+  }
 }

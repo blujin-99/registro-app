@@ -42,6 +42,7 @@
             tabindex="1"
             type="text"
             formControlName="busqueda"
+            maxlength="15"
             id="simple-search"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-400 focus:border-blue-400 block w-full md:pl-10 p-2.5"
             placeholder="Buscar por número de trámite o número de aforo"
@@ -50,9 +51,10 @@
         <button
           type="submit"
           tabindex="2"
+          [disabled]="formFiltros.invalid"
           (click)="onSubmit()"
           (change)="addFilter('busqueda')"
-          class="flex flex-row items-center gap-4 p-3 ml-2 text-sm font-medium text-white border rounded-lg bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300"
+          class="flex flex-row items-center gap-4 p-3 ml-2 text-sm font-medium text-white border rounded-lg button focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           Buscar
           <svg
@@ -199,7 +201,7 @@
           <p class="mb-2 text-base">Filtros:</p>
           <!--? CHIPS DE FILTROS -->
           <div *ngFor="let filtro of filters" (click)="removeFilter(filtro)">
-            <app-chip-filtro [chipFiltro]="filtro"></app-chip-filtro>
+            <app-chip-filtro [chipFiltro]="filtro" (deletedFilter)="deleteByOneFilter($event)" ></app-chip-filtro>
           </div>
         </div>
         <button

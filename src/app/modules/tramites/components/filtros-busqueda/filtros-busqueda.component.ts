@@ -5,7 +5,7 @@ import {
   ViewChild,
   signal,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TramitesService } from '../../services/tramites.service';
 import { Observable, filter } from 'rxjs';
 import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
@@ -63,7 +63,7 @@ export class FiltrosBusquedaComponent implements OnInit {
 
   ngOnInit(): void {
     this.formFiltros = this.fb.group({
-      busqueda: [''],
+      busqueda: ['', [Validators.pattern('^[0-9]*$'),Validators.maxLength(15)]],
       categoria: [''],
       estadoTramite: [''],
       jurisdiccion: [''],
@@ -72,6 +72,11 @@ export class FiltrosBusquedaComponent implements OnInit {
       estadoExcedentes: [''],
     });
   }
+
+   deleteByOneFilter(deleted : any){
+    this.filters = this.filters.filter(filter => filter !== deleted);
+    this.onSubmit()
+   }
 
   /**
    * Muestra u oculta la busqueda de filtros
@@ -114,6 +119,7 @@ export class FiltrosBusquedaComponent implements OnInit {
     if (!this.filters.includes(valorCampo)) {
       valorCampo.tipo=campo;
       this.filters.push(valorCampo);
+      this.formFiltros.get(campo)?.reset('')
     }
   }
 
@@ -160,7 +166,7 @@ export class FiltrosBusquedaComponent implements OnInit {
       this.formFiltros.get('busqueda')?.reset('')
     }
   
-    // Actualizar el observable con los filtros
+    // Actualizar el observable con los filtros}
     this.filtroServ.sendFiltros(this.filters);
   }
 }
