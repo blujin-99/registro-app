@@ -1,9 +1,11 @@
-import { Injectable, effect, signal } from '@angular/core';
+import { Injectable, computed, signal, effect } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUserCas } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
 import { PeriodicTaskService } from './periodic-task.services';
+import { AuthStatus } from '../models';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +13,12 @@ import { PeriodicTaskService } from './periodic-task.services';
 export class UserService {
   private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
   private userCas?: IUserCas | null;
-  /**
-   * @signal observa si el usuario esta logeado o no
-   */
-  public loggedIn$ = signal<boolean>(false);
+
+  public authStatus = signal<AuthStatus>(AuthStatus.checking);
+
   private url = environment.apiBase + environment.api.outhApi;
   private urlLogout = environment.authUrl + environment.auth.logoutUrl;
-  private urlLogin =
+  public urlLogin =
     environment.authUrl +
     '/service-auth/oauth2.0/authorize?response_type=token&client_id=' +
     environment.auth.clientId +
@@ -30,6 +31,14 @@ export class UserService {
     private periodic: PeriodicTaskService
   ) {
     sessionStorage.setItem(this.MJYDH_REFRESH, '0');
+    effect(
+      () => {
+        this.authStatus();
+      },
+      {
+        allowSignalWrites: true,
+      }
+    );
   }
 
   /**
@@ -71,22 +80,6 @@ export class UserService {
   }
 
   /**
-   * Consulta al Backen por el toquen y setea las cerdenciales
-   * @param code
-   */
-  private verifToken(): void {
-    this.validateToken(this.getToken()).subscribe(
-      (data: any) => {
-        this.setUserCas(data.user.userCas);
-        sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
-      },
-      (error: any) => {
-        this.logout();
-      }
-    );
-  }
-
-  /**
    * Retorna el Token devuelto por el CAS
    * @returns access token
    */
@@ -108,7 +101,26 @@ export class UserService {
    */
   private validateToken(token: string | null) {
     const body = JSON.stringify({ access_token: token });
-    return this.http.post(this.url, body);
+    return this.http.post(this.url, body).pipe(
+      map((data: any) => {
+        this.setUserCas(data.user.userCas);
+        sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
+        this.authStatus.set(AuthStatus.authenticated);
+      }),
+      catchError(() => {
+        this.authStatus.set(AuthStatus.notAuthenticated);
+
+        return of(false);
+      })
+    );
+  }
+
+  /**
+   * Consulta al Backen por el toquen y setea las cerdenciales
+   * @param code
+   */
+  private verifToken(): void {
+    this.validateToken(this.getToken()).subscribe();
   }
 
   /**
@@ -119,6 +131,7 @@ export class UserService {
     localStorage.removeItem(environment.login.mjydh_token);
     sessionStorage.removeItem(environment.login.mjydh_cas);
     sessionStorage.removeItem(environment.login.mjydh_jwt);
+    localStorage.removeItem('url');
     sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     /**
      * Redirecciono al Inicio
@@ -147,6 +160,7 @@ export class UserService {
   public login(): void {
     if (this.getToken()) {
       this.verifToken();
+      this.authStatus.set(AuthStatus.authenticated);
     } else {
       window.location.replace(this.urlLogin);
     }
