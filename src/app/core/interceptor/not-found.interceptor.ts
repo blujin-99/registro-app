@@ -11,11 +11,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs';
 import { CatchinErrorService } from '../services/catchin-error.service';
 import { UserService } from '../services/user.service';
+import { AuthStatus } from '../models';
 @Injectable()
 export class NotFoundError implements HttpInterceptor {
-  constructor(private catchErrorServ: CatchinErrorService, private userService :UserService) {
-  
-  }
+  constructor(
+    private catchErrorServ: CatchinErrorService,
+    private userService: UserService
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -23,8 +25,11 @@ export class NotFoundError implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-            this.userService.logout()        
+        if (
+          error.status === 401 &&
+          this.userService.authStatus() === AuthStatus.notAuthenticated
+        ) {
+          this.userService.logout();
         }
         this.catchErrorServ.showError(error.status);
         return throwError(
@@ -34,4 +39,3 @@ export class NotFoundError implements HttpInterceptor {
     );
   }
 }
-
