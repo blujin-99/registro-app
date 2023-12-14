@@ -53,12 +53,12 @@
     </div>
     <!--? SERVICIOS  -->
     <div
-      class="flex flex-col items-center justify-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
+      class="flex flex-col items-center justify-self-end w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
     >
       <span class="flex flex-row justify-start w-11/12 mt-2">
         <h3 class="m-0 text-2xl secondary">SERVICIOS</h3>
       </span>
-      <div class="flex flex-col w-11/12 gap-4">
+      <div class="flex flex-col w-11/12 h-full justify-between gap-4">
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
           formControlName="servicio"
@@ -68,26 +68,28 @@
             {{ servicio.nombre }}
           </option>
         </select>
-        <span class="w-11/12">
-          <button
-            type="button"
-            [disabled]="!servicio?.valid"
-            class="btn-primary"
-            (click)="redirectToTramite(servicio)"
-          >
-            Iniciar Trámite
-          </button>
-        </span>
+     
+          <span class="w-11/12">
+            <button
+              type="button"
+              [disabled]="!servicio?.valid"
+              class="btn-primary"
+              (click)="redirectToTramite(servicio)"
+            >
+              Iniciar Trámite
+            </button>
+          </span> 
       </div>
+  
     </div>
     <!--? TRAMITES DIGITALES -->
     <div
-      class="flex flex-col items-center justify-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
+      class="flex flex-col items-center w-full gap-4 pb-5 bg-white border border-gray-200 rounded-lg shadow md:w-6/12"
     >
       <span class="flex flex-row justify-start w-11/12 mt-2">
         <h3 class="m-0 text-2xl secondary">TRAMITES DIGITALES</h3>
       </span>
-      <div class="flex flex-col w-11/12 gap-4">
+      <div class="flex flex-col w-11/12 h-full justify-between gap-4">
         <select
           class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
           formControlName="tramiteDigital"
