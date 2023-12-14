@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
+import { isLoggedInGuard, urlAccessGuard } from './core/guards';
 
 const routes: Routes = [
   {
@@ -10,12 +10,13 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
+    canActivate: [urlAccessGuard],
     loadChildren: () =>
       import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
   },
   {
     path: 'misTramites',
-    canActivate: [isLoggedInGuard],
+    canActivate: [urlAccessGuard, isLoggedInGuard],
     loadChildren: () =>
       import('./modules/tramites/tramites.module').then(
         (m) => m.TramitesModule
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'nuevoTramite',
-    canActivate: [isLoggedInGuard],
+    canActivate: [urlAccessGuard, isLoggedInGuard],
     loadChildren: () =>
       import('./modules/nuevo-tramite/nuevo-tramite.module').then(
         (m) => m.NuevoTramiteModule
@@ -31,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'configuracion',
-    canActivate: [isLoggedInGuard],
+    canActivate: [urlAccessGuard, isLoggedInGuard],
     loadChildren: () =>
       import('./modules/configuracion/configuracion.module').then(
         (m) => m.ConfiguracionModule
@@ -39,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
-    canActivate: [isLoggedInGuard],
+    canActivate: [urlAccessGuard, isLoggedInGuard],
     loadChildren: () =>
       import('./modules/bandeja-notificaciones/notificaciones.module').then(
         (m) => m.NotificacionesModule
@@ -47,6 +48,7 @@ const routes: Routes = [
   },
   {
     path: 'consultaMesaEntrada',
+    canActivate: [urlAccessGuard],
     loadChildren: () =>
       import(
         './modules/consulta-estado-tramite-mesa-entrada/consulta-estado-tramite-mesa-entrada.module'
@@ -54,6 +56,7 @@ const routes: Routes = [
   },
   {
     path: 'consultaPagos',
+    canActivate: [urlAccessGuard],
     loadChildren: () =>
       import('./modules/consulta-pagos/consulta-pagos.module').then(
         (m) => m.ConsultaPagosModule
@@ -61,6 +64,7 @@ const routes: Routes = [
   },
   {
     path: 'otrasTasas',
+    canActivate: [urlAccessGuard],
     loadChildren: () =>
       import('./modules/pagos-otras-tasas/pagos-otras-tasas.module').then(
         (m) => m.PagosOtrasTasasModule
@@ -68,7 +72,6 @@ const routes: Routes = [
   },
   {
     path: ':token',
-    //canActivate: [isLoggedInGuard],
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },

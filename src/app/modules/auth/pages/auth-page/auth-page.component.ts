@@ -13,6 +13,6 @@ export class AuthPageComponent implements OnInit {
 
   ngOnInit() {
     this.userSrv.initAuth();
-    // this.router.navigate(['#/inicio']);
+    this.router.navigate(['#/inicio']);
   }
 }

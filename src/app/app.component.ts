@@ -24,14 +24,13 @@ export class AppComponent implements OnInit {
   });
 
   public authStatusChangedEffect = effect(() => {
-    console.log(this.userSrv.authStatus());
-
     switch (this.userSrv.authStatus()) {
       case AuthStatus.checking:
         return;
       case AuthStatus.authenticated:
         if (this.url) {
           this.router.navigateByUrl(this.url);
+          // localStorage.removeItem('url');
         } else {
           this.router.navigateByUrl('/inicio');
         }
