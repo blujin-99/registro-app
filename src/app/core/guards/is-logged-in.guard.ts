@@ -7,12 +7,11 @@ import { environment } from 'src/environments/environment';
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
   const userSrv = inject(UserService);
 
+  const url = state.url;
+  localStorage.setItem('url', url);
   if (userSrv.authStatus() === AuthStatus.authenticated) {
     return true;
   }
-
-  const url = state.url;
-  localStorage.setItem('url', url);
 
   if (userSrv.authStatus() === AuthStatus.checking) {
     if (localStorage.getItem('url')) {
