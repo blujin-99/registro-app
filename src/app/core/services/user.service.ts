@@ -131,6 +131,7 @@ export class UserService {
     localStorage.removeItem(environment.login.mjydh_token);
     sessionStorage.removeItem(environment.login.mjydh_cas);
     sessionStorage.removeItem(environment.login.mjydh_jwt);
+    localStorage.removeItem('url');
     sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     /**
      * Redirecciono al Inicio
