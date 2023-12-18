@@ -5,8 +5,9 @@ import { LayoutService } from './core/services/layout.service';
 import { MessagingService } from './core/services/messaging.service';
 import { UserService } from './core/services/user.service';
 import { AuthStatus } from './core/models';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -30,10 +31,10 @@ export class AppComponent implements OnInit {
       case AuthStatus.authenticated:
         if (this.url) {
           this.router.navigateByUrl(this.url);
-          // localStorage.removeItem('url');
         } else {
           this.router.navigateByUrl('/inicio');
         }
+        // localStorage.removeItem('url');
         return;
       case AuthStatus.notAuthenticated:
         this.userSrv.login();
@@ -50,6 +51,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //localStorage.setItem('url', this.router.url);
+
     /**
      * @function requestPermission solicita permiso al usuario para abilitar la suscripción de las
      * notificaciones
