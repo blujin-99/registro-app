@@ -1,8 +1,15 @@
+import { inject } from '@angular/core';
 import type { CanActivateFn } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { AuthStatus } from '../models';
 
 export const urlAccessGuard: CanActivateFn = (route, state) => {
-  const url = state.url;
-  localStorage.setItem('url', url);
+  const userSrv = inject(UserService);
 
+  if (userSrv.authStatus() === AuthStatus.checking) {
+    let url = state.url;
+
+    localStorage.setItem('url', url);
+  }
   return true;
 };

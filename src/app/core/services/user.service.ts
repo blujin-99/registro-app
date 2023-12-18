@@ -104,7 +104,7 @@ export class UserService {
     return this.http.post(this.url, body).pipe(
       map((data: any) => {
         this.setUserCas(data.user.userCas);
-        sessionStorage.setItem(environment.login.mjydh_jwt, data.token);
+        localStorage.setItem(environment.login.mjydh_jwt, data.token);
         this.authStatus.set(AuthStatus.authenticated);
       }),
       catchError(() => {
@@ -130,7 +130,7 @@ export class UserService {
     //this.borroCredenciales().subscribe((data) => console.log(data));
     localStorage.removeItem(environment.login.mjydh_token);
     sessionStorage.removeItem(environment.login.mjydh_cas);
-    sessionStorage.removeItem(environment.login.mjydh_jwt);
+    localStorage.removeItem(environment.login.mjydh_jwt);
     localStorage.removeItem('url');
     sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     /**
@@ -180,7 +180,7 @@ export class UserService {
   }
 
   public getJWT() {
-    return sessionStorage.getItem(environment.login.mjydh_jwt);
+    return localStorage.getItem(environment.login.mjydh_jwt);
   }
 
   public refreshToken(): void {
