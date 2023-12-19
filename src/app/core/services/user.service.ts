@@ -14,6 +14,8 @@ export class UserService {
   private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
   private userCas?: IUserCas | null;
 
+  public currentUrl = '';
+
   public authStatus = signal<AuthStatus>(AuthStatus.checking);
 
   private url = environment.apiBase + environment.api.outhApi;
