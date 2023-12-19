@@ -4,9 +4,9 @@ const baseAPI = '/registropropiedad/api/';
 
 const AuthURL = 'https://tsso.santafe.gob.ar';
 
-const idCiudadanaURL = 'https://twww.santafe.gob.ar/';
+const idCiudadanaURL = '/';
 
-const formURL = 'https://twww.santafe.gov.ar/tramites/formelectronico/auth/';
+const formURL = '/tramites/formelectronico/auth/';
 
 
 export const environment = {
