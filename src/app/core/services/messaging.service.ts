@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken, Messaging, onMessage } from 'firebase/messaging';
+import { getMessaging, getToken, onMessage, } from 'firebase/messaging';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,7 @@ export class MessagingService {
     // Realiza una verificación de tipos explícita
     let swRegistration = registration as ServiceWorkerRegistration;
     getToken(this.messaging,{serviceWorkerRegistration: swRegistration }).then(
-      (token)=>{this.registerToken(token), console.log(token)}
+      (token)=>{this.registerToken(token)}
     )
     // Continúa con el uso de swRegistration
   })
@@ -59,19 +59,23 @@ export class MessagingService {
 
   reciveMessaging() {
     onMessage(this.messaging, (smRecived) => {
-      console.log('Message received. ', smRecived);
       let notificationData = {
         title: smRecived.notification?.title,
         body: smRecived.notification?.body,
         url: smRecived.data?.['url'],
       };
       this.saveNotification(notificationData)
+      /**
+       * Show notificacion
+       */
       
     });
     
   }
+
   /**
    * Guarda notificación en local storage 
+   * @param notificacion 
    */
   private saveNotification(notificacion : any){
     /**
