@@ -32,9 +32,7 @@ export const environment = {
     appId: "1:446689370798:web:692077ccda2a861d18c33f",
     measurementId: "G-DFC97LCPGB"
   },
-  excludedEndpoints: [
-    'www.santafe.gob.ar/estadotramiterg/consulta',
-    'tasw.santafe.gov.ar/mjyddhh/mjydh-web/api/public/sistemas/regprop_public',
-    AuthURL,
+  includedEndpoints: [
+    baseAPI
   ],
 };

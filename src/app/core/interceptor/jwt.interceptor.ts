@@ -11,13 +11,13 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor (private userService : UserService){
 
   }
-  excludeEndpoints: string[] = environment.excludedEndpoints;
+  includeEndpoints: string[] = environment.includedEndpoints;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let jwt: string | null = this.userService.getJWT();
     let request = req;
     if (
-      !this.excludeEndpoints.some((endpoint) => req.url.includes(endpoint))
+      this.includeEndpoints.some((endpoint) => req.url.includes(endpoint))
     ) {
       if (jwt) {
         request = req.clone({

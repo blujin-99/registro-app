@@ -11,10 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
-
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
-import { environment } from 'src/environments/environment';
 import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
 import { UserService } from './core/services/user.service';
@@ -45,8 +41,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     BrowserAnimationsModule,
     InterceptorModule,
     AvatarComponent,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireMessagingModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

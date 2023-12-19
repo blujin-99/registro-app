@@ -1,4 +1,5 @@
 export const common = {
+  pk:"RegistroPropiedad",
   api: {
     fdadmintramite: 'tramite/{codigo}',
     tramites: 'tramites',
@@ -21,6 +22,9 @@ export const common = {
     mjydh_jwt: 'MJYDH_JWT',
     mjydh_token: 'MJYDH_TOKEN',
     mjydh_refresh: 600000,
+  },
+  notificacion:{
+      nombre:"notificacion"
   },
   cas: {
     idciudadana: 'idciudadana',
