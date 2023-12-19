@@ -1,22 +1,24 @@
-import { inject } from '@angular/core';
+import { effect, inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AuthStatus } from '../models';
 
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
   const userSrv = inject(UserService);
-
-  if (userSrv.authStatus() === AuthStatus.authenticated) {
-    return true;
-  }
-
-  if (userSrv.authStatus() === AuthStatus.checking) {
-    if (localStorage.getItem('url')) {
-      userSrv.login();
+  effect(() => {
+    if (userSrv.authStatus() === AuthStatus.authenticated) {
+      return true;
     }
-    return false;
-  }
-  userSrv.login();
 
-  return false;
+    if (userSrv.authStatus() === AuthStatus.checking) {
+      if (localStorage.getItem('url')) {
+        userSrv.login();
+      }
+      return false;
+    }
+    userSrv.login();
+
+    return false;
+  });
+  return true;
 };

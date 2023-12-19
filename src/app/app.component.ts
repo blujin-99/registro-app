@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   public url = localStorage.getItem('url');
+  public currentUrl = localStorage.getItem('currentUrl') ?? '';
 
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.userSrv.authStatus() === AuthStatus.checking) {
@@ -31,10 +32,8 @@ export class AppComponent implements OnInit {
       case AuthStatus.authenticated:
         if (this.url) {
           this.router.navigateByUrl(this.url);
-        } else {
-          this.router.navigateByUrl('/inicio');
+          localStorage.removeItem('url');
         }
-        // localStorage.removeItem('url');
         return;
       case AuthStatus.notAuthenticated:
         this.userSrv.login();

@@ -6,10 +6,9 @@ import { AuthStatus } from '../models';
 export const urlAccessGuard: CanActivateFn = (route, state) => {
   const userSrv = inject(UserService);
 
-  if (userSrv.authStatus() === AuthStatus.checking) {
-    let url = state.url;
+  let url = state.url;
 
-    localStorage.setItem('url', url);
-  }
+  localStorage.setItem('url', url);
+
   return true;
 };
