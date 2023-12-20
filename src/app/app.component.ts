@@ -15,8 +15,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public url = localStorage.getItem('url');
-
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.userSrv.authStatus() === AuthStatus.checking) {
       return false;
@@ -26,15 +24,18 @@ export class AppComponent implements OnInit {
 
   public authStatusChangedEffect = effect(() => {
     if (this.userSrv.authStatus() === AuthStatus.authenticated) {
-      if (this.url) {
-        this.router.navigateByUrl(this.url);
+      if (this.URl) {
+        this.router.navigateByUrl(this.URl);
+        localStorage.removeItem('url');
       }
     } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
       this.userSrv.login();
     }
-    localStorage.removeItem('url');
-    console.log('paso');
   });
+
+  get URl() {
+    return localStorage.getItem('url');
+  }
 
   constructor(
     public layoutSrv: LayoutService,
@@ -45,8 +46,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //localStorage.setItem('url', this.router.url);
-
     /**
      * @function requestPermission solicita permiso al usuario para abilitar la suscripción de las
      * notificaciones

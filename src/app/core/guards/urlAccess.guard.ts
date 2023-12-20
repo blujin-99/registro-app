@@ -4,8 +4,6 @@ import { UserService } from '../services/user.service';
 import { AuthStatus } from '../models';
 
 export const urlAccessGuard: CanActivateFn = (route, state) => {
-  const userSrv = inject(UserService);
-
   let url = state.url;
 
   localStorage.setItem('url', url);
