@@ -15,9 +15,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public url = localStorage.getItem('url');
-  public currentUrl = localStorage.getItem('currentUrl') ?? '';
-
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.userSrv.authStatus() === AuthStatus.checking) {
       return false;
@@ -26,20 +23,19 @@ export class AppComponent implements OnInit {
   });
 
   public authStatusChangedEffect = effect(() => {
-    switch (this.userSrv.authStatus()) {
-      case AuthStatus.checking:
-        return;
-      case AuthStatus.authenticated:
-        if (this.url) {
-          this.router.navigateByUrl(this.url);
-          localStorage.removeItem('url');
-        }
-        return;
-      case AuthStatus.notAuthenticated:
-        this.userSrv.login();
-        return;
+    if (this.userSrv.authStatus() === AuthStatus.authenticated) {
+      if (this.URl) {
+        this.router.navigateByUrl(this.URl);
+        localStorage.removeItem('url');
+      }
+    } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
+      this.userSrv.login();
     }
   });
+
+  get URl() {
+    return localStorage.getItem('url');
+  }
 
   constructor(
     public layoutSrv: LayoutService,
@@ -50,8 +46,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //localStorage.setItem('url', this.router.url);
-
     /**
      * @function requestPermission solicita permiso al usuario para abilitar la suscripción de las
      * notificaciones
