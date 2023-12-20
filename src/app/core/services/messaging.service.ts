@@ -31,6 +31,11 @@ export class MessagingService {
    * Confirma Recibir Notificaciones 
    */
   requestPermission() {     
+    navigator.serviceWorker.ready.then(
+      (data)=>console.log(data, "activo")
+    )
+
+    
     navigator.serviceWorker.register('/assets/firebase-messaging-sw.js')
   .then((registration) => {
     // Realiza una verificación de tipos explícita
