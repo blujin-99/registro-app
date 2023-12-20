@@ -16,7 +16,6 @@ import { Location } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   public url = localStorage.getItem('url');
-  public currentUrl = localStorage.getItem('currentUrl') ?? '';
 
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.userSrv.authStatus() === AuthStatus.checking) {
@@ -26,19 +25,15 @@ export class AppComponent implements OnInit {
   });
 
   public authStatusChangedEffect = effect(() => {
-    switch (this.userSrv.authStatus()) {
-      case AuthStatus.checking:
-        return;
-      case AuthStatus.authenticated:
-        if (this.url) {
-          this.router.navigateByUrl(this.url);
-          localStorage.removeItem('url');
-        }
-        return;
-      case AuthStatus.notAuthenticated:
-        this.userSrv.login();
-        return;
+    if (this.userSrv.authStatus() === AuthStatus.authenticated) {
+      if (this.url) {
+        this.router.navigateByUrl(this.url);
+      }
+    } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
+      this.userSrv.login();
     }
+    localStorage.removeItem('url');
+    console.log('paso');
   });
 
   constructor(

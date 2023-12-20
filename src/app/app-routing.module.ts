@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'misTramites',
-    canActivate: [urlAccessGuard, isLoggedInGuard],
+    canActivate: [isLoggedInGuard, urlAccessGuard],
     loadChildren: () =>
       import('./modules/tramites/tramites.module').then(
         (m) => m.TramitesModule
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'nuevoTramite',
-    canActivate: [urlAccessGuard, isLoggedInGuard],
+    canActivate: [isLoggedInGuard, urlAccessGuard],
     loadChildren: () =>
       import('./modules/nuevo-tramite/nuevo-tramite.module').then(
         (m) => m.NuevoTramiteModule
@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'configuracion',
-    canActivate: [urlAccessGuard, isLoggedInGuard],
+    canActivate: [isLoggedInGuard, urlAccessGuard],
     loadChildren: () =>
       import('./modules/configuracion/configuracion.module').then(
         (m) => m.ConfiguracionModule
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
-    canActivate: [urlAccessGuard, isLoggedInGuard],
+    canActivate: [isLoggedInGuard, urlAccessGuard],
     loadChildren: () =>
       import('./modules/bandeja-notificaciones/notificaciones.module').then(
         (m) => m.NotificacionesModule
