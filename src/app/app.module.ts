@@ -25,6 +25,8 @@ import { RouterModule } from '@angular/router';
 import { AlertDevelopComponent } from './core/components/alert-develop/alert-develop.component';
 import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/opciones-tramite.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     InterceptorModule,
     AvatarComponent,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireMessagingModule,
+    AngularFireMessagingModule
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

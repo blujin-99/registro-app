@@ -31,6 +31,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'tramiteDigital',
+    //canActivate: [urlAccessGuard, isLoggedInGuard],
+    loadChildren: () =>
+      import('./modules/tramites-digitales/tramites-digitales.module').then(
+        (m) => m.TramitesDigitalesModule
+      ),
+  },
+  {
     path: 'configuracion',
     canActivate: [urlAccessGuard, isLoggedInGuard],
     loadChildren: () =>
@@ -83,7 +91,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  // imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
