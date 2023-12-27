@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-import { getMessaging as getMensaje } from 'firebase/messaging/sw';
 
 
 @Injectable({
@@ -32,7 +31,7 @@ export class MessagingService {
     navigator.serviceWorker.ready.then((data) => console.log(data, 'activo'));
 
     navigator.serviceWorker
-      .register('/assets/firebase-messaging-sw.js')
+      .register('assets/js/firebase-messaging-sw.js')
       .then((registration) => {
         // Realiza una verificación de tipos explícita
         let swRegistration = registration as ServiceWorkerRegistration;
@@ -40,7 +39,6 @@ export class MessagingService {
           serviceWorkerRegistration: swRegistration,
         }).then((token) => {
           this.registerToken(token);
-          console.log(getMensaje(this.app))
         });
         // Continúa con el uso de swRegistration
       })
@@ -60,9 +58,7 @@ export class MessagingService {
   }
 
   reciveMessaging() {
-    getMensaje(this.app)
-    /* 
-    onMessage(messageCongif, (smRecived) => {
+    onMessage(this.messaging, (smRecived) => {
       console.log(smRecived, "mensajes")
       let notificationData = {
         title: smRecived.notification?.title,
@@ -71,7 +67,7 @@ export class MessagingService {
       };
       this.saveNotification(notificationData)
       
-    });*/
+    });
   }
 
   /**
@@ -96,7 +92,7 @@ export class MessagingService {
     /**
      * obtengo los datos de las notificaciones que se guardaron en el localStorage
      */
-    const count = localStorage.getItem('notifications');
+    const count =  localStorage.getItem(this.locaNotificacion);
     if (count) {
       /**
        * lo convierto en formato JSON
