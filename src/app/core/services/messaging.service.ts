@@ -70,52 +70,41 @@ export class MessagingService {
     });
   }
 
+
+  
   /**
    * Guarda notificación en local storage
    * @param notificacion
    */
   private saveNotification(notificacion: any) {
-    /**
-     * Recupero las notificaciones locales
-     */
     let notifications = JSON.parse(
       localStorage.getItem(this.locaNotificacion) || '[]'
     );
     notifications.push(notificacion);
-    /**
-     *  Guarno notificaciones local storage
-     */
     localStorage.setItem(this.locaNotificacion, JSON.stringify(notifications));
     this.noti$ = notifications;
   }
   checkNotification() {
-    /**
-     * obtengo los datos de las notificaciones que se guardaron en el localStorage
-     */
-    const count =  localStorage.getItem(this.locaNotificacion);
-    if (count) {
-      /**
-       * lo convierto en formato JSON
-       */
-      const counter = JSON.parse(count);
-      /**
-       * verifico si viene un array de objetos, sino, lo convierte en un array con objetos
-       */
+    if (this.notificacionPush) {
+     
+      const counter = JSON.parse(this.notificacionPush);
+     
       this.counter = Array.isArray(counter) ? counter : [];
       this.notification.next(Array.isArray(counter) ? counter : []);
     }
-    /**
-     * cuento cuantos elementos hay en el array y lo devuelvo
-     */
+   
     return this.counter.length;
   }
 
   deleteItem(id: number) {
-    let storage = localStorage.getItem('notifications');
-    if (storage) {
-      const dataStorage = JSON.parse(storage);
+    if (this.notificacionPush) {
+      const dataStorage = JSON.parse(this.notificacionPush);
       dataStorage.splice(id, 1);
-      localStorage.setItem('notifications', JSON.stringify(dataStorage));
+      localStorage.setItem(this.locaNotificacion, JSON.stringify(dataStorage));
     }
+  }
+
+  get notificacionPush(){
+    return localStorage.getItem(this.locaNotificacion);
   }
 }
