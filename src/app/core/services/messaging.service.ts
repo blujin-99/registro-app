@@ -4,14 +4,17 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken, onMessage, } from 'firebase/messaging';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { getMessaging as getMensaje } from 'firebase/messaging/sw';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessagingService {
   mensaje = new BehaviorSubject<any>(null);
-  locaNotificacion=environment.env+"_"+environment.pk+environment.notificacion.nombre
+  locaNotificacion =
+    environment.env + '_' + environment.pk + environment.notificacion.nombre;
   notification = new BehaviorSubject<any[]>([]);
   noti$: Observable<any[]> = this.notification.asObservable();
   private sendToken = environment.apiBase + environment.api.notificationUrl;
@@ -19,70 +22,63 @@ export class MessagingService {
   env = environment.firebaseConfig;
   counter: string[] = [];
   private app = initializeApp(environment.firebaseConfig);
-  private  messaging = getMessaging(this.app);
-  constructor(
-    private http: HttpClient,
-    private userSrv: UserService
-  ) {
-
-  }
+  private messaging = getMessaging(this.app);
+  constructor(private http: HttpClient, private userSrv: UserService) {}
 
   /**
-   * Confirma Recibir Notificaciones 
+   * Confirma Recibir Notificaciones
    */
-  requestPermission() {     
-    navigator.serviceWorker.ready.then(
-      (data)=>console.log(data, "activo")
-    )
+  requestPermission() {
+    navigator.serviceWorker.ready.then((data) => console.log(data, 'activo'));
 
-    
-    navigator.serviceWorker.register('/assets/firebase-messaging-sw.js')
-  .then((registration) => {
-    // Realiza una verificación de tipos explícita
-    let swRegistration = registration as ServiceWorkerRegistration;
-    getToken(this.messaging,{serviceWorkerRegistration: swRegistration }).then(
-      (token)=>{this.registerToken(token)}
-    )
-    // Continúa con el uso de swRegistration
-  })
-  .catch((error) => {
-    console.error('Error al obtener el ServiceWorkerRegistration:', error);
-  });
-       
+    navigator.serviceWorker
+      .register('/assets/firebase-messaging-sw.js')
+      .then((registration) => {
+        // Realiza una verificación de tipos explícita
+        let swRegistration = registration as ServiceWorkerRegistration;
+        getToken(this.messaging, {
+          serviceWorkerRegistration: swRegistration,
+        }).then((token) => {
+          this.registerToken(token);
+          console.log(getMensaje(this.app))
+        });
+        // Continúa con el uso de swRegistration
+      })
+      .catch((error) => {
+        console.error('Error al obtener el ServiceWorkerRegistration:', error);
+      });
   }
 
   /**
    * Registro token para notificaciones de Usuario Logueado
-   * @param token Registra token en el sistema 
+   * @param token Registra token en el sistema
    */
-  registerToken(token: string){
-    if(this.userSrv.getJWT()){
-      this.http.post(this.sendToken, { token }).subscribe()
+  registerToken(token: string) {
+    if (this.userSrv.getJWT()) {
+      this.http.post(this.sendToken, { token }).subscribe();
     }
-     
   }
 
   reciveMessaging() {
-    onMessage(this.messaging, (smRecived) => {
+    getMensaje(this.app)
+    /* 
+    onMessage(messageCongif, (smRecived) => {
+      console.log(smRecived, "mensajes")
       let notificationData = {
         title: smRecived.notification?.title,
         body: smRecived.notification?.body,
         url: smRecived.data?.['url'],
       };
       this.saveNotification(notificationData)
-      /**
-       * Show notificacion
-       */
       
-    });
-    
+    });*/
   }
 
   /**
-   * Guarda notificación en local storage 
-   * @param notificacion 
+   * Guarda notificación en local storage
+   * @param notificacion
    */
-  private saveNotification(notificacion : any){
+  private saveNotification(notificacion: any) {
     /**
      * Recupero las notificaciones locales
      */
@@ -91,11 +87,10 @@ export class MessagingService {
     );
     notifications.push(notificacion);
     /**
-     *  Guarno notificaciones local storage  
-     */  
+     *  Guarno notificaciones local storage
+     */
     localStorage.setItem(this.locaNotificacion, JSON.stringify(notifications));
-    this.noti$=notifications
-
+    this.noti$ = notifications;
   }
   checkNotification() {
     /**
