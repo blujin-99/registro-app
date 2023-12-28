@@ -1,4 +1,4 @@
-import { NgModule, importProvidersFrom } from '@angular/core';
+import { NgModule, importProvidersFrom, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,10 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
-
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
-import { environment } from 'src/environments/environment';
 import { MessagingService } from './core/services/messaging.service';
 import { AsyncPipe } from '@angular/common';
 import { UserService } from './core/services/user.service';
@@ -25,6 +21,7 @@ import { RouterModule } from '@angular/router';
 import { AlertDevelopComponent } from './core/components/alert-develop/alert-develop.component';
 import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/opciones-tramite.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,8 +42,12 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     BrowserAnimationsModule,
     InterceptorModule,
     AvatarComponent,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireMessagingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

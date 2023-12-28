@@ -1,102 +1,116 @@
 import { Injectable } from '@angular/core';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
+import { initializeApp } from 'firebase/app';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class MessagingService {
   mensaje = new BehaviorSubject<any>(null);
+  locaNotificacion =
+    environment.env + '_' + environment.pk + environment.notificacion.nombre;
+  notification = new BehaviorSubject<any[]>([]);
+  noti$: Observable<any[]> = this.notification.asObservable();
+  private sendToken = environment.apiBase + environment.api.notificationUrl;
+  token?: string;
+  counter: string[] = [];
+  private app = initializeApp(environment.firebaseConfig);
+  private messaging = getMessaging(this.app);
+  constructor(private http: HttpClient, private userSrv: UserService) {}
 
-  notification = new BehaviorSubject<any[]>([])
-  noti$: Observable<any[]> = this.notification.asObservable()
-  private sendToken = environment.apiBase+environment.api.notificationUrl
-  token : string = ''
-
-  counter: string[] = []
-
-  constructor(
-    private AFMessaging: AngularFireMessaging,
-    private http: HttpClient,
-    private userSrv : UserService
-     ) { }
-
+  /**
+   * Confirma Recibir Notificaciones
+   */
   requestPermission() {
-  //   this.AFMessaging.requestToken
-  //     .pipe(
-  //       switchMap((token) => {
-  //         if (token && this.userSrv.getUserCas()) {
-  //           this.token = token;
-  //           // Devuelve la solicitud HTTP como una nueva Observable
-  //           console.log(token)
-  //           return this.http.post(this.sendToken, { token });
-  //         }
-  //         // Si no hay token, simplemente devuelve un observable vacío
-  //         return of(null);
-  //       })
-  //     )
-  //     .subscribe(
-  //       (response) => {
-  //         // Maneja la respuesta del servidor si es necesario
-  //         console.log('Respuesta del servidor:', response);
-  //       },
-  //       (error) => {
-  //         // Maneja errores si la solicitud no se completa con éxito
-  //         console.error('Error en la solicitud POST:', error);
-  //       }
-  //     );
+    /**
+     * Registo el service worker
+     */
+    navigator.serviceWorker
+      .register('assets/js/firebase-messaging-sw.js')
+      .then((registration) => {
+        // Realiza una verificación de tipos explícita
+        let swRegistration = registration as ServiceWorkerRegistration;
+        getToken(this.messaging, {
+          serviceWorkerRegistration: swRegistration,
+        }).then((token) => {
+          this.registerToken(token);
+        });
+        // Continúa con el uso de swRegistration
+      })
+      .catch((error) => {
+        console.error('Error al obtener el ServiceWorkerRegistration:', error);
+      });
+    
+  }
+
+  /**
+   * Registro token para notificaciones de Usuario Logueado
+   * @param token Registra token en el sistema
+   */
+  registerToken(token: string) {
+    if (this.userSrv.getJWT()) {
+      this.http.post(this.sendToken, { token }).subscribe();
+    }
   }
 
   reciveMessaging() {
-    this.AFMessaging.messages.subscribe((smRecived) => {
-      this.mensaje.next(smRecived);
+    onMessage(this.messaging, (smRecived) => {
+      console.log(smRecived, "mensajes")
       let notificationData = {
         title: smRecived.notification?.title,
         body: smRecived.notification?.body,
-        url: smRecived.data?.['url']
-      }
-
-      let notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
-      notifications.push(notificationData)
-
-      localStorage.setItem('notifications', JSON.stringify(notifications))
-
-      let storage = localStorage.getItem('notifications')
-
+        url: smRecived.data?.['url'],
+      };
+      this.saveNotification(notificationData)
     });
+    
   }
 
 
+   /**
+   * Guarda notificación en local storage
+   * @param notificacion
+   */
+  private saveNotification(notificacion: any) {
+    let notifications = JSON.parse(
+     this.notificacionPush|| '[]'
+    );
+    notifications.push(notificacion);
+    this.notificacionPush=notifications
+    //localStorage.setItem(this.locaNotificacion, JSON.stringify(notifications));
+    this.noti$ = notifications;
+  }
   checkNotification() {
-    /**
-        * obtengo los datos de las notificaciones que se guardaron en el localStorage
-        */
-    const count = localStorage.getItem('notifications')
-    if (count) {
-      /**
-      * lo convierto en formato JSON
-      */
-      const counter = JSON.parse(count)
-      /**
-     * verifico si viene un array de objetos, sino, lo convierte en un array con objetos
-     */
+    if (this.notificacionPush) {
+     
+      const counter = JSON.parse(this.notificacionPush);
+     
       this.counter = Array.isArray(counter) ? counter : [];
-      this.notification.next(Array.isArray(counter) ? counter : [])
+      this.notification.next(Array.isArray(counter) ? counter : []);
     }
-    /**
-    * cuento cuantos elementos hay en el array y lo devuelvo
-    */
-    return this.counter.length
+   
+    return this.counter.length;
   }
 
-  deleteItem(id: number){
-    let storage = localStorage.getItem('notifications')
-    if(storage){
-      const dataStorage = JSON.parse(storage)
-      dataStorage.splice(id,1)
-      localStorage.setItem('notifications',JSON.stringify(dataStorage))
+  deleteItem(id: number) {
+    if (this.notificacionPush) {
+      const dataStorage = JSON.parse(this.notificacionPush);
+      dataStorage.splice(id, 1);
+      this.notificacionPush=dataStorage
+      //localStorage.setItem(this.locaNotificacion, JSON.stringify(dataStorage));
     }
   }
+
+  get notificacionPush(){
+    return localStorage.getItem(this.locaNotificacion);
+  }
+  set notificacionPush(notificaciones:any){
+    localStorage.setItem(this.locaNotificacion, JSON.stringify(notificaciones));
+  }
+
 }
