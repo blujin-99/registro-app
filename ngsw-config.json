@@ -11,7 +11,8 @@
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/assets/js/firebase-messaging-sw.js"
         ]
       }
     },
@@ -30,11 +31,11 @@
   "dataGroups": [
     {
       "name": "static-assets",
-      "urls": ["/assets"],
+      "urls": ["/assets/**"],
       "cacheConfig": {
         "strategy": "performance",
         "maxSize": 50,
-        "maxAge": "7d"
+        "maxAge": "10d"
       }
     },
     {
@@ -44,7 +45,7 @@
         "strategy": "freshness",
         "maxSize": 20,
         "maxAge": "1h",
-        "timeout": "5s"
+        "timeout": "10s"
       }
     },
     {

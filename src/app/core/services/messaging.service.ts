@@ -18,7 +18,6 @@ export class MessagingService {
   noti$: Observable<any[]> = this.notification.asObservable();
   private sendToken = environment.apiBase + environment.api.notificationUrl;
   token?: string;
-  env = environment.firebaseConfig;
   counter: string[] = [];
   private app = initializeApp(environment.firebaseConfig);
   private messaging = getMessaging(this.app);
@@ -28,8 +27,9 @@ export class MessagingService {
    * Confirma Recibir Notificaciones
    */
   requestPermission() {
-    navigator.serviceWorker.ready.then((data) => console.log(data, 'activo'));
-
+    /**
+     * Registo el service worker
+     */
     navigator.serviceWorker
       .register('assets/js/firebase-messaging-sw.js')
       .then((registration) => {
@@ -45,6 +45,7 @@ export class MessagingService {
       .catch((error) => {
         console.error('Error al obtener el ServiceWorkerRegistration:', error);
       });
+    
   }
 
   /**
@@ -66,22 +67,22 @@ export class MessagingService {
         url: smRecived.data?.['url'],
       };
       this.saveNotification(notificationData)
-      
     });
+    
   }
 
 
-  
-  /**
+   /**
    * Guarda notificación en local storage
    * @param notificacion
    */
   private saveNotification(notificacion: any) {
     let notifications = JSON.parse(
-      localStorage.getItem(this.locaNotificacion) || '[]'
+     this.notificacionPush|| '[]'
     );
     notifications.push(notificacion);
-    localStorage.setItem(this.locaNotificacion, JSON.stringify(notifications));
+    this.notificacionPush=notifications
+    //localStorage.setItem(this.locaNotificacion, JSON.stringify(notifications));
     this.noti$ = notifications;
   }
   checkNotification() {
@@ -100,11 +101,16 @@ export class MessagingService {
     if (this.notificacionPush) {
       const dataStorage = JSON.parse(this.notificacionPush);
       dataStorage.splice(id, 1);
-      localStorage.setItem(this.locaNotificacion, JSON.stringify(dataStorage));
+      this.notificacionPush=dataStorage
+      //localStorage.setItem(this.locaNotificacion, JSON.stringify(dataStorage));
     }
   }
 
   get notificacionPush(){
     return localStorage.getItem(this.locaNotificacion);
   }
+  set notificacionPush(notificaciones:any){
+    localStorage.setItem(this.locaNotificacion, JSON.stringify(notificaciones));
+  }
+
 }
