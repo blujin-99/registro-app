@@ -16,7 +16,7 @@
     </a>
   </li>
 
-  <li *ngIf="user">
+  <li *ngIf="user" class="relative" (click)="layoutSrv.toggleListItems()">
     <app-notificaciones />
   </li>
 
