@@ -52,16 +52,29 @@
     <h2 class="m-0 text-2xl primary">Seleccione el trámite</h2>
   </span>
 
-    <div class="flex flex-row justify-center space-x-4">
-      <a *ngFor="let tipo of tiposTramites"
-        [routerLink]="['/tramiteDigital/oficina', oficina?.pk, tipo.link]"
-        routerLinkActive="router-link-active"
-        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
-      >
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-center primary">
-          {{tipo.nombre}}
-        </h5>
-      </a>
+  <div class="flex flex-wrap justify-center gap-4">
+    <div *ngFor="let tipo of tiposTramites"
+      [routerLink]="['/tramiteDigital/oficina', oficina?.pk, tipo.link]"
+      routerLinkActive="router-link-active"
+      class="block max-w-sm p-6 transition duration-300 ease-in-out bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg"
+    >
+      <h5 class="mb-2 text-2xl text-center primary">
+        {{tipo.nombre}}
+      </h5>
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        {{tipo.descripcion}}
+      </p>
+      <br>
+      <div class="card-footer">
+        <div class="gap-2 text-center d-grid" >
+          <div *ngIf="tipo.link" [routerLink]="tipo.link" class="m-1 cursor-pointer btn btn-primary me-md-2"
+            >{{tipo.linkName}}</div
+          >
+          <div *ngIf="tipo.link1" [routerLink]="tipo.link1" class="m-1 cursor-pointer btn btn-primary me-md-2"
+          >{{tipo.link1Name}}</div
+        >
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>

@@ -4,15 +4,15 @@
   </span>
 
   <div class="flex flex-row justify-center space-x-4">
-    <a
+    <div
       *ngFor="let jurisdiccion of jurisdicciones"
       [routerLink]="['/tramiteDigital/oficina', jurisdiccion.pk]"
       routerLinkActive="router-link-active"
-      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+      class="block w-full max-w-xl p-8 transition duration-300 ease-in-out transform bg-white border border-gray-300 rounded-lg shadow cursor-pointer hover:bg-gray-100"
     >
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-center primary">
+      <h5 class="m-0 text-2xl text-center primary">
         {{ jurisdiccion.nombre }}
       </h5>
-    </a>
+    </div>
   </div>
 </div>
