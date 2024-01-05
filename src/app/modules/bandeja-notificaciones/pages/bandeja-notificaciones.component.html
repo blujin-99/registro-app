@@ -1,5 +1,5 @@
 <span>
-    <h2 class="m-0 text-2xl primary">Notificaciones</h2>
+    <h2 class="m-0 text-2xl">Notificaciones</h2>
 </span>
 <div *ngIf="messageSrv.checkNotification()" class="flex flex-col items-center mt-5 ml-6 overflow-y-auto">
     <div *ngFor="let message of notificacion$ | async, let id = index" class=" w-full">

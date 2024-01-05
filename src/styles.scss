@@ -4,27 +4,27 @@
 
 @layer components {
   h1 {
-    @apply mb-2 text-3xl font-medium tracking-tight text-[#108a97];
+    @apply mb-2 text-3xl font-medium tracking-tight text-[var(--h1-color)];
   }
 
   h2 {
-    @apply mb-2 text-2xl font-medium tracking-tight text-[#6c757d];
+    @apply mb-2 text-2xl font-medium tracking-tight text-[var(--h2-color)];
   }
 
   h3 {
-    @apply mb-2 text-xl font-medium tracking-tight text-[#6c757d];
+    @apply mb-2 text-xl font-medium tracking-tight text-[var(--h3-color)];
   }
 
   h4 {
-    @apply mb-2 text-lg font-medium tracking-tight text-[#6c757d];
+    @apply mb-2 text-lg font-medium tracking-tight text-[var(--h4-color)];
   }
 
   h5 {
-    @apply mb-2 text-base font-medium tracking-tight text-[#6c757d];
+    @apply mb-2 text-base font-medium tracking-tight text-[var(--h5-color)];
   }
 
   h6 {
-    @apply mb-2 text-sm font-medium tracking-tight text-[#6c757d];
+    @apply mb-2 text-sm font-medium tracking-tight text-[var(--h6-color)];
   }
 
   label {
@@ -76,37 +76,7 @@
   }
 }
 
-$backGround: #fff;
-$buttonDisabled: #84c3ca;
-$fondo: #e3e1e2;
-$colorFondo: #ccc;
-$colorFuente: #108a97;
-$colorFooter: #6c757d;
-$body-bg: $backGround;
-$lineaButton: $colorFuente;
-$fondoButton: $backGround;
-$navbar-light-color: $colorFuente;
-$lineaNavar: $backGround;
-$fondoFooter: $backGround;
 
-body {
-  margin: 0;
-  min-width: 100%;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #000000a1;
-  text-align: left;
-  background-color: $backGround;
-  scroll-margin-block: $colorFuente;
-  display: flex;
-  flex-direction: column;
-  overflow-x: auto;
-}
 
 * {
   margin: 0px;
@@ -114,7 +84,7 @@ body {
 }
 
 footer a {
-  color: $colorFooter;
+  color: var(--colorFooter);
 }
 
 footer ul li > a {
@@ -122,38 +92,38 @@ footer ul li > a {
 }
 
 a {
-  color: $colorFuente;
+  color: var(--colorFuente);
   background-color: transparent;
 }
 
 .primary {
-  color: $colorFuente;
+  color: var(--colorFuente);
 }
 
 .secondary {
-  color: $colorFooter;
+  color: var(--colorFooter);
 }
 
 .bg-primary {
-  background-color: $colorFuente;
+  background-color: var(--colorFuente);
 }
 
 .bg-secondary {
-  background-color: $colorFooter;
+  background-color: var(--colorFooter);
 }
 
 .bg-fondo {
-  background-color: $fondo;
+  background-color: var(--fondo);
 }
 
 //*   BOTONES
 
 .button:enabled {
-  background-color: $colorFuente;
+  background-color: var(--colorFuente);
 }
 
 .button:disabled {
-  background-color: $buttonDisabled;
+  background-color: var(--button-focus-color);
 }
 
 /* GRID LAYOUT*/
