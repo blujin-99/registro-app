@@ -1,5 +1,10 @@
+const id = 'MJYDH';
+const appKey = 'rp';
+
 export const common = {
-  pk:"RegistroPropiedad",
+  app: {
+    key: appKey,
+  },
   api: {
     fdadmintramite: 'tramite/{codigo}',
     tramites: 'tramites',
@@ -8,7 +13,7 @@ export const common = {
     outhApi: 'login/oauth',
     newTramite: 'profesion/newTramite',
     actions: 'action',
-    notificationUrl : 'notify/register'
+    notificationUrl: 'notify/register',
   },
   auth: {
     serviceAuthUrl: 'service-auth',
@@ -18,9 +23,9 @@ export const common = {
     logoutUrl: '/service-auth/logout',
   },
   login: {
-    mjydh_cas: 'MJYDH_CAS',
-    mjydh_jwt: 'MJYDH_JWT',
-    mjydh_token: 'MJYDH_TOKEN',
+    mjydh_cas: id + '_CAS',
+    mjydh_jwt: id + '_JWT',
+    mjydh_token: id + '_TOKEN',
     mjydh_refresh: 600000,
   },
   notificacion:{

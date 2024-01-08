@@ -1,3 +1,5 @@
+import { IProfesion } from './profesion.interface';
+
 export interface IUserCas {
   cuil: string;
   nombre: string;
@@ -9,7 +11,8 @@ export interface IUserCas {
 export interface IUser {
   nombre: string;
   apellido: string;
-  numero_documento: string;
+  numeroDocumento: string;
   cuil: string;
   matricula: string;
+  profesion?: IProfesion;
 }

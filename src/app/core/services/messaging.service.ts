@@ -13,7 +13,7 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 export class MessagingService {
   mensaje = new BehaviorSubject<any>(null);
   locaNotificacion =
-    environment.env + '_' + environment.pk + environment.notificacion.nombre;
+    environment.env + '_' + environment.app.key + environment.notificacion.nombre;
   notification = new BehaviorSubject<any[]>([]);
   noti$: Observable<any[]> = this.notification.asObservable();
   private sendToken = environment.apiBase + environment.api.notificationUrl;
@@ -45,7 +45,7 @@ export class MessagingService {
       .catch((error) => {
         console.error('Error al obtener el ServiceWorkerRegistration:', error);
       });
-    
+
   }
 
   /**
@@ -68,7 +68,7 @@ export class MessagingService {
       };
       this.saveNotification(notificationData)
     });
-    
+
   }
 
 
@@ -87,13 +87,13 @@ export class MessagingService {
   }
   checkNotification() {
     if (this.notificacionPush) {
-     
+
       const counter = JSON.parse(this.notificacionPush);
-     
+
       this.counter = Array.isArray(counter) ? counter : [];
       this.notification.next(Array.isArray(counter) ? counter : []);
     }
-   
+
     return this.counter.length;
   }
 

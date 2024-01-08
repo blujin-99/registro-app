@@ -1,7 +1,7 @@
 import { Injectable, computed, signal, effect } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IUserCas } from '../models/user.interface';
+import { IUser, IUserCas } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
 import { PeriodicTaskService } from './periodic-task.services';
 import { AuthStatus } from '../models';
@@ -13,6 +13,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 export class UserService {
   private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
   private userCas?: IUserCas | null;
+  private user?: IUser | null;
 
   public currentUrl = '';
 
@@ -67,6 +68,32 @@ export class UserService {
       return false;
     }
   }
+
+    /**
+   * Setea la información del cuidadano
+   * y en la variable user
+   * @param user
+   */
+    setUserFD(user: IUser): void {
+      sessionStorage.setItem(
+        environment.app.key+"_user",
+        JSON.stringify(user)
+      );
+    }
+
+    /**
+   * Si existe retorna los datos del cuidadano
+   */
+  getUserFD() {
+    const userJSON = sessionStorage.getItem(environment.app.key+"_user");
+    if (userJSON) {
+      this.user = JSON.parse(userJSON);
+      return this.user;
+    } else {
+      return false;
+    }
+  }
+
   /**
    * Arma el login para la aplicacion
    * Método de inicio
@@ -106,6 +133,7 @@ export class UserService {
     return this.http.post(this.url, body).pipe(
       map((data: any) => {
         this.setUserCas(data.user.userCas);
+        this.setUserFD(data.user.userFD);
         localStorage.setItem(environment.login.mjydh_jwt, data.token);
         this.authStatus.set(AuthStatus.authenticated);
       }),

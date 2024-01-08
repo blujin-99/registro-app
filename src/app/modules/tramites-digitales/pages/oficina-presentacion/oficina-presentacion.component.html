@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-6 mt-3 sm:mt-0">
+  <span>
+    <h2 class="m-0 text-2xl primary">Seleccione la oficina de presentación</h2>
+  </span>
+
+  <div class="flex flex-row justify-center space-x-4">
+    <div
+      *ngFor="let jurisdiccion of jurisdicciones"
+      [routerLink]="['/tramiteDigital/oficina', jurisdiccion.pk]"
+      routerLinkActive="router-link-active"
+      class="block w-full max-w-xl p-8 transition duration-300 ease-in-out transform bg-white border border-gray-300 rounded-lg shadow cursor-pointer hover:bg-gray-100"
+    >
+      <h5 class="m-0 text-2xl text-center primary">
+        {{ jurisdiccion.nombre }}
+      </h5>
+    </div>
+  </div>
+</div>

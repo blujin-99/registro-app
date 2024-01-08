@@ -1,4 +1,4 @@
-export interface MESA {
+export interface Mesa {
   ok: boolean,
   presentado: string,
   tramite: string,
@@ -8,7 +8,7 @@ export interface MESA {
   salida: boolean,
   fechasalida: string,
   tiposalida: string,
-  casillero: string     
+  casillero: string
 }
 
 export interface Consulta {

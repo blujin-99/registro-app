@@ -1,0 +1,19 @@
+  <form [formGroup]="actoForm">
+    <!-- Campo Naturaleza -->
+    <div class="mb-4">
+      <label for="naturaleza" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        Naturaleza del Acto
+        <span class="text-red-600">*</span>
+      </label>
+      <input type="text" id="naturaleza" formControlName="naturaleza" class="w-full p-2 mt-1 border rounded-md">
+      <p
+      *ngIf="
+        this.actoForm.get('numero')?.hasError('required') &&
+        actoForm.get('numero')?.touched
+      "
+      class="mt-2 text-sm text-red-600"
+    >
+      <span class="font-medium">El campo es requerido</span>
+    </p>
+    </div>
+  </form>
