@@ -37,7 +37,8 @@ export class MessagingService {
         let swRegistration = registration as ServiceWorkerRegistration;
         getToken(this.messaging, {
           serviceWorkerRegistration: swRegistration,
-        }).then((token) => {
+        }).then((token:any) => {
+          console.log(token, 'token')
           this.registerToken(token);
         });
         // Continúa con el uso de swRegistration
@@ -54,6 +55,7 @@ export class MessagingService {
    */
   registerToken(token: string) {
     if (this.userSrv.getJWT()) {
+      console.log('paso');
       this.http.post(this.sendToken, { token }).subscribe();
     }
   }

@@ -10,6 +10,7 @@ export class AppService {
   version = '';
   env='';
   url = environment;
+  baseStorage: string = environment.env+environment.app.key
 
   constructor(private http: HttpClient) {
     this.getNombreMinisterio();
@@ -25,10 +26,10 @@ export class AppService {
         this.ministerio = res.Ministerio;
         this.version = res.Version;
         this.env = res.Enviroment;
-        localStorage.setItem('nombreMinisterio', this.ministerio);
+        localStorage.setItem(this.baseStorage+'nombreMinisterio', this.ministerio);
       },
       error: (error) => {
-        const nombreMinisterioLS = localStorage.getItem('nombreMinisterio');
+        const nombreMinisterioLS = localStorage.getItem(this.baseStorage+'nombreMinisterio');
 
         if (nombreMinisterioLS) {
           this.ministerio = nombreMinisterioLS;

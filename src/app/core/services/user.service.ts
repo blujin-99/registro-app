@@ -133,7 +133,7 @@ export class UserService {
       map((data: any) => {
         this.setUserCas(data.user.userCas);
         this.setUserFD(data.user.userFD);
-        this.setToken(data.token)
+        this.JWT(data.token)
         this.authStatus.set(AuthStatus.authenticated);
       }),
       catchError(() => {
@@ -205,6 +205,10 @@ export class UserService {
 
   public getJWT() {
     return localStorage.getItem(this.baseStorage+environment.login.mjydh_jwt);
+  }
+
+  public JWT(value:string){
+    localStorage.setItem(this.baseStorage+environment.login.mjydh_jwt, value);
   }
 
   public refreshToken(): void {
