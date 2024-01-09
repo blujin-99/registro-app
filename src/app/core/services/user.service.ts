@@ -14,7 +14,7 @@ export class UserService {
   private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
   private userCas?: IUserCas | null;
   private user?: IUser | null;
-
+  private baseStorage: string = environment.env+environment.app.key
   public currentUrl = '';
 
   public authStatus = signal<AuthStatus>(AuthStatus.checking);
@@ -33,7 +33,6 @@ export class UserService {
     private location: Location,
     private periodic: PeriodicTaskService
   ) {
-    sessionStorage.setItem(this.MJYDH_REFRESH, '0');
     effect(
       () => {
         this.authStatus();
@@ -51,7 +50,7 @@ export class UserService {
    */
   setUserCas(userData: IUserCas): void {
     sessionStorage.setItem(
-      environment.login.mjydh_cas,
+      this.baseStorage+environment.login.mjydh_cas,
       JSON.stringify(userData)
     );
   }
@@ -60,7 +59,7 @@ export class UserService {
    * Si existe retorna los datos del usuario
    */
   getUserCas() {
-    const userJSON = sessionStorage.getItem(environment.login.mjydh_cas);
+    const userJSON = sessionStorage.getItem(this.baseStorage+environment.login.mjydh_cas);
     if (userJSON) {
       this.userCas = JSON.parse(userJSON);
       return this.userCas;
@@ -76,7 +75,7 @@ export class UserService {
    */
     setUserFD(user: IUser): void {
       sessionStorage.setItem(
-        environment.app.key+"_user",
+        this.baseStorage+"_user",
         JSON.stringify(user)
       );
     }
@@ -85,7 +84,7 @@ export class UserService {
    * Si existe retorna los datos del cuidadano
    */
   getUserFD() {
-    const userJSON = sessionStorage.getItem(environment.app.key+"_user");
+    const userJSON = sessionStorage.getItem(this.baseStorage+"_user");
     if (userJSON) {
       this.user = JSON.parse(userJSON);
       return this.user;
@@ -99,7 +98,7 @@ export class UserService {
    * Método de inicio
    */
   initAuth(): void {
-    if (!sessionStorage.getItem(environment.login.mjydh_cas)) {
+    if (!sessionStorage.getItem(this.baseStorage+environment.login.mjydh_cas)) {
       const token: any = this.getAccessTokenFromUrl();
       if (token) {
         this.setToken(token);
@@ -134,12 +133,12 @@ export class UserService {
       map((data: any) => {
         this.setUserCas(data.user.userCas);
         this.setUserFD(data.user.userFD);
-        localStorage.setItem(environment.login.mjydh_jwt, data.token);
+        this.setToken(data.token)
         this.authStatus.set(AuthStatus.authenticated);
       }),
       catchError(() => {
+        this.clearStorage()
         this.authStatus.set(AuthStatus.notAuthenticated);
-
         return of(false);
       })
     );
@@ -157,12 +156,7 @@ export class UserService {
    * Cierra el login
    */
   public logout(): void {
-    //this.borroCredenciales().subscribe((data) => console.log(data));
-    localStorage.removeItem(environment.login.mjydh_token);
-    sessionStorage.removeItem(environment.login.mjydh_cas);
-    localStorage.removeItem(environment.login.mjydh_jwt);
-    localStorage.removeItem('url');
-    sessionStorage.setItem(this.MJYDH_REFRESH, '0');
+   this.clearStorage();    
     /**
      * Redirecciono al Inicio
      */
@@ -174,14 +168,14 @@ export class UserService {
    * @param token
    */
   private setToken(token: string): void {
-    localStorage.setItem(environment.login.mjydh_token, token);
+    localStorage.setItem(this.baseStorage+environment.login.mjydh_token, token);
   }
   /**
    * Retorna token del CAS
    * @returns
    */
   public getToken(): string | null {
-    return localStorage.getItem(environment.login.mjydh_token);
+    return localStorage.getItem(this.baseStorage+environment.login.mjydh_token);
   }
 
   /**
@@ -210,7 +204,7 @@ export class UserService {
   }
 
   public getJWT() {
-    return localStorage.getItem(environment.login.mjydh_jwt);
+    return localStorage.getItem(this.baseStorage+environment.login.mjydh_jwt);
   }
 
   public refreshToken(): void {
@@ -218,4 +212,14 @@ export class UserService {
       this.getToken() ? this.verifToken() : '';
     });
   }
+
+  private clearStorage(){
+    sessionStorage.removeItem(this.baseStorage+environment.login.mjydh_cas);
+    localStorage.removeItem(this.baseStorage+ environment.notificacion.nombre)
+    localStorage.removeItem(this.baseStorage+environment.login.mjydh_jwt);    
+    localStorage.removeItem(this.baseStorage+environment.login.mjydh_token);
+    localStorage.removeItem(this.baseStorage+'url');
+  }
+    
+  
 }

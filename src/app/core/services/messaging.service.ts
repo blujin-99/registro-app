@@ -13,7 +13,7 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 export class MessagingService {
   mensaje = new BehaviorSubject<any>(null);
   locaNotificacion =
-    environment.env + '_' + environment.app.key + environment.notificacion.nombre;
+    environment.env + environment.app.key + environment.notificacion.nombre;
   notification = new BehaviorSubject<any[]>([]);
   noti$: Observable<any[]> = this.notification.asObservable();
   private sendToken = environment.apiBase + environment.api.notificationUrl;

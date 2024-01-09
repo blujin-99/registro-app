@@ -16,6 +16,8 @@ import { Location } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
+  private baseStorage: string = environment.env+environment.app.key
+
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.userSrv.authStatus() === AuthStatus.checking) {
       return false;
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit {
     if (this.userSrv.authStatus() === AuthStatus.authenticated) {
       if (this.URl) {
         this.router.navigateByUrl(this.URl);
-        localStorage.removeItem('url');
+        localStorage.removeItem(this.baseStorage+'url');
       }
     } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
       this.userSrv.login();
@@ -35,7 +37,7 @@ export class AppComponent implements OnInit {
   });
 
   get URl() {
-    return localStorage.getItem('url');
+    return localStorage.getItem(this.baseStorage+'url');
   }
 
   constructor(
