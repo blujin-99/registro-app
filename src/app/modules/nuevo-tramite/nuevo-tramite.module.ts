@@ -5,9 +5,10 @@ import { NuevoTramiteRoutingModule } from './nuevo-tramite-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { BtnIniciarTramiteComponent } from './components/btn-iniciar-tramite/btn-iniciar-tramite.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 
 @NgModule({
-  declarations: [NuevoTramitePageComponent, BtnIniciarTramiteComponent],
+  declarations: [NuevoTramitePageComponent, BtnIniciarTramiteComponent, ErrorModalComponent],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   exports: [NuevoTramiteRoutingModule, NuevoTramitePageComponent],
 })
