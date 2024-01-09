@@ -6,8 +6,7 @@ import { MessagingService } from './core/services/messaging.service';
 import { UserService } from './core/services/user.service';
 import { AuthStatus } from './core/models';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { Location } from '@angular/common';
+import { StorageService } from './core/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +15,6 @@ import { Location } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  private baseStorage: string = environment.env+environment.app.key
-
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.userSrv.authStatus() === AuthStatus.checking) {
       return false;
@@ -27,25 +24,22 @@ export class AppComponent implements OnInit {
 
   public authStatusChangedEffect = effect(() => {
     if (this.userSrv.authStatus() === AuthStatus.authenticated) {
-      if (this.URl) {
-        this.router.navigateByUrl(this.URl);
-        localStorage.removeItem(this.baseStorage+'url');
+      if (this.storageSrv.url) {
+        this.router.navigateByUrl(this.storageSrv.url);
+        this.storageSrv.remuvUrl()
       }
     } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
       this.userSrv.login();
     }
   });
 
-  get URl() {
-    return localStorage.getItem(this.baseStorage+'url');
-  }
-
   constructor(
     public layoutSrv: LayoutService,
     public appSrv: AppService,
     private messagingSrv: MessagingService,
     private userSrv: UserService,
-    private router: Router
+    private router: Router,
+    private storageSrv: StorageService
   ) {}
 
   ngOnInit(): void {

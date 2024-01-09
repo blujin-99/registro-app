@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LayoutService } from '../../services/layout.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,11 +8,11 @@ import { LayoutService } from '../../services/layout.service';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  constructor(public layaoutSrv: LayoutService) {
+  constructor(public layaoutSrv: LayoutService, private storageSrv:StorageService) {
     // Recupera el valor de "isExpand" del localStorage al iniciar el componente
-    const localStorageIsExpand = localStorage.getItem('isExpand');
-    if (localStorageIsExpand) {
-      this.layaoutSrv.isExpand = JSON.parse(localStorageIsExpand);
+    console.log(this.storageSrv.isExpand, "expamd")
+    if (this.storageSrv.isExpand) {
+      this.layaoutSrv.isExpand = this.storageSrv.isExpand;
     }
   }
 }

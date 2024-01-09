@@ -5,14 +5,16 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoadingService {
-
+  showModal:boolean = true;
   isLoading$ = new Subject<boolean>();
 
   show():void{
-    this.isLoading$.next(true);
+    if(this.showModal){
+      this.isLoading$.next(true);
+    }
   }
 
   close(): void{
-    this.isLoading$.next(false);
+    (this.showModal)?  this.isLoading$.next(false):this.showModal=true
   }
 }

@@ -6,14 +6,13 @@ import { environment } from 'src/environments/environment';
 import { PeriodicTaskService } from './periodic-task.services';
 import { AuthStatus } from '../models';
 import { Observable, catchError, map, of } from 'rxjs';
+import { LoadingService } from './loading.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private MJYDH_REFRESH: string = 'MJYDH_REFRESH';
-  private userCas?: IUserCas | null;
-  private user?: IUser | null;
   private baseStorage: string = environment.env+environment.app.key
   public currentUrl = '';
 
@@ -31,7 +30,9 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private location: Location,
-    private periodic: PeriodicTaskService
+    private periodic: PeriodicTaskService,
+    private loadingSrv: LoadingService,
+    private storageSrv: StorageService
   ) {
     effect(
       () => {
@@ -49,20 +50,15 @@ export class UserService {
    * @param userData
    */
   setUserCas(userData: IUserCas): void {
-    sessionStorage.setItem(
-      this.baseStorage+environment.login.mjydh_cas,
-      JSON.stringify(userData)
-    );
+    this.storageSrv.userCas=userData
   }
 
   /**
    * Si existe retorna los datos del usuario
    */
   getUserCas() {
-    const userJSON = sessionStorage.getItem(this.baseStorage+environment.login.mjydh_cas);
-    if (userJSON) {
-      this.userCas = JSON.parse(userJSON);
-      return this.userCas;
+    if (this.storageSrv.userCas) {
+      return this.storageSrv.userCas ;
     } else {
       return false;
     }
@@ -74,20 +70,15 @@ export class UserService {
    * @param user
    */
     setUserFD(user: IUser): void {
-      sessionStorage.setItem(
-        this.baseStorage+"_user",
-        JSON.stringify(user)
-      );
+      this.storageSrv.user=user
     }
 
     /**
    * Si existe retorna los datos del cuidadano
    */
   getUserFD() {
-    const userJSON = sessionStorage.getItem(this.baseStorage+"_user");
-    if (userJSON) {
-      this.user = JSON.parse(userJSON);
-      return this.user;
+    if (this.storageSrv.user) {
+      return this.storageSrv.user;
     } else {
       return false;
     }
@@ -98,7 +89,7 @@ export class UserService {
    * Método de inicio
    */
   initAuth(): void {
-    if (!sessionStorage.getItem(this.baseStorage+environment.login.mjydh_cas)) {
+    if (!this.storageSrv.userCas) {
       const token: any = this.getAccessTokenFromUrl();
       if (token) {
         this.setToken(token);
@@ -137,7 +128,7 @@ export class UserService {
         this.authStatus.set(AuthStatus.authenticated);
       }),
       catchError(() => {
-        this.clearStorage()
+        this.storageSrv.clear()
         this.authStatus.set(AuthStatus.notAuthenticated);
         return of(false);
       })
@@ -156,7 +147,7 @@ export class UserService {
    * Cierra el login
    */
   public logout(): void {
-   this.clearStorage();    
+    this.storageSrv.clear()
     /**
      * Redirecciono al Inicio
      */
@@ -168,14 +159,14 @@ export class UserService {
    * @param token
    */
   private setToken(token: string): void {
-    localStorage.setItem(this.baseStorage+environment.login.mjydh_token, token);
+    this.storageSrv.token= token
   }
   /**
    * Retorna token del CAS
    * @returns
    */
-  public getToken(): string | null {
-    return localStorage.getItem(this.baseStorage+environment.login.mjydh_token);
+  public getToken(): string  {
+    return this.storageSrv.token ;
   }
 
   /**
@@ -204,26 +195,19 @@ export class UserService {
   }
 
   public getJWT() {
-    return localStorage.getItem(this.baseStorage+environment.login.mjydh_jwt);
+    return this.storageSrv.JWT;
   }
 
   public JWT(value:string){
-    localStorage.setItem(this.baseStorage+environment.login.mjydh_jwt, value);
+    this.storageSrv.JWT=value
   }
 
   public refreshToken(): void {
     this.periodic.startPeriodicTask(environment.login.mjydh_refresh, () => {
-      this.getToken() ? this.verifToken() : '';
+      this.loadingSrv.showModal=false
+      this.getToken() ? this.verifToken() : ''
     });
   }
 
-  private clearStorage(){
-    sessionStorage.removeItem(this.baseStorage+environment.login.mjydh_cas);
-    localStorage.removeItem(this.baseStorage+ environment.notificacion.nombre)
-    localStorage.removeItem(this.baseStorage+environment.login.mjydh_jwt);    
-    localStorage.removeItem(this.baseStorage+environment.login.mjydh_token);
-    localStorage.removeItem(this.baseStorage+'url');
-  }
     
-  
 }

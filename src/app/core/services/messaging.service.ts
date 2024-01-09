@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { StorageService } from './storage.service';
 
 
 @Injectable({
@@ -21,7 +22,7 @@ export class MessagingService {
   counter: string[] = [];
   private app = initializeApp(environment.firebaseConfig);
   private messaging = getMessaging(this.app);
-  constructor(private http: HttpClient, private userSrv: UserService) {}
+  constructor(private http: HttpClient, private userSrv: UserService, private storageSrv:StorageService) {}
 
   /**
    * Confirma Recibir Notificaciones
@@ -55,7 +56,6 @@ export class MessagingService {
    */
   registerToken(token: string) {
     if (this.userSrv.getJWT()) {
-      console.log('paso');
       this.http.post(this.sendToken, { token }).subscribe();
     }
   }
@@ -79,18 +79,15 @@ export class MessagingService {
    * @param notificacion
    */
   private saveNotification(notificacion: any) {
-    let notifications = JSON.parse(
-     this.notificacionPush|| '[]'
-    );
+    let notifications = this.notificacionPush|| '[]';
     notifications.push(notificacion);
     this.notificacionPush=notifications
-    //localStorage.setItem(this.locaNotificacion, JSON.stringify(notifications));
     this.noti$ = notifications;
   }
   checkNotification() {
     if (this.notificacionPush) {
 
-      const counter = JSON.parse(this.notificacionPush);
+      const counter = this.notificacionPush;
 
       this.counter = Array.isArray(counter) ? counter : [];
       this.notification.next(Array.isArray(counter) ? counter : []);
@@ -101,18 +98,18 @@ export class MessagingService {
 
   deleteItem(id: number) {
     if (this.notificacionPush) {
-      const dataStorage = JSON.parse(this.notificacionPush);
+      const dataStorage =this.notificacionPush;
       dataStorage.splice(id, 1);
       this.notificacionPush=dataStorage
-      //localStorage.setItem(this.locaNotificacion, JSON.stringify(dataStorage));
     }
   }
 
   get notificacionPush(){
-    return localStorage.getItem(this.locaNotificacion);
+    return this.storageSrv.notificacionPush
+    
   }
   set notificacionPush(notificaciones:any){
-    localStorage.setItem(this.locaNotificacion, JSON.stringify(notificaciones));
+    this.storageSrv.notificacionPush = notificaciones
   }
 
 }

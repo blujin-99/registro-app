@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +10,9 @@ export class AppService {
   ministerio = '';
   version = '';
   env='';
-  url = environment;
-  baseStorage: string = environment.env+environment.app.key
+  url = environment.apiBase;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storageSrv:StorageService) {
     this.getNombreMinisterio();
   }
 
@@ -21,15 +21,15 @@ export class AppService {
    * Si hay un error setea el nombre que guardo en el localStorage
    */
   getNombreMinisterio() {
-    this.http.get(this.url.apiBase).subscribe({
+    this.http.get(this.url).subscribe({
       next: (res: any) => {
         this.ministerio = res.Ministerio;
+        this.storageSrv.ministerio=res.Ministerio
         this.version = res.Version;
         this.env = res.Enviroment;
-        localStorage.setItem(this.baseStorage+'nombreMinisterio', this.ministerio);
       },
       error: (error) => {
-        const nombreMinisterioLS = localStorage.getItem(this.baseStorage+'nombreMinisterio');
+        const nombreMinisterioLS = this.storageSrv.ministerio;
 
         if (nombreMinisterioLS) {
           this.ministerio = nombreMinisterioLS;
