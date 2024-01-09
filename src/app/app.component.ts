@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, effect } from '@angular/core';
+import { Component, OnInit, computed, effect,ChangeDetectionStrategy } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { AppService } from './core/services/app.service';
 import { LayoutService } from './core/services/layout.service';
@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   public finishedAuthCheck = computed<boolean>(() => {
