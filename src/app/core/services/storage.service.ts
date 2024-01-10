@@ -77,7 +77,7 @@ export class StorageService {
    * TOKEN CAS
    */
   get token(): string {
-    return this.getLS(this.baseStorage + environment.login.mjydh_token, true);
+    return this.getLS(this.baseStorage + environment.login.mjydh_token, false);
   }
   set token(token: string) {
     this.setLS(
