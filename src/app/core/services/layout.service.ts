@@ -1,4 +1,5 @@
 import { HostListener, Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +8,13 @@ export class LayoutService {
   isExpand = false;
 
   openSidebar = false;
+  constructor(private storageSrv:StorageService){
 
+  }
   toggleSidebar() {
     this.isExpand = !this.isExpand;
     // Guarda el valor de "isExpand" en el localStorage
-    localStorage.setItem('isExpand', JSON.stringify(this.isExpand));
+    this.storageSrv.isExpand=this.isExpand
   }
 
   /**
@@ -34,8 +37,7 @@ export class LayoutService {
   mobileSidebar() {
     if (window.innerWidth < 768) {
       this.isExpand = true;
-
-      localStorage.setItem('isExpand', JSON.stringify(this.isExpand));
+      this.storageSrv.isExpand=this.isExpand
     }
   }
 }

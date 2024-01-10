@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, effect } from '@angular/core';
+import { Component, OnInit, computed, effect,ChangeDetectionStrategy } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { AppService } from './core/services/app.service';
 import { LayoutService } from './core/services/layout.service';
@@ -6,13 +6,13 @@ import { MessagingService } from './core/services/messaging.service';
 import { UserService } from './core/services/user.service';
 import { AuthStatus } from './core/models';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { Location } from '@angular/common';
+import { StorageService } from './core/services/storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   public finishedAuthCheck = computed<boolean>(() => {
@@ -24,25 +24,22 @@ export class AppComponent implements OnInit {
 
   public authStatusChangedEffect = effect(() => {
     if (this.userSrv.authStatus() === AuthStatus.authenticated) {
-      if (this.URl) {
-        this.router.navigateByUrl(this.URl);
-        localStorage.removeItem('url');
+      if (this.storageSrv.url) {
+        this.router.navigateByUrl(this.storageSrv.url);
+        this.storageSrv.remuvUrl()
       }
     } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
       this.userSrv.login();
     }
   });
 
-  get URl() {
-    return localStorage.getItem('url');
-  }
-
   constructor(
     public layoutSrv: LayoutService,
     public appSrv: AppService,
     private messagingSrv: MessagingService,
     private userSrv: UserService,
-    private router: Router
+    private router: Router,
+    private storageSrv: StorageService
   ) {}
 
   ngOnInit(): void {
