@@ -55,18 +55,18 @@ export class StorageService {
    * Metodos Get y Set
    */
   get userCas() {
-    return this.getSS(this.baseStorage + environment.login.mjydh_cas,true);
+    return this.getSS(this.baseStorage + environment.login.mjydh_cas, true);
   }
 
   set userCas(user) {
-    this.setSS(this.baseStorage + environment.login.mjydh_cas,user, true)
+    this.setSS(this.baseStorage + environment.login.mjydh_cas, user, true);
   }
 
   /**
    *  USER
    */
   get user() {
-    return this.getSS(this.baseStorage + '_user',true);
+    return this.getSS(this.baseStorage + '_user', true);
   }
 
   set user(user) {
@@ -80,17 +80,13 @@ export class StorageService {
     return this.getLS(this.baseStorage + environment.login.mjydh_token, false);
   }
   set token(token: string) {
-    this.setLS(
-      this.baseStorage + environment.login.mjydh_token,
-      token, false
-    );
+    this.setLS(this.baseStorage + environment.login.mjydh_token, token, false);
   }
-
 
   /**
    * JWT
    */
-  
+
   get JWT() {
     return this.getLS(this.baseStorage + environment.login.mjydh_jwt, false);
   }
@@ -98,7 +94,7 @@ export class StorageService {
   set JWT(value: string) {
     this.setLS(this.baseStorage + environment.login.mjydh_jwt, value, false);
   }
-  
+
   /**
    * Notificaciones
    */
@@ -108,7 +104,7 @@ export class StorageService {
   }
 
   set notificacionPush(value: any) {
-    this.setLS( this.baseStorage + environment.notificacion.nombre,value, true)
+    this.setLS(this.baseStorage + environment.notificacion.nombre, value, true);
   }
 
   /**
@@ -116,14 +112,14 @@ export class StorageService {
    */
 
   get url(): string {
-    return this.getLS(this.baseStorage + 'url', false) ;
+    return this.getLS(this.baseStorage + 'url', false);
   }
 
   set url(value: string) {
     this.setLS(this.baseStorage + 'url', value, false);
   }
 
-  public remuvUrl(): void {
+  public removeURl(): void {
     localStorage.removeItem(this.baseStorage + 'url');
   }
 
@@ -131,7 +127,7 @@ export class StorageService {
    * isExpand
    */
   get isExpand(): boolean {
-    return this.getLS(this.baseStorage + 'isExpand', true) ;
+    return this.getLS(this.baseStorage + 'isExpand', true);
   }
 
   set isExpand(value: boolean) {
@@ -141,16 +137,16 @@ export class StorageService {
   /**
    *  Ministerio info app
    */
-  get ministerio(){
-    return this.getLS(this.baseStorage+"ministerio", false)
+  get ministerio() {
+    return this.getLS(this.baseStorage + 'ministerio', false);
   }
 
-  set ministerio(value:string){
-    this.setLS(this.baseStorage+"ministerio",value, false)
+  set ministerio(value: string) {
+    this.setLS(this.baseStorage + 'ministerio', value, false);
   }
 
   /**
-   * Borrado Storage 
+   * Borrado Storage
    */
   public clear() {
     /**

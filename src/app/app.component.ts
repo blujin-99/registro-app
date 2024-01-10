@@ -1,4 +1,10 @@
-import { Component, OnInit, computed, effect,ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  computed,
+  effect,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { AppService } from './core/services/app.service';
 import { LayoutService } from './core/services/layout.service';
@@ -12,7 +18,7 @@ import { StorageService } from './core/services/storage.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   public finishedAuthCheck = computed<boolean>(() => {
@@ -26,7 +32,7 @@ export class AppComponent implements OnInit {
     if (this.userSrv.authStatus() === AuthStatus.authenticated) {
       if (this.storageSrv.url) {
         this.router.navigateByUrl(this.storageSrv.url);
-        this.storageSrv.remuvUrl()
+        this.storageSrv.removeURl();
       }
     } else if (this.userSrv.authStatus() === AuthStatus.notAuthenticated) {
       this.userSrv.login();

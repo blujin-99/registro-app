@@ -3,10 +3,11 @@ import { CanActivateFn } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AuthStatus } from '../models';
 import { environment } from 'src/environments/environment';
-
+import { StorageService } from '../services/storage.service';
 
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
   const userSrv = inject(UserService);
+  const storageSrv = inject(StorageService);
 
   effect(
     () => {
@@ -15,7 +16,7 @@ export const isLoggedInGuard: CanActivateFn = (route, state) => {
       }
 
       if (userSrv.authStatus() === AuthStatus.checking) {
-        if (localStorage.getItem(environment.env+environment.app.key +'url')) {
+        if (storageSrv.url) {
           userSrv.login();
         }
         return false;
