@@ -1,11 +1,7 @@
-<mat-nav-list *ngIf="tramiteSrv.actions.length >= 1">
+<mat-nav-list *ngIf="tramiteSrv.actions.length >= 1 && !tramiteSrv.actionsLoading">
   <ng-container *ngFor="let action of tramiteSrv.actions">
-    <a
-      mat-list-item
-      (click)="openLink($event, action.link)"
-      *ngIf="action.action === 'Ver'"
-    >
-      <span matListItemTitle>Ver Fomulario</span>
+    <a mat-list-item (click)="openLink($event, action.link)">
+      <span matListItemTitle> {{ action.action }}</span>
       <!-- <span matLine>Add to a note</span> -->
     </a>
 
