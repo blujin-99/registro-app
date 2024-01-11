@@ -21,7 +21,7 @@ import { switchMap } from 'rxjs';
   templateUrl: './tabla-finalizado.component.html',
   styleUrls: ['./tabla-finalizado.component.scss'],
 })
-export class TablaFinalizadoComponent implements OnInit {
+export class TablaFinalizadoComponent {
   displayedColumns: string[] = [
     'tramite',
     'numeroFormulario',
@@ -29,7 +29,6 @@ export class TablaFinalizadoComponent implements OnInit {
     'tasas',
     'excedentes',
   ];
-
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -58,9 +57,8 @@ export class TablaFinalizadoComponent implements OnInit {
     });
   }
 
-
   dataSource = new MatTableDataSource();
-  alert : any[] = []
+  alert: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -69,21 +67,25 @@ export class TablaFinalizadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filtrosService.filtros$.subscribe( () => 
-    this.filtrosService.getFinalizado().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data)
-      this.alert = data
-      this.dataSource.paginator = this.paginator
-    }
-      )
-    )
+    this.filtrosService.filtros$.subscribe(() =>
+      this.filtrosService.getFinalizado().subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+        this.alert = data;
+        this.dataSource.paginator = this.paginator;
+      })
+    );
   }
 
-  
   showPagoMobile() {}
 
   openBottomSheet(tramite: ITramite): void {
-    this.tramitesrv.getTramiteActions(tramite.codigo_tramite);
-    this._bottomSheet.open(OpcionesTramiteComponent);
+    this.tramitesrv.getTramiteActions(tramite.codigo_tramite).subscribe({
+      next: (actions) => {
+        this._bottomSheet.open(OpcionesTramiteComponent, {
+          data: actions,
+        });
+      },
+    });
   }
+
 }

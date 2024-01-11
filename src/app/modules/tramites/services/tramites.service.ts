@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
 import {
   IAction,
   ICategoria,
@@ -11,9 +10,7 @@ import {
   IJurisdiccion,
   ITipoTramite,
   ITramite,
-  ITramiteServicio,
 } from 'src/app/core/models/tramites.interfaces';
-import { LoadingService } from 'src/app/core/services/loading.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -29,10 +26,7 @@ export class TramitesService {
 
   env = environment;
 
-  actions: IAction[] = [];
-  actionsLoading = false;
-
-  constructor(private http: HttpClient, private loadingSrv:LoadingService) {}
+  constructor(private http: HttpClient) {}
 
   getFiltros() {
     this.http
@@ -53,15 +47,6 @@ export class TramitesService {
   }
 
   getTramiteActions(id: number) {
-    this.actionsLoading = true;
-    this.http
-      .get<IAction[]>(`${this.env.apiBase}tramites/${id}/action`)
-      .subscribe({
-        next: (res) => {
-          this.actions = res;
-          this.actionsLoading = false;
-          this.loadingSrv.close(); // Cerrar el modal después de cargar las acciones
-        },
-      });
+    return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
   }
 }
