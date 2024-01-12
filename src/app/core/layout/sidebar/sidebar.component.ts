@@ -8,9 +8,11 @@ import { StorageService } from '../../services/storage.service';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  constructor(public layaoutSrv: LayoutService, private storageSrv:StorageService) {
+  constructor(
+    public layaoutSrv: LayoutService,
+    private storageSrv: StorageService
+  ) {
     // Recupera el valor de "isExpand" del localStorage al iniciar el componente
-    console.log(this.storageSrv.isExpand, "expamd")
     if (this.storageSrv.isExpand) {
       this.layaoutSrv.isExpand = this.storageSrv.isExpand;
     }

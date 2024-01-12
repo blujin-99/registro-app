@@ -35,7 +35,7 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/flowbite/dist/flowbite.js"],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
@@ -124,7 +124,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              
+
             ]
           }
         }
