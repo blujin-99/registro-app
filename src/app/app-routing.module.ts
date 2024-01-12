@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'tramiteDigital',
-    //canActivate: [urlAccessGuard, isLoggedInGuard],
+    canActivate: [urlAccessGuard, isLoggedInGuard],
     loadChildren: () =>
       import('./modules/tramites-digitales/tramites-digitales.module').then(
         (m) => m.TramitesDigitalesModule

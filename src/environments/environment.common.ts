@@ -12,7 +12,7 @@ export const common = {
     consulta: '/estadotramiterg/consulta',
     outhApi: 'login/oauth',
     newTramite: 'profesion/newTramite',
-    actions: 'action',
+    actions: 'tramites/{codigo}/action',
     notificationUrl: 'notify/register',
   },
   auth: {

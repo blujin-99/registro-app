@@ -1,7 +1,5 @@
 import {
-  AfterViewInit,
   Component,
-  OnInit,
   ViewChild,
   effect,
 } from '@angular/core';
@@ -14,14 +12,17 @@ import { AccionesService } from '../../services/acciones.service';
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
 import { ITramite } from 'src/app/core/models';
-import { switchMap } from 'rxjs';
+
+import {MatPaginatorIntl} from '@angular/material/paginator';
+import { TramitePaginatorIntl } from 'src/app/shared/components/custom-paginator/tramite-paginator/tramite-paginator-intl';
 
 @Component({
   selector: 'app-tabla-finalizado',
   templateUrl: './tabla-finalizado.component.html',
   styleUrls: ['./tabla-finalizado.component.scss'],
+  providers: [{provide: MatPaginatorIntl, useClass: TramitePaginatorIntl}]
 })
-export class TablaFinalizadoComponent implements OnInit {
+export class TablaFinalizadoComponent {
   displayedColumns: string[] = [
     'tramite',
     'numeroFormulario',
@@ -29,7 +30,6 @@ export class TablaFinalizadoComponent implements OnInit {
     'tasas',
     'excedentes',
   ];
-
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -58,9 +58,8 @@ export class TablaFinalizadoComponent implements OnInit {
     });
   }
 
-
   dataSource = new MatTableDataSource();
-  alert : any[] = []
+  alert: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -69,21 +68,25 @@ export class TablaFinalizadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filtrosService.filtros$.subscribe( () => 
-    this.filtrosService.getFinalizado().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data)
-      this.alert = data
-      this.dataSource.paginator = this.paginator
-    }
-      )
-    )
+    this.filtrosService.filtros$.subscribe(() =>
+      this.filtrosService.getFinalizado().subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+        this.alert = data;
+        this.dataSource.paginator = this.paginator;
+      })
+    );
   }
 
-  
   showPagoMobile() {}
 
   openBottomSheet(tramite: ITramite): void {
-    this.tramitesrv.getTramiteActions(tramite.codigo_tramite);
-    this._bottomSheet.open(OpcionesTramiteComponent);
+    this.tramitesrv.getTramiteActions(tramite.codigo_tramite).subscribe({
+      next: (actions) => {
+        this._bottomSheet.open(OpcionesTramiteComponent, {
+          data: actions,
+        });
+      },
+    });
   }
+
 }

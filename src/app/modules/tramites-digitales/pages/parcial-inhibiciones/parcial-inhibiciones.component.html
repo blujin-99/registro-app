@@ -1,126 +1,79 @@
-<div class="flex flex-col gap-6 mt-3 sm:mt-0">
-  <nav class="flex" aria-label="Breadcrumb">
-    <ol
-      class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
-    >
-      <li class="inline-flex items-center">
-        <a
-          [routerLink]="['/tramiteDigital']"
-          class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
-        >
-          <svg
-            class="w-[12px] h-[12px] text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 16 20"
-          >
-            <path
-              d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"
-            />
-          </svg>
-          Oficinas de presentación
-        </a>
-      </li>
-      <li>
-        <div class="flex items-center">
-          <svg
-            class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 6 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 9 4-4-4-4"
-            />
-          </svg>
-          <a
-            [routerLink]="['/tramiteDigital/oficina', oficina?.pk]"
-            class="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
-            >{{ oficina?.nombre }}</a
-          >
-        </div>
-      </li>
-      <li aria-current="page">
-        <div class="flex items-center">
-          <svg
-            class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 6 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 9 4-4-4-4"
-            />
-          </svg>
-          <span
-            class="text-sm font-medium text-gray-500 ms-1 md:ms-2 dark:text-gray-400"
-            >Parcial Inhibiciones</span
-          >
-        </div>
-      </li>
-    </ol>
-  </nav>
-
-  <span>
-    <h2 class="m-0 text-2xl primary">Parcial Inhibiciones</h2>
-  </span>
-
-  <!-- TABS -->
-  <mat-tab-group>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <span>
-          Acto
-          <app-badge [value]="actoService.actoFormValid"></app-badge>
-        </span>
-      </ng-template>
-      <br>
-      <app-acto></app-acto>
-    </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <span>
+<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+  <ul
+    class="flex flex-wrap -mb-px text-sm font-medium text-center"
+    id="default-tab"
+    data-tabs-toggle="#default-tab-content"
+    role="tablist"
+  >
+    <li class="me-2" role="presentation">
+      <button
+        class="inline-block p-4 border-b-2 rounded-t-lg"
+        id="acto-tab"
+        data-tabs-target="#acto"
+        type="button"
+        role="tab"
+        aria-controls="acto"
+        aria-selected="false"
+      >
+        Acto
+        <app-badge [value]="actoService.actoFormValid"></app-badge>
+      </button>
+    </li>
+    <li class="me-2" role="presentation">
+      <button
+        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+        id="persona-tab"
+        data-tabs-target="#persona"
+        type="button"
+        role="tab"
+        aria-controls="persona"
+        aria-selected="false"
+      >
         Personas / Titulares
         <app-badge></app-badge>
-        </span>
-      </ng-template>
-      <br>
-     Personas
-    </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <span>
+      </button>
+    </li>
+    <li class="me-2" role="presentation">
+      <button
+        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+        id="observaciones-tab"
+        data-tabs-target="#observaciones"
+        type="button"
+        role="tab"
+        aria-controls="observaciones"
+        aria-selected="false"
+      >
         Observaciones
-        <app-badge [value]="observacionesService.observacionFormValid"></app-badge>
-        </span>
-      </ng-template>
-      <br>
-      <app-observaciones></app-observaciones>
-    </mat-tab>
-  </mat-tab-group>
-
-  <!-- BOTON GUARDAR -->
-  <div class="flex justify-end">
-    <button
-      type="button"
-      class="btn-primary"
-      (click)="inhibicionService.saveInhibicion()"
-      [disabled]="!inhibicionService.validInhibicion()"
-    >
-      Guardar
-    </button>
+        <app-badge
+          [value]="observacionesService.observacionFormValid"
+        ></app-badge>
+      </button>
+    </li>
+  </ul>
+</div>
+<div id="default-tab-content">
+  <div
+    class="hidden p-4 rounded-lg"
+    id="acto"
+    role="tabpanel"
+    aria-labelledby="acto-tab"
+  >
+    <app-acto></app-acto>
+  </div>
+  <div
+    class="hidden p-4 rounded-lg"
+    id="persona"
+    role="tabpanel"
+    aria-labelledby="persona-tab"
+  >
+    Personas
+  </div>
+  <div
+    class="hidden p-4 rounded-lg"
+    id="observaciones"
+    role="tabpanel"
+    aria-labelledby="observaciones-tab"
+  >
+    <app-observaciones></app-observaciones>
   </div>
 </div>

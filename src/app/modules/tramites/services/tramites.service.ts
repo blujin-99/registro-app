@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   IAction,
   ICategoria,
@@ -11,7 +11,6 @@ import {
   IJurisdiccion,
   ITipoTramite,
   ITramite,
-  ITramiteServicio,
 } from 'src/app/core/models/tramites.interfaces';
 import { environment } from 'src/environments/environment';
 
@@ -27,8 +26,6 @@ export class TramitesService {
   estadoExcedentes!: IEstadoExcedentes[];
 
   env = environment;
-
-  actions: IAction[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -50,13 +47,7 @@ export class TramitesService {
     return this.http.get<ITramite[]>(this.env.apiBase + this.env.api.tramites);
   }
 
-  getTramiteActions(id: number) {
-    this.http
-      .get<IAction[]>(`${this.env.apiBase}tramites/${id}/action`)
-      .subscribe({
-        next: (res) => {
-          this.actions = res;
-        },
-      });
+  getTramiteActions(id: number) : Observable<IAction[]> {
+    return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
   }
 }
