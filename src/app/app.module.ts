@@ -46,7 +46,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [
@@ -54,7 +54,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     provideOAuthClient(),
     MessagingService,
     AsyncPipe,
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
   ],
   bootstrap: [AppComponent],
 })
