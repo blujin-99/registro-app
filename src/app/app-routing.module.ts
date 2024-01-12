@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    canActivate: [urlAccessGuard],
+    //canActivate: [urlAccessGuard],
     loadChildren: () =>
       import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
   },

@@ -12,7 +12,11 @@ export class AuthPageComponent implements OnInit {
   constructor(public userSrv: UserService, private router: Router) {}
 
   ngOnInit() {
-    this.userSrv.initAuth();
-    this.router.navigate(['#/inicio']);
+    if(!this.userSrv.unauthorized){
+       this.userSrv.initAuth();
+       this.router.navigate(['#/inicio']);
+    }else{
+      this.router.navigate(['#/auth']);
+    }
   }
 }
