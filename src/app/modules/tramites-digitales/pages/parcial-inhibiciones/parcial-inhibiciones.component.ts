@@ -23,18 +23,10 @@ export class ParcialInhibicionesComponent implements OnInit {
     public observacionesService: ObservacionesService
   ) {}
 
-<<<<<<< HEAD
-  ngOnInit(){
-    document.getElementById('default-tab')?.focus
-    let of = this.route.snapshot.paramMap.get('oficina');
-    console.log(of)
-    if (of){
-=======
   ngOnInit() {
     initTabs();
     let of = this.route.snapshot.paramMap.get('oficina');
     if (of) {
->>>>>>> 10-control-de-usuarios-no-registrados-en-el-sistema
       this.oficina = this.rpService.getJurisdiccion(of);
     }else{
 
