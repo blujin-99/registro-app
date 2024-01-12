@@ -6,11 +6,10 @@ import {
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
-import { AccionesService } from '../../services/acciones.service';
+
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
+import { AccionesService } from '../../services/acciones.service';
 import { ITramite } from 'src/app/core/models';
 
 import {MatPaginatorIntl} from '@angular/material/paginator';
@@ -35,9 +34,8 @@ export class TablaPendientesComponent  {
   tabla: any;
   filtros: any;
   constructor(
-    private _bottomSheet: MatBottomSheet,
     public accionesSrv: AccionesService,
-    private tramitesrv: TramitesService,
+    private tramitesService: TramitesService,
     private filtrosService: FiltrosService
   ) {
     effect(() => {
@@ -82,13 +80,7 @@ export class TablaPendientesComponent  {
   showPagoMobile() {}
 
   openBottomSheet(tramite: ITramite): void {
-    this.tramitesrv.getTramiteActions(tramite.codigo_tramite).subscribe({
-      next: (actions) => {
-        this._bottomSheet.open(OpcionesTramiteComponent, {
-          data: actions,
-        });
-      },
-    });
+    this.tramitesService.showOptions(tramite);
   }
 
 }

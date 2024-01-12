@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
-  IAction,
-  ICategoria,
   IEstadoExcedentes,
   IEstadoTasas,
   IEstadoTramite,
@@ -12,7 +9,12 @@ import {
   ITipoTramite,
   ITramite,
 } from 'src/app/core/models/tramites.interfaces';
+
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { OpcionesTramiteComponent } from 'src/app/shared/components/opciones-tramite/opciones-tramite.component';
 import { environment } from 'src/environments/environment';
+
+import { TramitesService as TramitesSrv } from 'src/app/shared/services/tramites.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +29,7 @@ export class TramitesService {
 
   env = environment;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tramitesSrv:TramitesSrv,private _bottomSheet: MatBottomSheet,) {}
 
   getFiltros() {
     this.http
@@ -43,11 +45,13 @@ export class TramitesService {
       });
   }
 
-  getTramites() {
-    return this.http.get<ITramite[]>(this.env.apiBase + this.env.api.tramites);
-  }
-
-  getTramiteActions(id: number) : Observable<IAction[]> {
-    return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
+  showOptions(tramite: ITramite){
+    this.tramitesSrv.getTramiteActions(tramite.codigo_tramite).subscribe({
+      next: (actions) => {
+        this._bottomSheet.open(OpcionesTramiteComponent, {
+          data: actions,
+        });
+      },
+    });
   }
 }
