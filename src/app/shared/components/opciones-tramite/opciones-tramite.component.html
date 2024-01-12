@@ -1,6 +1,6 @@
 <mat-nav-list
 >
-  <ng-container *ngFor="let action of data">
+  <ng-container *ngFor="let action of actions">
     <a mat-list-item (click)="openLink($event, action.link)">
       <span matListItemTitle> {{ action.action }}</span>
     </a>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
   IAction,
   ICategoria,
@@ -46,7 +47,7 @@ export class TramitesService {
     return this.http.get<ITramite[]>(this.env.apiBase + this.env.api.tramites);
   }
 
-  getTramiteActions(id: number) {
+  getTramiteActions(id: number) : Observable<IAction[]> {
     return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
   }
 }
