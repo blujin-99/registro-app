@@ -2,7 +2,6 @@ import { effect, inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AuthStatus } from '../models';
-import { environment } from 'src/environments/environment';
 import { StorageService } from '../services/storage.service';
 
 export const isLoggedInGuard: CanActivateFn = (route, state) => {

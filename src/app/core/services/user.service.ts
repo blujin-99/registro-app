@@ -8,6 +8,7 @@ import { AuthStatus } from '../models';
 import { Observable, catchError, map, of } from 'rxjs';
 import { LoadingService } from './loading.service';
 import { StorageService } from './storage.service';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,8 @@ export class UserService {
     private location: Location,
     private periodic: PeriodicTaskService,
     private loadingSrv: LoadingService,
-    private storageSrv: StorageService
+    private storageSrv: StorageService,
+    private router: Router
   ) {
     effect(
       () => {
@@ -127,9 +129,11 @@ export class UserService {
         this.JWT(data.token)
         this.authStatus.set(AuthStatus.authenticated);
       }),
-      catchError(() => {
+      catchError((error) => {
+        console.log(error.error)
         this.storageSrv.clear()
         this.authStatus.set(AuthStatus.notAuthenticated);
+        this.storageSrv.unauthorized=true
         return of(false);
       })
     );
@@ -140,7 +144,8 @@ export class UserService {
    * @param code
    */
   private verifToken(): void {
-    this.validateToken(this.getToken()).subscribe();
+    this.validateToken(this.getToken()).subscribe(
+    );
   }
 
   /**
@@ -209,5 +214,7 @@ export class UserService {
     });
   }
 
-    
+  get unauthorized():boolean{
+    return this.storageSrv.unauthorized
+  }
 }

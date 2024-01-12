@@ -84,6 +84,22 @@ export class StorageService {
   }
 
   /**
+   * Unauthorized
+   * Usuario no autorizado
+   * 
+   */
+get unauthorized():boolean{
+  return this.getSS(this.baseStorage + 'unauthorized', true)?? false;
+}
+
+
+set unauthorized(value : boolean){
+  this.setSS(this.baseStorage + 'unauthorized', value, true);
+}
+
+
+
+  /**
    * JWT
    */
 

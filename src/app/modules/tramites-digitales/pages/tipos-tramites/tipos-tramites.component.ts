@@ -18,7 +18,7 @@ export class TiposTramitesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private rpService : RpService,
-    private tramiteDigitalService:TramiteDigitalService  ) {}
+    public tramiteDigitalService:TramiteDigitalService  ) {}
 
   ngOnInit(){
     let of = this.route.snapshot.paramMap.get('oficina');

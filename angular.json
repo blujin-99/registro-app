@@ -35,7 +35,13 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
+<<<<<<< HEAD
+            "scripts": [
+              "node_modules/flowbite/dist/flowbite.js"
+            ],
+=======
             "scripts": ["node_modules/flowbite/dist/flowbite.js"],
+>>>>>>> 10-control-de-usuarios-no-registrados-en-el-sistema
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },

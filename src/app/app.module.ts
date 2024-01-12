@@ -60,6 +60,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 })
 export class AppModule {
   constructor(private userService: UserService) {
-    this.userService.refreshToken();
+    //this.userService.refreshToken();
   }
 }

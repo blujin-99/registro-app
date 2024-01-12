@@ -28,6 +28,8 @@ export class ParcialInhibicionesComponent implements OnInit {
     let of = this.route.snapshot.paramMap.get('oficina');
     if (of) {
       this.oficina = this.rpService.getJurisdiccion(of);
+    }else{
+
     }
   }
 }
