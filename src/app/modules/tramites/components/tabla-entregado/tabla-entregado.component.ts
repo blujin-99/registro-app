@@ -8,11 +8,15 @@ import { AccionesService } from '../../services/acciones.service';
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
 import { ITramite } from 'src/app/core/models';
-import { switchMap } from 'rxjs';
+
+import {MatPaginatorIntl} from '@angular/material/paginator';
+import { TramitePaginatorIntl } from 'src/app/shared/components/custom-paginator/tramite-paginator/tramite-paginator-intl';
+
 @Component({
   selector: 'app-tabla-entregado',
   templateUrl: './tabla-entregado.component.html',
   styleUrls: ['./tabla-entregado.component.scss'],
+  providers: [{provide: MatPaginatorIntl, useClass: TramitePaginatorIntl}]
 })
 export class TablaEntregadoComponent {
   displayedColumns: string[] = [
