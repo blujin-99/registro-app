@@ -17,7 +17,7 @@ export class InicioPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.storageSrv.unauthorized){
+    if(this.storageSrv.unauthorized){
       this.unauthorized=true;
       this.storageSrv.unauthorized=false
     }
