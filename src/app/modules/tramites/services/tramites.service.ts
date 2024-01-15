@@ -31,9 +31,8 @@ export class TramitesService {
 
   constructor(private http: HttpClient, private tramitesSrv:TramitesSrv,private _bottomSheet: MatBottomSheet,) {}
 
-  getFiltros() {
-    this.http
-      .get<IFiltros>(this.env.apiBase + this.env.api.tramitesFiltros)
+  updateFiltros() {
+    this.tramitesSrv.getFiltros()
       .subscribe({
         next: (res) => {
           this.categorias = res.tipoTramites;

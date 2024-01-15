@@ -11,7 +11,7 @@ export class TramitesPageComponent implements OnInit {
   cargando: boolean = true;
   constructor(private tramitesService: TramitesService, private filtroSrv: FiltrosService, private tramitesSrv: TramitesSrv) {}
   ngOnInit(): void {
-    this.tramitesSrv.getFiltros();
+    this.tramitesSrv.updateFiltros();
     //inicializo en el componente padre la subscripcion para traer los todos los datos de los tramites
     this.tramitesService.getTramites().subscribe(
       res => {
