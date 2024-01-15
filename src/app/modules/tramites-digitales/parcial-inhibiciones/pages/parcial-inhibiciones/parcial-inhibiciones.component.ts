@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Jurisdiccion } from 'src/app/shared/interfaces/jurisdiccion.interface';
 import { RpService } from 'src/app/shared/services/rp.service';
-import { ActoService } from '../../components/acto/services/acto.service';
-import { ObservacionesService } from '../../components/observaciones/services/observaciones.service';
+import { ActoService } from '../../../components/acto/services/acto.service';
+import { ObservacionesService } from '../../../components/observaciones/services/observaciones.service';
 import { ParcialInhibicionesService } from './services/parcial-inhibiciones.service';
 import { initTabs } from 'flowbite';
 
@@ -23,7 +23,8 @@ export class ParcialInhibicionesComponent implements OnInit {
     public observacionesService: ObservacionesService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     initTabs();
     let of = this.route.snapshot.paramMap.get('oficina');
     if (of) {

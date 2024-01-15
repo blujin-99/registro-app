@@ -8,7 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { OficinaPresentacionComponent } from './pages/oficina-presentacion/oficina-presentacion.component';
 import { TramitesDigitalesRoutingModule } from './tramites-digitales-routing.module';
 import { TiposTramitesComponent } from './pages/tipos-tramites/tipos-tramites.component';
-import { ParcialInhibicionesComponent } from './pages/parcial-inhibiciones/parcial-inhibiciones.component';
+import { ParcialInhibicionesComponent } from './parcial-inhibiciones/pages/parcial-inhibiciones/parcial-inhibiciones.component';
 import { ActoComponent } from './components/acto/acto.component';
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { BadgeComponent } from './components/badge/badge.component';
