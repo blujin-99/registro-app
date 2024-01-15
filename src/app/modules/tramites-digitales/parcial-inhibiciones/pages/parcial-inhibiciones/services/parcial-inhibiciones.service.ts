@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActoService } from '../../../components/acto/services/acto.service';
-import { ObservacionesService } from '../../../components/observaciones/services/observaciones.service';
+import { ActoService } from '../../../../components/acto/services/acto.service';
+import { ObservacionesService } from '../../../../components/observaciones/services/observaciones.service';
 
 @Injectable({
   providedIn: 'root',
