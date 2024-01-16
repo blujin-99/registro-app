@@ -42,4 +42,20 @@ export class TramitesService {
     return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
   }
 
+  url:string ="";
+  newTramite(param:any){
+    return this.http.post(this.url, param)
+  }
+  editTramite(idTramite:string, param:any){
+    return this.http.put(this.url+idTramite,param)
+  }
+
+  deleteTramite(idTramite:string){
+    return this.http.delete(this.url+idTramite)
+  }
+
+  searchTramite(idTramite:string){
+    return this.http.get(this.url+idTramite)
+  }
+
 }

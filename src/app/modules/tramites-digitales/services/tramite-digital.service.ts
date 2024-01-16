@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IModulo } from '../interfaces/modulo';
 import { TipoTramite } from '../interfaces/tipo-tramite';
 import { HttpClient } from '@angular/common/http';
+import { TramitesService } from 'src/app/shared/services/tramites.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TramiteDigitalService {
   modulo3:IModulo;
   url : string ="";
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private tramiteSrv:TramitesService) {
     this.modulo1 = {id:1,pk:"dominio",nombre:"Dominio",abreviatura:"Dominio",descripcion:"Dominio"};
     this.modulo2 = {id:2,pk:"gravamenes",nombre:"Gravámenes",abreviatura:"Gravámenes",descripcion:"Gravámenes"};
     this.modulo3 = {id:3,pk:"inhibiciones",nombre:"Inhibiciones",abreviatura:"Inhibiciones",descripcion:"Inhibiciones"};
@@ -34,19 +35,19 @@ export class TramiteDigitalService {
     ]
   }
 
-  addTramite(param:any){
-    return this.http.post(this.url, param)
+  newTramite(param:any){
+    return this.tramiteSrv.newTramite(param)
   }
   editTramite(idTramite:string, param:any){
-    return this.http.put(this.url+idTramite,param)
+    return  this.tramiteSrv.editTramite(idTramite,param);
   }
 
   deleteTramite(idTramite:string){
-    return this.http.delete(this.url+idTramite)
+    return  this.tramiteSrv.deleteTramite(idTramite)
   }
 
   searchTramite(idTramite:string){
-    return this.http.get(this.url+idTramite)
+    return this.tramiteSrv.searchTramite(idTramite)
   }
 
 
