@@ -20,21 +20,17 @@
             <select
               formControlName="mesa"
               id="localidades"
+              [ngClass]="validFormSrv.validNgclass(form.get('mesa'))"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             >
               <option value="" selected="true" disabled="disabled">Mesa</option>
               <option value="1">Santa Fe</option>
               <option value="2">Rosario</option>
             </select>
-            <p
-              *ngIf="
-                this.form.get('mesa')?.hasError('required') &&
-                form.get('mesa')?.touched
-              "
-              class="mt-2 text-sm text-red-600"
-            >
-              <span class="font-medium">El campo es requerido</span>
-            </p>
+            <app-validator-errors
+            [control]="form"
+            getCampo="mesa"
+          ></app-validator-errors>
           </div>
           <div class="mx-1 my-2 md:w-4/12">
             <label
@@ -53,50 +49,27 @@
             [control]="form"
             getCampo="fecha"
           ></app-validator-errors>
-            
-            <!-- <p
-              *ngIf="
-                this.form.get('fecha')?.hasError('required') &&
-                form.get('fecha')?.touched
-              "
-              class="mt-2 text-sm text-red-600"
-            >
-              <span class="font-medium">El campo es requerido</span>
-            </p>-->
+          
           </div>
           <div class="mx-1 my-2 md:w-4/12">
             <label
+              id="ingreso"
               for="numero"
               class="block mb-2 text-sm font-medium text-gray-900"
               >Número de ingreso</label
             >
             <input
-              type="text"
+              type="number"
               id="ingreso"
               formControlName="aforo"
-              maxlength="6"
-              minlength="1"
-              class="number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              [ngClass]="validFormSrv.validNgclass(form.get('aforo'))"
             />
-            <p
-              *ngIf="
-                this.form.get('aforo')?.hasError('required') &&
-                form.get('aforo')?.touched
-              "
-              class="mt-2 text-sm text-red-600"
-            >
-              <span class="font-medium">El campo es requerido</span>
-            </p>
-            <p
-              *ngIf="
-                this.form.get('aforo')?.hasError('maxlength') ||
-                (this.form.get('aforo')?.hasError('minlength') &&
-                  form.get('aforo')?.touched)
-              "
-              class="mt-2 text-sm text-red-600"
-            >
-              <span class="font-medium">hasta 6 digitos unicamente</span>
-            </p>
+            <app-validator-errors
+            [control]="form"
+            getCampo="aforo"
+          ></app-validator-errors>
+           
           </div>
           <div class="mx-1 my-2 md:w-4/12">
             <button

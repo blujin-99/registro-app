@@ -24,10 +24,9 @@ export class ConsultaEstadoTramiteMesaEntradaComponent {
       mesa: ['', Validators.required],
       fecha: ['', Validators.required],
       aforo: [
-        '',
-        [
+        '',[
           Validators.required,
-          Validators.minLength(1),
+          Validators.min(1),
           Validators.pattern('^[0-9]*$'),
           Validators.maxLength(6),
         ],
