@@ -31,4 +31,5 @@ export class TramiteDigitalService {
       {id:10,nombre:"Minuta Anulacion", descripcion:"Minuta Anulacion." ,link:"anulacion",linkName:"Anulación" },
     ]
   }
+  
 }
