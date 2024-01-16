@@ -1,4 +1,4 @@
-export interface Modulo {
+export interface IModulo {
   id: number,
   pk:string,
   nombre:string,

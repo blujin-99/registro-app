@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Modulo } from '../interfaces/modulo';
+import { IModulo } from '../interfaces/modulo';
 import { TipoTramite } from '../interfaces/tipo-tramite';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TramiteDigitalService {
 
-  modulo1:Modulo;
-  modulo2:Modulo;
-  modulo3:Modulo;
+  modulo1:IModulo;
+  modulo2:IModulo;
+  modulo3:IModulo;
+  url : string ="";
 
-  constructor() {
+  constructor(private http:HttpClient) {
     this.modulo1 = {id:1,pk:"dominio",nombre:"Dominio",abreviatura:"Dominio",descripcion:"Dominio"};
     this.modulo2 = {id:2,pk:"gravamenes",nombre:"Gravámenes",abreviatura:"Gravámenes",descripcion:"Gravámenes"};
     this.modulo3 = {id:3,pk:"inhibiciones",nombre:"Inhibiciones",abreviatura:"Inhibiciones",descripcion:"Inhibiciones"};
@@ -31,5 +33,22 @@ export class TramiteDigitalService {
       {id:10,nombre:"Minuta Anulacion", descripcion:"Minuta Anulacion." ,link:"anulacion",linkName:"Anulación" },
     ]
   }
+
+  addTramite(param:any){
+    return this.http.post(this.url, param)
+  }
+  editTramite(idTramite:string, param:any){
+    return this.http.put(this.url+idTramite,param)
+  }
+
+  deleteTramite(idTramite:string){
+    return this.http.delete(this.url+idTramite)
+  }
+
+  searchTramite(idTramite:string){
+    return this.http.get(this.url+idTramite)
+  }
+
+
   
 }

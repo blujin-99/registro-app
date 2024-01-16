@@ -1,4 +1,4 @@
-import { Modulo } from "./modulo";
+import { IModulo } from "./modulo";
 
 export interface TipoTramite {
   id:number,
@@ -8,5 +8,5 @@ export interface TipoTramite {
   linkName?: string;
   link1?: string;
   link1Name?: string;
-  modulos?: Modulo[]
+  modulos?: IModulo[]
 }
