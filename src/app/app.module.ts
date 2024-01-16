@@ -22,6 +22,7 @@ import { AlertDevelopComponent } from './core/components/alert-develop/alert-dev
 import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/opciones-tramite.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ValidatorErrorsComponent } from './shared/components/validator-errors/validator-errors.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+  ],
+  exports:[
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

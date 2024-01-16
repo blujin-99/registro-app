@@ -12,6 +12,7 @@ import { ParcialInhibicionesComponent } from './parcial-inhibiciones/pages/parci
 import { ActoComponent } from './components/acto/acto.component';
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { BadgeComponent } from './components/badge/badge.component';
+import { ErrorModalComponent } from '../nuevo-tramite/components/error-modal/error-modal.component';
 
 @NgModule({
   declarations: [
