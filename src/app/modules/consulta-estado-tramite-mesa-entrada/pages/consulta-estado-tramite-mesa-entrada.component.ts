@@ -4,6 +4,7 @@ import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.ser
 
 import { AppService } from 'src/app/core/services/app.service';
 import * as moment from 'moment';
+import { validFormClass } from 'src/app/shared/services/validFormClass';
 
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',
@@ -16,7 +17,8 @@ export class ConsultaEstadoTramiteMesaEntradaComponent {
   constructor(
     private fb: FormBuilder,
     private mesaEntradaService: ConsultaMesaEntradaService,
-    public appService: AppService
+    public appService: AppService,
+    public validFormSrv:validFormClass
   ) {
     this.form = this.fb.group({
       mesa: ['', Validators.required],

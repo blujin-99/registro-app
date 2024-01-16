@@ -7,7 +7,7 @@ export class validFormClass {
 
   constructor() { }
 
-  validNgclass(campo) {
+  validNgclass(campo:any) {
     if(campo.touched){
       if(campo.valid){
         return 'bg-green-50 border border-green-500 text-green-900';
