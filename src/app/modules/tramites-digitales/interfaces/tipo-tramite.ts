@@ -1,6 +1,6 @@
 import { IModulo } from "./modulo";
 
-export interface TipoTramite {
+export interface ITipoTramite {
   id:number,
   nombre: string;
   descripcion: string;

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IAction, IFiltros, ITramite } from 'src/app/core/models';
-
+import { ITipoTramite } from 'src/app/modules/tramites-digitales/interfaces/tipo-tramite';
 
 
 @Injectable({
@@ -44,18 +44,23 @@ export class TramitesService {
 
   url:string ="";
   newTramite(param:any){
-    return this.http.post(this.url, param)
+    return this.http.post(this.env.apiBase+'tramiteDigital', param)
   }
   editTramite(idTramite:string, param:any){
-    return this.http.put(this.url+idTramite,param)
+    return this.http.put(this.env.apiBase+'tramiteDigital/'+idTramite,param)
   }
 
   deleteTramite(idTramite:string){
-    return this.http.delete(this.url+idTramite)
+    return this.http.delete(this.env.apiBase+'tramiteDigital/' +idTramite)
   }
 
   searchTramite(idTramite:string){
-    return this.http.get(this.url+idTramite)
+    return this.http.get(this.env.apiBase+'tramiteDigital/' +idTramite)
+  }
+
+  getTipoTramites(): Observable<ITipoTramite[]> {
+    // Assuming your API endpoint is at '/api/tipoTramites'
+    return this.http.get<ITipoTramite[]>(this.env.apiBase+'tramiteDigital/tipo/tramite');
   }
 
 }
