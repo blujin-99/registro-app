@@ -12,12 +12,13 @@ import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-er
   declarations: [
     ConsultaEstadoTramiteMesaEntradaComponent,
     ModalMesaEntradaComponent,
-    ValidatorErrorsComponent,
+    
   ],
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule,ValidatorErrorsComponent,],
   exports: [
     ConsultaEstadoTramiteMesaEntradaComponent,
     ConsultaEstadoTramiteMesaEntradaRoutingModule,
+    
   ],
 })
 export class ConsultaEstadoTramiteMesaEntradaModule {}

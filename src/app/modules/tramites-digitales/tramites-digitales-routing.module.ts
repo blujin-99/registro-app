@@ -8,13 +8,20 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: OficinaPresentacionComponent },
+      { 
+        path: '', 
+        component: OficinaPresentacionComponent 
+      },
       {
         path: 'oficina/:oficina',
         component: TiposTramitesComponent,
       },
       {
         path: 'oficina/:oficina/parcialInhibiciones',
+        component:ParcialInhibicionesComponent
+      },
+      {
+        path: 'oficina/:oficina/parcialInhibiciones/:idTramite',
         component:ParcialInhibicionesComponent
       },
     ],

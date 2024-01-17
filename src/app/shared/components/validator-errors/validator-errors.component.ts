@@ -1,11 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
+  standalone:true,
   selector: 'app-validator-errors',
   templateUrl: './validator-errors.component.html',
   styleUrls: ['./validator-errors.component.scss'],
+  imports: [CommonModule],
 })
 export class ValidatorErrorsComponent {
   @Input() control:any;

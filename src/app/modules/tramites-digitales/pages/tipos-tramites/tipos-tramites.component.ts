@@ -3,7 +3,7 @@ import {  ActivatedRoute } from '@angular/router';
 import { Jurisdiccion } from 'src/app/shared/interfaces/jurisdiccion.interface';
 import { RpService } from 'src/app/shared/services/rp.service';
 import { TramiteDigitalService } from '../../services/tramite-digital.service';
-import { TipoTramite } from '../../interfaces/tipo-tramite';
+import { ITipoTramite } from '../../interfaces/tipo-tramite';
 
 @Component({
   selector: 'app-tipos-tramites',
@@ -13,7 +13,7 @@ import { TipoTramite } from '../../interfaces/tipo-tramite';
 export class TiposTramitesComponent implements OnInit {
 
   oficina?: Jurisdiccion|undefined;
-  tiposTramites?:TipoTramite[]|null;
+  tiposTramites?:ITipoTramite[]|null;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +21,12 @@ export class TiposTramitesComponent implements OnInit {
     public tramiteDigitalService:TramiteDigitalService  ) {}
 
   ngOnInit(){
-    let of = this.route.snapshot.paramMap.get('oficina');
-    if (of){
-      this.oficina = this.rpService.getJurisdiccion(of);
+    let oficina = this.route.snapshot.paramMap.get('oficina');
+    if (oficina){
+      this.oficina = this.rpService.getJurisdiccion(oficina);
     }
-    this.tiposTramites = this.tramiteDigitalService.getTipoTramites();
+    this.tramiteDigitalService.getTipoTramites().subscribe(
+        (tramite)=>{this.tiposTramites=(tramite), console.log(tramite)}
+    );
   }
 }

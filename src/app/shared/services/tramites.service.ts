@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IAction, IFiltros, ITramite } from 'src/app/core/models';
-
+import { ITipoTramite } from 'src/app/modules/tramites-digitales/interfaces/tipo-tramite';
+import { IParcialInhibiciones } from 'src/app/modules/tramites-digitales/interfaces/parcial-Inhibiciones';
 
 
 @Injectable({
@@ -40,6 +41,28 @@ export class TramitesService {
    */
   getTramiteActions(id: number) : Observable<IAction[]> {
     return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
+  }
+
+  url:string ="";
+  newTramite(param:any){
+    return this.http.post(this.env.apiBase+'tramiteDigital', param)
+  }
+  editTramite(idTramite:string, param:any){
+    return this.http.put(this.env.apiBase+'tramiteDigital/'+idTramite,param)
+  }
+
+  deleteTramite(idTramite:string){
+    return this.http.delete(this.env.apiBase+'tramiteDigital/' +idTramite)
+  }
+
+  searchTramite(idTramite:string): Observable<IParcialInhibiciones|any >
+  {
+    return this.http.get(this.env.apiBase+'tramiteDigital/' +idTramite)
+  }
+
+  getTipoTramites(): Observable<ITipoTramite[]> {
+    // Assuming your API endpoint is at '/api/tipoTramites'
+    return this.http.get<ITipoTramite[]>(this.env.apiBase+'tramiteDigital/tipo/tramite');
   }
 
 }

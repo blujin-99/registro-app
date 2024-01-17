@@ -13,6 +13,7 @@ import { ActoComponent } from './components/acto/acto.component';
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { BadgeComponent } from './components/badge/badge.component';
 import { ErrorModalComponent } from '../nuevo-tramite/components/error-modal/error-modal.component';
+import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { ErrorModalComponent } from '../nuevo-tramite/components/error-modal/err
     ActoComponent,
     ObservacionesComponent,
     BadgeComponent,
+    
   ],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, MaterialModule,ValidatorErrorsComponent],
   exports: [TramitesDigitalesRoutingModule],
 })
 export class TramitesDigitalesModule {}

@@ -43,14 +43,17 @@ import { ValidatorErrorsComponent } from './shared/components/validator-errors/v
     BrowserAnimationsModule,
     InterceptorModule,
     AvatarComponent,
+    ValidatorErrorsComponent,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    
   ],
   exports:[
+    ValidatorErrorsComponent,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
