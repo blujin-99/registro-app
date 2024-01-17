@@ -38,7 +38,6 @@ export class ParcialInhibicionesComponent implements OnInit {
             this.actoService.acto=data.actos 
             this.observacionesService.observaciones=data.observaciones 
             this.actos=data.actos
-            console.log(data)
           }),
           (error)=>{
             // manejo los errores 

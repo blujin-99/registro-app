@@ -26,7 +26,7 @@ export class TiposTramitesComponent implements OnInit {
       this.oficina = this.rpService.getJurisdiccion(oficina);
     }
     this.tramiteDigitalService.getTipoTramites().subscribe(
-        (tramite)=>{this.tiposTramites=(tramite), console.log(tramite)}
+        (tramite)=>{this.tiposTramites=(tramite)}
     );
   }
 }
