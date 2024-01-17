@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ObservacionesService } from './services/observaciones.service';
 import { IObservaciones } from '../../interfaces/observaciones';
+import { validFormClass } from 'src/app/shared/services/validFormClass';
 
 @Component({
   selector: 'app-observaciones',
@@ -9,18 +10,20 @@ import { IObservaciones } from '../../interfaces/observaciones';
   styleUrls: ['./observaciones.component.scss'],
 })
 export class ObservacionesComponent {
-  observacionForm: FormGroup;
+  observacionForm: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
-    private observacionesService: ObservacionesService
+    public observacionesService: ObservacionesService,
+     public ClassFormValidSrv: validFormClass
   ) {
-    this.observacionForm = this.fb.group({
-      observaciones: ['', Validators.required],
-    });
+   
   }
 
   ngOnInit() {
+    this.observacionForm = this.fb.group({
+      observaciones: [this.observacionesService.observaciones.observaciones, Validators.required],
+    });
     // Observar cambios en el formulario y guardar en el servicio
     this.observacionForm.valueChanges.subscribe((value: IObservaciones) => {
       this.observacionesService.observaciones = value;

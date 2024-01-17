@@ -4,6 +4,7 @@ import { ITipoTramite } from '../interfaces/tipo-tramite';
 import { HttpClient } from '@angular/common/http';
 import { TramitesService } from 'src/app/shared/services/tramites.service';
 import { Observable } from 'rxjs';
+import { IParcialInhibiciones } from '../interfaces/parcial-Inhibiciones';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class TramiteDigitalService {
     return  this.tramiteSrv.deleteTramite(idTramite)
   }
 
-  searchTramite(idTramite:string){
+  searchTramite(idTramite:string): Observable<IParcialInhibiciones>{
     return this.tramiteSrv.searchTramite(idTramite)
   }
 

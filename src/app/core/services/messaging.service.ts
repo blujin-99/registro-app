@@ -39,7 +39,6 @@ export class MessagingService {
         getToken(this.messaging, {
           serviceWorkerRegistration: swRegistration,
         }).then((token:any) => {
-          console.log(token, 'token')
           this.registerToken(token);
         });
         // Continúa con el uso de swRegistration
@@ -62,7 +61,7 @@ export class MessagingService {
 
   reciveMessaging() {
     onMessage(this.messaging, (smRecived) => {
-      console.log(smRecived, "mensajes")
+      
       let notificationData = {
         title: smRecived.notification?.title,
         body: smRecived.notification?.body,

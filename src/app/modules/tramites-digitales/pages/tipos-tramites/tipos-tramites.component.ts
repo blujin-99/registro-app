@@ -21,9 +21,9 @@ export class TiposTramitesComponent implements OnInit {
     public tramiteDigitalService:TramiteDigitalService  ) {}
 
   ngOnInit(){
-    let of = this.route.snapshot.paramMap.get('oficina');
-    if (of){
-      this.oficina = this.rpService.getJurisdiccion(of);
+    let oficina = this.route.snapshot.paramMap.get('oficina');
+    if (oficina){
+      this.oficina = this.rpService.getJurisdiccion(oficina);
     }
     this.tramiteDigitalService.getTipoTramites().subscribe(
         (tramite)=>{this.tiposTramites=(tramite), console.log(tramite)}

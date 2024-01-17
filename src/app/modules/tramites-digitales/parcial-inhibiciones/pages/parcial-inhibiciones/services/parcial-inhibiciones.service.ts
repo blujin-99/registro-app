@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 import { ActoService } from '../../../../components/acto/services/acto.service';
 import { ObservacionesService } from '../../../../components/observaciones/services/observaciones.service';
 import { TramiteDigitalService } from 'src/app/modules/tramites-digitales/services/tramite-digital.service';
-
+import { IParcialInhibiciones } from 'src/app/modules/tramites-digitales/interfaces/parcial-Inhibiciones';
 @Injectable({
   providedIn: 'root',
 })
 export class ParcialInhibicionesService {
-  datosInhibicion: any = {};
-
+  datosInhibicion: IParcialInhibiciones = {
+    'actos': this.actoService.acto,
+    'observaciones':{'observaciones':"" }
+  };
   constructor(
     private actoService: ActoService,
     private observacionesService: ObservacionesService,
     private tramiteDigitalSrv: TramiteDigitalService
     )
-    {}
+    {
+
+    }
 
 
   validInhibicion() {
@@ -23,12 +27,10 @@ export class ParcialInhibicionesService {
 
   saveInhibicion() {
     // Obtener datos del acto y observaciones
-    const datosActo = this.actoService.acto;
-    const datosObservaciones = this.observacionesService.observaciones;
 
     this.datosInhibicion = {
-      ...datosActo,
-      ...datosObservaciones,
+      'actos': this.actoService.acto,
+      'observaciones': this.observacionesService.observaciones,
     };
     this.tramiteDigitalSrv.newTramite(this.datosInhibicion).subscribe(
       {
@@ -39,6 +41,8 @@ export class ParcialInhibicionesService {
     )
   }
 
-
+  getTramiteInhibiciones(idTramite:string){
+     return this.tramiteDigitalSrv.searchTramite(idTramite)
+  }
 
 }

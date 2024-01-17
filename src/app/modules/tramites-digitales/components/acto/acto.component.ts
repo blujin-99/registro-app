@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActoService } from './services/acto.service';
 import { IActo } from '../../interfaces/acto';
+
+import { Observable, of } from 'rxjs';
+import { validFormClass } from 'src/app/shared/services/validFormClass';
 
 @Component({
   selector: 'app-acto',
@@ -9,19 +12,21 @@ import { IActo } from '../../interfaces/acto';
   styleUrls: ['./acto.component.scss'],
 })
 export class ActoComponent {
-  actoForm: FormGroup;
-
-  constructor(private fb: FormBuilder, public actoService: ActoService) {
-    this.actoForm = this.fb.group({
-      naturaleza: ['', Validators.required],
-    });
-  }
+  actoForm: FormGroup = new FormGroup({});
+  constructor(
+    private fb: FormBuilder,
+    public actoService: ActoService,
+    public ClassFormValidSrv: validFormClass
+  ) {}
 
   ngOnInit() {
     // Observar cambios en el formulario y guardar en el servicio
+    this.actoForm = this.fb.group({
+      naturaleza: [this.actoService.acto.naturaleza, Validators.required],
+    });
     this.actoForm.valueChanges.subscribe((value: IActo) => {
       this.actoService.acto = value;
-      this.actoService.setActoValid(this.actoForm.valid);
+      this.actoService.ActoValid = this.actoForm.valid;
     });
   }
 }
