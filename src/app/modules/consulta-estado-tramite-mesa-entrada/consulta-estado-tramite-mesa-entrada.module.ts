@@ -5,16 +5,20 @@ import { ConsultaEstadoTramiteMesaEntradaRoutingModule } from './consulta-estado
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { ModalMesaEntradaComponent } from './components/modal-mesa-entrada/modal-mesa-entrada.component';
+import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
+
 
 @NgModule({
   declarations: [
     ConsultaEstadoTramiteMesaEntradaComponent,
     ModalMesaEntradaComponent,
+    
   ],
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule,ValidatorErrorsComponent,],
   exports: [
     ConsultaEstadoTramiteMesaEntradaComponent,
     ConsultaEstadoTramiteMesaEntradaRoutingModule,
+    
   ],
 })
 export class ConsultaEstadoTramiteMesaEntradaModule {}

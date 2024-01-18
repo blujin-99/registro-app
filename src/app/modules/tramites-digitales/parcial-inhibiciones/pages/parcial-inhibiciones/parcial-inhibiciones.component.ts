@@ -14,23 +14,33 @@ import { initTabs } from 'flowbite';
 })
 export class ParcialInhibicionesComponent implements OnInit {
   oficina?: Jurisdiccion | null;
-
   constructor(
     private route: ActivatedRoute,
     private rpService: RpService,
-    public inhibicionService: ParcialInhibicionesService,
+    public parcialInhibicionSrv: ParcialInhibicionesService,
     public actoService: ActoService,
-    public observacionesService: ObservacionesService
+    public observacionesSrv: ObservacionesService
   ) {}
 
-  ngOnInit() 
-  {
+  ngOnInit(): void {
     initTabs();
-    let of = this.route.snapshot.paramMap.get('oficina');
-    if (of) {
-      this.oficina = this.rpService.getJurisdiccion(of);
-    }else{
 
+    let oficina = this.route.snapshot.paramMap.get('oficina');
+    let idTramite = this.route.snapshot.paramMap.get('idTramite');
+    if (idTramite) {
+      this.parcialInhibicionSrv.getTramiteInhibiciones(idTramite).subscribe(
+        (data) => {
+          this.actoService.acto = data.actos;
+          this.observacionesSrv.observaciones = data.observaciones;
+        },
+        (error) => {
+          // manejo los errores
+          console.log(error);
+        }
+      );
+    }
+    if (oficina) {
+      this.oficina = this.rpService.getJurisdiccion(oficina);
     }
   }
 }

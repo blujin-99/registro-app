@@ -1,6 +1,6 @@
-import { Modulo } from "./modulo";
+import { IModulo } from "./modulo";
 
-export interface TipoTramite {
+export interface ITipoTramite {
   id:number,
   nombre: string;
   descripcion: string;
@@ -8,5 +8,5 @@ export interface TipoTramite {
   linkName?: string;
   link1?: string;
   link1Name?: string;
-  modulos?: Modulo[]
+  modulos?: IModulo[]
 }

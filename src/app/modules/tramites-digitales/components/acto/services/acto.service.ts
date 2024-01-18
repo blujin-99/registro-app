@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
 import { IActo } from '../../../interfaces/acto';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ActoService {
-  datosActo!: IActo;
+  datosActo: IActo = { naturaleza: '' };
   actoFormValid: boolean = false;
 
   constructor() {}
 
   // Método para establecer los datos del acto
-  set acto(datos: any) {
+
+  set acto(datos: IActo) {
     this.datosActo = datos;
   }
 
@@ -20,7 +22,11 @@ export class ActoService {
     return this.datosActo;
   }
 
-  setActoValid(valid: boolean) {
+  set actoValid(valid: boolean) {
     this.actoFormValid = valid;
+  }
+
+  get actoValid(): boolean {
+    return this.actoFormValid;
   }
 }
