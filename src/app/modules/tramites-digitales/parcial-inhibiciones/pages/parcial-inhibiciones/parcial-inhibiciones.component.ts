@@ -6,7 +6,6 @@ import { ActoService } from '../../../components/acto/services/acto.service';
 import { ObservacionesService } from '../../../components/observaciones/services/observaciones.service';
 import { ParcialInhibicionesService } from './services/parcial-inhibiciones.service';
 import { initTabs } from 'flowbite';
-import { IActo } from '../../../interfaces/acto';
 
 @Component({
   selector: 'app-parcial-inhibiciones',
@@ -15,13 +14,12 @@ import { IActo } from '../../../interfaces/acto';
 })
 export class ParcialInhibicionesComponent implements OnInit {
   oficina?: Jurisdiccion | null;
-  actos: IActo = { naturaleza: '' };
   constructor(
     private route: ActivatedRoute,
     private rpService: RpService,
     public parcialInhibicionSrv: ParcialInhibicionesService,
     public actoService: ActoService,
-    public observacionesService: ObservacionesService
+    public observacionesSrv: ObservacionesService
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +31,7 @@ export class ParcialInhibicionesComponent implements OnInit {
       this.parcialInhibicionSrv.getTramiteInhibiciones(idTramite).subscribe(
         (data) => {
           this.actoService.acto = data.actos;
-          this.observacionesService.observaciones = data.observaciones;
-          this.actos = data.actos;
+          this.observacionesSrv.observaciones = data.observaciones;
         },
         (error) => {
           // manejo los errores

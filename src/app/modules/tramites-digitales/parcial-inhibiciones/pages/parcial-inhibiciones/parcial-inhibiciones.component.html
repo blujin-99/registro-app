@@ -123,7 +123,7 @@
         >
           Observaciones
           <app-badge
-            [value]="observacionesService.observacionFormValid"
+            [value]="observacionesSrv.observacionFormValid"
           ></app-badge>
         </button>
       </li>
@@ -136,7 +136,7 @@
       role="tabpanel"
       aria-labelledby="acto-tab"
     >
-      <app-acto [acto]="actos"></app-acto>
+      <app-acto [acto]="actoService.acto"></app-acto>
     </div>
     <div
       class="hidden p-4 rounded-lg"
@@ -152,7 +152,9 @@
       role="tabpanel"
       aria-labelledby="observaciones-tab"
     >
-      <app-observaciones></app-observaciones>
+      <app-observaciones
+        [observacion]="observacionesSrv.observaciones"
+      ></app-observaciones>
     </div>
   </div>
   <div class="flex justify-end">
