@@ -48,8 +48,8 @@
     </a>
   </li>
 
-  <!--
-  <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
+  
+  <!-- <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/consultaPagos']"  [ngClass]="layoutSrv.isExpand ? 'item-list-expand' : 'item-list'">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
         <path
@@ -58,9 +58,9 @@
       </svg>
       <span class="ml-4"> Consulta de Pagos</span>
     </a>
-  </li>
-  -->
-  <!--
+  </li> -->
+ 
+  
   <li *ngIf="user" (click)="layoutSrv.toggleListItems()">
     <a [routerLink]="['/otrasTasas']"  [ngClass]="layoutSrv.isExpand ? 'item-list-expand' : 'item-list'">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
@@ -71,7 +71,7 @@
       <span class="ml-4"> Pago otras Tasas</span>
     </a>
   </li>
-  -->
+ 
 
   <li (click)="layoutSrv.toggleListItems()">
     <a
