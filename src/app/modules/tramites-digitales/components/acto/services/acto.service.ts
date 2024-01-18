@@ -6,36 +6,27 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class ActoService {
-  datosActo: IActo ={'naturaleza':""};
+  datosActo: IActo = { naturaleza: '' };
   actoFormValid: boolean = false;
-  
+
   constructor() {}
 
   // Método para establecer los datos del acto
 
-  
-
   set acto(datos: IActo) {
-     if(datos.naturaleza.length>0){
-        this.datosActo = datos;
-        this.ActoValid=true
-      }
-    
+    this.datosActo = datos;
   }
 
   // Método para obtener los datos del acto
-  get acto()
-  {
+  get acto() {
     return this.datosActo;
   }
 
-  set ActoValid(valid: boolean) 
-  {
+  set actoValid(valid: boolean) {
     this.actoFormValid = valid;
   }
 
-  get ActoValid():boolean 
-  {
-    return this.actoFormValid
+  get actoValid(): boolean {
+    return this.actoFormValid;
   }
 }

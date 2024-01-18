@@ -6,9 +6,8 @@ import { IAction, IFiltros, ITramite } from 'src/app/core/models';
 import { ITipoTramite } from 'src/app/modules/tramites-digitales/interfaces/tipo-tramite';
 import { IParcialInhibiciones } from 'src/app/modules/tramites-digitales/interfaces/parcial-Inhibiciones';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TramitesService {
   env = environment;
@@ -21,7 +20,9 @@ export class TramitesService {
    * @returns Observable<IFiltros>
    */
   getFiltros(): Observable<IFiltros> {
-    return this.http.get<IFiltros>(this.env.apiBase + this.env.api.tramitesFiltros);
+    return this.http.get<IFiltros>(
+      this.env.apiBase + this.env.api.tramitesFiltros
+    );
   }
 
   /**
@@ -29,7 +30,7 @@ export class TramitesService {
    *
    * @returns Observable<ITramite[]>
    */
-  getTramites():Observable<ITramite[]> {
+  getTramites(): Observable<ITramite[]> {
     return this.http.get<ITramite[]>(this.env.apiBase + this.env.api.tramites);
   }
 
@@ -39,30 +40,34 @@ export class TramitesService {
    * @param id ID de un trámite
    * @returns Observable<IAction[]>
    */
-  getTramiteActions(id: number) : Observable<IAction[]> {
-    return this.http.get<IAction[]>(this.env.apiBase + this.env.api.actions.replace("{codigo}", id.toString()));
+  getTramiteActions(id: number): Observable<IAction[]> {
+    return this.http.get<IAction[]>(
+      this.env.apiBase + this.env.api.actions.replace('{codigo}', id.toString())
+    );
   }
 
-  url:string ="";
-  newTramite(param:any){
-    return this.http.post(this.env.apiBase+'tramiteDigital', param)
+  url: string = '';
+  newTramite(param: any) {
+    return this.http.post(this.env.apiBase + 'tramiteDigital', param);
   }
-  editTramite(idTramite:string, param:any){
-    return this.http.put(this.env.apiBase+'tramiteDigital/'+idTramite,param)
+  editTramite(idTramite: string, param: any) {
+    return this.http.put(
+      this.env.apiBase + 'tramiteDigital/' + idTramite,
+      param
+    );
   }
 
-  deleteTramite(idTramite:string){
-    return this.http.delete(this.env.apiBase+'tramiteDigital/' +idTramite)
+  deleteTramite(idTramite: string) {
+    return this.http.delete(this.env.apiBase + 'tramiteDigital/' + idTramite);
   }
 
-  searchTramite(idTramite:string): Observable<IParcialInhibiciones|any >
-  {
-    return this.http.get(this.env.apiBase+'tramiteDigital/' +idTramite)
+  searchTramite(idTramite: string): Observable<IParcialInhibiciones | any> {
+    return this.http.get(this.env.apiBase + 'test/tramiteDigital/' + idTramite);
   }
 
   getTipoTramites(): Observable<ITipoTramite[]> {
-    // Assuming your API endpoint is at '/api/tipoTramites'
-    return this.http.get<ITipoTramite[]>(this.env.apiBase+'tramiteDigital/tipo/tramite');
+    return this.http.get<ITipoTramite[]>(
+      this.env.apiBase + 'tramiteDigital/tipo/tramite'
+    );
   }
-
 }

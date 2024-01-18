@@ -15,7 +15,7 @@ import { IActo } from '../../../interfaces/acto';
 })
 export class ParcialInhibicionesComponent implements OnInit {
   oficina?: Jurisdiccion | null;
-  actos?: IActo={naturaleza:'inicio'}
+  actos: IActo = { naturaleza: '' };
   constructor(
     private route: ActivatedRoute,
     private rpService: RpService,
@@ -24,26 +24,23 @@ export class ParcialInhibicionesComponent implements OnInit {
     public observacionesService: ObservacionesService
   ) {}
 
-  async ngOnInit(): Promise<void> 
-  {
-
+  ngOnInit(): void {
     initTabs();
 
     let oficina = this.route.snapshot.paramMap.get('oficina');
     let idTramite = this.route.snapshot.paramMap.get('idTramite');
-    if(idTramite){
-      this.parcialInhibicionSrv.getTramiteInhibiciones(idTramite).
-        subscribe(
-          ((data)=>{
-            this.actoService.acto=data.actos 
-            this.observacionesService.observaciones=data.observaciones 
-            this.actos=data.actos
-          }),
-          (error)=>{
-            // manejo los errores 
-          console.log(error)
-          }
-       );
+    if (idTramite) {
+      this.parcialInhibicionSrv.getTramiteInhibiciones(idTramite).subscribe(
+        (data) => {
+          this.actoService.acto = data.actos;
+          this.observacionesService.observaciones = data.observaciones;
+          this.actos = data.actos;
+        },
+        (error) => {
+          // manejo los errores
+          console.log(error);
+        }
+      );
     }
     if (oficina) {
       this.oficina = this.rpService.getJurisdiccion(oficina);

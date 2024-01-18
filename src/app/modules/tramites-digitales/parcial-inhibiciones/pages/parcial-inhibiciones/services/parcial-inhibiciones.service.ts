@@ -8,41 +8,37 @@ import { IParcialInhibiciones } from 'src/app/modules/tramites-digitales/interfa
 })
 export class ParcialInhibicionesService {
   datosInhibicion: IParcialInhibiciones = {
-    'actos': this.actoService.acto,
-    'observaciones':{'observaciones':"" }
+    actos: this.actoService.acto,
+    observaciones: { observaciones: '' },
   };
   constructor(
     private actoService: ActoService,
     private observacionesService: ObservacionesService,
     private tramiteDigitalSrv: TramiteDigitalService
-    )
-    {
-
-    }
-
+  ) {}
 
   validInhibicion() {
-    return this.actoService.actoFormValid && this.observacionesService.observacionFormValid;
+    return (
+      this.actoService.actoFormValid &&
+      this.observacionesService.observacionFormValid
+    );
   }
 
   saveInhibicion() {
     // Obtener datos del acto y observaciones
 
     this.datosInhibicion = {
-      'actos': this.actoService.acto,
-      'observaciones': this.observacionesService.observaciones,
+      actos: this.actoService.acto,
+      observaciones: this.observacionesService.observaciones,
     };
-    this.tramiteDigitalSrv.newTramite(this.datosInhibicion).subscribe(
-      {
-        next:data=>console.log(data),
-        error:error=>console.log(error),
-        complete:()=>console.log('completo')
-      }
-    )
+    this.tramiteDigitalSrv.newTramite(this.datosInhibicion).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error),
+      complete: () => console.log('completo'),
+    });
   }
 
-  getTramiteInhibiciones(idTramite:string){
-     return this.tramiteDigitalSrv.searchTramite(idTramite)
+  getTramiteInhibiciones(idTramite: string) {
+    return this.tramiteDigitalSrv.searchTramite(idTramite);
   }
-
 }

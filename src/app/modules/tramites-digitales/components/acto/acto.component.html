@@ -1,18 +1,23 @@
-  <form [formGroup]="actoForm">
-    <!-- Campo Naturaleza -->
-    <div class="mb-4">
-      <label for="naturaleza" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-        Naturaleza del Acto
-        <span class="text-red-600">*</span>
-      </label>
-      <input type="text" id="naturaleza" formControlName="naturaleza" class="w-full p-2 mt-1 border rounded-md"
-      [value]="actoService.acto.naturaleza" 
+<form [formGroup]="actoForm">
+  <!-- Campo Naturaleza -->
+  <div class="mb-4">
+    <label
+      for="naturaleza"
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+    >
+      Naturaleza del Acto
+      <span class="text-red-600">*</span>
+    </label>
+    <input
+      type="text"
+      id="naturaleza"
+      formControlName="naturaleza"
+      class="w-full p-2 mt-1 border rounded-md"
       [ngClass]="ClassFormValidSrv.validNgclass(actoForm.get('naturaleza'))"
-
-      >
-      <app-validator-errors
+    />
+    <app-validator-errors
       [control]="actoForm"
       getCampo="naturaleza"
     ></app-validator-errors>
-    </div>
-  </form>
+  </div>
+</form>
