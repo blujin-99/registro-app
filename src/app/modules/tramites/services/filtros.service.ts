@@ -51,6 +51,7 @@ export class FiltrosService {
   setFiltros(filtros: any[]) {
     this.filtros$.pipe(
       map(() => ({
+        TipoTramiteServicio: filtros.filter(tipoTramite => tipoTramite.tipo === 'tramiteServicio').map(tramiteServicio => tramiteServicio.nombre),
         Jurisdiccion: filtros.filter(juris => juris.tipo === 'jurisdiccion').map(juris => juris.nombre),
         EstadoTasa: filtros.filter(Etasas => Etasas.tipo === 'estadoTasas').map(Etasas => Etasas.descripcion),
         EstadoExcedentes: filtros.filter(Eexcedentes => Eexcedentes.tipo === 'estadoExcedentes').map(Eexcedentes => Eexcedentes.descripcion),
@@ -59,11 +60,13 @@ export class FiltrosService {
       }))
     ).subscribe(updatedFilters => {
       // cuando se acutualizan los filtros
+      this.TipoTramiteServicio = updatedFilters.TipoTramiteServicio;
       this.Jurisdiccion = updatedFilters.Jurisdiccion;
       this.EstadoTasa = updatedFilters.EstadoTasa;
       this.EstadoExcedentes = updatedFilters.EstadoExcedentes;
       this.EstadoTramite = updatedFilters.EstadoTramite;
       this.numeroTramite = updatedFilters.numeroTramite;
+  
     });
     this.filtrosSubject.next(filtros); 
   }
@@ -78,6 +81,7 @@ export class FiltrosService {
 
   setTablasinFiltro(tabla: any[]): void {
     this.tablaSinFiltro = tabla;
+    
   }
 
   /**
@@ -87,8 +91,8 @@ export class FiltrosService {
   getTablaFiltrada(): Observable<any[]>{
     return this.tabla = this.datosTabla.pipe(
       map(tabla =>
-        
         tabla.filter(fila =>
+          (this.TipoTramiteServicio.length === 0 || this.TipoTramiteServicio.some(Tservicios => fila.TipoTramiteServicio.nombre === Tservicios))&&
           (this.Jurisdiccion.length === 0 || this.Jurisdiccion.some(juris => fila.Jurisdiccion.nombre === juris))&&
           (this.EstadoTasa.length === 0 || this.EstadoTasa.some(tasas => fila.EstadoTasas.descripcion === tasas))&&
           (this.EstadoExcedentes.length === 0 || this.EstadoExcedentes.some(excedentes => fila.EstadoExcedentes.descripcion === excedentes))&&
@@ -131,7 +135,6 @@ export class FiltrosService {
           presentado.EstadoTramite.descripcion === 'FINALIZADO')&&
           (this.numeroTramite.length === 0 || this.numeroTramite.some(numero => presentado.aforo !== null && presentado.aforo.startsWith(numero)))
         ))
-
       );
     }
 
