@@ -66,7 +66,7 @@ export class TablaFinalizadoComponent {
 
   ngOnInit(): void {
     this.filtrosService.filtros$.subscribe(() =>
-      this.filtrosService.getFinalizado().subscribe((data) => {
+      this.filtrosService.getEntregado().subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         this.alert = data;
         this.dataSource.paginator = this.paginator;
