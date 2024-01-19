@@ -129,7 +129,7 @@ export class FiltrosService {
          (presentado.EstadoTramite.descripcion === 'RECIBIDO' ||
           presentado.EstadoTramite.descripcion === 'PRESENTADO' ||
           presentado.EstadoTramite.descripcion === 'FINALIZADO')&&
-          (this.numeroTramite.length === 0 || this.numeroTramite.some(numero => presentado.aforo.startsWith(numero)))
+          (this.numeroTramite.length === 0 || this.numeroTramite.some(numero => presentado.aforo !== null && presentado.aforo.startsWith(numero)))
         ))
 
       );
