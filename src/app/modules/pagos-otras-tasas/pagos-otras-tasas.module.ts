@@ -5,6 +5,7 @@ import { PagosOtrasTasasRoutingModule } from './pagos-otras-tasas-routing.module
 import { FormTasasComponent } from './components/form-tasas/form-tasas.component';
 import { TablaTasasComponent } from './components/tabla-tasas/tabla-tasas.component';
 import { OpcionesPagoComponent } from './components/opciones-pago/opciones-pago.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { OpcionesPagoComponent } from './components/opciones-pago/opciones-pago.
     TablaTasasComponent,
     OpcionesPagoComponent,
   ],
-  imports: [CommonModule, PagosOtrasTasasRoutingModule],
+  imports: [CommonModule, PagosOtrasTasasRoutingModule,ReactiveFormsModule],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
 })
 export class PagosOtrasTasasModule {}
