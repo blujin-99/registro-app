@@ -2,6 +2,8 @@ import { common } from './environment.common';
 
 const baseAPI = 'http://10.1.46.32:8181/registropropiedad/public/api/';
 
+const baseAPIPagos = 'http://10.1.46.31/fdadmin/public/api/otrosPagos/options';
+
 const AuthURL = 'https://dsso.santafe.gob.ar';
 
 const idCiudadanaURL = 'https://www.santafe.gob.ar/';
@@ -13,6 +15,7 @@ export const environment = {
   env: 'prod',
   production: false,
   apiBase: baseAPI,
+  apiPagosBase: baseAPIPagos,
   authUrl: AuthURL,
   idCiudadanaURL: idCiudadanaURL,
   formURL: formURL,
