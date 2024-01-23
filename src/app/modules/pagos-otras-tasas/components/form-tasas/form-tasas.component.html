@@ -28,10 +28,10 @@
 
   <div>
     <label for="desde">Concepto</label>
-    <select formControlName="concepto"
+    <select formControlName="concepto" (change)="submit()"
       class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>Seleccione el Concepto</option>
-      <option  *ngFor="let concep of concepto" >
+      <option  *ngFor="let concep of conceptoFilter()" [ngValue]="concep" >
       {{concep.concepto}}
       </option>
     </select>

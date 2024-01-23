@@ -10,12 +10,13 @@ import { IOtrosPago } from '../../interfaces/pago-otras-tasas.interface';
 })
 export class TablaTasasComponent {
 
-  concepto : IOtrosPago[] | undefined  = []
+  concepto : IOtrosPago | undefined  = undefined
 
   constructor(private pagosSrv : PagosTasasService){}
 
   ngOnInit(): void {
 
-    this.pagosSrv.response$.subscribe(concepto => this.concepto = concepto?.otrosPagos)
+     this.concepto = this.pagosSrv.conceptoFilter()
+    console.log(this.concepto)
   }
 }

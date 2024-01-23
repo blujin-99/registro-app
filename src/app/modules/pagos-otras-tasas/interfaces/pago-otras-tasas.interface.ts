@@ -8,7 +8,7 @@ export interface IOficiona {
     id:             number;
     idJurisdiccion: number;
     nombre:         string;
-    abreviatura:    string;
+    abreviatura?:    string;
 }
 
 export interface IOtrosPago {
