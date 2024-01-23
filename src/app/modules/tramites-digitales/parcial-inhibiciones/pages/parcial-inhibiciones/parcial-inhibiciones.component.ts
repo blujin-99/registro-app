@@ -4,6 +4,7 @@ import { Jurisdiccion } from 'src/app/shared/interfaces/jurisdiccion.interface';
 import { RpService } from 'src/app/shared/services/rp.service';
 import { ActoService } from '../../../components/acto/services/acto.service';
 import { ObservacionesService } from '../../../components/observaciones/services/observaciones.service';
+import { PersonaHumanaService } from '../../../components/persona-humana/services/persona-humana-service.service';
 import { ParcialInhibicionesService } from './services/parcial-inhibiciones.service';
 import { initTabs } from 'flowbite';
 
@@ -19,7 +20,8 @@ export class ParcialInhibicionesComponent implements OnInit {
     private rpService: RpService,
     public parcialInhibicionSrv: ParcialInhibicionesService,
     public actoService: ActoService,
-    public observacionesSrv: ObservacionesService
+    public observacionesSrv: ObservacionesService,
+    public personaHumanaSrv: PersonaHumanaService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class ParcialInhibicionesComponent implements OnInit {
       this.parcialInhibicionSrv.getTramiteInhibiciones(idTramite).subscribe(
         (data) => {
           this.actoService.acto = data.actos;
+          this.personaHumanaSrv.personaHumana = data.personaH;
           this.observacionesSrv.observaciones = data.observaciones;
         },
         (error) => {

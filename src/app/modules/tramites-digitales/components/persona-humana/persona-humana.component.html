@@ -1,0 +1,67 @@
+<form [formGroup]="phForm">
+  <div class="mb-4">
+    <label
+      for="nombre"
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+    >
+      Nombre
+      <span class="text-red-600">*</span>
+    </label>
+    <input
+      type="text"
+      id="nombre"
+      formControlName="nombre"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      [ngClass]="ClassFormValidSrv.validNgclass(phForm.get('nombre'))"
+    />
+    <app-validator-errors
+      [control]="phForm"
+      getCampo="nombre"
+    ></app-validator-errors>
+  </div>
+
+  <div class="mb-4">
+    <label
+      for="apellido"
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+    >
+      Apellido
+      <span class="text-red-600">*</span>
+    </label>
+    <input
+      type="text"
+      id="apellido"
+      formControlName="apellido"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      [ngClass]="ClassFormValidSrv.validNgclass(phForm.get('apellido'))"
+    />
+    <app-validator-errors
+      [control]="phForm"
+      getCampo="apellido"
+    ></app-validator-errors>
+  </div>
+
+  <div class="mb-4">
+    <label
+      for="tipoDocumento"
+      class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+    >
+      Tipo Documento
+      <span class="text-red-600">*</span>
+    </label>
+    <select
+      id="tipoDocumento"
+      formControlName="tipoDocumento"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      [ngClass]="ClassFormValidSrv.validNgclass(phForm.get('tipoDocumento'))"
+    >
+    <option *ngFor="let tipoDocumento of tiposDocumentos" [value]="tipoDocumento.nombre">
+      {{ tipoDocumento.nombre }}
+    </option>
+    </select>
+    <app-validator-errors
+      [control]="phForm"
+      getCampo="tipoDocumento"
+    ></app-validator-errors>
+  </div>
+</form>

@@ -8,6 +8,8 @@ const idCiudadanaURL = 'https://www.santafe.gob.ar/';
 
 const formURL = 'http://10.1.46.32:5656/formelectronico/web/app_dev.php/auth/';
 
+const tipoDocumento = 'https://twww.santafe.gov.ar/tramites/formelectronico/API/getStatic/TipoDocumento'
+
 
 export const environment = {
   env: 'prod',
@@ -16,6 +18,7 @@ export const environment = {
   authUrl: AuthURL,
   idCiudadanaURL: idCiudadanaURL,
   formURL: formURL,
+  tipoDocumento: tipoDocumento,
   ...common,
   auth: {
     ...common.auth,
