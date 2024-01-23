@@ -2,7 +2,7 @@ import { common } from './environment.common';
 
 const baseAPI = '/registropropiedad/api/';
 
-const baseAPIPagos = 'http://10.1.46.31/fdadmin/public/api/otrosPagos/options';
+const baseAPIPagos = 'http://10.1.46.31/fdadmin/public/api/';
 
 const AuthURL = 'https://tsso.santafe.gob.ar';
 
