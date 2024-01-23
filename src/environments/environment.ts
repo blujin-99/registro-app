@@ -1,6 +1,8 @@
 import { common } from './environment.common';
 
-const baseAPI = 'http://10.1.46.32:8181/registropropiedad/public/api/';
+// const baseAPI = 'http://10.1.46.32:8181/registropropiedad/public/api/';
+
+const baseAPI = 'http://10.1.46.31/registropropiedad/public/api/';
 
 const AuthURL = 'https://dsso.santafe.gob.ar';
 

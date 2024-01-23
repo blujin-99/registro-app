@@ -1,33 +1,40 @@
-<div
-  class="flex flex-col gap-5 md:flex-row justify-start p-6 bg-white border border-gray-200 rounded-lg shadow [&>div]:w-full [&>div]:md:w-4/12 [&>div>label]:block [&>div>label]:mb-2 [&>div>label]:text-sm [&>div>label]:font-medium [&>div>label]:text-gray-900"
->
+<form [formGroup]="formPagoTasas"
+  class="flex flex-col gap-5 md:flex-row justify-start p-6 bg-white border border-gray-200 rounded-lg shadow [&>div]:w-full [&>div]:md:w-4/12 [&>div>label]:block [&>div>label]:mb-2 [&>div>label]:text-sm [&>div>label]:font-medium [&>div>label]:text-gray-900">
+
   <div>
     <label for="desde">Oficina</label>
     <select
-      class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-    >
+      formControlName="oficina"
+      (change)="getOficina()"
+      class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>Seleccione una Oficina</option>
-      <option></option>
+      <option *ngFor="let Oficina of oficina" [ngValue]="Oficina">{{Oficina?.nombre}}</option>
     </select>
   </div>
+
   <div>
     <label for="desde">Tipo Solicitud</label>
-    <select
-      class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-    >
+    <select formControlName="tipoSolicitud"
+      (change)="getOficina()"
+      class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>
         Seleccione un Tipo de Solicitud
       </option>
-      <option></option>
+      <option *ngFor="let tsolicitud of tipoSolicitud" [ngValue]="tsolicitud">
+        {{tsolicitud?.solicitud}}
+      </option>
     </select>
   </div>
+
   <div>
     <label for="desde">Concepto</label>
-    <select
-      class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-    >
+    <select formControlName="concepto" (change)="submit()"
+      class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>Seleccione el Concepto</option>
-      <option></option>
+      <option  *ngFor="let concep of conceptoFilter()" [ngValue]="concep" >
+      {{concep.concepto}}
+      </option>
     </select>
   </div>
-</div>
+
+</form>
