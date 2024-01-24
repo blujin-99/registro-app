@@ -15,7 +15,7 @@ export class FormTasasComponent implements OnInit{
   concepto : IOtrosPago[] | undefined  = []
   tipoSolicitud : ITipoSolicitud[] | undefined  = []
   conceptoFilter = signal(this.concepto)
-  
+  disable = true
   
   formPagoTasas : FormGroup 
 
@@ -23,7 +23,7 @@ export class FormTasasComponent implements OnInit{
      this.formPagoTasas = this.fb.group({
        oficina: [''],
        tipoSolicitud:[''],
-       concepto: ['']
+       concepto:  [{ value: '', disabled: true }]
      })
   }
 
@@ -41,6 +41,7 @@ export class FormTasasComponent implements OnInit{
     const tSolicitud = this.formPagoTasas.get('tipoSolicitud')?.value
     if(oficina && tSolicitud){
       this.filtrarConcepto(oficina, tSolicitud)
+      this.formPagoTasas.get('concepto')?.enable()
     }
   }
   //siempre viene 0, si filtra por juridiccion 1 o 2 se le añade

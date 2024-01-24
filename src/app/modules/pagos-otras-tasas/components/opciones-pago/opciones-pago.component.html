@@ -1,5 +1,14 @@
 <h2 class="m-0 text-xl">Realizar Pago</h2>
-
+<div class="flex flex-col w-full gap-6">
+  <div *ngIf="!valid" class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Debes completar todos los campos del Formulario</span>
+    </div>
+  </div>
 <div class="flex flex-col justify-between gap-4 my-5 md:w-10/12 sm:flex-row">
   <ul class="flex flex-col items-stretch justify-center w-full h-full sm:flex-row">
     <li class="p-2 m-2 border border-gray-300  basis-3/6 md:mx-2 hover:bg-gray-200">
