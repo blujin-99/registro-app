@@ -9,12 +9,16 @@ import { PagosTasasService } from '../../services/pagos-tasas.service';
 export class OpcionesPagoComponent {
   
   constructor(private pagosSrv : PagosTasasService){}
-
+  
+  valid : boolean = true
 
   submit() {
-    this.pagosSrv.getTasaPagada().subscribe(
-      data => console.log(data), // Maneja la respuesta exitosa
-      error => console.error(error) // Maneja cualquier error
-    );
+     this.valid = this.pagosSrv.validForms()
+    if(this.valid){
+      this.pagosSrv.getTasaPagada().subscribe(
+        data => data,
+        error => console.error(error)
+      );
+    }
   }
 }

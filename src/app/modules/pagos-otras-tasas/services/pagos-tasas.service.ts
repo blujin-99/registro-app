@@ -11,9 +11,11 @@ export class PagosTasasService {
   oficina : IOficiona | any = ''
   tipoSolicitud : ITipoSolicitud | any = ''
   concepto : IOtrosPago | any = ''
-  conceptoFilter : any = 1
-  solicitudFilter : any = 1
-  oficinaFilter = signal(this.oficina)
+  private conceptObservable = new BehaviorSubject<IOtrosPago | undefined>(undefined)
+  conceptoObs$ = this.conceptObservable.asObservable()
+  total : any
+  cantidad : any
+
   responseObservable = new BehaviorSubject<IPagos | null>(null)
   response$ = this.responseObservable.asObservable()
 
@@ -29,18 +31,31 @@ export class PagosTasasService {
    }
 
    setPagos(concepto : IOtrosPago, oficina : IOficiona, tSolicitud : ITipoSolicitud): void{
-     this.conceptoFilter.set(concepto)
-     this.solicitudFilter.set(tSolicitud)
-     this.oficinaFilter.set(oficina)
+      this.concepto = concepto
+      this.oficina = oficina
+      this.tipoSolicitud = tSolicitud
+      this.conceptObservable.next(concepto)
    }
 
+   setCantidadTotal(total : any, cantidad :any):void{
+     this.total = total
+     this.cantidad = cantidad
+   }
 
+   validForms(){
+    if(this.concepto || this.oficina || this.tipoSolicitud || this.total || this.cantidad){
+       return true
+    }else{
+      return false
+    }
+   }
+   
    getTasaPagada(){
      const link =`${environment.apiBase}${environment.api.pagoBoleta}`
-     .replace('{oficina}', this.oficinaFilter()?.id)
-     .replace('{concepto}', this.conceptoFilter().id)
-     .replace('{cantidad}', this.conceptoFilter().max)
-     .replace('{total}', this.conceptoFilter().max)
+     .replace('{oficina}', this.oficina.id)
+     .replace('{concepto}', this.concepto.id)
+     .replace('{cantidad}', this.cantidad)
+     .replace('{total}', this.total)
      return this.http.get(link)
    }
 }

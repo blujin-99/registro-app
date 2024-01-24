@@ -15,9 +15,13 @@
       <tr
         class="bg-white border-b [&>td]:w-4/12 [&>td]:px-6 [&>td]:py-4 [&>td]:text-black"
       >
-        <td>1</td>
-        <td>$1000</td>
-        <td>$1000</td>
+        <td>
+          <form [formGroup]="formTasas">
+            <input id="cantidad" (change)="maxValues()" formControlName="cantidad" type="number" placeholder="cantidad máxima {{cantidad}}">
+          </form>
+        </td>
+        <td>${{monto}}</td>
+        <td>${{total}}</td>
       </tr>
     </tbody>
   </table>
