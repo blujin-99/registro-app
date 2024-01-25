@@ -77,6 +77,7 @@ export class FormTasasComponent implements OnInit{
     const tSolicitud = this.formPagoTasas.get('tipoSolicitud')?.value
     const concepto = this.formPagoTasas.get('concepto')?.value
     this.pagosSrv.setPagos(concepto,oficina,tSolicitud)
+    this.validForm()
   }
    
   
