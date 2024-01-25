@@ -6,16 +6,22 @@
     <select
       formControlName="oficina"
       (change)="getOficina()"
+      [ngClass]=" ValidatorSrv.validNgclass(formPagoTasas.get('oficina'))"
       class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>Seleccione una Oficina</option>
       <option *ngFor="let Oficina of oficina" [ngValue]="Oficina">{{Oficina?.nombre}}</option>
     </select>
+    <app-validator-errors
+    [control]="formPagoTasas"
+    getCampo="oficina"
+  ></app-validator-errors>
   </div>
 
   <div>
     <label for="desde">Tipo Solicitud</label>
     <select  formControlName="tipoSolicitud"
       (change)="getOficina()"
+      [ngClass]=" ValidatorSrv.validNgclass(formPagoTasas.get('tipoSolicitud'))"
       class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>
         Seleccione un Tipo de Solicitud
@@ -24,17 +30,28 @@
         {{tsolicitud?.solicitud}}
       </option>
     </select>
+    <app-validator-errors
+    [control]="formPagoTasas"
+    getCampo="tipoSolicitud"
+  ></app-validator-errors>
   </div>
 
   <div>
     <label for="desde">Concepto</label>
-    <select formControlName="concepto" (change)="submit()"
+    <select 
+      formControlName="concepto" 
+      (change)="submit()"
+      [ngClass]=" ValidatorSrv.validNgclass(formPagoTasas.get('concepto'))"
       class="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
       <option value="" disabled selected>Seleccione el Concepto</option>
       <option  *ngFor="let concep of conceptoFilter()" [ngValue]="concep" >
       {{concep.concepto}}
       </option>
     </select>
+    <app-validator-errors
+    [control]="formPagoTasas"
+    getCampo="concepto"
+  ></app-validator-errors>
   </div>
 
 </form>
