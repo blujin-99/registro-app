@@ -53,6 +53,7 @@ export class TablaTasasComponent {
       this.setControlCantidad(1)
       this.calcTotal(1)
     }
+    this.validForm()
   }  
 
   setControlCantidad(value:number){
