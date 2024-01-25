@@ -2,7 +2,8 @@ import { Component, OnInit, signal } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
 import { switchMap } from 'rxjs';
 import { IOficiona,IOtrosPago,ITipoSolicitud } from '../../interfaces/pago-otras-tasas.interface';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { validFormClass } from 'src/app/shared/services/validFormClass';
 
 @Component({
   selector: 'app-form-tasas',
@@ -19,11 +20,15 @@ export class FormTasasComponent implements OnInit{
   
   formPagoTasas : FormGroup 
 
-  constructor(private pagosSrv : PagosTasasService, private fb : FormBuilder){
+  constructor(
+    private pagosSrv : PagosTasasService,
+    private fb : FormBuilder,
+    public ValidatorSrv : validFormClass
+     ){
      this.formPagoTasas = this.fb.group({
-       oficina: [''],
-       tipoSolicitud:[''],
-       concepto:  [{ value: '', disabled: true }]
+       oficina: ['',[Validators.required]],
+       tipoSolicitud:['',[Validators.required]],
+       concepto:  [{ value: '', disabled: true },[Validators.required]]
      })
   }
 
@@ -33,7 +38,14 @@ export class FormTasasComponent implements OnInit{
         this.tipoSolicitud = response?.tipoSolicitud;
         this.concepto = response?.otrosPagos
       }) 
-      
+    
+      this.validForm()
+  }
+
+  validForm(){
+    this.formPagoTasas.valueChanges.subscribe(value => {
+        this.pagosSrv.setValidOTC(this.formPagoTasas.valid)
+    })
   }
 
   getOficina(){

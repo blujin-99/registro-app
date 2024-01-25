@@ -32,3 +32,8 @@ export enum Solicitud {
     ServicioCiudadanoConLegitimoInteres = "SERVICIO CIUDADANO CON LEGITIMO INTERES",
     TramitesEspeciales = "TRAMITES ESPECIALES",
 }
+
+export interface IErrorObject {
+    validOTC: boolean;
+    validCantidad: boolean;
+  }

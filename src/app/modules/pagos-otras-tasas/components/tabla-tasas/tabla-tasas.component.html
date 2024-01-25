@@ -17,8 +17,19 @@
       >
         <td>
           <form [formGroup]="formTasas">
-            <input id="cantidad" (change)="maxValues()" formControlName="cantidad" type="number" placeholder="cantidad máxima {{cantidad}}">
+            <input 
+            id="cantidad" 
+            (change)="maxValues()" 
+            formControlName="cantidad" 
+            type="number" 
+            placeholder="cantidad máxima {{cantidad}}"
+            class="focus:outline-none" 
+            [ngClass]=" validatorSrv.validNgclass(formTasas.get('cantidad'))">
           </form>
+          <app-validator-errors
+          [control]="formTasas"
+          getCampo="cantidad"
+        ></app-validator-errors>
         </td>
         <td>${{monto}}</td>
         <td>${{total}}</td>
