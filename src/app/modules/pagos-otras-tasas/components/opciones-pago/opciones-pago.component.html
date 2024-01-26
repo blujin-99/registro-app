@@ -1,22 +1,22 @@
 <h2 *ngIf="showError.validCantidad && showError.validOTC" class="m-0 text-xl">Realizar Pago</h2>
 
-<div *ngIf="showError.validCantidad && showError.validOTC"  class="flex flex-col justify-between gap-4 my-5 md:w-10/12 sm:flex-row">
+<div *ngIf="showError.validCantidad && showError.validOTC" class=" show-pagos flex flex-col justify-between gap-4 my-5 md:w-10/12 sm:flex-row">
   <ul class="flex flex-col items-stretch justify-center w-full h-full sm:flex-row">
     <li class="p-2 m-2 border border-gray-300  basis-3/6 md:mx-2 hover:bg-gray-200">
-      <a href="" class="flex h-28 max-h[28px] flex-col items-center justify-center">
-        <img class="w-40 h-12" src="assets/images/mecado-pago.webp" alt="">
+      <a class="flex h-28 max-h[28px] flex-col items-center justify-center">
+        <img  ngSrc="assets/images/mecado-pago.webp" alt="mercado-pago"  [width]="150" [height]="150">
       </a>
     </li>
     <li class="flex items-center justify-center m-2 border border-gray-300  basis-3/6 md:mx-2 hover:bg-gray-200">
-      <a class="flex flex-row items-center justify-center w-full  h-28" href="">
-        <svg xmlns="http://www.w3.org/2000/svg" height="40" width="60" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#969696" d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
-        <p class="mt-2 ml-2 font-semibold text-gray-500 no-underline ">Link de Pago</p>
+      <a class="flex flex-row items-center justify-center w-full  h-28" >
+        <img ngSrc="assets/images/Red_link_logo.svg.png" [width]="60" [height]="55" alt="Red Link">
+        <p class="mt-2 ml-4 font-semibold text-gray-500 no-underline ">Red Link</p>
       </a>
     </li>
     <li class="flex items-center justify-center m-2 border border-gray-300  basis-3/6 md:mx-2 hover:bg-gray-200">
       <a (click)="submit()" class="flex flex-row items-center justify-center w-full  h-28">
         <svg class="boleta-svg" xmlns="http://www.w3.org/2000/svg" height="60" viewBox="0 -960 960 960" width="60"><path d="M240-120q-33.846 0-56.923-23.077Q160-166.154 160-199.638V-280h120v-544.616l50.769 35.385 52.308-35.385 52.308 35.385 52.307-35.385L540-789.231l52.308-35.385 52.307 35.385 52.308-35.385 52.308 35.385L800-824.616V-200q0 33.846-23.077 56.923Q753.846-120 720-120H240Zm480-40q17 0 28.5-11.5T760-200v-560H320v480h360v80q0 17 11.5 28.5T720-160ZM375.385-620v-40h213.846v40H375.385Zm0 120v-40h213.846v40H375.385Zm300-109.231q-12.385 0-21.577-9.192-9.193-9.192-9.193-21.577 0-12.385 9.193-21.577 9.192-9.192 21.577-9.192 12.384 0 21.577 9.192 9.192 9.192 9.192 21.577 0 12.385-9.192 21.577-9.193 9.192-21.577 9.192Zm0 120q-12.385 0-21.577-9.192-9.193-9.192-9.193-21.577 0-12.385 9.193-21.577 9.192-9.192 21.577-9.192 12.384 0 21.577 9.192 9.192 9.192 9.192 21.577 0 12.385-9.192 21.577-9.193 9.192-21.577 9.192ZM240-160h400v-80H200v40q0 17 11.5 28.5T240-160Zm-40 0v-80 80Z"/></svg>
-        <p class="mt-2 ml-2 font-semibold text-gray-500 no-underline ">Boleta de Pago</p>
+        <p class="mt-2  font-semibold text-gray-500 no-underline ">Boleta de Pago</p>
       </a>
     </li>
   </ul>

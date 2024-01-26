@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
 import { IErrorObject } from '../../interfaces/pago-otras-tasas.interface';
+import { NgOptimizedImage } from '@angular/common'
 
 @Component({
   selector: 'app-opciones-pago',

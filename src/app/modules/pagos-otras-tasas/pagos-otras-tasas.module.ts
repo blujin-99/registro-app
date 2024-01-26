@@ -7,19 +7,20 @@ import { TablaTasasComponent } from './components/tabla-tasas/tabla-tasas.compon
 import { OpcionesPagoComponent } from './components/opciones-pago/opciones-pago.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
+import { NgOptimizedImage } from '@angular/common'
 @NgModule({
   declarations: [
     PagosOtrasTasasPageComponent,
     FormTasasComponent,
     TablaTasasComponent,
     OpcionesPagoComponent,
-
   ],
   imports: [
     CommonModule,
      PagosOtrasTasasRoutingModule,
      ReactiveFormsModule,
-     ValidatorErrorsComponent
+     ValidatorErrorsComponent,
+     NgOptimizedImage
     ],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
 })
