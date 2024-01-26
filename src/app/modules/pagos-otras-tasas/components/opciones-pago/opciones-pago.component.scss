@@ -5,3 +5,13 @@ a{
 .boleta-svg{
     FILL: #949494;
 }
+
+.show-pagos{
+    animation : pagos 0.5s ease-in-out;
+    opacity: 1;
+}
+
+@keyframes pagos{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
