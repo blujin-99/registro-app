@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
 import { switchMap } from 'rxjs';
-import { IOficiona,IOtrosPago,ITipoSolicitud } from '../../interfaces/pago-otras-tasas.interface';
+import { IOficina,IOtrosPago,ITipoSolicitud } from '../../interfaces/pago-otras-tasas.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
 
@@ -12,7 +12,7 @@ import { validFormClass } from 'src/app/shared/services/validFormClass';
 })
 export class FormTasasComponent implements OnInit{
 
-  oficina : IOficiona[] | undefined = []
+  oficina : IOficina[] | undefined = []
   concepto : IOtrosPago[] | undefined  = []
   tipoSolicitud : ITipoSolicitud[] | undefined  = []
   conceptoFilter = signal(this.concepto)
@@ -57,7 +57,7 @@ export class FormTasasComponent implements OnInit{
     }
   }
   //siempre viene 0, si filtra por juridiccion 1 o 2 se le añade
-  filtrarConcepto(oficina: IOficiona, tSolicitud: ITipoSolicitud) {
+  filtrarConcepto(oficina: IOficina, tSolicitud: ITipoSolicitud) {
     if (oficina.idJurisdiccion === 1 || oficina.idJurisdiccion === 2) {
       const data = this.concepto?.filter(concepto =>
        (concepto.jurisdiccion === 0 || concepto.jurisdiccion === oficina.idJurisdiccion)&&(concepto.TipoSolicitud.id === tSolicitud.id)

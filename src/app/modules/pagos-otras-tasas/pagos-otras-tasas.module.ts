@@ -8,19 +8,23 @@ import { OpcionesPagoComponent } from './components/opciones-pago/opciones-pago.
 import { ReactiveFormsModule } from '@angular/forms';
 import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
 import { NgOptimizedImage } from '@angular/common'
+import { MaterialModule } from '../material/material.module';
+import { TablaPagosComponent } from './components/tabla-pagos/tabla-pagos.component';
 @NgModule({
   declarations: [
     PagosOtrasTasasPageComponent,
     FormTasasComponent,
     TablaTasasComponent,
     OpcionesPagoComponent,
+    TablaPagosComponent,
   ],
   imports: [
     CommonModule,
      PagosOtrasTasasRoutingModule,
      ReactiveFormsModule,
      ValidatorErrorsComponent,
-     NgOptimizedImage
+     NgOptimizedImage,
+     MaterialModule
     ],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
 })

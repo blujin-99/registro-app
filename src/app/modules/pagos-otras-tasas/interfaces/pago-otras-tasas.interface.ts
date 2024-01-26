@@ -1,10 +1,10 @@
 export interface IPagos {
-    nodo:          IOficiona[];
+    nodo:          IOficina[];
     tipoSolicitud: ITipoSolicitud[];
     otrosPagos:    IOtrosPago[];
 }
 
-export interface IOficiona {
+export interface IOficina {
     id:             number;
     idJurisdiccion: number;
     nombre:         string;
@@ -19,6 +19,7 @@ export interface IOtrosPago {
     jurisdiccion:  number;
     max:           number;
 }
+
 
 export interface ITipoSolicitud {
     id:            number;
@@ -37,3 +38,31 @@ export interface IErrorObject {
     validOTC: boolean;
     validCantidad: boolean;
   }
+
+  export interface ITablaPagos {
+    id:              number;
+    noboleta:        string;
+    fechaPago:       Date;
+    acto:            string;
+    monto:           string;
+    cantidad:        number;
+    total:           string;
+    codBarra:        string;
+    ingresado:       string;
+    fechaIngreso:    string | null;
+    adminIngreso:    string | null;
+    fechaAcreditado: number;
+    comprobante:     null;
+    profesional:     Profesional;
+    oficina:         IOficina;
+    mediosPago:     string | null;
+}
+
+
+export interface Profesional {
+    nombre:           string;
+    apellido:         string;
+    numero_documento: string;
+    cuil:             string;
+    matricula:        string;
+}
