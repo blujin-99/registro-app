@@ -16,7 +16,7 @@ import { PersonaHumanaService } from './services/persona-humana-service.service'
   templateUrl: './persona-humana.component.html',
   styleUrls: ['./persona-humana.component.scss'],
 })
-export class PersonaHumanaComponent implements OnInit, OnChanges {
+export class PersonaHumanaComponent implements OnInit {
   @Input({ required: true }) personaHumana!: IPersonaHumana;
 
   phForm: FormGroup = new FormGroup({});
@@ -37,20 +37,33 @@ export class PersonaHumanaComponent implements OnInit, OnChanges {
 
     this.phForm.valueChanges.subscribe((value: IPersonaHumana) => {
       this.personaHumanaSrv.personaHumana = value;
+     
       this.personaHumanaSrv.personaHumanaValid = this.phForm.valid;
     });
 
     //Tipo Documento
-    this.personaHumanaSrv.tipoDocumento.subscribe((data) => {
+    
+     this.personaHumanaSrv.tipoDocumento.subscribe((data) => {
+
       this.tiposDocumentos = data;
     })
+
+    /**
+     * Cargo los datos 
+     * 
+     */
+
+   // this.phForm.setValue(this.personaHumana);
+    
   }
 
+  /*
   ngOnChanges(): void {
     this.phForm.get('nombre')?.setValue(this.personaHumana.nombre);
     this.phForm.get('apellido')?.setValue(this.personaHumana.apellido);
-    this.phForm
-      .get('tipoDocumento')
-      ?.setValue(this.personaHumana.tipoDocumento);
-  }
+    this.phForm.get('tipoDocumento')?.setValue(this.personaHumana.tipoDocumento);
+  }*/
+
+
+
 }

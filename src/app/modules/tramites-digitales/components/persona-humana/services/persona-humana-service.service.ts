@@ -14,13 +14,14 @@ export class PersonaHumanaService {
   datosPersonaHumana: IPersonaHumana = {
     nombre: '',
     apellido: '',
-    tipoDocumento: '',
+    tipoDocumento: {id:0, nombre:"", cod:0 },
   };
   phFormValid: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   set personaHumana(datos: IPersonaHumana) {
+    console.log(datos);
     this.datosPersonaHumana = datos;
   }
 
