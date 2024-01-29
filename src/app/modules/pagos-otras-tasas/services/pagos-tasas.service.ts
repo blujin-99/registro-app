@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { IPagos, IOficiona, IOtrosPago, ITipoSolicitud, IErrorObject } from '../interfaces/pago-otras-tasas.interface';
+import { IPagos, IOficina, IOtrosPago, ITipoSolicitud, IErrorObject } from '../interfaces/pago-otras-tasas.interface';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class PagosTasasService {
 
   url = environment.apiBase + environment.api.pagosTasas
-  oficina: IOficiona | any = ''
+  oficina: IOficina | any = ''
   tipoSolicitud: ITipoSolicitud | any = ''
   concepto: IOtrosPago | any = ''
   private conceptObservable = new BehaviorSubject<IOtrosPago | undefined>(undefined)
@@ -52,7 +52,7 @@ export class PagosTasasService {
     this.responseObservable.next(values)
   }
 
-  setPagos(concepto: IOtrosPago, oficina: IOficiona, tSolicitud: ITipoSolicitud): void {
+  setPagos(concepto: IOtrosPago, oficina: IOficina, tSolicitud: ITipoSolicitud): void {
     this.concepto = concepto
     this.oficina = oficina
     this.tipoSolicitud = tSolicitud

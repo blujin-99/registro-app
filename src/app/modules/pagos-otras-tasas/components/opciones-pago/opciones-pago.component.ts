@@ -19,7 +19,6 @@ export class OpcionesPagoComponent implements OnInit {
   ngOnInit(): void {
     this.pagosSrv.validForms$.subscribe(values => {
       this.showError = values
-      console.log(this.showError)
     })
 
     this.pagosSrv.getTablaPagos().subscribe((
