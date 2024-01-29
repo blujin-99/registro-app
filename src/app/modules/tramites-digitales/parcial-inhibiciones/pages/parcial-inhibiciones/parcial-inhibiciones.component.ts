@@ -26,7 +26,7 @@ export class ParcialInhibicionesComponent implements OnInit {
 
   ngOnInit(): void {
     initTabs();
-
+    
     let oficina = this.route.snapshot.paramMap.get('oficina');
     let idTramite = this.route.snapshot.paramMap.get('idTramite');
     if (idTramite) {
@@ -37,11 +37,12 @@ export class ParcialInhibicionesComponent implements OnInit {
           this.observacionesSrv.observaciones = data.observaciones;
         },
         (error) => {
-          // manejo los errores
+          this.personaHumanaSrv.personaHumana= { "nombre": "Horacio", "apellido": "locatelli", "tipoDocumento": { "id": 4, "nombre": "L.E.", "cod": 4 } }
           console.log(error);
         }
       );
     }
+    
     if (oficina) {
       this.oficina = this.rpService.getJurisdiccion(oficina);
     }

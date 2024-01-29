@@ -21,7 +21,6 @@ export class PersonaHumanaService {
   constructor(private http: HttpClient) {}
 
   set personaHumana(datos: IPersonaHumana) {
-    console.log(datos);
     this.datosPersonaHumana = datos;
   }
 
