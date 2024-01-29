@@ -15,5 +15,9 @@ export class PagosOtrasTasasPageComponent implements OnInit {
     this.pagoSRV.getPagos().subscribe(response => {
       this.pagoSRV.setPagosResponse(response)
     })
+
+    this.pagoSRV.getTablaPagos().subscribe(response => {
+      response
+    })
   }
 }
