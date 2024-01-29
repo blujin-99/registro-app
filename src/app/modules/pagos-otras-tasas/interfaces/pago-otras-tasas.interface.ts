@@ -52,7 +52,7 @@ export interface IErrorObject {
     fechaIngreso:    string | null;
     adminIngreso:    string | null;
     fechaAcreditado: number;
-    comprobante:     null;
+    comprobante:     null | string;
     profesional:     Profesional;
     oficina:         IOficina;
     mediosPago:     string | null;
@@ -66,3 +66,4 @@ export interface Profesional {
     cuil:             string;
     matricula:        string;
 }
+

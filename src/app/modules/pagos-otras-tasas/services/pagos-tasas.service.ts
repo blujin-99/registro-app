@@ -42,12 +42,6 @@ export class PagosTasasService {
     return this.http.get(link)
   }
 
-  getTablaPagos(){
-    const link = environment.apiBase + environment.api.pagosTabla
-    console.log(link)
-    return this.http.get(link)
-  }
-
   setPagosResponse(values: IPagos) {
     this.responseObservable.next(values)
   }

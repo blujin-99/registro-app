@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
+import { TablaTasasService } from '../../services/tabla-tasas.service';
 
 
 @Component({
@@ -9,15 +10,15 @@ import { PagosTasasService } from '../../services/pagos-tasas.service';
 })
 export class PagosOtrasTasasPageComponent implements OnInit {
 
-  constructor(private pagoSRV : PagosTasasService){}
+  constructor(private pagoSRV : PagosTasasService, private tablaSrv : TablaTasasService){}
   
   ngOnInit(): void {
     this.pagoSRV.getPagos().subscribe(response => {
       this.pagoSRV.setPagosResponse(response)
     })
 
-    this.pagoSRV.getTablaPagos().subscribe(response => {
-      response
+    this.tablaSrv.getTablaPagos().subscribe(response => {
+      this.tablaSrv.setTablaTasas(response)
     })
   }
 }

@@ -20,10 +20,6 @@ export class OpcionesPagoComponent implements OnInit {
     this.pagosSrv.validForms$.subscribe(values => {
       this.showError = values
     })
-
-    this.pagosSrv.getTablaPagos().subscribe((
-      data => data
-    ))
   }
 
   submit() {

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { TablaTasasService } from '../../services/tabla-tasas.service';
+import { ITablaPagos } from '../../interfaces/pago-otras-tasas.interface';
 
 @Component({
   selector: 'app-acreditados',
@@ -8,27 +10,29 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./acreditados.component.scss']
 })
 export class AcreditadosComponent {
-  constructor(){}
-  
-  displayedColumns: string[] = ['info', 'nombre'];
-  dataSource = new MatTableDataSource([{
-    info: 'algo',
-    name :'juana'
-  },
-  {
-    info: 'algo',
-    name :'pablo'
-  },
-  {
-    info: 'algo',
-    name :'pedro'
-  }])
 
-  alert: any[] = [];
+  constructor(private tablaSrv : TablaTasasService){}
+  
+  displayedColumns: string[] = ['noboleta','acto','fechaPago','fechaAcreditado','descargar'];
+  dataSource : MatTableDataSource<ITablaPagos> | undefined;
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    if (this.dataSource) {
+      this.dataSource.paginator = this.paginator;
+    }
+  }
+
+  ngOnInit(): void {
+    this.tablaSrv.table$.subscribe(tabla => {
+      if (tabla.length > 0) {
+        this.tablaSrv.getTablaAcreditados().subscribe(acreditados => {
+          this.dataSource = new MatTableDataSource(acreditados);
+          this.dataSource.paginator = this.paginator;
+        })
+      }
+    });
   }
 }
