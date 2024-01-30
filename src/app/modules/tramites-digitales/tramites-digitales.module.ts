@@ -14,6 +14,7 @@ import { ObservacionesComponent } from './components/observaciones/observaciones
 import { BadgeComponent } from './components/badge/badge.component';
 import { ErrorModalComponent } from '../nuevo-tramite/components/error-modal/error-modal.component';
 import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
+import { PersonasPageComponent } from './components/personas-page/personas-page.component';
 import { PersonaHumanaComponent } from './components/persona-humana/persona-humana.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { PersonaHumanaComponent } from './components/persona-humana/persona-huma
     ObservacionesComponent,
     BadgeComponent,
     PersonaHumanaComponent,
+    PersonasPageComponent,
     
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, MaterialModule,ValidatorErrorsComponent],

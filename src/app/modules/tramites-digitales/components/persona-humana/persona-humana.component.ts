@@ -1,15 +1,12 @@
 import {
   Component,
-  DoCheck,
   Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IPersonaHumana, ITipoDocumento } from '../../interfaces/personaHumana';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
-import { PersonaHumanaService } from './services/persona-humana-service.service';
+import { PersonasService } from '../personas/services/Personas.service';
 
 @Component({
   selector: 'app-persona-humana',
@@ -21,10 +18,9 @@ export class PersonaHumanaComponent implements OnInit {
 
   phForm: FormGroup = new FormGroup({});
   tiposDocumentos: any[] = [];
-
   constructor(
     private fb: FormBuilder,
-    public personaHumanaSrv: PersonaHumanaService,
+    public personasSrv: PersonasService,
     public ClassFormValidSrv: validFormClass
   ) {}
 
@@ -35,20 +31,24 @@ export class PersonaHumanaComponent implements OnInit {
       tipoDocumento: ['', Validators.required],
     });
     
-    this.phForm.valueChanges.subscribe((value: IPersonaHumana) => {
-      this.personaHumanaSrv.personaHumana = value;
-     
-      this.personaHumanaSrv.personaHumanaValid = this.phForm.valid;
-    });
-
-     /**
+    /**
       * Obetngo datos para armar selec
      */    
-     this.personaHumanaSrv.tipoDocumento.subscribe((data) => {
+     this.personasSrv.tipoDocumento.subscribe((data) => {
       this.tiposDocumentos = data;
     })
 
     
+  }
+
+  addPersona(){
+    if(this.phForm.valid){
+      this.personasSrv.add(this.phForm.value);
+      //this.personaHumanaSrv.personaHumanaValid = this.phForm.valid;
+      this.phForm.reset()
+
+    }
+
   }
 
   compareFn(c1: ITipoDocumento, c2: ITipoDocumento): boolean {

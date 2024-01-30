@@ -7,5 +7,5 @@ export interface IPersonaHumana {
 export interface ITipoDocumento{
   cod: number,
   id: number,
-nombre: string
+  nombre: string
 }

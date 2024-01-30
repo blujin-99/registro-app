@@ -66,4 +66,7 @@
     ></app-validator-errors>
 
   </div>
+  <button class="btn btn-primary" type="button" [disabled]="!phForm.valid" (click)="addPersona()">
+    Confirmar
+  </button>
 </form>
