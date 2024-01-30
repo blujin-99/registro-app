@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./tabla-pagos.component.scss']
 })
 export class TablaPagosComponent {
-
 }

@@ -10,6 +10,9 @@ import { TablaTasasService } from '../../services/tabla-tasas.service';
 })
 export class PagosOtrasTasasPageComponent implements OnInit {
 
+  panelOpenState = false
+  
+
   constructor(private pagoSRV : PagosTasasService, private tablaSrv : TablaTasasService){}
   
   ngOnInit(): void {
