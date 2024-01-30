@@ -108,7 +108,7 @@
           aria-selected="false"
         >
           Personas / Titulares
-          <app-badge [value]="personaHumanaSrv.personaHumanaValid"></app-badge>
+          <app-badge [value]="personasSrv.validPersonas"></app-badge>
         </button>
       </li>
       <li class="me-2" role="presentation">
@@ -144,7 +144,8 @@
       role="tabpanel"
       aria-labelledby="persona-tab"
     >
-      <app-persona-humana [personaHumana]="personaHumanaSrv.personaHumana"></app-persona-humana>
+      <app-personas-page> </app-personas-page>  
+    <!-- <app-persona-humana [personaHumana]="personaHumanaSrv.personaHumana"></app-persona-humana> -->
     </div>
     <div
       class="hidden p-4 rounded-lg"

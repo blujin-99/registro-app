@@ -54,8 +54,9 @@
       formControlName="tipoDocumento"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       [ngClass]="ClassFormValidSrv.validNgclass(phForm.get('tipoDocumento'))"
+      [compareWith]="compareFn"
     >
-    <option *ngFor="let tipoDocumento of tiposDocumentos" [value]="tipoDocumento.nombre">
+    <option *ngFor="let tipoDocumento of tiposDocumentos" [ngValue]="tipoDocumento">
       {{ tipoDocumento.nombre }}
     </option>
     </select>
@@ -63,5 +64,9 @@
       [control]="phForm"
       getCampo="tipoDocumento"
     ></app-validator-errors>
+
   </div>
+  <button class="btn btn-primary" type="button" [disabled]="!phForm.valid" (click)="addPersona()">
+    Confirmar
+  </button>
 </form>
