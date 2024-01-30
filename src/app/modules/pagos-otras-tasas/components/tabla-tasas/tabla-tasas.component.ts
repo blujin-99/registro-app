@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
-import { switchMap } from 'rxjs';
-import { IOtrosPago } from '../../interfaces/pago-otras-tasas.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
 
@@ -12,6 +10,7 @@ import { validFormClass } from 'src/app/shared/services/validFormClass';
 })
 export class TablaTasasComponent {
   
+
   formTasas : FormGroup
 
   monto : number = 0
