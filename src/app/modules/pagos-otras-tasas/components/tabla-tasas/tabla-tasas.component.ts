@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-tabla-tasas',
@@ -16,6 +17,12 @@ export class TablaTasasComponent {
   monto : number = 0
   total : number = 0
   cantidad : number = 1
+  isMobile: boolean = window.innerWidth <= 768; 
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.isMobile = window.innerWidth <= 768; 
+  }
 
   constructor(
      private pagosSrv : PagosTasasService,
