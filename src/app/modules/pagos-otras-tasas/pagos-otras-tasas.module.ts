@@ -10,9 +10,9 @@ import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-er
 import { NgOptimizedImage } from '@angular/common'
 import { MaterialModule } from '../material/material.module';
 import { TablaPagosComponent } from './components/tabla-pagos/tabla-pagos.component';
-import { PagosPendientesComponent } from './components/pagos-pendientes/pagos-pendientes.component';
-import { IngresadosComponent } from './components/ingresados/ingresados.component';
-import { AcreditadosComponent } from './components/acreditados/acreditados.component';
+import { PagosPendientesComponent } from './components/tabla-pagos-pendientes/pagos-pendientes.component';
+import { IngresadosComponent } from './components/tabla-ingresados/ingresados.component';
+import { AcreditadosComponent } from './components/tabla-acreditados/acreditados.component';
 @NgModule({
   declarations: [
     PagosOtrasTasasPageComponent,
