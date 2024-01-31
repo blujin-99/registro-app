@@ -14,9 +14,9 @@ export const common = {
     newTramite: 'profesion/newTramite',
     actions: 'tramites/{codigo}/action',
     notificationUrl: 'notify/register',
-    pagosTasas:'pagos/otrosPagos/opciones',
+    pagosOpciones:'pagos/otrosPagos/opciones',
     pagoBoleta : 'pagos/otrosPagos/pago_boleta/{oficina}/{concepto}/{cantidad}',
-    pagosTabla :'pagos/otrosPagos'
+    pagosOtrosPagos :'pagos/otrosPagos'
   },
   auth: {
     serviceAuthUrl: 'service-auth',
@@ -37,5 +37,6 @@ export const common = {
   cas: {
     idciudadana: 'idciudadana',
   },
+  
  
 };

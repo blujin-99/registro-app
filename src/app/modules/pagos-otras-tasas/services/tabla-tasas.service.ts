@@ -32,10 +32,6 @@ export class TablaTasasService {
  
   constructor(private http : HttpClient) { }
   
-  getTablaPagos() : Observable<ITablaPagos[]>{
-    const link = environment.apiBase + environment.api.pagosTabla
-    return this.http.get<ITablaPagos[]>(link)
-  }
 
   setTablaTasas(tabla: ITablaPagos[]){
     this.dataTable.next(tabla)

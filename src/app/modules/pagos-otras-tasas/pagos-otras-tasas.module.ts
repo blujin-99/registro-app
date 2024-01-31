@@ -13,6 +13,8 @@ import { TablaPagosComponent } from './components/tabla-pagos/tabla-pagos.compon
 import { PagosPendientesComponent } from './components/tabla-pagos-pendientes/pagos-pendientes.component';
 import { IngresadosComponent } from './components/tabla-ingresados/ingresados.component';
 import { AcreditadosComponent } from './components/tabla-acreditados/acreditados.component';
+import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
+
 @NgModule({
   declarations: [
     PagosOtrasTasasPageComponent,
@@ -33,5 +35,6 @@ import { AcreditadosComponent } from './components/tabla-acreditados/acreditados
      MaterialModule
     ],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
+  providers:[PagoOtrasTasasService]
 })
 export class PagosOtrasTasasModule {}

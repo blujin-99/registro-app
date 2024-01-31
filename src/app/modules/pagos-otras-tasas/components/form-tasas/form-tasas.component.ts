@@ -1,9 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
-import { switchMap } from 'rxjs';
 import { IOficina,IOtrosPago,ITipoSolicitud } from '../../interfaces/pago-otras-tasas.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
+import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
 
 @Component({
   selector: 'app-form-tasas',
@@ -23,7 +23,8 @@ export class FormTasasComponent implements OnInit{
   constructor(
     private pagosSrv : PagosTasasService,
     private fb : FormBuilder,
-    public ValidatorSrv : validFormClass
+    public ValidatorSrv : validFormClass,
+    private pagosTasas : PagoOtrasTasasService
      ){
      this.formPagoTasas = this.fb.group({
        oficina: ['',[Validators.required]],
@@ -76,7 +77,7 @@ export class FormTasasComponent implements OnInit{
     const oficina = this.formPagoTasas.get('oficina')?.value
     const tSolicitud = this.formPagoTasas.get('tipoSolicitud')?.value
     const concepto = this.formPagoTasas.get('concepto')?.value
-    this.pagosSrv.setPagos(concepto,oficina,tSolicitud)
+    this.pagosTasas.setPagos(concepto,oficina,tSolicitud)
     this.validForm()
   }
    

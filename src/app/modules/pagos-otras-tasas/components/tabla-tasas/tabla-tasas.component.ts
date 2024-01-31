@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PagosTasasService } from '../../services/pagos-tasas.service';
+import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
 import { HostListener } from '@angular/core';
@@ -26,6 +27,7 @@ export class TablaTasasComponent {
 
   constructor(
      private pagosSrv : PagosTasasService,
+     private pagosTasas : PagoOtrasTasasService,
      private formb : FormBuilder,
      public validatorSrv : validFormClass
      ){
@@ -37,7 +39,7 @@ export class TablaTasasComponent {
   }
 
   ngOnInit(): void {
-     this.pagosSrv.conceptoObs$.subscribe(concepto => {
+     this.pagosTasas.conceptoObs$.subscribe(concepto => {
       if(concepto){
         this.formTasas.get('cantidad')?.enable()
         this.monto = parseFloat(concepto.monto) // convierto el string en numérico
@@ -89,7 +91,7 @@ export class TablaTasasComponent {
 
   calcTotal(cantidad: number){
     this.total = this.monto * cantidad
-    this.pagosSrv.setCantidadTotal(cantidad)
+    this.pagosTasas.setCantidadTotal(cantidad)
   }
   
 }
