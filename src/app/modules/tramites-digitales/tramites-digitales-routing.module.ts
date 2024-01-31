@@ -7,21 +7,22 @@ import { ParcialInhibicionesComponent } from './pages/parcial-inhibiciones/parci
 const routes: Routes = [
   {
     path: '',
+    component: OficinaPresentacionComponent,
+  },
+  {
+    path: ':oficina',
+
     children: [
       {
         path: '',
-        component: OficinaPresentacionComponent,
-      },
-      {
-        path: 'oficina/:oficina',
         component: TiposTramitesComponent,
       },
       {
-        path: 'oficina/:oficina/parcialInhibiciones',
+        path: ':acto/inhibiciones',
         component: ParcialInhibicionesComponent,
       },
       {
-        path: 'oficina/:oficina/parcialInhibiciones/:idTramite',
+        path: ':acto/inhibiciones/:idTramite',
         component: ParcialInhibicionesComponent,
       },
     ],

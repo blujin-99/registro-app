@@ -1,0 +1,354 @@
+[
+  {
+    "id": 1,
+    "pk": "declaratoriaherederos",
+    "nombre": "Inscripci\u00f3n de declaratoria de herederos",
+    "descripcion": "Inscripci\u00f3n de las declaratorias de herederos dictadas en un proceso sucesorio y en tanto haya bienes inmuebles que compongan el acervo hereditario."
+  },
+  {
+    "id": 9,
+    "pk": "subsistencia",
+    "nombre": "Subsistencia de declaratoria de herederos",
+    "descripcion": "Subsistencia de las declaratorias de herederos dictadas en un proceso sucesorio y en tanto haya bienes inmuebles que compongan el acervo hereditario."
+  },
+  {
+    "acto": [
+      {
+        "id": 1,
+        "pk": "certificado",
+        "nombre": "Certificado",
+        "abreviatura": "Certif",
+        "descripcion": "Certificado"
+      },
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "registro": [
+      {
+        "id": 2,
+        "pk": "fr",
+        "nombre": "Folio Real",
+        "abreviatura": "FR",
+        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 1,
+        "pk": "fc",
+        "nombre": "Folio Cronol\u00f3gico",
+        "abreviatura": "FC",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "id": 5,
+    "pk": "completo",
+    "nombre": "Completo ",
+    "descripcion": "Subsistencia de dominio, grav\u00e1menes, medidas cautelares e inhibiciones (libre disposici\u00f3n de las personas).",
+    "modulos": [
+      {
+        "id": 1,
+        "pk": "dominio",
+        "nombre": "Dominio",
+        "abreviatura": "Dominio",
+        "descripcion": "Dominio"
+      },
+      {
+        "id": 2,
+        "pk": "gravamenes",
+        "nombre": "Grav\u00e1menes",
+        "abreviatura": "Grav\u00e1menes",
+        "descripcion": "Grav\u00e1menes"
+      },
+      {
+        "id": 3,
+        "pk": "inhibiciones",
+        "nombre": "Inhibiciones",
+        "abreviatura": "Inhibiciones",
+        "descripcion": "Inhibiciones"
+      }
+    ]
+  },
+  {
+    "acto": [
+      {
+        "id": 1,
+        "pk": "certificado",
+        "nombre": "Certificado",
+        "abreviatura": "Certif",
+        "descripcion": "Certificado"
+      },
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "registro": [
+      {
+        "id": 2,
+        "pk": "fr",
+        "nombre": "Folio Real",
+        "abreviatura": "FR",
+        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 1,
+        "pk": "fc",
+        "nombre": "Folio Cronol\u00f3gico",
+        "abreviatura": "FC",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "id": 2,
+    "pk": "dominio",
+    "nombre": "Parcial",
+    "descripcion": "Subsistencia de dominio (s\u00f3lo titularidad), derechos y acciones, afectaci\u00f3n de vivienda, ley Pierri y prehorizontalidad .",
+    "modulos": [
+      {
+        "id": 1,
+        "pk": "dominio",
+        "nombre": "Dominio",
+        "abreviatura": "Dominio",
+        "descripcion": "Dominio"
+      }
+    ]
+  },
+  {
+    "acto": [
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "id": 4,
+    "pk": "inhibiciones",
+    "nombre": "Parcial Inhibiciones",
+    "descripcion": "Informa respecto de la libre disponibilidad de las personas.",
+    "modulos": [
+      {
+        "id": 3,
+        "pk": "inhibiciones",
+        "nombre": "Inhibiciones",
+        "abreviatura": "Inhibiciones",
+        "descripcion": "Inhibiciones"
+      }
+    ]
+  },
+  {
+    "acto": [
+      {
+        "id": 1,
+        "pk": "certificado",
+        "nombre": "Certificado",
+        "abreviatura": "Certif",
+        "descripcion": "Certificado"
+      },
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "registro": [
+      {
+        "id": 2,
+        "pk": "fr",
+        "nombre": "Folio Real",
+        "abreviatura": "FR",
+        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 1,
+        "pk": "fc",
+        "nombre": "Folio Cronol\u00f3gico",
+        "abreviatura": "FC",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "id": 6,
+    "pk": "parcialdominiogravamenes",
+    "nombre": "Parcial",
+    "descripcion": "Subsistencia de dominio, grav\u00e1menes y medidas cautelares.",
+    "modulos": [
+      {
+        "id": 1,
+        "pk": "dominio",
+        "nombre": "Dominio",
+        "abreviatura": "Dominio",
+        "descripcion": "Dominio"
+      },
+      {
+        "id": 2,
+        "pk": "gravamenes",
+        "nombre": "Grav\u00e1menes",
+        "abreviatura": "Grav\u00e1menes",
+        "descripcion": "Grav\u00e1menes"
+      }
+    ]
+  },
+  {
+    "acto": [
+      {
+        "id": 1,
+        "pk": "certificado",
+        "nombre": "Certificado",
+        "abreviatura": "Certif",
+        "descripcion": "Certificado"
+      },
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "registro": [
+      {
+        "id": 2,
+        "pk": "fr",
+        "nombre": "Folio Real",
+        "abreviatura": "FR",
+        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 1,
+        "pk": "fc",
+        "nombre": "Folio Cronol\u00f3gico",
+        "abreviatura": "FC",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "id": 3,
+    "pk": "gravamenes",
+    "nombre": "Parcial Grav\u00e1menes",
+    "descripcion": "Subsistencia de grav\u00e1menes.",
+    "modulos": [
+      {
+        "id": 2,
+        "pk": "gravamenes",
+        "nombre": "Grav\u00e1menes",
+        "abreviatura": "Grav\u00e1menes",
+        "descripcion": "Grav\u00e1menes"
+      }
+    ]
+  },
+  {
+    "acto": [
+      {
+        "id": 1,
+        "pk": "certificado",
+        "nombre": "Certificado",
+        "abreviatura": "Certif",
+        "descripcion": "Certificado"
+      },
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "registro": [
+      {
+        "id": 2,
+        "pk": "fr",
+        "nombre": "Folio Real",
+        "abreviatura": "FR",
+        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 1,
+        "pk": "fc",
+        "nombre": "Folio Cronol\u00f3gico",
+        "abreviatura": "FC",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "id": 7,
+    "pk": "dominioInhibiciones",
+    "nombre": "General (Dom/Inh)",
+    "descripcion": "Modulos",
+    "modulos": [
+      {
+        "id": 3,
+        "pk": "inhibiciones",
+        "nombre": "Inhibiciones",
+        "abreviatura": "Inhibiciones",
+        "descripcion": "Inhibiciones"
+      }
+    ]
+  },
+  {
+    "acto": [
+      {
+        "id": 1,
+        "pk": "certificado",
+        "nombre": "Certificado",
+        "abreviatura": "Certif",
+        "descripcion": "Certificado"
+      },
+      {
+        "id": 2,
+        "pk": "informe",
+        "nombre": "Informe",
+        "abreviatura": "Inf",
+        "descripcion": "Informe"
+      }
+    ],
+    "registro": [
+      {
+        "id": 2,
+        "pk": "fr",
+        "nombre": "Folio Real",
+        "abreviatura": "FR",
+        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+      },
+      {
+        "id": 1,
+        "pk": "fc",
+        "nombre": "Folio Cronol\u00f3gico",
+        "abreviatura": "FC",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "id": 8,
+    "pk": "gravamenesInhibiciones",
+    "nombre": "General (Grav/Inh)",
+    "descripcion": "Modulos",
+    "modulos": [
+      {
+        "id": 2,
+        "pk": "gravamenes",
+        "nombre": "Grav\u00e1menes",
+        "abreviatura": "Grav\u00e1menes",
+        "descripcion": "Grav\u00e1menes"
+      },
+      {
+        "id": 3,
+        "pk": "inhibiciones",
+        "nombre": "Inhibiciones",
+        "abreviatura": "Inhibiciones",
+        "descripcion": "Inhibiciones"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "pk": "minutaAnulacion",
+    "nombre": "Minuta Anulacion",
+    "descripcion": "Minuta Anulacion."
+  }
+]

@@ -16,6 +16,7 @@ import { ErrorModalComponent } from '../nuevo-tramite/components/error-modal/err
 import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
 
 import { PersonaHumanaComponent } from './components/persona-humana/persona-humana.component';
+import { CardTipoTramiteComponent } from './components/card-tipo-tramite/card-tipo-tramite.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PersonaHumanaComponent } from './components/persona-humana/persona-huma
     ObservacionesComponent,
     BadgeComponent,
     PersonaHumanaComponent,
+    CardTipoTramiteComponent,
   ],
   imports: [
     CommonModule,
