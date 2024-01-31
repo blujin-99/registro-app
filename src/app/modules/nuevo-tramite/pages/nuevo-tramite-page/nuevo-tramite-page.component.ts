@@ -45,7 +45,7 @@ export class NuevoTramitePageComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       categoria: ['', Validators.required],
-      tramiteServicio: ['', Validators.required],
+      tramiteServicio: [{ value: '', disabled: true }, Validators.required],
       servicio: ['', Validators.required],
       tramiteDigital: ['', Validators.required],
     });
@@ -78,6 +78,7 @@ export class NuevoTramitePageComponent implements OnInit {
   setTramiteServicio() {
     this.tramitesServicios = [];
     this.tramiteServicio?.setValue(null);
+    this.tramiteServicio?.enable()
     this.tramitesServicios = this.categoria?.value.tipoTramiteServicios;
   }
 
