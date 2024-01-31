@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActoService } from './services/acto.service';
+import { ActoService } from '../../services/acto.service';
 import { IActo } from '../../interfaces/acto';
 
 import { Observable, of } from 'rxjs';

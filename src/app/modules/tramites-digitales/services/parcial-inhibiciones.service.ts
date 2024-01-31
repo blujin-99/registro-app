@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActoService } from '../../../../components/acto/services/acto.service';
-import { ObservacionesService } from '../../../../components/observaciones/services/observaciones.service';
+import { ActoService } from './acto.service';
+import { ObservacionesService } from './observaciones.service';
 import { TramiteDigitalService } from 'src/app/modules/tramites-digitales/services/tramite-digital.service';
 import { IParcialInhibiciones } from 'src/app/modules/tramites-digitales/interfaces/parcial-Inhibiciones';
-import { PersonasService } from 'src/app/modules/tramites-digitales/components/personas/services/Personas.service';
+import { PersonasService } from 'src/app/modules/tramites-digitales/services/personas.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,13 +17,13 @@ export class ParcialInhibicionesService {
     private actoService: ActoService,
     private observacionesService: ObservacionesService,
     private tramiteDigitalSrv: TramiteDigitalService,
-    private personasSrv:PersonasService
+    private personasSrv: PersonasService
   ) {}
 
   validInhibicion() {
     return (
       this.actoService.actoFormValid &&
-      this.observacionesService.observacionFormValid 
+      this.observacionesService.observacionFormValid
     );
   }
 

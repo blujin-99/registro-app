@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OficinaPresentacionComponent } from './pages/oficina-presentacion/oficina-presentacion.component';
 import { TiposTramitesComponent } from './pages/tipos-tramites/tipos-tramites.component';
-import { ParcialInhibicionesComponent } from './parcial-inhibiciones/pages/parcial-inhibiciones/parcial-inhibiciones.component';
+import { ParcialInhibicionesComponent } from './pages/parcial-inhibiciones/parcial-inhibiciones.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { 
-        path: '', 
-        component: OficinaPresentacionComponent 
+      {
+        path: '',
+        component: OficinaPresentacionComponent,
       },
       {
         path: 'oficina/:oficina',
@@ -18,11 +18,11 @@ const routes: Routes = [
       },
       {
         path: 'oficina/:oficina/parcialInhibiciones',
-        component:ParcialInhibicionesComponent
+        component: ParcialInhibicionesComponent,
       },
       {
         path: 'oficina/:oficina/parcialInhibiciones/:idTramite',
-        component:ParcialInhibicionesComponent
+        component: ParcialInhibicionesComponent,
       },
     ],
   },
