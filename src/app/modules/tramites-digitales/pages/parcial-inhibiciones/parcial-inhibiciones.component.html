@@ -144,8 +144,26 @@
       role="tabpanel"
       aria-labelledby="persona-tab"
     >
-      <app-personas-page> </app-personas-page>  
-    <!-- <app-persona-humana [personaHumana]="personaHumanaSrv.personaHumana"></app-persona-humana> -->
+      <h3>Componenete persona</h3>
+      <app-persona-humana
+        [personaHumana]="personasSrv.editPersonaH"
+      ></app-persona-humana>
+      <h3>Tabla</h3>
+
+      <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>accion</th>
+        </tr>
+        <tr *ngFor="let persona of personasSrv.personas; index as i">
+          <td>{{ persona.nombre }}</td>
+          <td></td>
+          <td>
+            {{ i }} <button (click)="editoPersona(persona)">Editar</button>
+          </td>
+        </tr>
+      </table>
     </div>
     <div
       class="hidden p-4 rounded-lg"

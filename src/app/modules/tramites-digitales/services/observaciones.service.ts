@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IObservaciones } from '../../../interfaces/observaciones';
+import { IObservaciones } from '../interfaces/observaciones';
 
 @Injectable({
   providedIn: 'root',

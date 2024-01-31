@@ -1,33 +1,29 @@
-import { Injectable } from "@angular/core";
-import { IPersonaHumana } from "../../../interfaces/personaHumana";
-import { IPJuridica } from "../../../interfaces/IPJuridica";
+import { Injectable } from '@angular/core';
+import { IPersonaHumana } from '../interfaces/personaHumana';
+import { IPJuridica } from '../interfaces/IPJuridica';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-
-
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PersonasService {
+  apiUrl = environment.tipoDocumento;
+  editPersonaH: IPersonaHumana = {} as IPersonaHumana;
+  validPersonas: boolean = false;
 
-  apiUrl = environment.tipoDocumento
-  editPersonaH:IPersonaHumana ={}as IPersonaHumana
-  validPersonas:boolean=false;
-
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   private listaPersona: (IPersonaHumana | IPJuridica)[] = [];
 
   /**
-   * Agrega al Array ListaPersona un array 
-   * @param persona 
+   * Agrega al Array ListaPersona un array
+   * @param persona
    */
   add(persona: IPersonaHumana | IPJuridica) {
-    
-    const index = this.listaPersona.findIndex(p => p === this.editPersonaH);
-    if (index !== -1) {       
+    const index = this.listaPersona.findIndex((p) => p === this.editPersonaH);
+    if (index !== -1) {
       this.listaPersona[index] = persona;
       this.editPersonaH = {} as IPersonaHumana;
     } else {
@@ -43,15 +39,15 @@ export class PersonasService {
   }
 
   /**
-   * Setea lista completa de Personas 
+   * Setea lista completa de Personas
    */
   set personas(personas: (IPersonaHumana | IPJuridica)[]) {
     this.listaPersona = personas;
   }
 
   /**
-   * Remueve del array el objeto persona 
-   * @param persona 
+   * Remueve del array el objeto persona
+   * @param persona
    */
   remove(persona: IPersonaHumana | IPJuridica) {
     const index = this.listaPersona.indexOf(persona);
@@ -60,15 +56,12 @@ export class PersonasService {
     }
   }
 
-  setPersona(persona: IPersonaHumana | IPJuridica, personaModificadad : IPersonaHumana | IPJuridica){
-    
-
-  }
-
+  setPersona(
+    persona: IPersonaHumana | IPJuridica,
+    personaModificadad: IPersonaHumana | IPJuridica
+  ) {}
 
   get tipoDocumento(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-
-
 }

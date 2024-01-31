@@ -1,5 +1,5 @@
 import { Injectable, Signal } from '@angular/core';
-import { IActo } from '../../../interfaces/acto';
+import { IActo } from '../interfaces/acto';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

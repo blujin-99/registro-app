@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ObservacionesService } from './services/observaciones.service';
+import { ObservacionesService } from '../../services/observaciones.service';
 import { IObservaciones } from '../../interfaces/observaciones';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
 
