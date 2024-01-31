@@ -1,0 +1,57 @@
+<div class="overflow-x-auto">
+  <table mat-table *ngIf="dataSource" [dataSource]="dataSource">
+    <!--filterRow-->
+
+    <ng-container matColumnDef="noboleta">
+      <th mat-header-cell *matHeaderCellDef>N° Boleta</th>
+      <td mat-cell *matCellDef="let data">{{ data.noboleta }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acto">
+      <th mat-header-cell *matHeaderCellDef>Acto</th>
+      <td mat-cell *matCellDef="let data">{{ data.acto }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="monto">
+      <th mat-header-cell *matHeaderCellDef>Monto</th>
+      <td mat-cell *matCellDef="let data">{{ data.monto }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+      <td mat-cell *matCellDef="let data">{{ data.cantidad }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let data">{{ data.total }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="pagar">
+      <th mat-header-cell *matHeaderCellDef>Pagar / Descargar</th>
+      <td class="flex flex-row justify-between" mat-cell *matCellDef="let data">
+        <button>
+          <img ngSrc="assets/images/mercado-pago-logo-simple.png" alt="mercado-pago" [width]="50" [height]="50">
+        </button>
+        <button type="submit" tabindex="2" class="btn-primary">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 
+          0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
+          </svg>
+        </button>
+
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+  <!-- <div *ngIf="alert.length === 0" class="flex justify-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-100" role="alert">
+      <span class="font-medium">No se encontraron trámites</span>
+    </div> -->
+  <mat-paginator class="mb-5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  </mat-paginator>
+
+</div>

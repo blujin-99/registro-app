@@ -1,23 +1,51 @@
-<div
-  class="relative overflow-x-auto border border-gray-200 shadow sm:rounded-lg"
->
-  <table class="w-full text-sm text-left">
+<div class="relative overflow-x-auto border mt-2 border-gray-200 shadow sm:rounded-lg">
+  <table class="w-full text-sm text-left md:mt-2">
     <thead class="text-sm">
-      <tr
-        class="[&>th]:px-6 [&>th]:py-3 [&>th]:w-4/12 [&>th]:text-black [&>th]:font-medium"
-      >
+      <tr *ngIf="!isMobile" class="[&>th]:px-6 [&>th]:py-3 [&>th]:w-4/12 [&>th]:text-black [&>th]:font-medium">
         <th scope="col">Cantidad</th>
         <th scope="col">Monto</th>
         <th scope="col">Total</th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        class="bg-white border-b [&>td]:w-4/12 [&>td]:px-6 [&>td]:py-4 [&>td]:text-black"
-      >
-        <td>1</td>
-        <td>$1000</td>
-        <td>$1000</td>
+      <tr *ngIf="!isMobile" class="bg-white border-b [&>td]:w-4/12 [&>td]:px-6 [&>td]:py-4 [&>td]:text-black">
+        <td>
+          <form [formGroup]="formTasas">
+            <input id="cantidad" (change)="maxValues()" formControlName="cantidad" type="number"
+              placeholder="cantidad máxima {{cantidad}}" class="focus:outline-none"
+              [ngClass]=" validatorSrv.validNgclass(formTasas.get('cantidad'))">
+          </form>
+          <app-validator-errors [control]="formTasas" getCampo="cantidad"></app-validator-errors>
+        </td>
+        <td>${{monto}}</td>
+        <td>${{total}}</td>
+      </tr>
+      <!----------- mobile -------------------->
+
+      <tr *ngIf="isMobile" class="bg-white [&>td]:w-4/12 [&>td]:px-6 [&>td]:py-4 [&>td]:text-black">
+        <td>
+          <label for="cantidad">Cantidad</label>
+          <form [formGroup]="formTasas">
+            <input id="cantidad" (change)="maxValues()" formControlName="cantidad" type="number"
+              placeholder="cantidad máxima {{cantidad}}" class="focus:outline-none"
+              [ngClass]=" validatorSrv.validNgclass(formTasas.get('cantidad'))">
+          </form>
+          <app-validator-errors [control]="formTasas" getCampo="cantidad"></app-validator-errors>
+        </td>
+      </tr>
+
+      <tr *ngIf="isMobile" class="bg-white [&>td]:w-4/12 [&>td]:px-6 [&>td]:py-4 [&>td]:text-black">
+        <td id="monto">
+          <label for="monto">Monto</label>
+          ${{monto}}
+        </td>
+      </tr>
+
+      <tr *ngIf="isMobile" class="bg-white [&>td]:w-4/12 [&>td]:px-6 [&>td]:py-4 [&>td]:text-black">
+        <td id="total">
+          <label for="total">Total</label>
+          ${{total}}
+        </td>
       </tr>
     </tbody>
   </table>

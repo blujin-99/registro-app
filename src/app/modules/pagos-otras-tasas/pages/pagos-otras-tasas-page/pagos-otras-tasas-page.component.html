@@ -2,9 +2,30 @@
   <span>
     <h2 class="m-0 text-2xl">Pagos de otras tasas</h2>
   </span>
-  <div class="flex flex-col w-full gap-6">
-    <app-form-tasas></app-form-tasas>
-    <app-tabla-tasas></app-tabla-tasas>
-    <app-opciones-pago></app-opciones-pago>
-  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2 class="m-0 text-xl">Nuevo Pago</h2>
+        </mat-panel-title>
+        <svg class=".icon-more-less"  xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"/></svg>
+      </mat-expansion-panel-header>
+      <app-form-tasas></app-form-tasas>
+      <app-tabla-tasas></app-tabla-tasas>
+      <app-opciones-pago></app-opciones-pago>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2 class="m-0 text-xl">Pagos</h2>
+        </mat-panel-title>
+        <div>
+          <svg *ngIf="panelOpenState == true" class="icon-more-less" xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="m283-345-43-43 240-240 240 239-43 43-197-197-197 198Z"/></svg>
+          <svg *ngIf="panelOpenState == false" class=".icon-more-less"  xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"/></svg>
+        </div>
+      </mat-expansion-panel-header>
+      <app-tabla-pagos></app-tabla-pagos>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
