@@ -11,15 +11,21 @@ const routes: Routes = [
   },
   {
     path: ':oficina',
-    component: TiposTramitesComponent,
-  },
-  {
-    path: 'parcialInhibiciones',
-    component: ParcialInhibicionesComponent,
-  },
-  {
-    path: ':idTramite',
-    component: ParcialInhibicionesComponent,
+
+    children: [
+      {
+        path: '',
+        component: TiposTramitesComponent,
+      },
+      {
+        path: ':acto/inhibiciones',
+        component: ParcialInhibicionesComponent,
+      },
+      {
+        path: ':acto/inhibiciones/:idTramite',
+        component: ParcialInhibicionesComponent,
+      },
+    ],
   },
 ];
 
