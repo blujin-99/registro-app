@@ -49,7 +49,7 @@ export class FiltrosBusquedaComponent implements OnInit {
     categoria: [''],
     estadoTramite: [''],
     jurisdiccion: [''],
-    tramiteServicio: [''],
+    tramiteServicio: [{ value: '', disabled: true }],
     estadoTasas: [''],
     estadoExcedentes: [''],
   };
@@ -67,7 +67,7 @@ export class FiltrosBusquedaComponent implements OnInit {
       categoria: [''],
       estadoTramite: [''],
       jurisdiccion: [''],
-      tramiteServicio: [''],
+      tramiteServicio: [{ value: '', disabled: true }],
       estadoTasas: [''],
       estadoExcedentes: [''],
     });
@@ -91,6 +91,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   clearAllFilters() {
     this.filters = [];
     this.formFiltros.reset(this.resetForm);
+    this.formFiltros.get('tramiteServicio')?.disable()
     this.onSubmit();
   }
   /**
@@ -145,6 +146,7 @@ export class FiltrosBusquedaComponent implements OnInit {
   setTramiteServicio() {
     this.openSnackBar();
     this.tramiteServicio.nativeElement.focus();
+    this.formFiltros.get('tramiteServicio')?.enable()
     let categoria = this.formFiltros.get('categoria')?.value;
     let vers = this.tramiteSrv.categorias.find( obj=> { return obj.id === categoria.id } ) 
     this.tramiteServicio$.set(vers?.tipoTramiteServicios);
