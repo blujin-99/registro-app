@@ -6,10 +6,17 @@ import { MaterialModule } from '../material/material.module';
 import { BtnIniciarTramiteComponent } from './components/btn-iniciar-tramite/btn-iniciar-tramite.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
+import { discardPeriodicTasks } from '@angular/core/testing';
+import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable.directive';
 
 @NgModule({
-  declarations: [NuevoTramitePageComponent, BtnIniciarTramiteComponent, ErrorModalComponent],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
+  declarations: [
+    NuevoTramitePageComponent, 
+    BtnIniciarTramiteComponent, 
+    ErrorModalComponent,
+
+  ],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule,DisableEnableDirective],
   exports: [NuevoTramiteRoutingModule, NuevoTramitePageComponent],
 })
 export class NuevoTramiteModule {}

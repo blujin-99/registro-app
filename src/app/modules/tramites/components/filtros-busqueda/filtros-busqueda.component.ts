@@ -12,6 +12,7 @@ import { ITramiteServicio } from 'src/app/core/models/tramites.interfaces';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FiltrosService } from '../../services/filtros.service';
+import { validFormClass } from 'src/app/shared/services/validFormClass';
 
 @Component({
   selector: 'app-filtros-busqueda',
@@ -49,7 +50,7 @@ export class FiltrosBusquedaComponent implements OnInit {
     categoria: [''],
     estadoTramite: [''],
     jurisdiccion: [''],
-    tramiteServicio: [{ value: '', disabled: true }],
+    tramiteServicio: [''],
     estadoTasas: [''],
     estadoExcedentes: [''],
   };
@@ -58,7 +59,8 @@ export class FiltrosBusquedaComponent implements OnInit {
     private fb: FormBuilder,
     public tramiteSrv: TramitesService,
     private filtroServ: FiltrosService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public validClass : validFormClass
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +69,7 @@ export class FiltrosBusquedaComponent implements OnInit {
       categoria: [''],
       estadoTramite: [''],
       jurisdiccion: [''],
-      tramiteServicio: [{ value: '', disabled: true }],
+      tramiteServicio: [''],
       estadoTasas: [''],
       estadoExcedentes: [''],
     });
@@ -91,7 +93,6 @@ export class FiltrosBusquedaComponent implements OnInit {
   clearAllFilters() {
     this.filters = [];
     this.formFiltros.reset(this.resetForm);
-    this.formFiltros.get('tramiteServicio')?.disable()
     this.onSubmit();
   }
   /**
@@ -146,7 +147,6 @@ export class FiltrosBusquedaComponent implements OnInit {
   setTramiteServicio() {
     this.openSnackBar();
     this.tramiteServicio.nativeElement.focus();
-    this.formFiltros.get('tramiteServicio')?.enable()
     let categoria = this.formFiltros.get('categoria')?.value;
     let vers = this.tramiteSrv.categorias.find( obj=> { return obj.id === categoria.id } ) 
     this.tramiteServicio$.set(vers?.tipoTramiteServicios);

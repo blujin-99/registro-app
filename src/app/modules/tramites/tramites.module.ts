@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MaterialModule } from '../material/material.module';
+import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable.directive';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule,
     AlertCategoriaComponent,
     MatFormFieldModule,
+    DisableEnableDirective
   ],
   exports: [TramiteRoutingModule, TramitesPageComponent],
 })
