@@ -14,6 +14,7 @@ import { PagosPendientesComponent } from './components/tabla-pagos-pendientes/pa
 import { IngresadosComponent } from './components/tabla-ingresados/ingresados.component';
 import { AcreditadosComponent } from './components/tabla-acreditados/acreditados.component';
 import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
+import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.se
      ReactiveFormsModule,
      ValidatorErrorsComponent,
      NgOptimizedImage,
-     MaterialModule
+     MaterialModule,
+     DisableEnableDirective
     ],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
   providers:[PagoOtrasTasasService]

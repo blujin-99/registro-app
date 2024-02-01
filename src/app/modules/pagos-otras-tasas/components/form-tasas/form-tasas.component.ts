@@ -42,7 +42,7 @@ export class FormTasasComponent implements OnInit{
       }) 
     
       this.validForm()
-      this.formPagoTasas.get('concepto')?.disable()
+  
   }
 
   validForm(){
@@ -56,7 +56,6 @@ export class FormTasasComponent implements OnInit{
     const tSolicitud = this.formPagoTasas.get('tipoSolicitud')?.value
     if(oficina && tSolicitud){
       this.filtrarConcepto(oficina, tSolicitud)
-      this.formPagoTasas.get('concepto')?.enable()
     }
   }
 
