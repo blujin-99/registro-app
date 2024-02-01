@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 import { discardPeriodicTasks } from '@angular/core/testing';
 import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable.directive';
+import { ErrorServidorComponent } from 'src/app/shared/components/error-servidor/error-servidor.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable
     ErrorModalComponent,
 
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule,DisableEnableDirective],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule,DisableEnableDirective, ErrorServidorComponent],
   exports: [NuevoTramiteRoutingModule, NuevoTramitePageComponent],
 })
 export class NuevoTramiteModule {}
