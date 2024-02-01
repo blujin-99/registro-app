@@ -17,6 +17,7 @@ import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-er
 
 import { PersonaHumanaComponent } from './components/persona-humana/persona-humana.component';
 import { CardTipoTramiteComponent } from './components/card-tipo-tramite/card-tipo-tramite.component';
+import { SeleccionFolioPageComponent } from './pages/seleccion-folio-page/seleccion-folio-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CardTipoTramiteComponent } from './components/card-tipo-tramite/card-ti
     BadgeComponent,
     PersonaHumanaComponent,
     CardTipoTramiteComponent,
+    SeleccionFolioPageComponent,
   ],
   imports: [
     CommonModule,

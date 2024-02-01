@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-6 mt-3 sm:mt-0">
+  <span>
+    <h2 class="m-0 text-2xl primary">Seleccione tipo de Folio</h2>
+  </span>
+  <div class="flex flex-row justify-center gap-6">
+    <div
+      class="flex flex-row justify-center space-x-4"
+      *ngFor="let folio of tramite?.registro"
+    >
+      <div class="cursor-pointer card" [routerLink]="folio.pk">
+        <div class="card-header">{{ folio.nombre }}</div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam
+          exercitationem, cumque aspernatur repellendus illum optio culpa eos?
+          Aspernatur similique debitis, perferendis rem enim corrupti, assumenda
+          eligendi vitae deleniti provident aliquam.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
