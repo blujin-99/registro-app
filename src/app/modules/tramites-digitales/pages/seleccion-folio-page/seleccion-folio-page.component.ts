@@ -9,28 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./seleccion-folio-page.component.scss'],
 })
 export class SeleccionFolioPageComponent implements OnInit {
-  tiposTramite: ITipoTramite[] = [];
-  tramite: ITipoTramite | undefined;
+  tramite?: string;
 
   constructor(
-    private tramiteSrv: TramiteDigitalService,
+    public tramiteSrv: TramiteDigitalService,
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     let tipoTramite = this.route.snapshot.paramMap.get('tipoTramite');
 
-    this.tramiteSrv.getTipoTramites().subscribe({
-      next: (res) => {
-        this.tiposTramite = res;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        this.tramite = this.tiposTramite.find(
-          (tramite) => tramite.pk === tipoTramite
-        );
-      },
-    });
+    if (tipoTramite) this.tramiteSrv.getTipoTramite(tipoTramite);
   }
 }

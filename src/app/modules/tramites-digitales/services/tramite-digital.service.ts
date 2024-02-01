@@ -14,6 +14,7 @@ export class TramiteDigitalService {
   modulo2: IModulo;
   modulo3: IModulo;
   url: string = '';
+  tipoTramite?: ITipoTramite;
 
   constructor(private http: HttpClient, private tramiteSrv: TramitesService) {
     this.modulo1 = {
@@ -37,6 +38,25 @@ export class TramiteDigitalService {
       abreviatura: 'Inhibiciones',
       descripcion: 'Inhibiciones',
     };
+  }
+
+  getTipoTramite(tramitepk: string): void {
+    let tiposTramite: any;
+    this.tramiteSrv.getTipoTramites().subscribe({
+      next: (res) => {
+        tiposTramite = res;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        this.tipoTramite = tiposTramite.find(
+          (tramite: ITipoTramite) => tramite.pk === tramitepk
+        );
+
+        console.log(this.tipoTramite);
+      },
+    });
   }
 
   getTipoTramites(): Observable<ITipoTramite[]> {

@@ -18,6 +18,7 @@ import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-er
 import { PersonaHumanaComponent } from './components/persona-humana/persona-humana.component';
 import { CardTipoTramiteComponent } from './components/card-tipo-tramite/card-tipo-tramite.component';
 import { SeleccionFolioPageComponent } from './pages/seleccion-folio-page/seleccion-folio-page.component';
+import { BreadcrumbComponent } from 'src/app/modules/tramites-digitales/components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SeleccionFolioPageComponent } from './pages/seleccion-folio-page/selecc
     BadgeComponent,
     PersonaHumanaComponent,
     CardTipoTramiteComponent,
+    BreadcrumbComponent,
     SeleccionFolioPageComponent,
   ],
   imports: [
