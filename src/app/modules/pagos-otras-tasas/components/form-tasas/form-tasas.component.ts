@@ -29,7 +29,7 @@ export class FormTasasComponent implements OnInit{
      this.formPagoTasas = this.fb.group({
        oficina: ['',[Validators.required]],
        tipoSolicitud:['',[Validators.required]],
-       concepto:  [{ value: '', disabled: true },[Validators.required]]
+       concepto:  [ '',[Validators.required]]
      })
   }
 
@@ -54,7 +54,6 @@ export class FormTasasComponent implements OnInit{
     const tSolicitud = this.formPagoTasas.get('tipoSolicitud')?.value
     if(oficina && tSolicitud){
       this.filtrarConcepto(oficina, tSolicitud)
-      this.formPagoTasas.get('concepto')?.enable()
     }
   }
   //siempre viene 0, si filtra por juridiccion 1 o 2 se le añade

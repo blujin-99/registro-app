@@ -10,6 +10,7 @@ import {
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
+import { validFormClass } from 'src/app/shared/services/validFormClass';
 
 @Component({
   templateUrl: './nuevo-tramite-page.component.html',
@@ -40,12 +41,13 @@ export class NuevoTramitePageComponent implements OnInit {
     private newTramiteSrv: NewTramiteService,
     private fb: FormBuilder,
     private userSrv: UserService,
-    private router: Router
+    private router: Router,
+    public validClass : validFormClass
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
       categoria: ['', Validators.required],
-      tramiteServicio: [{ value: '', disabled: true }, Validators.required],
+      tramiteServicio: ['', Validators.required],
       servicio: ['', Validators.required],
       tramiteDigital: ['', Validators.required],
     });
@@ -78,7 +80,6 @@ export class NuevoTramitePageComponent implements OnInit {
   setTramiteServicio() {
     this.tramitesServicios = [];
     this.tramiteServicio?.setValue(null);
-    this.tramiteServicio?.enable()
     this.tramitesServicios = this.categoria?.value.tipoTramiteServicios;
   }
 

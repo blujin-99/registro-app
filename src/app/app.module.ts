@@ -23,6 +23,7 @@ import { OpcionesTramiteComponent } from './shared/components/opciones-tramite/o
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ValidatorErrorsComponent } from './shared/components/validator-errors/validator-errors.component';
+
 @NgModule({
   declarations: [
     AppComponent,

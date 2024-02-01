@@ -95,6 +95,7 @@
         <!--? TRAMITE/SERVICIO -->
         <div class="md:w-6/12">
           <select
+            [appDisabled]="formFiltros.get('categoria')?.value"
             #tramiteServicio
             tabindex="4"
             (change)="addFilter('tramiteServicio'); onSubmit()"
