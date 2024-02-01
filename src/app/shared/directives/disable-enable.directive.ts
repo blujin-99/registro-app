@@ -1,8 +1,19 @@
-import { Directive ,Input, ElementRef, Renderer2 , OnInit} from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2, OnInit } from '@angular/core';
+
+//---***---***---***---***---README---***---***---***---***
+
+// CUANDO UTILICEN LA DIRECTIVA EN EL TEMPLATE ,EL VALOR QUE DESEAN VERIFICAR PARA QUE DESHABILITE
+// EL INPUT O SELECTOR, SEA UN SOLO VALOR O VARIOS SIEMPRE PORNER []
+//EJEMPLO :  
+//        [appDisabled]="[form.get('categoria')?.value]"
+//SI QUIEREN PASARLE MÁS VALORES :
+//[appDisabled]="[formPagoTasas.get('oficina')?.value,formPagoTasas.get('tipoSolicitud')?.value]"
+
+//---***---***---***---***---README---***---***---***---***
 
 @Directive({
   selector: '[appDisabled]',
-  standalone:true
+  standalone: true
 })
 export class DisableEnableDirective implements OnInit {
 
@@ -12,15 +23,16 @@ export class DisableEnableDirective implements OnInit {
     this.renderer.setProperty(this.elref.nativeElement, 'disabled', true)
   }
 
-  @Input() set appDisabled(value: any[]){
-    const isEmptyArray = Array.isArray(value) && value[0] === '';
-    if (!isEmptyArray){
+  @Input() set appDisabled(value: any[]) {
+    const valid = value.every(campo => campo !== '')
+    const inValid = value.every(campo => campo == '')
+    if (valid) {
       this.renderer.setProperty(this.elref.nativeElement, 'disabled', false)
-    }else{
+    }
+    if (inValid) {
       this.renderer.setProperty(this.elref.nativeElement, 'disabled', true)
     }
- 
   }
-  
+
 
 }
