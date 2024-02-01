@@ -29,9 +29,10 @@ export class FormTasasComponent implements OnInit{
      this.formPagoTasas = this.fb.group({
        oficina: ['',[Validators.required]],
        tipoSolicitud:['',[Validators.required]],
-       concepto:  [ '',[Validators.required]]
+       concepto:  ['',[Validators.required]]
      })
   }
+
 
   ngOnInit(): void {
        this.pagosSrv.response$.subscribe(response => {
@@ -41,6 +42,7 @@ export class FormTasasComponent implements OnInit{
       }) 
     
       this.validForm()
+      this.formPagoTasas.get('concepto')?.disable()
   }
 
   validForm(){
@@ -54,8 +56,10 @@ export class FormTasasComponent implements OnInit{
     const tSolicitud = this.formPagoTasas.get('tipoSolicitud')?.value
     if(oficina && tSolicitud){
       this.filtrarConcepto(oficina, tSolicitud)
+      this.formPagoTasas.get('concepto')?.enable()
     }
   }
+
   //siempre viene 0, si filtra por juridiccion 1 o 2 se le añade
   filtrarConcepto(oficina: IOficina, tSolicitud: ITipoSolicitud) {
     if (oficina.idJurisdiccion === 1 || oficina.idJurisdiccion === 2) {
