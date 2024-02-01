@@ -12,13 +12,14 @@
           (click)="openSidenav()"
           aria-controls="logo-sidebar"
           type="button"
-          class=" relative inline-flex items-center p-2 mr-3 text-sm text-gray-500 rounded-lg sm:mr-0 sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          class="relative inline-flex items-center p-2 mr-3 text-sm text-gray-500 rounded-lg sm:mr-0 sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         >
-        <div *ngIf="!isDesktop && messageSrv.checkNotification() > 0"
-          class=" absolute right-0 top-0 inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-red-700 rounded-full"
-        >
-         {{messageSrv.checkNotification()}}
-        </div>
+          <div
+            *ngIf="!isDesktop && messageSrv.checkNotification() > 0"
+            class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-red-700 rounded-full"
+          >
+            {{ messageSrv.checkNotification() }}
+          </div>
           <span class="sr-only">Open sidebar</span>
           <svg
             class="w-6 h-6"
@@ -41,7 +42,7 @@
         >
           <img
             src="https://www.santafe.gob.ar/assets/app/portal2016/images/logo-header.png"
-            class="h-[4.5rem] mr-3"
+            class="mr-3"
             alt="Logo Santa Fe"
           />
         </a>
