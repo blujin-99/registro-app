@@ -1,3 +1,4 @@
+
 <div class="flex flex-col gap-6 mt-3 sm:mt-0">
   <span>
     <h2 class="m-0 text-2xl">Pagos de otras tasas</h2>
@@ -5,6 +6,7 @@
 
   <mat-accordion>
     <mat-expansion-panel hideToggle>
+      <app-error-servidor></app-error-servidor>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h2 class="m-0 text-xl">Nuevo Pago</h2>
@@ -16,6 +18,7 @@
       <app-opciones-pago></app-opciones-pago>
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <app-error-servidor></app-error-servidor>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h2 class="m-0 text-xl">Pagos</h2>

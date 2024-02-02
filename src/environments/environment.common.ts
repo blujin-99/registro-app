@@ -11,7 +11,7 @@ export const common = {
     tramitesFiltros: 'tramites/filtros',
     consulta: '/estadotramiterg/consulta',
     outhApi: 'login/oauth',
-    newTramite: 'profesion/newTramite',
+    newTramite: 'profesion/newTramites',
     actions: 'tramites/{codigo}/action',
     notificationUrl: 'notify/register',
     pagosOpciones:'pagos/otrosPagos/opciones',

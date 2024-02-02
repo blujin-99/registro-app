@@ -5,10 +5,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ErrorServidorService {
 
-  private errorSubject = new BehaviorSubject<number>(0)
+  private errorSubject = new BehaviorSubject<any>({})
   error$ = this.errorSubject.asObservable()
 
-  setError(error: any,mensaje?: string){
-     this.errorSubject.next(error)
+  setError(error: any,mensaje?: string, form? : boolean){
+     const errorRequest = {error:error, message:mensaje,form:form}
+     this.errorSubject.next(errorRequest)
+  }
+
+  setResponseError(value:any){
+    this.errorSubject.next(null)
   }
 }

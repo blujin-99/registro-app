@@ -23,6 +23,7 @@ export class NuevoTramitePageComponent implements OnInit {
   categorias: ICategoriaTramite[] = [];
   tramitesServicios: ITramiteServicio[] = [];
   servicios: ITramiteServicio[] = [];
+  errorMessage : string = 'No se pudo procesar la información de los trámites. Intente más tarde'
 
   tramitesDigitales: any = [
     {
@@ -62,7 +63,7 @@ export class NuevoTramitePageComponent implements OnInit {
         this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
       error: (error: HttpErrorResponse) => {
-        this.ErrorservidorSrv.setError(error)
+        this.ErrorservidorSrv.setError(error, this.errorMessage)
       }
     });
   }

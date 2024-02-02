@@ -13,20 +13,27 @@ import { ErrorServidorService } from './error-servidor.service';
 export class ErrorServidorComponent implements OnInit{
   
   error = false
-  constructor(private router : Router, private errorSrvidorSrv : ErrorServidorService){}
+  status : number = 0
+  mensaje = ''
+  constructor(private router : Router, private errorServidorSrv : ErrorServidorService){}
 
   ngOnInit(): void {
-    this.error = false
-     this.errorSrvidorSrv.error$.subscribe(error => {
-      if(error === 500 || error === 404){
-         this.error = true
+    this.error = false;
+  
+    this.errorServidorSrv.error$.subscribe(error => {
+      this.mensaje = error.message;
+      this.status = error.error
+      if (error.error === 500 || error.error === 404) {
+        this.error = true
       }
-     })
-    
+    });
+
   }
 
-  goToInicio(){
+  close(){
     this.error = false
-    this.router.navigateByUrl("/inicio")
+    this.mensaje = ''
+    this.errorServidorSrv.setResponseError(null)
    }
+   
 }
