@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OficinaPresentacionComponent } from './pages/oficina-presentacion/oficina-presentacion.component';
 import { TiposTramitesComponent } from './pages/tipos-tramites/tipos-tramites.component';
 import { ParcialInhibicionesComponent } from './pages/parcial-inhibiciones/parcial-inhibiciones.component';
+import { SeleccionFolioPageComponent } from './pages/seleccion-folio-page/seleccion-folio-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,14 @@ const routes: Routes = [
       {
         path: ':acto/inhibiciones/:idTramite',
         component: ParcialInhibicionesComponent,
+      },
+      {
+        path: ':acto/:tipoTramite',
+        component: SeleccionFolioPageComponent,
+      },
+      {
+        path: ':acto/:tipoTramite/:folio',
+        component: SeleccionFolioPageComponent,
       },
     ],
   },
