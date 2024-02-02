@@ -33,7 +33,7 @@ export class NotFoundError implements HttpInterceptor {
         }
         this.catchErrorServ.showError(error.status);
         return throwError(
-          () => 'Ha ocurrido un error' + ' tipo: ' + ' ' + error.status
+          () => error.status
         );
       })
     );

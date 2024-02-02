@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ErrorServidorService {
 
-  private errorSubject = new BehaviorSubject<any[]>([])
+  private errorSubject = new BehaviorSubject<number>(0)
   error$ = this.errorSubject.asObservable()
 
   setError(error: any,mensaje?: string){

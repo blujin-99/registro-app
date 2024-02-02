@@ -62,8 +62,7 @@ export class NuevoTramitePageComponent implements OnInit {
         this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error.status)
-        // this.ErrorservidorSrv.setError(error)
+        this.ErrorservidorSrv.setError(error)
       }
     });
   }

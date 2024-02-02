@@ -18,7 +18,9 @@ export class ErrorServidorComponent implements OnInit{
   ngOnInit(): void {
     this.error = false
      this.errorSrvidorSrv.error$.subscribe(error => {
-      
+      if(error === 500 || error === 404){
+         this.error = true
+      }
      })
     
   }
