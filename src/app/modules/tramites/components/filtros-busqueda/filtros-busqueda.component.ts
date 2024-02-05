@@ -77,10 +77,8 @@ export class FiltrosBusquedaComponent implements OnInit {
 
     this.tramiteSrv.error$.subscribe(error => {
       if(error !== null){
-        console.log(error)
         this.errorFiltros = {error:error , mensaje:'Hubo un error al cargar de los filtros de Búsqueda, intente más tarde'}
       }
-      console.log(error)
     })
   }
 

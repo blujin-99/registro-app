@@ -35,7 +35,6 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit{
 
   ngOnInit(): void {
   this.mesaEntradaService.tramite$.subscribe(error => {
-   console.log(error)
    if(error !== null){
     this.error = {error:error, mensaje:'No se pudo procesar la Búsqueda en Mesa de Entradas. Intente más tarde'}
    }

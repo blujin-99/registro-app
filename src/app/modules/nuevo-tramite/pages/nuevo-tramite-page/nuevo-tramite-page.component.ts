@@ -61,7 +61,6 @@ export class NuevoTramitePageComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         this.errorRest= {error:error, mensaje:'No se pudo procesar la información de los trámites. Intente más tarde'}
-        console.log(this.errorRest)
       }
     });
   }
