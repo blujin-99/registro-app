@@ -12,7 +12,6 @@ import { ParcialInhibicionesComponent } from './pages/parcial-inhibiciones/parci
 import { ActoComponent } from './components/acto/acto.component';
 import { ObservacionesComponent } from './components/observaciones/observaciones.component';
 import { BadgeComponent } from './components/badge/badge.component';
-import { ErrorModalComponent } from '../nuevo-tramite/components/error-modal/error-modal.component';
 import { ValidatorErrorsComponent } from 'src/app/shared/components/validator-errors/validator-errors.component';
 
 import { PersonaHumanaComponent } from './components/persona-humana/persona-humana.component';

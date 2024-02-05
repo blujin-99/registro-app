@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   templateUrl: './nuevo-tramite-page.component.html',
@@ -21,7 +22,7 @@ export class NuevoTramitePageComponent implements OnInit {
   categorias: ICategoriaTramite[] = [];
   tramitesServicios: ITramiteServicio[] = [];
   servicios: ITramiteServicio[] = [];
-
+  errorRest : any
   tramitesDigitales: any = [
     {
       nombre: 'Certificado / Informes',
@@ -42,7 +43,7 @@ export class NuevoTramitePageComponent implements OnInit {
     private fb: FormBuilder,
     private userSrv: UserService,
     private router: Router,
-    public validClass : validFormClass
+    public validClass : validFormClass,
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -58,6 +59,9 @@ export class NuevoTramitePageComponent implements OnInit {
         const categoriaServicio = res.find((obj) => obj.id === 30);
         this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
+      error: (error: HttpErrorResponse) => {
+        this.errorRest= {error:error, mensaje:'No se pudo procesar la información de los trámites. Intente más tarde'}
+      }
     });
   }
 
