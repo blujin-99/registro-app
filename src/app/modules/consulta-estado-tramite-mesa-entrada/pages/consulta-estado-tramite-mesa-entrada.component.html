@@ -1,4 +1,4 @@
-<app-error-servidor></app-error-servidor>
+
 <div class="flex flex-col gap-6 mt-3 sm:mt-0">
   <span>
     <h2 >
@@ -74,8 +74,6 @@
           </div>
           <div class="mx-1 my-2 md:w-4/12">
             <button
-              data-modal-target="defaultModal"
-              data-modal-toggle="defaultModal"
               type="submit"
               [disabled]="form.invalid"
               (click)="onSubmit()"
@@ -86,6 +84,7 @@
           </div>
         </div>
       </div>
+      <app-error-servidor [error]="error"></app-error-servidor>
     </form>
   </div>
   <app-modal-mesa-entrada></app-modal-mesa-entrada>

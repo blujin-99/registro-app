@@ -1,19 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorServidorService {
 
-  private errorSubject = new BehaviorSubject<any>({})
+  
+  private errorSubject = new BehaviorSubject<any[]>([])
   error$ = this.errorSubject.asObservable()
-
-  setError(error: any,mensaje?: string, form? : boolean){
-     const errorRequest = {error:error, message:mensaje,form:form}
-     this.errorSubject.next(errorRequest)
+  errorRequest : any[] = []
+  
+  setError(error: any,mensaje?: string){
+    this.errorRequest.push({error:error, message:mensaje})
+     this.errorSubject.next(this.errorRequest)
   }
 
-  setResponseError(value:any){
-    this.errorSubject.next(null)
+  setResponseError(id:number){
+    this.errorRequest.splice(id,1)
+    this.errorSubject.next(this.errorRequest)
   }
 }

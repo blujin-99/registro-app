@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlertCategoriaComponent } from 'src/app/shared/components/alert-categoria/alert-categoria.component';
 import { MaterialModule } from '../material/material.module';
 import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable.directive';
+import { ErrorServidorComponent } from 'src/app/shared/components/error-servidor/error-servidor.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable
     MaterialModule,
     AlertCategoriaComponent,
     MatFormFieldModule,
-    DisableEnableDirective
+    DisableEnableDirective,
+    ErrorServidorComponent
   ],
   exports: [TramiteRoutingModule, TramitesPageComponent],
 })

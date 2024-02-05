@@ -3,8 +3,6 @@ import { PagosTasasService } from '../../services/pagos-tasas.service';
 import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
 import { TablaTasasService } from '../../services/tabla-tasas.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorServidorService } from 'src/app/shared/components/error-servidor/error-servidor.service';
-
 
 @Component({
   selector:'app-pagos-otras-tasas',
@@ -15,13 +13,13 @@ import { ErrorServidorService } from 'src/app/shared/components/error-servidor/e
 export class PagosOtrasTasasPageComponent implements OnInit {
 
   panelOpenState = false
-  
+  errorRest: any
+  errorRestOtros : any
 
   constructor(
         private pagoSRV : PagoOtrasTasasService,
         private tablaSrv : TablaTasasService,
         private pagoTasasSrv : PagosTasasService,
-        private errorServidorSrv: ErrorServidorService
         ){}
   
   ngOnInit(): void {
@@ -30,7 +28,7 @@ export class PagosOtrasTasasPageComponent implements OnInit {
       this. pagoTasasSrv.setPagosResponse(response)
     },
     (error:HttpErrorResponse)=>{
-      this.errorServidorSrv.setError(error,'No se pudo procesar la información de Nuevo Pago, Intente más tarde',false)
+      this.errorRest = {error:error , mensaje:'No se pudo procesar la información de Nuevo Pago, Intente más tarde'}
     }
     
     )
@@ -40,10 +38,8 @@ export class PagosOtrasTasasPageComponent implements OnInit {
       this.tablaSrv.setTablaTasas(response)
       },
       (error:HttpErrorResponse) => {
-      //   this.errorServidorSrv.setError(error,'Problemas de Servidor. La información de los pagos no está disponible, intente más tarde',false)
+        this.errorRestOtros = {error:error , mensaje:'Problemas de Servidor. La información de los pagos no está disponible, intente más tarde'}
       }
-    
-    
     )
   }
 }

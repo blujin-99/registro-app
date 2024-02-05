@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
-import { ErrorServidorService } from 'src/app/shared/components/error-servidor/error-servidor.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -23,8 +22,7 @@ export class NuevoTramitePageComponent implements OnInit {
   categorias: ICategoriaTramite[] = [];
   tramitesServicios: ITramiteServicio[] = [];
   servicios: ITramiteServicio[] = [];
-  errorMessage : string = 'No se pudo procesar la información de los trámites. Intente más tarde'
-
+  errorRest : any
   tramitesDigitales: any = [
     {
       nombre: 'Certificado / Informes',
@@ -46,7 +44,6 @@ export class NuevoTramitePageComponent implements OnInit {
     private userSrv: UserService,
     private router: Router,
     public validClass : validFormClass,
-    private ErrorservidorSrv : ErrorServidorService
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -63,7 +60,8 @@ export class NuevoTramitePageComponent implements OnInit {
         this.servicios = categoriaServicio!.tipoTramiteServicios;
       },
       error: (error: HttpErrorResponse) => {
-        this.ErrorservidorSrv.setError(error, this.errorMessage)
+        this.errorRest= {error:error, mensaje:'No se pudo procesar la información de los trámites. Intente más tarde'}
+        console.log(this.errorRest)
       }
     });
   }

@@ -27,6 +27,7 @@ export class FiltrosBusquedaComponent implements OnInit {
 
   busqueda: FormControl = new FormControl();
 
+  errorFiltros : any 
   /**
    * Lista de filtros que selecciono el usuario
    */
@@ -73,6 +74,14 @@ export class FiltrosBusquedaComponent implements OnInit {
       estadoTasas: [''],
       estadoExcedentes: [''],
     });
+
+    this.tramiteSrv.error$.subscribe(error => {
+      if(error !== null){
+        console.log(error)
+        this.errorFiltros = {error:error , mensaje:'Hubo un error al cargar de los filtros de Búsqueda, intente más tarde'}
+      }
+      console.log(error)
+    })
   }
 
    deleteByOneFilter(deleted : any){

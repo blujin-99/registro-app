@@ -5,7 +5,6 @@ import { ConsultaMesaEntradaService } from '../service/consulta-mesa-entrada.ser
 import { AppService } from 'src/app/core/services/app.service';
 import * as moment from 'moment';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
-import { ErrorServidorService } from 'src/app/shared/components/error-servidor/error-servidor.service';
 @Component({
   selector: 'app-consulta-estado-tramite-mesa-entrada',
   templateUrl: './consulta-estado-tramite-mesa-entrada.component.html',
@@ -19,7 +18,6 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit{
     private mesaEntradaService: ConsultaMesaEntradaService,
     public appService: AppService,
     public validFormSrv:validFormClass,
-    private errorServidorSrv : ErrorServidorService
   ) {
     this.form = this.fb.group({
       mesa: ['', Validators.required],
@@ -37,9 +35,10 @@ export class ConsultaEstadoTramiteMesaEntradaComponent implements OnInit{
 
   ngOnInit(): void {
   this.mesaEntradaService.tramite$.subscribe(error => {
-    if(error == 500){
-      this.errorServidorSrv.setError(error,'Problemas de Servidor. No se pudo procesar la Búsqueda en Mesa de Entradas. Intente más tarde',true)
-    }
+   console.log(error)
+   if(error !== null){
+    this.error = {error:error, mensaje:'No se pudo procesar la Búsqueda en Mesa de Entradas. Intente más tarde'}
+   }
   })
     
   }
