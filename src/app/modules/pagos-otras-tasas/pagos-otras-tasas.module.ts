@@ -15,6 +15,7 @@ import { IngresadosComponent } from './components/tabla-ingresados/ingresados.co
 import { AcreditadosComponent } from './components/tabla-acreditados/acreditados.component';
 import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
 import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable.directive';
+import { ErrorServidorComponent } from 'src/app/shared/components/error-servidor/error-servidor.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DisableEnableDirective } from 'src/app/shared/directives/disable-enable
      ValidatorErrorsComponent,
      NgOptimizedImage,
      MaterialModule,
-     DisableEnableDirective
+     DisableEnableDirective,
+     ErrorServidorComponent
     ],
   exports: [PagosOtrasTasasRoutingModule, PagosOtrasTasasPageComponent],
   providers:[PagoOtrasTasasService]

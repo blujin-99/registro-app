@@ -1,9 +1,13 @@
+
 <div class="flex flex-col gap-6 mt-3 sm:mt-0">
   <span>
     <h2 class="m-0 text-2xl">Pagos de otras tasas</h2>
   </span>
 
+
+
   <mat-accordion>
+
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -11,9 +15,12 @@
         </mat-panel-title>
         <svg class=".icon-more-less"  xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"/></svg>
       </mat-expansion-panel-header>
-      <app-form-tasas></app-form-tasas>
-      <app-tabla-tasas></app-tabla-tasas>
-      <app-opciones-pago></app-opciones-pago>
+      <app-error-servidor [error]="errorRest"></app-error-servidor>
+      <div *ngIf="!errorRest">
+        <app-form-tasas></app-form-tasas>
+        <app-tabla-tasas></app-tabla-tasas>
+        <app-opciones-pago></app-opciones-pago>
+      </div>
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
@@ -25,7 +32,10 @@
           <svg *ngIf="panelOpenState == false" class=".icon-more-less"  xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 -960 960 960" width="36"><path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"/></svg>
         </div>
       </mat-expansion-panel-header>
-      <app-tabla-pagos></app-tabla-pagos>
+      <app-error-servidor [error]="errorRestOtros"></app-error-servidor>
+      <div *ngIf="!errorRestOtros">
+        <app-tabla-pagos></app-tabla-pagos>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

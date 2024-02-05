@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -44,8 +44,14 @@ export class ConsultaMesaEntradaService {
 
   getConsulta() {
     const url = `${environment.idCiudadanaURL +environment.api.consulta}?fecha=${this.fecha}&aforo=${this.aforo}&mesa=${this.mesa}`
-    return this.http.get(url).subscribe((data) => {
+    return this.http.get(url).subscribe(
+      (data) => {
       this.ConsultaTramite.next(data)
-    })
+    },
+    (error:HttpErrorResponse) => {
+      this.ConsultaTramite.next(error)
+    }
+    
+    )
   }
 }
