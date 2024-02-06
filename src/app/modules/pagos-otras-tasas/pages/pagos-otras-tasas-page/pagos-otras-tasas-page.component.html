@@ -22,7 +22,7 @@
         <app-opciones-pago></app-opciones-pago>
       </div>
     </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h2 class="m-0 text-xl">Pagos</h2>
