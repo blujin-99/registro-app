@@ -23,6 +23,7 @@ export class PagosOtrasTasasPageComponent implements OnInit {
         ){}
   
   ngOnInit(): void {
+    this.panelOpenState = true
     this.pagoSRV.getPagos().subscribe(
       (response) => {
       this. pagoTasasSrv.setPagosResponse(response)
