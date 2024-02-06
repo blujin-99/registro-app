@@ -19,7 +19,7 @@ export class TramitesPageComponent implements OnInit {
   ngOnInit(): void {
     this.tramitesSrv.updateFiltros();
     this.tramitesSrv.error$.subscribe(error => 
-      this.errorFiltros = {error:error , mensaje:'Hubo un error al cargar de los filtros de búsqueda, intente más tarde'})
+      this.errorFiltros = {error:error , mensaje:'Hubo un error al cargar los filtros de búsqueda, intente más tarde'})
     //inicializo en el componente padre la subscripcion para traer los todos los datos de los tramites
     this.tramitesService.getTramites().subscribe(
       (res) => {

@@ -47,7 +47,7 @@ export class TramitesService {
           this.estadoExcedentes = res.estadoExcedente;
         },
         error: (error: HttpErrorResponse) => {
-          let errorRest = {error:error, mensaje:'No se pudo enocntrar los datos de Filtro Búsqueda, intente más tarde' }
+          let errorRest = {error:error, mensaje:'No se pudo encontrar los datos de filtro búsqueda, intente más tarde' }
           this.errorSubject.next(errorRest)
         }
       });
