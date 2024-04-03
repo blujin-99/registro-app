@@ -1,28 +1,22 @@
-import {
-  Component,
-  ViewChild,
-  effect
-} from '@angular/core';
+import { Component, ViewChild, effect } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { AccionesService } from '../../services/acciones.service';
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
-import { AccionesService } from '../../services/acciones.service';
 import { ITramite } from 'src/app/core/models';
 
 import {MatPaginatorIntl} from '@angular/material/paginator';
-
 import { TramitePaginatorIntl } from 'src/app/shared/components/custom-paginator/tramite-paginator/tramite-paginator-intl';
 
 @Component({
-  selector: 'app-tabla-pendientes',
-  templateUrl: './tabla-pendientes.component.html',
-  styleUrls: ['./tabla-pendientes.component.scss'],
+  selector: 'app-tabla-entregado',
+  templateUrl: './tabla-presentado.component.html',
+  styleUrls: ['./tabla-presentado.component.scss'],
   providers: [{provide: MatPaginatorIntl, useClass: TramitePaginatorIntl}]
 })
-export class TablaPendientesComponent  {
+export class TablaPresentadoComponent {
   displayedColumns: string[] = [
     'tramite',
     'numeroFormulario',
@@ -30,9 +24,7 @@ export class TablaPendientesComponent  {
     'tasas',
     'excedentes',
   ];
-  dataSource = new MatTableDataSource<any>();
-  tabla: any;
-  filtros: any;
+
   constructor(
     public accionesSrv: AccionesService,
     private tramitesService: TramitesService,
@@ -59,8 +51,8 @@ export class TablaPendientesComponent  {
     });
   }
 
+  dataSource = new MatTableDataSource();
   alert: any[] = [];
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -69,7 +61,7 @@ export class TablaPendientesComponent  {
 
   ngOnInit(): void {
     this.filtrosService.filtros$.subscribe(() =>
-      this.filtrosService.getNoPresentado().subscribe((data) => {
+      this.filtrosService.getPresentado().subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         this.alert = data;
         this.dataSource.paginator = this.paginator;
@@ -82,5 +74,4 @@ export class TablaPendientesComponent  {
   openBottomSheet(tramite: ITramite): void {
     this.tramitesService.showOptions(tramite);
   }
-
 }

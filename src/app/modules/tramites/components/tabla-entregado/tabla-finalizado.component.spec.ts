@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablaFinalizadoComponent } from './tabla-finalizado.component';
+import { TablaFinalizadoComponent } from './tabla-entregado.component';
 
 describe('TablaFinalizadoComponent', () => {
   let component: TablaFinalizadoComponent;

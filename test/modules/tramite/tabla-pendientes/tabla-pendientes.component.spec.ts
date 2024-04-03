@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablaPendientesComponent } from '../../../../src/app/modules/tramites/components/tabla-pendientes/tabla-pendientes.component';
+import { TablaPendientesComponent } from '../../../../src/app/modules/tramites/components/tabla-no-presentado/tabla-no-presentado.component';
 
 describe('TablaPendientesComponent', () => {
   let component: TablaPendientesComponent;

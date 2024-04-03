@@ -1,26 +1,28 @@
 import {
   Component,
   ViewChild,
-  effect,
+  effect
 } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { AccionesService } from '../../services/acciones.service';
+
 import { TramitesService } from '../../services/tramites.service';
 import { FiltrosService } from '../../services/filtros.service';
+import { AccionesService } from '../../services/acciones.service';
 import { ITramite } from 'src/app/core/models';
 
 import {MatPaginatorIntl} from '@angular/material/paginator';
+
 import { TramitePaginatorIntl } from 'src/app/shared/components/custom-paginator/tramite-paginator/tramite-paginator-intl';
 
 @Component({
-  selector: 'app-tabla-finalizado',
-  templateUrl: './tabla-finalizado.component.html',
-  styleUrls: ['./tabla-finalizado.component.scss'],
+  selector: 'app-tabla-pendientes',
+  templateUrl: './tabla-no-presentado.component.html',
+  styleUrls: ['./tabla-no-presentado.component.scss'],
   providers: [{provide: MatPaginatorIntl, useClass: TramitePaginatorIntl}]
 })
-export class TablaFinalizadoComponent {
+export class TablaNoPresentadoComponent  {
   displayedColumns: string[] = [
     'tramite',
     'numeroFormulario',
@@ -28,7 +30,9 @@ export class TablaFinalizadoComponent {
     'tasas',
     'excedentes',
   ];
-
+  dataSource = new MatTableDataSource<any>();
+  tabla: any;
+  filtros: any;
   constructor(
     public accionesSrv: AccionesService,
     private tramitesService: TramitesService,
@@ -55,7 +59,6 @@ export class TablaFinalizadoComponent {
     });
   }
 
-  dataSource = new MatTableDataSource();
   alert: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -66,7 +69,7 @@ export class TablaFinalizadoComponent {
 
   ngOnInit(): void {
     this.filtrosService.filtros$.subscribe(() =>
-      this.filtrosService.getEntregado().subscribe((data) => {
+      this.filtrosService.getNoPresentado().subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         this.alert = data;
         this.dataSource.paginator = this.paginator;

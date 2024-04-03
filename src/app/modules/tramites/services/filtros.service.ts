@@ -25,9 +25,9 @@ export class FiltrosService {
   private datosTabla = new BehaviorSubject<any[]>([])
   tabla$ = this.datosTabla.asObservable()
 
-  
+
   finalizado: any[] = [];
- 
+
   pendiente: any[] = [];
   tablaSinFiltro: any[] = [];
 
@@ -66,11 +66,11 @@ export class FiltrosService {
       this.EstadoExcedentes = updatedFilters.EstadoExcedentes;
       this.EstadoTramite = updatedFilters.EstadoTramite;
       this.numeroTramite = updatedFilters.numeroTramite;
-  
+
     });
-    this.filtrosSubject.next(filtros); 
+    this.filtrosSubject.next(filtros);
   }
-  
+
 
   /**
    * @fucntioon setTababla()  trae y guarda los datos de la tabla
@@ -81,7 +81,7 @@ export class FiltrosService {
 
   setTablasinFiltro(tabla: any[]): void {
     this.tablaSinFiltro = tabla;
-    
+
   }
 
   /**
@@ -99,11 +99,11 @@ export class FiltrosService {
           (this.EstadoTramite.length === 0 || this.EstadoTramite.some(tramite => fila.EstadoTramite.descripcion === tramite))
         )
       )
-      
+
     );
   }
-  
-  
+
+
   // convierto las tres tablas en observable de modo que escuchen cada cambio de los tramites
   // y se filtren los datos en las respectivas tablas
 

@@ -5,9 +5,9 @@ import { TramiteRoutingModule } from './tramites-routing.module';
 import { ChipFiltroComponent } from './components/chip-filtro/chip-filtro.component';
 import { FiltrosBusquedaComponent } from './components/filtros-busqueda/filtros-busqueda.component';
 import { BotonesTramiteComponent } from './components/botones-tramite/botones-tramite.component';
-import { TablaPendientesComponent } from './components/tabla-pendientes/tabla-pendientes.component';
+import { TablaNoPresentadoComponent } from './components/tabla-no-presentado/tabla-no-presentado.component';
+import { TablaPresentadoComponent } from './components/tabla-presentado/tabla-presentado.component';
 import { TablaEntregadoComponent } from './components/tabla-entregado/tabla-entregado.component';
-import { TablaFinalizadoComponent } from './components/tabla-finalizado/tabla-finalizado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,9 +22,9 @@ import { ErrorServidorComponent } from 'src/app/shared/components/error-servidor
     ChipFiltroComponent,
     FiltrosBusquedaComponent,
     BotonesTramiteComponent,
-    TablaPendientesComponent,
+    TablaNoPresentadoComponent,
+    TablaPresentadoComponent,
     TablaEntregadoComponent,
-    TablaFinalizadoComponent,
   ],
   imports: [
     CommonModule,

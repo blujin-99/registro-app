@@ -1,4 +1,8 @@
-import { Component, ViewChild, effect } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  effect,
+} from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,7 +15,7 @@ import {MatPaginatorIntl} from '@angular/material/paginator';
 import { TramitePaginatorIntl } from 'src/app/shared/components/custom-paginator/tramite-paginator/tramite-paginator-intl';
 
 @Component({
-  selector: 'app-tabla-entregado',
+  selector: 'app-tabla-finalizado',
   templateUrl: './tabla-entregado.component.html',
   styleUrls: ['./tabla-entregado.component.scss'],
   providers: [{provide: MatPaginatorIntl, useClass: TramitePaginatorIntl}]
@@ -53,6 +57,7 @@ export class TablaEntregadoComponent {
 
   dataSource = new MatTableDataSource();
   alert: any[] = [];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -61,7 +66,7 @@ export class TablaEntregadoComponent {
 
   ngOnInit(): void {
     this.filtrosService.filtros$.subscribe(() =>
-      this.filtrosService.getPresentado().subscribe((data) => {
+      this.filtrosService.getEntregado().subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         this.alert = data;
         this.dataSource.paginator = this.paginator;
@@ -74,4 +79,5 @@ export class TablaEntregadoComponent {
   openBottomSheet(tramite: ITramite): void {
     this.tramitesService.showOptions(tramite);
   }
+
 }
