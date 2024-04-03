@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IPagos, IErrorObject } from '../interfaces/pago-otras-tasas.interface';
+import { IPagosFiltros, IErrorObject } from '../interfaces/pago-otras-tasas.interface';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 
-export class PagosTasasService {
+export class PagosTasasFormService {
 
   private validOTC = new BehaviorSubject<boolean>(false)
   private validCantidad = new BehaviorSubject<boolean>(false)
@@ -19,19 +19,19 @@ export class PagosTasasService {
   private valid = new BehaviorSubject<IErrorObject>({ validOTC: false, validCantidad: false })
   validForms$ = this.valid.asObservable()
 
-  responseObservable = new BehaviorSubject<IPagos | null>(null)
-  response$ = this.responseObservable.asObservable()
+  responseFiltrosObservable = new BehaviorSubject<IPagosFiltros | null>(null)
+  responseFiltros$ = this.responseFiltrosObservable.asObservable()
 
   constructor(private http: HttpClient) { }
 
-  setPagosResponse(values: IPagos) {
-    this.responseObservable.next(values)
+  setPagosFiltrosResponse(values: IPagosFiltros) {
+    this.responseFiltrosObservable.next(values)
   }
 
   setValidOTC(form: boolean) {
     const currentValue = this.valid.value;
     this.valid.next({
-      ...currentValue,  
+      ...currentValue,
       validOTC: form
     });
   }
@@ -39,7 +39,7 @@ export class PagosTasasService {
   setValidCantidad(form: boolean) {
     const currentValue = this.valid.value;
     this.valid.next({
-      ...currentValue,  
+      ...currentValue,
       validCantidad: form
     });
   }

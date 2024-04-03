@@ -1,4 +1,4 @@
-export interface IPagos {
+export interface IPagosFiltros {
     nodo:          IOficina[];
     tipoSolicitud: ITipoSolicitud[];
     otrosPagos:    IOtrosPago[];

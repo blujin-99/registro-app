@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PagosTasasService } from '../../services/pagos-tasas.service';
+import { PagosTasasFormService } from '../../services/pagos-tasas.service';
 import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
 import { TablaTasasService } from '../../services/tabla-tasas.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -19,19 +19,19 @@ export class PagosOtrasTasasPageComponent implements OnInit {
   constructor(
         private pagoSRV : PagoOtrasTasasService,
         private tablaSrv : TablaTasasService,
-        private pagoTasasSrv : PagosTasasService,
+        private pagoTasasFormSrv : PagosTasasFormService,
         ){}
-  
+
   ngOnInit(): void {
     this.panelOpenState = true
-    this.pagoSRV.getPagos().subscribe(
+    this.pagoSRV.getFiltros().subscribe(
       (response) => {
-      this. pagoTasasSrv.setPagosResponse(response)
+      this. pagoTasasFormSrv.setPagosFiltrosResponse(response)
     },
     (error:HttpErrorResponse)=>{
       this.errorRest = {error:error , mensaje:'No se pudo procesar la información de Nuevo Pago, Intente más tarde'}
     }
-    
+
     )
 
     this.pagoSRV.getOtrosPagos().subscribe(

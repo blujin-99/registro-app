@@ -1,5 +1,5 @@
 import { Injectable} from '@angular/core';
-import { IPagos, IOficina, IOtrosPago, ITipoSolicitud, ITablaPagos } from 'src/app/modules/pagos-otras-tasas/interfaces/pago-otras-tasas.interface';
+import { IPagosFiltros, IOficina, IOtrosPago, ITipoSolicitud, ITablaPagos } from 'src/app/modules/pagos-otras-tasas/interfaces/pago-otras-tasas.interface';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -31,10 +31,13 @@ export class PagoOtrasTasasService {
     this.conceptObservable.next(concepto)
   }
 
-  getPagos(): Observable<IPagos> {
-    return this.http.get<IPagos>(this.url)
+  //obtiene los nodos para concepto, oficina, tSolicitud para el formulario de único pago
+  getFiltros(): Observable<IPagosFiltros> {
+    return this.http.get<IPagosFiltros>(this.url)
   }
 
+  // obtiene los datos necesarios una vez el usuario llena el formulario para un pago
+  //y los manda por rest y obtiene la respuesta
   getOtrosPagos() {
     const link = `${environment.apiBase}${environment.api.pagoBoleta}`
       .replace('{oficina}', this.oficina.id)

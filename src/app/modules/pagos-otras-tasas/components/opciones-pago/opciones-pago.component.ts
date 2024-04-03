@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PagosTasasService } from '../../services/pagos-tasas.service';
+import { PagosTasasFormService } from '../../services/pagos-tasas.service';
 import { IErrorObject } from '../../interfaces/pago-otras-tasas.interface';
 import { PagoOtrasTasasService } from 'src/app/shared/services/pagoOtrasTasas.service';
 import { NgOptimizedImage } from '@angular/common'
@@ -16,12 +16,12 @@ export class OpcionesPagoComponent implements OnInit {
   noSended: boolean = false
 
   constructor(
-    private pagosSrv: PagosTasasService,
+    private pagosFormSrv: PagosTasasFormService,
     private pagoTasas : PagoOtrasTasasService
     ) { }
 
   ngOnInit(): void {
-    this.pagosSrv.validForms$.subscribe(values => {
+    this.pagosFormSrv.validForms$.subscribe(values => {
       this.showError = values
     })
   }

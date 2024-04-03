@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { PagosTasasService } from '../../services/pagos-tasas.service';
+import { PagosTasasFormService } from '../../services/pagos-tasas.service';
 import { IOficina,IOtrosPago,ITipoSolicitud } from '../../interfaces/pago-otras-tasas.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validFormClass } from 'src/app/shared/services/validFormClass';
@@ -17,11 +17,11 @@ export class FormTasasComponent implements OnInit{
   tipoSolicitud : ITipoSolicitud[] | undefined  = []
   conceptoFilter = signal(this.concepto)
   disable = true
-  
-  formPagoTasas : FormGroup 
+
+  formPagoTasas : FormGroup
 
   constructor(
-    private pagosSrv : PagosTasasService,
+    private pagosSrv : PagosTasasFormService,
     private fb : FormBuilder,
     public ValidatorSrv : validFormClass,
     private pagosTasas : PagoOtrasTasasService
@@ -35,14 +35,14 @@ export class FormTasasComponent implements OnInit{
 
 
   ngOnInit(): void {
-       this.pagosSrv.response$.subscribe(response => {
+       this.pagosSrv.responseFiltros$.subscribe(response => {
         this.oficina = response?.nodo;
         this.tipoSolicitud = response?.tipoSolicitud;
         this.concepto = response?.otrosPagos
-      }) 
-    
+      })
+
       this.validForm()
-  
+
   }
 
   validForm(){
@@ -67,7 +67,7 @@ export class FormTasasComponent implements OnInit{
       );
       this.conceptoFilter.set(data)
     }else{
-      let data = this.concepto?.filter(concepto => 
+      let data = this.concepto?.filter(concepto =>
         (concepto.jurisdiccion !== 0) && (concepto.jurisdiccion === oficina.idJurisdiccion)
       )
       this.conceptoFilter.set(data)
@@ -82,6 +82,6 @@ export class FormTasasComponent implements OnInit{
     this.pagosTasas.setPagos(concepto,oficina,tSolicitud)
     this.validForm()
   }
-   
-  
+
+
 }
